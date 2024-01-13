@@ -145,8 +145,8 @@ export default function Header() {
             setIsActive(!isActive);
           }}
           className={`relative m-[20px] flex h-[80px] w-[80px] cursor-pointer items-center justify-center rounded-[50%] ${
-            !isMobile && isActive ? "bg-rounded-button-active" : ""
-          } bg-nav-header-button-container transition-colors duration-300`}
+            !isMobile && isActive ? "bg-near-blue" : "bg-second-black"
+          } transition-colors duration-300`}
         >
           <div
             className={`relative z-[1] w-full ${

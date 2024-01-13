@@ -83,7 +83,7 @@ export default function PreloaderAnimation() {
       initial="initial"
       exit="exit"
       onAnimationComplete={handleScrollbar}
-      className="fixed z-[99] flex h-screen w-screen items-center justify-center bg-preloader"
+      className="bg-almost-black fixed z-[99] flex h-screen w-screen items-center justify-center"
     >
       {dimension.width > 0 && (
         <>
@@ -101,8 +101,8 @@ export default function PreloaderAnimation() {
               variants={curve}
               initial="initial"
               exit="exit"
-              className="fill-preloader"
-            ></MotionPath>
+              className="fill-black"
+            />
           </svg>
         </>
       )}

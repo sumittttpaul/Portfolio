@@ -10,13 +10,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        nav: "#1C1D20",
-        preloader: "#000000",
         "landing-color": "#47423F",
-        "rounded-button-color": "rgb(136, 136, 136)",
-        "nav-header": "rgb(153, 153, 153)",
-        "nav-header-button-container": "#1c1d20",
-        "rounded-button-active": "#455CE9",
+        "almost-black": "#1C1D20",
+        "second-black": "#1c1d20",
+        "third-black": "#292929",
+        "second-gray": "#999999",
+        "near-blue": "#455CE9",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

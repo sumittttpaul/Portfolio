@@ -30,14 +30,14 @@ export default function NavCurve({
   return (
     <svg
       onClick={() => setIsActive(false)}
-      className="absolute left-[-99px] top-0 h-full w-[100px] fill-nav stroke-none"
+      className="fill-third-black absolute left-[-99px] top-0 h-full w-[100px] stroke-none"
     >
       <MotionPath
         variants={curve}
         initial="initial"
         animate="enter"
         exit="exit"
-      ></MotionPath>
+      />
     </svg>
   );
 }

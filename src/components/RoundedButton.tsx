@@ -57,7 +57,7 @@ export default function RoundedButton({
     return (
       <Magnetic>
         <div
-          className={`${className} rounded-button relative flex max-h-[64px] max-w-[64px] cursor-pointer items-center justify-center rounded-full`}
+          className={`${className} rounded-button relative flex max-h-[64px] max-w-[64px] cursor-pointer items-center justify-center rounded-full border-0 outline-none`}
           style={{ overflow: "hidden" }}
           onClick={onClick}
           onMouseEnter={() => {
@@ -72,7 +72,7 @@ export default function RoundedButton({
           {!isMobile && (
             <div
               ref={circle}
-              className="absolute top-full h-[150%] w-full rounded-[50%] bg-rounded-button-active"
+              className="bg-near-blue absolute top-full h-[150%] w-full rounded-[50%]"
             />
           )}
         </div>
@@ -97,7 +97,7 @@ export default function RoundedButton({
         {children}
         <div
           ref={circle}
-          className="absolute top-full h-[150%] w-full rounded-[50%] bg-rounded-button-active"
+          className="bg-near-blue absolute top-full h-[150%] w-full rounded-[50%]"
         />
       </div>
     </Magnetic>

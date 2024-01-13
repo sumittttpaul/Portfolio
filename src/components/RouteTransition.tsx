@@ -100,7 +100,7 @@ export default function RouteTransition({ children }: React.PropsWithChildren) {
     <div className="m-0 min-h-screen w-full p-0">
       <div
         style={{ opacity: dimensions.width == null ? 1 : 0 }}
-        className="page-transition-label-bg-transition pointer-events-none fixed left-0 top-0 z-[4] h-[calc(100vh+600px)] w-screen bg-black"
+        className="page-transition-label-bg-transition bg-almost-black pointer-events-none fixed left-0 top-0 z-[4] h-[calc(100vh+600px)] w-screen"
       />
       <MotionP
         className="fixed left-[50%] top-[47.5%] z-[6] flex -translate-x-[50%] items-center text-center text-[42px] text-white"

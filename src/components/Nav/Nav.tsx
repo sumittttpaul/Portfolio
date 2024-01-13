@@ -56,7 +56,7 @@ export default function Nav({
       initial="initial"
       animate="enter"
       exit="exit"
-      className="fixed right-0 top-0 z-[3] h-screen w-full bg-nav text-white sm:w-[500px]"
+      className="bg-third-black fixed right-0 top-0 z-[3] h-screen w-full text-white sm:w-[500px]"
     >
       <div className="fixed right-0 z-[4] sm:hidden">
         <RoundedButton
@@ -64,8 +64,8 @@ export default function Nav({
             setIsActive(!isActive);
           }}
           className={`relative m-[20px] flex h-[80px] w-[80px] cursor-pointer items-center justify-center rounded-[50%] ${
-            isActive ? "bg-rounded-button-active" : ""
-          } bg-nav-header-button-container transition-colors duration-300`}
+            isActive ? "bg-near-blue" : "bg-second-black"
+          } transition-colors duration-300`}
         >
           <div
             className={`relative z-[1] w-full ${
@@ -81,7 +81,7 @@ export default function Nav({
           }}
           className="mt-[100px] flex flex-col gap-[5px] text-[36px] sm:mt-[80px] sm:text-[46px]"
         >
-          <div className="nav-header mb-[40px] border-b-[1px] border-solid border-white/20 pb-5 text-xs font-medium uppercase text-nav-header sm:pb-10">
+          <div className="second-gray text-second-gray mb-[40px] border-b-[1px] border-solid border-white/20 pb-5 text-xs font-medium uppercase sm:pb-10">
             <p>Navigation</p>
           </div>
           {navItems.map((data, index) => {
