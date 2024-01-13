@@ -18,6 +18,7 @@ const NavBackground = dynamic(() => import("components/Nav/Nav.Background"), {
 
 export default function Header() {
   const header = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const HeaderColor = useHeaderColorState();
   const pathname = usePathname();
@@ -28,6 +29,10 @@ export default function Header() {
       HeaderColor.toggleColor(color);
     }, 1000);
   };
+
+  useEffect(() => {
+    if (window.innerWidth < 640) setIsMobile(true);
+  }, []);
 
   useEffect(() => {
     if (isActive) setIsActive(false);
@@ -60,8 +65,12 @@ export default function Header() {
           gsap.to(
             button.current,
             // @ts-ignore: Unreachable code error
-            { scale: 0, duration: 0.25, ease: `power1.out` },
-            setIsActive(false),
+            {
+              scale: 0,
+              duration: 0.25,
+              ease: "power1.out",
+            },
+            window.innerWidth > 640 && setIsActive(false),
           );
         },
       },
@@ -129,18 +138,19 @@ export default function Header() {
           </Magnetic>
         </div>
       </div>
-      <div ref={button} className="fixed right-0 z-[4] scale-0">
+      <div ref={button} className="fixed right-0 z-[3] scale-0 sm:z-[4]">
         <RoundedButton
+          disableHoverEffectOnMobile
           onClick={() => {
             setIsActive(!isActive);
           }}
           className={`relative m-[20px] flex h-[80px] w-[80px] cursor-pointer items-center justify-center rounded-[50%] ${
-            isActive ? "bg-rounded-button-active" : ""
+            !isMobile && isActive ? "bg-rounded-button-active" : ""
           } bg-nav-header-button-container transition-colors duration-300`}
         >
           <div
             className={`relative z-[1] w-full ${
-              isActive ? "header-burger-active" : ""
+              !isMobile && isActive ? "header-burger-active" : ""
             } header-burger`}
           ></div>
         </RoundedButton>

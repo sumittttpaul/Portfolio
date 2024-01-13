@@ -1,4 +1,10 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import {
+  Dispatch,
+  LegacyRef,
+  RefObject,
+  SetStateAction,
+  useState,
+} from "react";
 import { usePathname } from "next/navigation";
 import { MotionDiv } from "utils/FramerMotion";
 import NavLink from "components/Nav/Nav.Link";
@@ -52,6 +58,22 @@ export default function Nav({
       exit="exit"
       className="fixed right-0 top-0 z-[3] h-screen w-full bg-nav text-white sm:w-[500px]"
     >
+      <div className="fixed right-0 z-[4] sm:hidden">
+        <RoundedButton
+          onClick={() => {
+            setIsActive(!isActive);
+          }}
+          className={`relative m-[20px] flex h-[80px] w-[80px] cursor-pointer items-center justify-center rounded-[50%] ${
+            isActive ? "bg-rounded-button-active" : ""
+          } bg-nav-header-button-container transition-colors duration-300`}
+        >
+          <div
+            className={`relative z-[1] w-full ${
+              isActive ? "header-burger-active" : ""
+            } header-burger`}
+          ></div>
+        </RoundedButton>
+      </div>
       <div className="box-border flex h-full flex-col justify-between p-5 sm:p-[100px]">
         <div
           onMouseLeave={() => {
