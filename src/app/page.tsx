@@ -1,4 +1,3 @@
-import RouteTransition from "components/RouteTransition";
 import Description from "interface/Description";
 import Landing from "interface/Landing";
 import Preloader from "interface/Preloader";

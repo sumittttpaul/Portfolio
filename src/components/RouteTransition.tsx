@@ -103,7 +103,7 @@ export default function RouteTransition({ children }: React.PropsWithChildren) {
         className="page-transition-label-bg-transition pointer-events-none fixed left-0 top-0 z-[4] h-[calc(100vh+600px)] w-screen bg-black"
       />
       <MotionP
-        className="absolute left-[50%] top-[47.5%] z-[6] flex -translate-x-[50%] items-center text-center text-[42px] text-white"
+        className="fixed left-[50%] top-[47.5%] z-[6] flex -translate-x-[50%] items-center text-center text-[42px] text-white"
         {...anim(text)}
       >
         <span className="mr-[10px] block h-[10px] w-[10px] rounded-[50%] bg-white" />

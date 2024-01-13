@@ -1,4 +1,3 @@
-import RouteTransition from "components/RouteTransition";
 import SlideUpClient from "components/SlideUp.Client";
 
 export default function About() {
