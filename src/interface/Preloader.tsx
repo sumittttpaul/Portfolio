@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import Preloader_Animation from "components/Preloader";
+import { usePreloaderState } from "utils/Zustand";
+import PreloaderAnimation from "components/PreloaderAnimation";
 
 export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
+  const preloader = usePreloaderState();
 
   useEffect(() => {
     (async () => {
@@ -14,15 +16,17 @@ export default function Preloader() {
 
       setTimeout(() => {
         setIsLoading(false);
-        document.body.style.cursor = "default";
-        window.scrollTo(0, 0);
       }, 2000);
     })();
   }, []);
 
   return (
-    <AnimatePresence mode="wait">
-      {isLoading && <Preloader_Animation />}
-    </AnimatePresence>
+    <>
+      {preloader.Visible && (
+        <AnimatePresence mode="wait">
+          {isLoading && <PreloaderAnimation />}
+        </AnimatePresence>
+      )}
+    </>
   );
 }

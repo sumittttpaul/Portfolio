@@ -2,10 +2,12 @@
 
 import { LazyMotion, domAnimation, m } from "framer-motion";
 
-export const MotionDiv = m.div;
 export const MotionP = m.p;
+export const MotionDiv = m.div;
+export const MotionMain = m.main;
 export const MotionPath = m.path;
+export const MotionSVG = m.svg;
 
-export function MotionOptimize({ children }: { children: React.ReactNode }) {
+export function MotionOptimize({ children }: React.PropsWithChildren) {
   return <LazyMotion features={domAnimation}>{children}</LazyMotion>;
 }

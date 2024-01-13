@@ -12,6 +12,7 @@ const words = [
   "Hallå",
   "Guten tag",
   "Hallo",
+  "स्वागत हे",
 ];
 
 const opacity = {
@@ -19,7 +20,7 @@ const opacity = {
     opacity: 0,
   },
   enter: {
-    opacity: 0.75,
+    opacity: 1,
     transition: { duration: 1, delay: 0.2 },
   },
 };
@@ -34,23 +35,9 @@ const slideUp = {
   },
 };
 
-export default function Preloader_Animation() {
-  const [index, setIndex] = useState(0);
+export default function PreloaderAnimation() {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    setDimension({ width: window.innerWidth, height: window.innerHeight });
-  }, []);
-
-  useEffect(() => {
-    if (index == words.length - 1) return;
-    setTimeout(
-      () => {
-        setIndex(index + 1);
-      },
-      index == 0 ? 1000 : 150,
-    );
-  }, [index]);
+  const [index, setIndex] = useState(0);
 
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
     dimension.height
@@ -72,12 +59,31 @@ export default function Preloader_Animation() {
     },
   };
 
+  const handleScrollbar = () => {
+    // document.documentElement.style.setProperty("--hide-scrollbar", "block");
+  };
+
+  useEffect(() => {
+    setDimension({ width: window.innerWidth, height: window.innerHeight });
+  }, []);
+
+  useEffect(() => {
+    if (index == words.length - 1) return;
+    setTimeout(
+      () => {
+        setIndex(index + 1);
+      },
+      index == 0 ? 1000 : 150,
+    );
+  }, [index]);
+
   return (
     <MotionDiv
       variants={slideUp}
       initial="initial"
       exit="exit"
-      className="bg-preloader fixed z-[99] flex h-screen w-screen items-center justify-center"
+      onAnimationComplete={handleScrollbar}
+      className="fixed z-[99] flex h-screen w-screen items-center justify-center bg-preloader"
     >
       {dimension.width > 0 && (
         <>
@@ -85,9 +91,9 @@ export default function Preloader_Animation() {
             variants={opacity}
             initial="initial"
             animate="enter"
-            className="absolute z-[1] flex items-center text-[42px] text-white"
+            className="absolute z-[1] flex items-center text-center text-[42px] text-white"
           >
-            <span className="mr-[10px] block h-[10px] w-[10px] rounded-[50%] bg-white"></span>
+            <span className="mr-[10px] block h-[10px] w-[10px] rounded-[50%] bg-white" />
             {words[index]}
           </MotionP>
           <svg className="absolute top-0 h-[calc(100%+300px)] w-full ">
