@@ -8,7 +8,7 @@ export default function LandingClient({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 }) {
   const preloader = usePreloaderState();
@@ -28,7 +28,7 @@ export default function LandingClient({
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.documentElement.style.setProperty("--body-color", "#47423f");
+    document.documentElement.style.setProperty("--body-color", "#000000");
   }, []);
 
   return (

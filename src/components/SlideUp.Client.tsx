@@ -7,7 +7,7 @@ export default function SlideUpClient({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 }) {
   const slideUp = {

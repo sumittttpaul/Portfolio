@@ -13,7 +13,7 @@ export default function RoundedButton({
   ...attributes
 }: {
   disableHoverEffectOnMobile?: true;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onClick: () => void;
   className: string;
 }) {
@@ -72,7 +72,7 @@ export default function RoundedButton({
           {!isMobile && (
             <div
               ref={circle}
-              className="bg-near-blue absolute top-full h-[150%] w-full rounded-[50%]"
+              className="absolute top-full h-[150%] w-full rounded-[50%] bg-near-blue"
             />
           )}
         </div>
@@ -97,7 +97,7 @@ export default function RoundedButton({
         {children}
         <div
           ref={circle}
-          className="bg-near-blue absolute top-full h-[150%] w-full rounded-[50%]"
+          className="absolute top-full h-[150%] w-full rounded-[50%] bg-near-blue"
         />
       </div>
     </Magnetic>

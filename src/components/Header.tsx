@@ -78,11 +78,11 @@ export default function Header() {
   }, []);
 
   return (
-    <>
+    <header>
       <div
         ref={header}
         style={{ color: HeaderColor.Color }}
-        className="absolute top-0 z-[1] box-border flex w-full items-center justify-between px-2 py-[25px] sm:px-[35px]"
+        className="absolute top-0 z-[2] box-border flex w-full items-center justify-between px-2 py-[25px] sm:px-[35px]"
       >
         <Magnetic>
           <Link
@@ -93,8 +93,8 @@ export default function Header() {
             <p className="header-logo-copyright header-logo-transition relative text-[20px] text-base font-[300]">
               ©
             </p>
-            <div className=" relative ml-[5px] flex h-[28px] items-end overflow-hidden whitespace-nowrap group-hover:pr-[30px]">
-              <p className="header-logo-transition header-logo-transition-width relative w-[134px] text-[17px] font-[500] group-hover:w-[157px] group-hover:-translate-x-[72px]">
+            <div className=" relative ml-[5px] flex h-[28px] items-center sm:items-end overflow-hidden whitespace-nowrap sm:group-hover:pr-[30px]">
+              <p className="header-logo-transition relative w-[120px] text-[15px] font-[500] sm:w-[134px] sm:text-[17px] sm:group-hover:w-[157px] sm:group-hover:-translate-x-[72px]">
                 Code by Sumeet Kumar Paul
               </p>
             </div>
@@ -127,7 +127,7 @@ export default function Header() {
           <Magnetic>
             <button
               onClick={() => setIsActive(true)}
-              className="relative z-[1] flex cursor-pointer items-center space-x-2 p-[15px] text-[17px] font-[500]"
+              className="relative z-[1] flex cursor-pointer items-center space-x-2 p-[15px] text-[15px] font-[500] sm:text-[17px]"
             >
               <div
                 style={{ backgroundColor: HeaderColor.Color }}
@@ -163,7 +163,7 @@ export default function Header() {
           </>
         )}
       </AnimatePresence>
-    </>
+    </header>
   );
 }
 
@@ -173,7 +173,7 @@ function HorizontalNav({
   pathname,
   color,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   href: string;
   pathname: string;
   color: string;
@@ -187,7 +187,7 @@ function HorizontalNav({
         <div
           style={{ backgroundColor: color }}
           className={`${
-            pathname == href ? "scale-100" : "group-hover:scale-100"
+            pathname == href ? "scale-100" : "sm:group-hover:scale-100"
           } header-logo-transition absolute left-[50%] top-[45px] h-[6px] w-[6px] -translate-x-[50%] scale-0 rounded-[50%]`}
         />
       </div>

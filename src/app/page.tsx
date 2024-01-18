@@ -1,4 +1,3 @@
-import Description from "interface/Description";
 import Landing from "interface/Landing";
 import Preloader from "interface/Preloader";
 
@@ -7,7 +6,9 @@ export default function Home() {
     <main className="overflow-hidden">
       <Preloader />
       <Landing />
-      <Description />
+      <div className="flex h-screen w-full items-center justify-center bg-white text-black">
+        Description
+      </div>
     </main>
   );
 }
