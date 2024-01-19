@@ -1,3 +1,5 @@
+"use client";
+
 import { UserIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
 import { Dispatch, SetStateAction } from "react";

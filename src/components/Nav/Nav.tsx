@@ -1,10 +1,6 @@
-import {
-  Dispatch,
-  LegacyRef,
-  RefObject,
-  SetStateAction,
-  useState,
-} from "react";
+'use client'
+
+import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import { MotionDiv } from "utils/FramerMotion";
 import NavLink from "components/Nav/Nav.Link";
@@ -56,7 +52,7 @@ export default function Nav({
       initial="initial"
       animate="enter"
       exit="exit"
-      className="bg-third-black fixed right-0 top-0 z-[3] h-screen w-full text-white sm:w-[500px]"
+      className="fixed right-0 top-0 z-[3] h-screen w-full bg-third-black text-white sm:w-[500px]"
     >
       <div className="fixed right-0 z-[4] sm:hidden">
         <RoundedButton
@@ -81,7 +77,7 @@ export default function Nav({
           }}
           className="mt-[100px] flex flex-col gap-[5px] text-[36px] sm:mt-[80px] sm:text-[46px]"
         >
-          <div className="second-gray text-second-gray mb-[40px] border-b-[1px] border-solid border-white/20 pb-5 text-xs font-medium uppercase sm:pb-10">
+          <div className="second-gray mb-[40px] border-b-[1px] border-solid border-white/20 pb-5 text-xs font-medium uppercase text-second-gray sm:pb-10">
             <p>Navigation</p>
           </div>
           {navItems.map((data, index) => {

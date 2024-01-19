@@ -12,7 +12,7 @@ export default function RoundedButton({
   className,
   ...attributes
 }: {
-  disableHoverEffectOnMobile?: true;
+  disableHoverEffectOnMobile?: boolean;
   children?: React.ReactNode;
   onClick: () => void;
   className: string;

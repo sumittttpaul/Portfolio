@@ -3,12 +3,12 @@ import Preloader from "interface/Preloader";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
+    <main>
       <Preloader />
       <Landing />
-      <div className="flex h-screen w-full items-center justify-center bg-white text-black">
+      <section className="flex h-screen w-full items-center justify-center bg-white text-black">
         Description
-      </div>
+      </section>
     </main>
   );
 }

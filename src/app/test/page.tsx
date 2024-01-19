@@ -1,35 +1,59 @@
-import LabelTag from "components/LabelTag";
-import PhotoButton from "components/PhotoButton";
-import TypographyAnimation from "components/TypographyAnimation";
 import Image from "next/image";
-import ThreadIcon from "../../../public/icons/thread.svg";
 import BGImage from "../../../public/bg_character.png";
-import dynamic from "next/dynamic";
-import Sumit_Paul from "../../../public/test.jpg";
-import ThreeDCard from "components/ThreeDCard";
-
-const MovingTextAnimation = dynamic(
-  () => import("components/MovingTextAnimation"),
-  { ssr: false },
-);
+import LocationContainer from "../../../public/icons/location-container.svg";
+import GlobeAnimation from "components/GlobeAnimation/GlobeAnimation";
+import { ArrowDownRightIcon } from "@heroicons/react/24/outline";
+import { __MovingTextAnimation } from "utils/DynamicImport";
 
 export default function Test() {
   return (
-    <div className="relative flex h-[115vh] bg-black">
+    <div className="relative flex h-auto overflow-x-hidden bg-black">
       {/* Gradient Background */}
       {/* <div className="absolute left-32 top-[25%] block aspect-square h-[500px] min-h-[500px] w-[500px] min-w-[500px] bg-gradient-radial from-dark-pink-purple to-75%" /> */}
       {/* Main */}
-      <div className="flex w-full items-end justify-center pt-4 sm:items-start">
-        <div className="relative -ml-[200px] h-[1000px] min-h-[1000px] w-[664px] min-w-[664px] sm:sm:h-[1100px] sm:min-h-[1100px] sm:w-[730px] sm:min-w-[730px]">
+      <div className="flex w-full items-end justify-center pt-10 md:items-start">
+        <div className="relative -ml-[200px] h-[1000px] min-h-[1000px] w-[664px] min-w-[664px] md:h-[1100px] md:min-h-[1100px] md:w-[730px] md:min-w-[730px]">
           <Image
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "cover" }}
             sizes="(min-width: 768px) 730px, 664px"
             src={BGImage}
             alt="background image"
-            className="z-[1]"
-            fill
             priority
+            fill
           />
+        </div>
+      </div>
+      <div className="absolute -left-4 top-[35%] z-[1] hidden h-[114px] w-[283px] scale-[0.9] items-center justify-between rounded-r-full transition-all duration-300 ease-in md:flex xl:left-0 xl:scale-100">
+        <div className="relative h-[114px] w-[283px]">
+          <Image
+            src={LocationContainer}
+            height={114}
+            width={283}
+            alt="location container"
+          />
+          <div className="absolute left-0 top-[50%] flex w-full -translate-y-[50%] items-center justify-start pl-14">
+            <p className="flex flex-col text-[17px] font-medium leading-5 tracking-tight text-white">
+              <span>Located</span>
+              <span>in the</span>
+              <span className="mt-1 text-[20px]">Bharat</span>
+            </p>
+          </div>
+          <div className="absolute right-0 top-0 flex aspect-square h-full w-auto items-center justify-center rounded-[50%]">
+            <GlobeAnimation />
+          </div>
+        </div>
+      </div>
+      <div
+        data-scroll
+        data-scroll-speed={0.1}
+        className="absolute right-[15%] top-[28%] z-[1] hidden md:flex"
+      >
+        <div className="flex flex-col transition-all duration-300 ease-in">
+          <ArrowDownRightIcon className="w-[clamp(1.3em,2.3vw,2em)] text-white" />
+          <p className="mt-[75px] flex flex-col text-[clamp(1.55em,2.3vw,2.5em)] leading-[1.4]">
+            <span>Freelance</span>
+            <span>Web Developer</span>
+          </p>
         </div>
       </div>
       {/* <ThreeDCard
@@ -91,7 +115,19 @@ export default function Test() {
           <LabelTag name="design" ContainerClassName="mt-2" />
         </div>
       </div> */}
-      <MovingTextAnimation />
+      <__MovingTextAnimation />
+      <div className="absolute bottom-[290px] left-5 block md:hidden">
+        <ArrowDownRightIcon className="w-6 text-white" />
+      </div>
+      <div className="absolute bottom-[18vh] left-0 right-0 flex w-full justify-between px-5 md:hidden">
+        <p className="flex flex-col text-[25px] leading-[1.4]">
+          <span>Freelance</span>
+          <span>Web Developer</span>
+        </p>
+        <div className="relative mr-10">
+          <GlobeAnimation />
+        </div>
+      </div>
     </div>
   );
 }

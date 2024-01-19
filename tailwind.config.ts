@@ -34,6 +34,7 @@ const config: Config = {
       },
       screens: {
         "max-size": "1500px",
+        xs: "400px",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

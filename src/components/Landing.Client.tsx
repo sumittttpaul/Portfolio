@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { MotionMain } from "utils/FramerMotion";
+import { MotionSection } from "utils/FramerMotion";
 import { usePreloaderState } from "utils/Zustand";
 
 export default function LandingClient({
@@ -32,13 +32,13 @@ export default function LandingClient({
   }, []);
 
   return (
-    <MotionMain
+    <MotionSection
       variants={slideUp}
       initial="initial"
       animate="enter"
       className={className}
     >
       {children}
-    </MotionMain>
+    </MotionSection>
   );
 }

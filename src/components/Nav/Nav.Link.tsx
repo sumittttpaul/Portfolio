@@ -48,13 +48,13 @@ export default function NavLink({
       exit="exit"
     >
       <Magnetic>
-        <div className="flex w-full items-center justify-between sm:w-auto sm:justify-start">
+        <div className="flex w-full items-center justify-between md:w-auto md:justify-start">
           <MotionDiv
             variants={scale}
             animate={isActive ? "open" : "closed"}
-            className="order-2 mr-5 block h-[10px] w-[10px] rounded-[50%] bg-white sm:absolute sm:-left-[30px] sm:order-1 sm:mr-0"
+            className="order-2 mr-5 block h-[10px] w-[10px] rounded-[50%] bg-white md:absolute md:-left-[30px] md:order-1 md:mr-0"
           ></MotionDiv>
-          <Link href={href} scroll={false} className="order-1 sm:order-2">
+          <Link href={href} scroll={false} className="order-1 md:order-2">
             {title}
           </Link>
         </div>

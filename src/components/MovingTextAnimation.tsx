@@ -40,16 +40,16 @@ export default function MovingTextAnimation() {
   }, []);
 
   return (
-    <div className="absolute bottom-[calc(var(--big-name-bottom,1vh)*33)] z-[1] pb-[calc(var(--big-name-padding)*0.3)] sm:bottom-[15vh] xl:bottom-[12vh]">
+    <div className="absolute bottom-[calc(var(--big-name-bottom,1vh)*33)] z-[1] pb-[calc(var(--big-name-padding)*1.4)] md:bottom-[15vh] xl:bottom-[12vh]">
       <div ref={slider} className="relative whitespace-nowrap">
         <h1
           ref={firstText}
-          className="moving-text-font-size font-neue relative m-0 flex pr-[50px] font-[400] text-white"
+          className="moving-text-font-size relative m-0 flex pr-[50px] font-neue font-[400] text-white"
         >
           Sumeet Kumar Paul —
         </h1>
         <h1
-          className="moving-text-font-size font-neue absolute left-full top-0 m-0 flex pr-[50px] font-[400] text-white"
+          className="moving-text-font-size absolute left-full top-0 m-0 flex pr-[50px] font-neue font-[400] text-white"
           ref={secondText}
         >
           Sumeet Kumar Paul —

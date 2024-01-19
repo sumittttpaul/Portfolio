@@ -31,10 +31,6 @@ export default function Header() {
   };
 
   useEffect(() => {
-    if (window.innerWidth < 640) setIsMobile(true);
-  }, []);
-
-  useEffect(() => {
     if (isActive) setIsActive(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
@@ -46,6 +42,14 @@ export default function Header() {
     if (pathname === "/contact") ChangeColor("Black");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  useEffect(() => {
+    (async () => {
+      const LocomotiveScroll = (await import("locomotive-scroll")).default;
+      const locomotiveScroll = new LocomotiveScroll();
+    })();
+    if (window.innerWidth < 640) setIsMobile(true);
+  }, []);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -90,17 +94,18 @@ export default function Header() {
             scroll={false}
             className="header-logo group flex h-[50px] cursor-pointer items-center justify-center px-2.5"
           >
-            <p className="header-logo-copyright header-logo-transition relative text-[20px] text-base font-[300]">
+            <p className="header-logo-copyright header-logo-transition-all relative text-[20px] text-base font-[300]">
               ©
             </p>
-            <div className=" relative ml-[5px] flex h-[28px] items-center sm:items-end overflow-hidden whitespace-nowrap sm:group-hover:pr-[30px]">
-              <p className="header-logo-transition relative w-[120px] text-[15px] font-[500] sm:w-[134px] sm:text-[17px] sm:group-hover:w-[157px] sm:group-hover:-translate-x-[72px]">
-                Code by Sumeet Kumar Paul
+            <div className="header-logo-transition-all relative ml-[5px] flex h-[28px] items-center overflow-hidden whitespace-nowrap sm:items-end sm:pr-0 sm:group-hover:pr-[30px]">
+              <p className="header-logo-transition-transform relative text-[15px] font-[500] sm:text-[17px] sm:group-hover:-translate-x-[72px]">
+                <span>Code by Sumeet</span>
+                <span className="absolute left-[139px]"> Kumar Paul</span>
               </p>
             </div>
           </Link>
         </Magnetic>
-        <div className="header-logo-transition hidden h-[50px] items-center sm:flex">
+        <div className="header-logo-transition-all hidden h-[50px] items-center sm:flex">
           <HorizontalNav
             color={HeaderColor.Color}
             pathname={pathname}
@@ -131,7 +136,7 @@ export default function Header() {
             >
               <div
                 style={{ backgroundColor: HeaderColor.Color }}
-                className="header-logo-transition h-[6px] w-[6px] scale-100 rounded-[50%]"
+                className="header-logo-transition-all h-[6px] w-[6px] scale-100 rounded-[50%]"
               />
               <p className="cursor-pointer">Menu</p>
             </button>
@@ -188,7 +193,7 @@ function HorizontalNav({
           style={{ backgroundColor: color }}
           className={`${
             pathname == href ? "scale-100" : "sm:group-hover:scale-100"
-          } header-logo-transition absolute left-[50%] top-[45px] h-[6px] w-[6px] -translate-x-[50%] scale-0 rounded-[50%]`}
+          } header-logo-transition-all absolute left-[50%] top-[45px] h-[6px] w-[6px] -translate-x-[50%] scale-0 rounded-[50%]`}
         />
       </div>
     </Magnetic>

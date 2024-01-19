@@ -1,3 +1,5 @@
+"use client";
+
 import { Dispatch, SetStateAction } from "react";
 import { MotionDiv } from "utils/FramerMotion";
 
@@ -30,6 +32,6 @@ export default function NavBackground({
       exit="closed"
       onClick={() => setIsActive(false)}
       className="fixed right-0 top-0 z-[2] hidden h-screen w-full bg-gradient-to-l from-black/30 sm:block"
-    ></MotionDiv>
+    />
   );
 }

@@ -10,14 +10,9 @@ export default function Preloader() {
   const preloader = usePreloaderState();
 
   useEffect(() => {
-    (async () => {
-      const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
-
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    })();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
   }, []);
 
   return (

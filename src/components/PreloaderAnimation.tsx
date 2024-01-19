@@ -59,10 +59,6 @@ export default function PreloaderAnimation() {
     },
   };
 
-  const handleScrollbar = () => {
-    // document.documentElement.style.setProperty("--hide-scrollbar", "block");
-  };
-
   useEffect(() => {
     setDimension({ width: window.innerWidth, height: window.innerHeight });
   }, []);
@@ -82,7 +78,6 @@ export default function PreloaderAnimation() {
       variants={slideUp}
       initial="initial"
       exit="exit"
-      onAnimationComplete={handleScrollbar}
       className="fixed z-[999] flex h-screen w-screen items-center justify-center bg-forth-black"
     >
       {dimension.width > 0 && (

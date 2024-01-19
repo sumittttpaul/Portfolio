@@ -4,8 +4,8 @@ import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
-import Header from "components/Header";
 import "styles/globals.css";
+import { __Header } from "utils/DynamicImport";
 
 const NeueMontreal = localFont({
   src: [
@@ -68,8 +68,9 @@ type Props = NextPageProps<{
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Sumeet Kumar Paul",
-  description: "Portfolio by Sumit",
+  title: "Sumeet Kumar Paul • Freelance Developer",
+  description:
+    "Helping brands thrive in the digital world. Delivering tailor-made digital designs and building interactive websites from scratch.",
   icons: "/favicon.ico",
 };
 
@@ -84,16 +85,18 @@ const BodyClass = `${inter.className} ${NeueMontreal.variable} overflow-x-hidden
 
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang="en">
-      <body className={BodyClass}>
-        <MotionOptimize>
-          <Header />
-          {/* <RouteTransitionWrapper> */}
-          {children}
-          {/* </RouteTransitionWrapper> */}
-        </MotionOptimize>
-        <Analytics />
-      </body>
-    </html>
+    <>
+      <html lang="en">
+        <body className={BodyClass}>
+          <MotionOptimize>
+            <__Header />
+            {/* <RouteTransitionWrapper> */}
+            {children}
+            {/* </RouteTransitionWrapper> */}
+          </MotionOptimize>
+          <Analytics />
+        </body>
+      </html>
+    </>
   );
 }
