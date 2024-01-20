@@ -83,7 +83,10 @@ export default function PreloaderAnimation() {
       initial="initial"
       exit="exit"
       onAnimationComplete={handleAnimationComplete}
-      style={{ height: dimension.height, width: dimension.width }}
+      style={{
+        height: dimension.height ? dimension.height : "100%",
+        width: dimension.width ? dimension.width : "100%",
+      }}
       className="fixed z-[999] flex items-center justify-center bg-white"
     >
       {dimension.width > 0 && (
