@@ -44,11 +44,14 @@ export default function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    (async () => {
-      const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
-    })();
-    if (window.innerWidth < 640) setIsMobile(true);
+    if (window.innerWidth > 640) {
+      (async () => {
+        const LocomotiveScroll = (await import("locomotive-scroll")).default;
+        const locomotiveScroll = new LocomotiveScroll();
+      })();
+    } else {
+      setIsMobile(true);
+    }
   }, []);
 
   useLayoutEffect(() => {

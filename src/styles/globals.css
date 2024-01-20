@@ -64,7 +64,7 @@ img::selection {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--scrollbar-background);
+  background: transparent;
 }
 
 .no-select {
@@ -189,6 +189,23 @@ img::selection {
 .text-stroke {
   --tw-text-opacity: 1;
   -webkit-text-stroke: 2px rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.big-name-move-animation {
+  animation-name: big-name-move-animation;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+@keyframes big-name-move-animation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes margin-left-animation {
