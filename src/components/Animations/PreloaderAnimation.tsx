@@ -2,6 +2,7 @@
 
 import { MotionDiv, MotionP, MotionPath } from "utils/FramerMotion";
 import { useEffect, useState } from "react";
+import { usePreloaderState } from "utils/Zustand";
 
 const words = [
   "Hello",
@@ -38,6 +39,7 @@ const slideUp = {
 export default function PreloaderAnimation() {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
   const [index, setIndex] = useState(0);
+  const preloaderState = usePreloaderState();
 
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
     dimension.height
@@ -59,6 +61,8 @@ export default function PreloaderAnimation() {
     },
   };
 
+  const handleAnimationComplete = () => preloaderState.toggleVisible();
+
   useEffect(() => {
     setDimension({ width: window.innerWidth, height: window.innerHeight });
   }, []);
@@ -78,7 +82,9 @@ export default function PreloaderAnimation() {
       variants={slideUp}
       initial="initial"
       exit="exit"
-      className="bg-preloader-black fixed z-[999] flex h-screen w-screen items-center justify-center"
+      onAnimationComplete={handleAnimationComplete}
+      style={{ height: dimension.height, width: dimension.width }}
+      className="fixed z-[999] flex items-center justify-center bg-white"
     >
       {dimension.width > 0 && (
         <>
@@ -86,17 +92,17 @@ export default function PreloaderAnimation() {
             variants={opacity}
             initial="initial"
             animate="enter"
-            className="absolute z-[1] flex items-center text-center text-[42px] text-white"
+            className="absolute z-[1] flex items-center text-center text-[calc(clamp(3.25em,5vw,4.5em)*.75)] text-preloader-black"
           >
-            <span className="mr-[10px] block h-[10px] w-[10px] rounded-[50%] bg-white" />
-            {words[index]}
+            <span className="mr-[10px] scale-[.8]">•</span>
+            <span className="font-bold">{words[index]}</span>
           </MotionP>
           <svg className="absolute top-0 h-[calc(100%+300px)] w-full ">
             <MotionPath
               variants={curve}
               initial="initial"
               exit="exit"
-              className="fill-preloader-black"
+              className="fill-white"
             />
           </svg>
         </>

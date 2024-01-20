@@ -85,18 +85,16 @@ const BodyClass = `${inter.className} ${NeueMontreal.variable} overflow-x-hidden
 
 export default function RootLayout({ children }: Props) {
   return (
-    <>
-      <html lang="en">
-        <body className={BodyClass}>
-          <MotionOptimize>
-            <Header />
-            {/* <RouteTransitionWrapper> */}
-            {children}
-            {/* </RouteTransitionWrapper> */}
-          </MotionOptimize>
-          <Analytics />
-        </body>
-      </html>
-    </>
+    <html lang="en">
+      <body className={BodyClass}>
+        <MotionOptimize>
+          <Header />
+          {/* <RouteTransitionWrapper> */}
+          {children}
+          {/* </RouteTransitionWrapper> */}
+        </MotionOptimize>
+        <Analytics />
+      </body>
+    </html>
   );
 }
