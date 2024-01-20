@@ -78,7 +78,7 @@ export default function PreloaderAnimation() {
       variants={slideUp}
       initial="initial"
       exit="exit"
-      className="fixed z-[999] flex h-screen w-screen items-center justify-center bg-forth-black"
+      className="bg-preloader-black fixed z-[999] flex h-screen w-screen items-center justify-center"
     >
       {dimension.width > 0 && (
         <>
@@ -96,7 +96,7 @@ export default function PreloaderAnimation() {
               variants={curve}
               initial="initial"
               exit="exit"
-              className="fill-forth-black"
+              className="fill-preloader-black"
             />
           </svg>
         </>

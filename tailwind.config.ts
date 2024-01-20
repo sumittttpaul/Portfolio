@@ -11,9 +11,8 @@ const config: Config = {
     extend: {
       colors: {
         "almost-black": "#1C1D20",
-        "second-black": "#1c1d20",
-        "third-black": "#292929",
-        "forth-black": "#141517",
+        "second-black": "#292929",
+        "preloader-black": "#202020",
         "second-gray": "#999999",
         "near-blue": "#455CE9",
         "dark-pink-purple": "#2E1C39",

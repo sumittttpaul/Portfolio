@@ -4,7 +4,7 @@ import GlobeAnimation from "components/GlobeAnimation/GlobeAnimation";
 import LandingClient from "components/Landing.Client";
 import { ArrowDownRightIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { __MovingTextAnimation } from "utils/DynamicImport";
+import MovingTextAnimation from "components/MovingTextAnimation";
 
 export default function Landing() {
   return (
@@ -22,6 +22,7 @@ export default function Landing() {
             sizes="(min-width: 768px) 730px, 664px"
             src={BGImage}
             alt="background image"
+            draggable="false"
             priority
             fill
           />
@@ -69,7 +70,7 @@ export default function Landing() {
         </div>
       </div>
       {/* Moving big name text something like "sumeet kumar paul" */}
-      <__MovingTextAnimation />
+      <MovingTextAnimation />
       {/* Down arrow, only for mobile */}
       <div
         data-scroll-position="top"

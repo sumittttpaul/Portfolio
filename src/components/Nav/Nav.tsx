@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -52,7 +52,7 @@ export default function Nav({
       initial="initial"
       animate="enter"
       exit="exit"
-      className="fixed right-0 top-0 z-[3] h-screen w-full bg-third-black text-white sm:w-[500px]"
+      className="fixed right-0 top-0 z-[3] h-screen w-full bg-second-black text-white sm:w-[500px]"
     >
       <div className="fixed right-0 z-[4] sm:hidden">
         <RoundedButton
@@ -60,7 +60,7 @@ export default function Nav({
             setIsActive(!isActive);
           }}
           className={`relative m-[20px] flex h-[80px] w-[80px] cursor-pointer items-center justify-center rounded-[50%] ${
-            isActive ? "bg-near-blue" : "bg-second-black"
+            isActive ? "bg-near-blue" : "bg-almost-black"
           } transition-colors duration-300`}
         >
           <div

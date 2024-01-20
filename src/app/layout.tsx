@@ -1,11 +1,11 @@
 import RouteTransitionWrapper from "utils/RouteTransitionWrapper";
 import { MotionOptimize } from "utils/FramerMotion";
 import { Analytics } from "@vercel/analytics/react";
+import { Inter } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Inter } from "next/font/google";
+import Header from "components/Header";
 import "styles/globals.css";
-import { __Header } from "utils/DynamicImport";
 
 const NeueMontreal = localFont({
   src: [
@@ -89,7 +89,7 @@ export default function RootLayout({ children }: Props) {
       <html lang="en">
         <body className={BodyClass}>
           <MotionOptimize>
-            <__Header />
+            <Header />
             {/* <RouteTransitionWrapper> */}
             {children}
             {/* </RouteTransitionWrapper> */}
