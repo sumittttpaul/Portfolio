@@ -3,9 +3,9 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePathname } from "next/navigation";
 import { MotionDiv } from "utils/FramerMotion";
-import NavLink from "components/Nav/Nav.Link";
-import NavCurve from "components/Nav/Nav.Curve";
-import NavFooter from "components/Nav/Nav.Footer";
+import NavLink from "components/Nav/Link";
+import NavCurve from "components/Nav/Curve";
+import NavFooter from "components/Nav/Footer";
 import RoundedButton from "components/RoundedButton";
 
 const navItems = [

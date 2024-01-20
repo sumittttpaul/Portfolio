@@ -1,4 +1,4 @@
-import SlideUpClient from "components/SlideUp.Client";
+import SlideUpClient from "components/Clients/SlideUpClient";
 
 export default function Contact() {
   return (

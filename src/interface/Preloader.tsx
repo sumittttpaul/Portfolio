@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { usePreloaderState } from "utils/Zustand";
-import PreloaderAnimation from "components/PreloaderAnimation";
+import PreloaderAnimation from "components/Animations/PreloaderAnimation";
 
 export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);

@@ -11,8 +11,8 @@ import Magnetic from "components/Magnetic";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
-const Nav = dynamic(() => import("components/Nav/Nav"), { ssr: false });
-const NavBackground = dynamic(() => import("components/Nav/Nav.Background"), {
+const Nav = dynamic(() => import("components/Nav"), { ssr: false });
+const NavBackground = dynamic(() => import("components/Nav/Background"), {
   ssr: false,
 });
 

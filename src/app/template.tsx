@@ -1,4 +1,4 @@
-import RouteTransition from "components/RouteTransition";
+import RouteTransition from "components/Animations/RouteAnimation";
 
 export default function RootTemplate({ children }: React.PropsWithChildren) {
   return (

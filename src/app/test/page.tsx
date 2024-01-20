@@ -1,9 +1,9 @@
 import Image from "next/image";
 import BGImage from "../../../public/bg_character.png";
 import LocationContainer from "../../../public/icons/location-container.svg";
-import GlobeAnimation from "components/GlobeAnimation/GlobeAnimation";
+import GlobeAnimation from "components/Animations/GlobeAnimation";
 import { ArrowDownRightIcon } from "@heroicons/react/24/outline";
-import { __MovingTextAnimation } from "utils/DynamicImport";
+import MovingTextAnimation from "components/Animations/MovingTextAnimation";
 
 export default function Test() {
   return (
@@ -115,7 +115,7 @@ export default function Test() {
           <LabelTag name="design" ContainerClassName="mt-2" />
         </div>
       </div> */}
-      <__MovingTextAnimation />
+      <MovingTextAnimation />
       <div className="absolute bottom-[290px] left-5 block md:hidden">
         <ArrowDownRightIcon className="w-6 text-white" />
       </div>
