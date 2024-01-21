@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ScrollBarDisplay, ScrollBarTheme } from "utils/ScrollBarStyle";
 import { usePreloaderState } from "utils/Zustand";
 
 export default function MainClient({
@@ -12,42 +13,19 @@ export default function MainClient({
   const preloaderState = usePreloaderState();
 
   useEffect(() => {
-    if (window.innerWidth > 640) {
-      document.documentElement.style.setProperty("--hide-scrollbar", "block");
+    if (window.innerWidth > 640 && preloaderState.Start) {
+      ScrollBarDisplay("show");
     }
     if (preloaderState.Visible) setHeight(`${window.innerHeight}px`);
     else setHeight("auto");
-  }, [preloaderState.Visible]);
+  }, [preloaderState.Visible, preloaderState.Start]);
 
   useEffect(() => {
     const changeScrollColor = () => {
-      console.log(document.documentElement.scrollTop);
-      if (document.documentElement.scrollTop > 940) {
-        document.documentElement.style.setProperty(
-          "--scrollbar-background",
-          "#ffffff",
-        );
-        document.documentElement.style.setProperty(
-          "--scrollbar-thumb",
-          "#000000",
-        );
-        document.documentElement.style.setProperty(
-          "--scrollbar-border-width",
-          "3px",
-        );
+      if (document.documentElement.scrollTop > 1040) {
+        ScrollBarTheme("light");
       } else {
-        document.documentElement.style.setProperty(
-          "--scrollbar-background",
-          "#000000",
-        );
-        document.documentElement.style.setProperty(
-          "--scrollbar-thumb",
-          "#ffffff",
-        );
-        document.documentElement.style.setProperty(
-          "--scrollbar-border-width",
-          "4px",
-        );
+        ScrollBarTheme("dark");
       }
     };
     document.addEventListener("scroll", changeScrollColor);

@@ -15,11 +15,15 @@ export const useHeaderColorState = create<HeaderColorState>()((set) => ({
 }));
 
 interface PreloaderState {
+  Start: boolean;
   Visible: boolean;
   toggleVisible: () => void;
+  toggleStart: () => void;
 }
 
 export const usePreloaderState = create<PreloaderState>()((set) => ({
   Visible: true,
+  Start: false,
   toggleVisible: () => set((value) => ({ Visible: !value.Visible })),
+  toggleStart: () => set((value) => ({ Start: !value.Start })),
 }));

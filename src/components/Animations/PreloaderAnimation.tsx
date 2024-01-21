@@ -3,6 +3,7 @@
 import { MotionDiv, MotionP, MotionPath } from "utils/FramerMotion";
 import { useEffect, useState } from "react";
 import { usePreloaderState } from "utils/Zustand";
+import { ScrollBarColor } from "utils/ScrollBarStyle";
 
 const words = [
   "Hello",
@@ -61,6 +62,16 @@ export default function PreloaderAnimation() {
     },
   };
 
+  const handleTextAnimationStart = () => {
+    preloaderState.toggleStart();
+    ScrollBarColor("#ffffff", "#ffffff");
+  };
+
+  const handleSlideAnimationStart = () => {
+    preloaderState.toggleStart();
+    ScrollBarColor("#000000", "#ffffff");
+  };
+
   const handleAnimationComplete = () => preloaderState.toggleVisible();
 
   useEffect(() => {
@@ -82,6 +93,7 @@ export default function PreloaderAnimation() {
       variants={slideUp}
       initial="initial"
       exit="exit"
+      onAnimationStart={handleSlideAnimationStart}
       onAnimationComplete={handleAnimationComplete}
       style={{
         height: dimension.height ? dimension.height : "100%",
@@ -92,6 +104,7 @@ export default function PreloaderAnimation() {
       {dimension.width > 0 && (
         <>
           <MotionP
+            onAnimationStart={handleTextAnimationStart}
             variants={opacity}
             initial="initial"
             animate="enter"

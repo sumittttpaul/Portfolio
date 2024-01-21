@@ -17,12 +17,11 @@ const NavBackground = dynamic(() => import("components/Nav/Background"), {
 });
 
 export default function Header() {
-  const header = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const header = useRef<HTMLDivElement>(null);
+  const button = useRef<HTMLDivElement>(null);
   const HeaderColor = useHeaderColorState();
   const pathname = usePathname();
-  const button = useRef(null);
 
   const ChangeColor = (color: "Black" | "White") => {
     setTimeout(() => {
@@ -49,8 +48,6 @@ export default function Header() {
         const LocomotiveScroll = (await import("locomotive-scroll")).default;
         const locomotiveScroll = new LocomotiveScroll();
       })();
-    } else {
-      setIsMobile(true);
     }
   }, []);
 
@@ -146,19 +143,19 @@ export default function Header() {
           </Magnetic>
         </div>
       </div>
-      <div ref={button} className="fixed right-0 z-[3] scale-0 sm:z-[4]">
+      <div ref={button} className="fixed right-0 z-[4] scale-0">
         <RoundedButton
           disableHoverEffectOnMobile
           onClick={() => {
             setIsActive(!isActive);
           }}
           className={`relative m-[20px] flex h-[80px] w-[80px] cursor-pointer items-center justify-center rounded-[50%] ${
-            !isMobile && isActive ? "bg-near-blue" : "bg-almost-black"
+            isActive ? "bg-near-blue" : "bg-almost-black"
           } transition-colors duration-300`}
         >
           <div
             className={`relative z-[1] w-full ${
-              !isMobile && isActive ? "header-burger-active" : ""
+              isActive ? "header-burger-active" : ""
             } header-burger`}
           ></div>
         </RoundedButton>
@@ -167,7 +164,7 @@ export default function Header() {
         {isActive && (
           <>
             <NavBackground setIsActive={setIsActive} />
-            <Nav isActive={isActive} setIsActive={setIsActive} />
+            <Nav setIsActive={setIsActive} />
           </>
         )}
       </AnimatePresence>

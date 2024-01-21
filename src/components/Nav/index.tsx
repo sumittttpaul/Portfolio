@@ -6,7 +6,6 @@ import { MotionDiv } from "utils/FramerMotion";
 import NavLink from "components/Nav/Link";
 import NavCurve from "components/Nav/Curve";
 import NavFooter from "components/Nav/Footer";
-import RoundedButton from "components/RoundedButton";
 
 const navItems = [
   {
@@ -37,10 +36,8 @@ const menuSlide = {
 };
 
 export default function Nav({
-  isActive,
   setIsActive,
 }: {
-  isActive: boolean;
   setIsActive: Dispatch<SetStateAction<boolean>>;
 }) {
   const pathname = usePathname();
@@ -54,22 +51,6 @@ export default function Nav({
       exit="exit"
       className="fixed right-0 top-0 z-[3] h-screen w-full bg-second-black text-white sm:w-[500px]"
     >
-      <div className="fixed right-0 z-[4] sm:hidden">
-        <RoundedButton
-          onClick={() => {
-            setIsActive(!isActive);
-          }}
-          className={`relative m-[20px] flex h-[80px] w-[80px] cursor-pointer items-center justify-center rounded-[50%] ${
-            isActive ? "bg-near-blue" : "bg-almost-black"
-          } transition-colors duration-300`}
-        >
-          <div
-            className={`relative z-[1] w-full ${
-              isActive ? "header-burger-active" : ""
-            } header-burger`}
-          ></div>
-        </RoundedButton>
-      </div>
       <div className="box-border flex h-full flex-col justify-between p-5 sm:p-[100px]">
         <div
           onMouseLeave={() => {

@@ -4,7 +4,7 @@
 
 :root {
   --hide-scrollbar: none;
-  --scrollbar-background: #000000;
+  --scrollbar-background: #ffffff;
   --scrollbar-thumb: #ffffff;
   --scrollbar-border-width: 4px;
   --gap-padding: clamp(1.5em, 4vw, 2.5em);
@@ -49,6 +49,7 @@ img::selection {
 ::-webkit-scrollbar {
   display: var(--hide-scrollbar);
   width: 10px;
+  transition: display 300ms;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -58,7 +59,9 @@ img::selection {
   border-style: solid;
   border-color: transparent;
   background-clip: padding-box;
-  transition: color 1s;
+  transition:
+    background-color 300ms,
+    border-width 300ms;
 }
 
 ::-webkit-scrollbar-thumb:active {
@@ -66,7 +69,7 @@ img::selection {
 }
 
 ::-webkit-scrollbar-track {
-  transition: color 1s;
+  transition: background-color 300ms;
   background-color: var(--scrollbar-background);
 }
 
