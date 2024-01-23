@@ -4,13 +4,12 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useHeaderColorState } from "utils/Zustand";
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RoundedButton from "components/RoundedButton";
 import Magnetic from "components/Magnetic";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollBarColor, ScrollBarTheme } from "utils/ScrollBarStyle";
+import { gsap } from "gsap";
 
 const Nav = dynamic(() => import("components/Nav"), { ssr: false });
 const NavBackground = dynamic(() => import("components/Nav/Background"), {

@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap/gsap-core";
 import Magnetic from "components/Magnetic";
 import React from "react";
-import gsap from "gsap";
 
 export default function RoundedButton({
   disableHoverEffectOnMobile,
