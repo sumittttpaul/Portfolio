@@ -3,13 +3,14 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useHeaderColorState } from "utils/Zustand";
 import { AnimatePresence } from "framer-motion";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname } from "next/navigation";
-import { gsap } from "gsap/gsap-core";
+import { ScrollTrigger } from "gsap/all";
 import RoundedButton from "components/RoundedButton";
 import Magnetic from "components/Magnetic";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollBarColor, ScrollBarTheme } from "utils/ScrollBarStyle";
 
 const Nav = dynamic(() => import("components/Nav"), { ssr: false });
 const NavBackground = dynamic(() => import("components/Nav/Background"), {
@@ -31,16 +32,34 @@ export default function Header() {
 
   useEffect(() => {
     if (isActive) setIsActive(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
-
-  useEffect(() => {
     if (pathname === "/") ChangeColor("White");
     if (pathname === "/work") ChangeColor("Black");
     if (pathname === "/about") ChangeColor("Black");
     if (pathname === "/contact") ChangeColor("Black");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  useEffect(() => {
+    if (isActive) {
+      ScrollTrigger.disable();
+      if (document.documentElement.scrollTop < 300) {
+        gsap.to(button.current, {
+          scale: 1,
+          duration: 0.25,
+          ease: "power1.out",
+        });
+      }
+    } else {
+      ScrollTrigger.enable();
+      if (document.documentElement.scrollTop < 300) {
+        gsap.to(button.current, {
+          scale: 0,
+          duration: 0.25,
+          ease: "power1.out",
+        });
+      }
+    }
+  }, [isActive]);
 
   useEffect(() => {
     if (window.innerWidth > 640) {
@@ -55,6 +74,7 @@ export default function Header() {
     gsap.registerPlugin(ScrollTrigger);
     gsap.to(button.current, {
       scrollTrigger: {
+        id: "nav-button-scroll-trigger",
         trigger: document.documentElement,
         start: 0,
         end: 300,
@@ -66,16 +86,12 @@ export default function Header() {
           });
         },
         onEnterBack: () => {
-          gsap.to(
-            button.current,
-            // @ts-ignore: Unreachable code error
-            {
-              scale: 0,
-              duration: 0.25,
-              ease: "power1.out",
-            },
-            window.innerWidth > 640 && setIsActive(false),
-          );
+          gsap.to(button.current, {
+            scale: 0,
+            duration: 0.25,
+            ease: "power1.out",
+          });
+          window.innerWidth > 640 && setIsActive(false);
         },
       },
     });
@@ -86,7 +102,7 @@ export default function Header() {
       <div
         ref={header}
         style={{ color: HeaderColor.Color }}
-        className="absolute top-0 z-[2] box-border flex w-full items-center justify-between px-2 py-[25px] sm:px-[35px]"
+        className="absolute top-0 z-[2] box-border flex w-full items-center justify-between px-2 py-[25px] transition-transform duration-300 ease-[cubic-bezier(0.7,0,0.2,1)] sm:px-[35px]"
       >
         <Magnetic>
           <Link
