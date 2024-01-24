@@ -97,10 +97,10 @@ export default function RouteTransition({ children }: React.PropsWithChildren) {
   }, []);
 
   return (
-    <div className="m-0 min-h-screen w-full p-0">
+    <div className="min-h-[calc(100vh-80px)] w-full bg-transparent p-0">
       <div
         style={{ opacity: dimensions.width == null ? 1 : 0 }}
-        className="page-transition-label-bg-transition pointer-events-none fixed left-0 top-0 z-[99] h-[calc(100vh+600px)] w-screen bg-almost-black"
+        className="page-transition-label-bg-transition bg-medium-black pointer-events-none fixed left-0 top-0 z-[99] h-[calc(100vh+600px)] w-screen"
       />
       <MotionP
         className="fixed left-[50%] top-[47.5%] z-[101] flex -translate-x-[50%] items-center text-center text-[42px] text-white"
@@ -111,6 +111,7 @@ export default function RouteTransition({ children }: React.PropsWithChildren) {
       </MotionP>
       {dimensions.width != null && (
         <SVG
+          fill="#202020"
           height={dimensions.height}
           width={dimensions.width}
           className="pointer-events-none fixed left-0 top-0 z-[100] h-[calc(100vh+600px)] w-screen"
@@ -125,10 +126,12 @@ const SVG = ({
   height,
   width,
   className,
+  fill,
 }: {
   height: number | null;
   width: number | null;
   className: string;
+  fill: string;
 }) => {
   if (height !== null && width !== null) {
     const initialPath = `
@@ -148,7 +151,7 @@ const SVG = ({
     `;
 
     return (
-      <MotionSVG className={className} {...anim(translate)}>
+      <MotionSVG fill={fill} className={className} {...anim(translate)}>
         <MotionPath {...anim(curve(initialPath, targetPath))} />
       </MotionSVG>
     );

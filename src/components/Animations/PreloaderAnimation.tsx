@@ -3,7 +3,6 @@
 import { MotionDiv, MotionP, MotionPath } from "utils/FramerMotion";
 import { useEffect, useState } from "react";
 import { usePreloaderState } from "utils/Zustand";
-import { ScrollBarColor } from "utils/ScrollBarStyle";
 
 const words = [
   "Hello",
@@ -62,16 +61,6 @@ export default function PreloaderAnimation() {
     },
   };
 
-  const handleTextAnimationStart = () => {
-    preloaderState.toggleStart();
-    ScrollBarColor("#ffffff", "#ffffff");
-  };
-
-  const handleSlideAnimationStart = () => {
-    preloaderState.toggleStart();
-    ScrollBarColor("#000000", "#ffffff");
-  };
-
   const handleAnimationComplete = () => preloaderState.toggleVisible();
 
   useEffect(() => {
@@ -93,7 +82,6 @@ export default function PreloaderAnimation() {
       variants={slideUp}
       initial="initial"
       exit="exit"
-      onAnimationStart={handleSlideAnimationStart}
       onAnimationComplete={handleAnimationComplete}
       style={{
         height: dimension.height ? dimension.height : "100%",
@@ -104,11 +92,10 @@ export default function PreloaderAnimation() {
       {dimension.width > 0 && (
         <>
           <MotionP
-            onAnimationStart={handleTextAnimationStart}
             variants={opacity}
             initial="initial"
             animate="enter"
-            className="absolute z-[1] flex items-center text-center text-[calc(clamp(3.25em,5vw,4.5em)*.75)] text-preloader-black"
+            className="text-medium-black absolute z-[1] flex items-center text-center text-[calc(clamp(3.25em,5vw,4.5em)*.75)]"
           >
             <span className="mr-[10px] scale-[.8]">•</span>
             <span className="font-bold">{words[index]}</span>
