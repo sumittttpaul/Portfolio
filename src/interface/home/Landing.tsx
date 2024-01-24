@@ -1,10 +1,10 @@
-import LocationContainer from "../../public/icons/location-container.svg";
-import BGImage from "../../public/bg_character.png";
+import LocationContainer from "../../../public/icons/location-container.svg";
+import BGImage from "../../../public/bg_character.png";
 import GlobeAnimation from "components/Animations/GlobeAnimation";
 import LandingClient from "components/Clients/LandingClient";
 import { ArrowDownRightIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import MovingTextAnimation from "components/Animations/MovingTextAnimation";
+import Image from "next/image";
 
 export default function Landing() {
   return (

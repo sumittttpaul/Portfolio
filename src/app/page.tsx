@@ -1,14 +1,13 @@
 import MainClient from "components/Clients/MainClient";
-import Landing from "interface/Landing";
-import Preloader from "interface/Preloader";
+import Landing from "interface/home/Landing";
+import Preloader from "interface/home/Preloader";
+import Thoughts from "interface/home/Thoughts";
 
 export default function Home() {
   return (
     <MainClient>
       <Landing />
-      <section className="flex h-screen w-full items-center justify-center bg-white text-black">
-        Description
-      </section>
+      <Thoughts />
       <Preloader />
     </MainClient>
   );
