@@ -23,3 +23,13 @@ export const usePreloaderState = create<PreloaderState>()((set) => ({
   Visible: true,
   toggleVisible: () => set((value) => ({ Visible: !value.Visible })),
 }));
+
+interface ModalState {
+  PhotoShow: boolean;
+  setPhotoShow: (value: boolean) => void;
+}
+
+export const useModalState = create<ModalState>()((set) => ({
+  PhotoShow: false,
+  setPhotoShow: (value) => set(() => ({ PhotoShow: value })),
+}));

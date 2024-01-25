@@ -164,15 +164,15 @@ export default function Header() {
           onClick={() => {
             setIsActive(!isActive);
           }}
-          className={`relative m-[20px] flex h-[80px] w-[80px] cursor-pointer items-center justify-center rounded-[50%] ${
-            isActive ? "bg-near-blue" : "bg-almost-black"
+          className={`relative m-[20px] flex h-[65px] w-[65px] cursor-pointer items-center justify-center rounded-[50%] outline-none sm:h-[80px] sm:w-[80px] ${
+            isActive ? "bg-hover-blue" : "bg-medium-black"
           } transition-colors duration-300`}
         >
           <div
             className={`relative z-[1] w-full ${
               isActive ? "header-burger-active" : ""
             } header-burger`}
-          ></div>
+          />
         </RoundedButton>
       </div>
       <AnimatePresence mode="wait">

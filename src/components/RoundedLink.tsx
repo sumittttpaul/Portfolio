@@ -4,17 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap/gsap-core";
 import Magnetic from "components/Magnetic";
 import React from "react";
+import Link from "next/link";
 
-export default function RoundedButton({
+export default function RoundedLink({
   disableHoverEffectOnMobile,
   children,
-  onClick,
+  href,
   className,
   ...attributes
 }: {
   disableHoverEffectOnMobile?: boolean;
   children?: React.ReactNode;
-  onClick: () => void;
+  href: string;
   className: string;
 }) {
   const circle = useRef(null);
@@ -56,10 +57,10 @@ export default function RoundedButton({
   if (disableHoverEffectOnMobile) {
     return (
       <Magnetic>
-        <button
+        <Link
           className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full border-0 outline-none`}
           style={{ overflow: "hidden" }}
-          onClick={onClick}
+          href={href}
           onMouseEnter={() => {
             manageMouseEnter();
           }}
@@ -75,17 +76,17 @@ export default function RoundedButton({
               className="absolute top-full h-[150%] w-full rounded-[50%] bg-hover-blue"
             />
           )}
-        </button>
+        </Link>
       </Magnetic>
     );
   }
 
   return (
     <Magnetic>
-      <button
+      <Link
         className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full`}
         style={{ overflow: "hidden" }}
-        onClick={onClick}
+        href={href}
         onMouseEnter={() => {
           manageMouseEnter();
         }}
@@ -99,7 +100,7 @@ export default function RoundedButton({
           ref={circle}
           className="absolute top-full h-[150%] w-full rounded-[50%] bg-hover-blue"
         />
-      </button>
+      </Link>
     </Magnetic>
   );
 }

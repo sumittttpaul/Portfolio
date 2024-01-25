@@ -49,7 +49,7 @@ export default function Nav({
       initial="initial"
       animate="enter"
       exit="exit"
-      className="fixed right-0 top-0 z-[3] h-screen w-full bg-second-black text-white sm:w-[500px]"
+      className="fixed right-0 top-0 z-[3] h-screen w-full bg-almost-black text-white sm:w-[500px]"
     >
       <div className="box-border flex h-full flex-col justify-between p-5 sm:p-[100px]">
         <div

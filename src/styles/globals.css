@@ -138,19 +138,6 @@ img::selection {
   animation-iteration-count: infinite;
   animation-delay: 2s;
 }
-.letter-moving-animation-special {
-  animation-name: letter-moving-animation-special;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-delay: 2s;
-}
-
-.margin-left-animation {
-  animation-name: margin-left-animation;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-delay: 7s;
-}
 
 .animation-delay-7 {
   animation-delay: 7s;
@@ -179,51 +166,22 @@ img::selection {
   animation-direction: normal;
 }
 
+.text-in-view:nth-of-type(1) {
+  font-size: clamp(1.55em, 2.3vw, 2.5em);
+  gap: 8px;
+  line-height: 1.45;
+}
+
+.text-in-view:nth-of-type(1) span {
+  margin-right: 3px;
+}
+
 @keyframes big-name-move-animation {
   from {
     transform: translateX(0);
   }
   to {
     transform: translateX(-100%);
-  }
-}
-
-@keyframes margin-left-animation {
-  0% {
-    margin-left: 128px;
-  }
-  10%,
-  40% {
-    margin-left: 0;
-  }
-  50% {
-    margin-left: 128px;
-  }
-}
-
-@keyframes letter-moving-animation {
-  0% {
-    width: 66px;
-  }
-  10%,
-  40% {
-    width: 200px;
-  }
-  50% {
-    width: 66px;
-  }
-}
-
-@keyframes letter-moving-animation-special {
-  0% {
-    width: 66px;
-  }
-  10%,
-  40% {
-    width: 194px;
-  }
-  50% {
-    width: 66px;
   }
 }
 
@@ -293,9 +251,65 @@ img::selection {
   }
 }
 
+@keyframes letter-moving-animation {
+  0% {
+    width: 40px;
+  }
+  10%,
+  40% {
+    width: 110px;
+  }
+  50% {
+    width: 40px;
+  }
+}
+
 /* SM (min-width: 640px) */
 @media (min-width: 640px) {
   .header-logo:hover .header-logo-copyright {
     transform: rotate(360deg);
+  }
+
+  @keyframes letter-moving-animation {
+    0% {
+      width: 30px;
+    }
+    10%,
+    40% {
+      width: 100px;
+    }
+    50% {
+      width: 30px;
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  @keyframes letter-moving-animation {
+    0% {
+      width: 55px;
+    }
+    10%,
+    40% {
+      width: 184px;
+    }
+    50% {
+      width: 55px;
+    }
+  }
+}
+
+@media (min-width: 1180px) {
+  @keyframes letter-moving-animation {
+    0% {
+      width: 66px;
+    }
+    10%,
+    40% {
+      width: 194px;
+    }
+    50% {
+      width: 66px;
+    }
   }
 }

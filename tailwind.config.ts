@@ -12,9 +12,9 @@ const config: Config = {
       colors: {
         "almost-black": "#1C1D20",
         "medium-black": "#202020",
-        "second-black": "#292929",
+        "second-black": "#303030",
         "second-gray": "#999999",
-        "near-blue": "#455CE9",
+        "hover-blue": "#455CE9",
         "dark-pink-purple": "#2E1C39",
         "dark-red": "#4B0000",
         "dark-pink": "#45004B",
@@ -33,6 +33,8 @@ const config: Config = {
       },
       screens: {
         "max-size": "1500px",
+        "screen-1180": "1180px",
+        "screen-1000": "1000px",
         xs: "400px",
       },
       backgroundImage: {

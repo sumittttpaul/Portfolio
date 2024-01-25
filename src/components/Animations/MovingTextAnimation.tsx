@@ -45,7 +45,7 @@ export default function MovingTextAnimation() {
   }, []);
 
   return (
-    <div className="absolute bottom-[calc(var(--big-name-bottom,1vh)*33)] z-[1] pb-[calc(var(--big-name-padding)*1.4)] md:bottom-[15vh] xl:bottom-[12vh]">
+    <div className="z-[1] block sm:absolute sm:bottom-[calc(var(--big-name-bottom,1vh)*33)] sm:pb-[calc(var(--big-name-padding)*1.4)] md:bottom-[15vh] xl:bottom-[12vh]">
       <div
         ref={slider}
         className={`${MobileAnimation} relative whitespace-nowrap`}
