@@ -32,7 +32,7 @@ export default function About() {
           className="absolute right-14 top-[70%] md:left-[calc(100%-340px)] md:top-[80%]"
         >
           <RoundedLink
-            href="#"
+            href="/about"
             className="flex h-[clamp(9em,12vw,11em)] w-[clamp(9em,12vw,11em)] bg-almost-black text-white"
           >
             <p>About me</p>
