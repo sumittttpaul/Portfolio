@@ -3,6 +3,7 @@ import TypographyAnimation from "components/Animations/TypographyAnimation";
 import LabelTag from "components/LabelTag";
 import PhotoButton from "components/Photo/Button";
 import ThreadIcon from "../../../public/icons/thread.svg";
+import RotateIconAnimation from "components/Animations/RotateIconAnimation";
 
 export default function Test() {
   return (
@@ -41,23 +42,7 @@ export default function Test() {
         className="left-[1200px] top-[390px] z-[2]"
       /> */}
 
-      <div className="ml-[20%] mt-[10%] flex w-full justify-start space-x-10">
-        <PhotoButton />
-        <div className="flex flex-col">
-          <div className="flex w-full space-x-6">
-            <TypographyAnimation label="ideas" />
-            <TypographyAnimation label="connect" />
-          </div>
-          <div className="flex w-full flex-col">
-            <TypographyAnimation label="through" />
-            <div className="mt-1 flex w-full flex-col space-y-5">
-              <LabelTag name="strategy" ContainerClassName="ml-[17em]" />
-              <LabelTag name="design" ContainerClassName="ml-[22em]" />
-              <LabelTag name="creativity" ContainerClassName="ml-[27em]" />
-            </div>
-          </div>
-        </div>
-      </div>
+      <RotateIconAnimation />
     </div>
   );
 }

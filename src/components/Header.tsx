@@ -31,7 +31,8 @@ export default function Header() {
 
   useEffect(() => {
     if (isActive) setIsActive(false);
-    if (pathname === "/") ChangeColor("White");
+    if (pathname === "/" && window.innerWidth > 640) ChangeColor("White");
+    else if (pathname === "/") ChangeColor("Black");
     if (pathname === "/work") ChangeColor("Black");
     if (pathname === "/about") ChangeColor("Black");
     if (pathname === "/contact") ChangeColor("Black");
@@ -101,7 +102,7 @@ export default function Header() {
       <div
         ref={header}
         style={{ color: HeaderColor.Color }}
-        className="absolute top-0 z-[2] box-border flex w-full items-center justify-between px-2 py-[25px] transition-transform duration-300 ease-[cubic-bezier(0.7,0,0.2,1)] sm:px-[35px]"
+        className="absolute top-0 z-[2] box-border flex w-full items-center justify-between px-2 py-[17px] transition-transform duration-300 ease-[cubic-bezier(0.7,0,0.2,1)] xs:py-[25px] sm:px-[35px]"
       >
         <Magnetic>
           <Link
@@ -109,11 +110,11 @@ export default function Header() {
             scroll={false}
             className="header-logo group flex h-[50px] cursor-pointer items-center justify-center px-2.5"
           >
-            <p className="header-logo-copyright header-logo-transition-all relative text-sm font-[300] xs:text-base">
+            <p className="header-logo-copyright header-logo-transition-all relative text-sm font-bold xs:text-base sm:font-[300]">
               ©
             </p>
             <div className="header-logo-transition-all relative ml-[4px] flex h-[28px] items-center overflow-hidden whitespace-nowrap xs:ml-[5px] sm:items-end sm:pr-0 sm:group-hover:pr-[30px]">
-              <p className="header-logo-transition-transform relative text-[13px] font-[500] xs:text-[15px] sm:text-[17px] sm:group-hover:-translate-x-[72px]">
+              <p className="header-logo-transition-transform relative text-[13px] font-bold xs:text-[15px] sm:text-[17px] sm:font-[500] sm:group-hover:-translate-x-[72px]">
                 <span>Code by Sumeet</span>
                 <span className="absolute left-[139px]"> Kumar Paul</span>
               </p>
@@ -147,7 +148,7 @@ export default function Header() {
           <Magnetic>
             <button
               onClick={() => setIsActive(true)}
-              className="relative z-[1] flex cursor-pointer items-center space-x-1.5 p-[15px] text-[13px] font-[500] xs:space-x-2 xs:text-[15px] sm:text-[17px]"
+              className="relative z-[1] flex cursor-pointer items-center space-x-1.5 p-[15px] text-[13px] font-bold xs:space-x-2 xs:text-[15px] sm:text-[17px] sm:font-[500]"
             >
               <div
                 style={{ backgroundColor: HeaderColor.Color }}
@@ -164,7 +165,7 @@ export default function Header() {
           onClick={() => {
             setIsActive(!isActive);
           }}
-          className={`relative m-[20px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
+          className={`relative m-[14px] xs:m-[20px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
             isActive ? "bg-hover-blue" : "bg-medium-black"
           } transition-colors duration-300`}
         >

@@ -21,14 +21,18 @@ export default function LandingClient({
       transition: {
         duration: 0.6,
         ease: [0.33, 1, 0.68, 1],
-        delay: preloader.Visible ? 2.5 : 0.6,
+        delay: preloader.Visible ? 2.7 : 0.6,
       },
     },
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.documentElement.style.setProperty("--body-color", "#000000");
+    if (window.innerWidth > 640) {
+      document.documentElement.style.setProperty("--body-color", "#000000");
+    } else {
+      document.documentElement.style.setProperty("--body-color", "#ffffff");
+    }
   }, []);
 
   return (

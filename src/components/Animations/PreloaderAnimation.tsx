@@ -32,7 +32,7 @@ const slideUp = {
   },
   exit: {
     top: "-100vh",
-    transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.2 },
+    transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.4 },
   },
 };
 
@@ -57,7 +57,7 @@ export default function PreloaderAnimation() {
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.3 },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.5 },
     },
   };
 
@@ -95,7 +95,7 @@ export default function PreloaderAnimation() {
             variants={opacity}
             initial="initial"
             animate="enter"
-            className="text-medium-black absolute z-[1] flex items-center text-center text-[calc(clamp(3.25em,5vw,4.5em)*.75)]"
+            className="absolute z-[1] flex items-center text-center text-[calc(clamp(3.25em,5vw,4.5em)*.75)] text-medium-black"
           >
             <span className="mr-[10px] scale-[.8]">•</span>
             <span className="font-bold">{words[index]}</span>
