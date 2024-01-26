@@ -1,6 +1,7 @@
 import Image from "next/image";
 
-const Scale = "screen-1180:scale-100 screen-1000:scale-90 sm:scale-[.6] scale-[.7]";
+const Scale =
+  "screen-1180:scale-100 screen-1000:scale-90 sm:scale-[.6] xs:scale-[.7] scale-[.6]";
 
 export default function LabelTag({
   name,

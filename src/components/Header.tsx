@@ -109,11 +109,11 @@ export default function Header() {
             scroll={false}
             className="header-logo group flex h-[50px] cursor-pointer items-center justify-center px-2.5"
           >
-            <p className="header-logo-copyright header-logo-transition-all relative text-[20px] text-base font-[300]">
+            <p className="header-logo-copyright header-logo-transition-all relative text-sm font-[300] xs:text-base">
               ©
             </p>
-            <div className="header-logo-transition-all relative ml-[5px] flex h-[28px] items-center overflow-hidden whitespace-nowrap sm:items-end sm:pr-0 sm:group-hover:pr-[30px]">
-              <p className="header-logo-transition-transform relative text-[15px] font-[500] sm:text-[17px] sm:group-hover:-translate-x-[72px]">
+            <div className="header-logo-transition-all relative ml-[4px] flex h-[28px] items-center overflow-hidden whitespace-nowrap xs:ml-[5px] sm:items-end sm:pr-0 sm:group-hover:pr-[30px]">
+              <p className="header-logo-transition-transform relative text-[13px] font-[500] xs:text-[15px] sm:text-[17px] sm:group-hover:-translate-x-[72px]">
                 <span>Code by Sumeet</span>
                 <span className="absolute left-[139px]"> Kumar Paul</span>
               </p>
@@ -147,11 +147,11 @@ export default function Header() {
           <Magnetic>
             <button
               onClick={() => setIsActive(true)}
-              className="relative z-[1] flex cursor-pointer items-center space-x-2 p-[15px] text-[15px] font-[500] sm:text-[17px]"
+              className="relative z-[1] flex cursor-pointer items-center space-x-1.5 p-[15px] text-[13px] font-[500] xs:space-x-2 xs:text-[15px] sm:text-[17px]"
             >
               <div
                 style={{ backgroundColor: HeaderColor.Color }}
-                className="header-logo-transition-all h-[6px] w-[6px] scale-100 rounded-[50%]"
+                className="header-logo-transition-all h-[5px] w-[5px] scale-100 rounded-[50%] xs:h-[6px] xs:w-[6px]"
               />
               <p className="cursor-pointer">Menu</p>
             </button>
@@ -164,7 +164,7 @@ export default function Header() {
           onClick={() => {
             setIsActive(!isActive);
           }}
-          className={`relative m-[20px] flex h-[65px] w-[65px] cursor-pointer items-center justify-center rounded-[50%] outline-none sm:h-[80px] sm:w-[80px] ${
+          className={`relative m-[20px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
             isActive ? "bg-hover-blue" : "bg-medium-black"
           } transition-colors duration-300`}
         >

@@ -78,22 +78,28 @@ export default function Landing() {
         </div>
       </div>
       {/* Text animation + label tags, only for mobile */}
-      <div className="-mt-1 flex flex-col sm:hidden">
+      <div className="flex flex-col sm:hidden">
         <div className="flex w-full flex-col">
           <TypographyAnimation label="ideas" />
           <TypographyAnimation label="connect" />
         </div>
         <div className="flex w-full flex-col">
           <TypographyAnimation label="through" />
-          <div className="-mt-1 flex w-full flex-col -space-y-2">
-            <LabelTag name="strategy" ContainerClassName="-ml-[4em]" />
-            <LabelTag name="design" ContainerClassName="-ml-[0.5em]" />
+          <div className="-mt-2 flex w-full flex-col -space-y-5 xs:-mt-1 xs:-space-y-2">
+            <LabelTag
+              name="strategy"
+              ContainerClassName="-ml-[5em] xs:-ml-[4em]"
+            />
+            <LabelTag
+              name="design"
+              ContainerClassName="-ml-[1em] xs:-ml-[0.5em]"
+            />
             <LabelTag name="creativity" ContainerClassName="ml-[3em]" />
           </div>
         </div>
       </div>
       {/* Moving big name text something like "sumeet kumar paul" */}
-      <div className="flex">
+      <div className="mb-10 flex xs:mb-0">
         <MovingTextAnimation />
       </div>
       {/* Truck dancing animation */}
@@ -107,11 +113,11 @@ export default function Landing() {
       </div>
       {/* Down arrow, only for mobile */}
       <div className="left-5 mb-10 block sm:absolute sm:bottom-[290px] sm:mb-0 md:hidden">
-        <ArrowDownRightIcon className="w-6 text-white" />
+        <ArrowDownRightIcon className="w-5 text-white xs:w-6" />
       </div>
       {/* Right side "freelance web developer" text and rotating globe, only for mobile */}
       <div className="left-0 right-0 mb-5 flex w-full justify-between sm:absolute sm:bottom-[18vh] sm:mb-0 sm:px-5 md:hidden">
-        <p className="flex flex-col text-[25px] leading-[1.4]">
+        <p className="flex flex-col text-[20px] leading-[1.4] xs:text-[25px]">
           <span>Freelance</span>
           <span>Web Developer</span>
         </p>

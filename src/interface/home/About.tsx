@@ -33,7 +33,7 @@ export default function About() {
         >
           <RoundedLink
             href="/about"
-            className="flex h-[clamp(9em,12vw,11em)] w-[clamp(9em,12vw,11em)] bg-almost-black text-white"
+            className="flex h-[12em] w-[12em] bg-almost-black text-[12px] text-white xs:text-[13px] sm:h-[clamp(9em,12vw,11em)] sm:w-[clamp(9em,12vw,11em)]"
           >
             <p>About me</p>
           </RoundedLink>

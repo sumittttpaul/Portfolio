@@ -32,7 +32,7 @@ export default function PhotoModal() {
               className="absolute -left-[155px] -top-[85px] z-0 h-[600px] w-[600px] rotate-12 text-white/10 sm:-left-[200px] sm:h-[700px] sm:w-[700px] lg:-top-[102px] lg:h-[860px] lg:w-[860px]"
             />
             <div className="relative z-10">
-              <h3 className="mb-6 text-left text-xl font-bold lg:text-2xl">
+              <h3 className="mb-6 text-left text-base font-medium sm:text-xl sm:font-bold lg:text-2xl">
                 Profile photo
               </h3>
               <div className="flex h-full w-full place-content-center lg:px-5 lg:pb-3">
@@ -52,7 +52,7 @@ export default function PhotoModal() {
                 onClick={() => modalState.setPhotoShow(false)}
                 className="absolute right-0 top-0 m-2 -mr-3 -mt-3 flex h-auto w-auto cursor-default place-content-center rounded-full p-3 outline-none transition-colors hover:bg-white/20"
               >
-                <XMarkIcon height={30} width={30} className="text-white" />
+                <XMarkIcon className="h-[25px] w-[25px] text-white sm:h-[30px] sm:w-[30px]" />
               </button>
             </div>
           </MotionDiv>

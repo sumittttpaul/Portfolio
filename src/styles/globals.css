@@ -121,7 +121,7 @@ img::selection {
 }
 
 .moving-text-font-size {
-  font-size: max(9em, 15vw);
+  font-size: 8em;
 }
 
 .moving-text-padding-bottom {
@@ -253,18 +253,36 @@ img::selection {
 
 @keyframes letter-moving-animation {
   0% {
-    width: 40px;
+    width: 31px;
   }
   10%,
   40% {
-    width: 110px;
+    width: 84px;
   }
   50% {
-    width: 40px;
+    width: 31px;
   }
 }
 
-/* SM (min-width: 640px) */
+@media (min-width: 401px) {
+  .moving-text-font-size {
+    font-size: max(9em, 15vw);
+  }
+
+  @keyframes letter-moving-animation {
+    0% {
+      width: 40px;
+    }
+    10%,
+    40% {
+      width: 110px;
+    }
+    50% {
+      width: 40px;
+    }
+  }
+}
+
 @media (min-width: 640px) {
   .header-logo:hover .header-logo-copyright {
     transform: rotate(360deg);

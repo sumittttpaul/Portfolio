@@ -1,15 +1,16 @@
 import { MotionDiv } from "utils/FramerMotion";
+import { Variants } from "framer-motion";
 import { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
 import Magnetic from "components/Magnetic";
 
-export const slide = {
+export const slide: Variants = {
   initial: { x: 80 },
-  enter: (i: any) => ({
+  enter: (i) => ({
     x: 0,
     transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.05 * i },
   }),
-  exit: (i: any) => ({
+  exit: (i) => ({
     x: 80,
     transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.05 * i },
   }),
@@ -52,9 +53,9 @@ export default function NavLink({
           <MotionDiv
             variants={scale}
             animate={isActive ? "open" : "closed"}
-            className="order-2 mr-5 block h-[10px] w-[10px] rounded-[50%] bg-white md:absolute md:-left-[30px] md:order-1 md:mr-0"
-          ></MotionDiv>
-          <Link href={href} scroll={false} className="order-1 md:order-2">
+            className="order-2 mr-5 block h-[8px] w-[8px] rounded-[50%] bg-white xs:h-[10px] xs:w-[10px] md:absolute md:-left-[30px] md:order-1 md:mr-0"
+          />
+          <Link href={href} scroll={false} className=" order-1 md:order-2">
             {title}
           </Link>
         </div>

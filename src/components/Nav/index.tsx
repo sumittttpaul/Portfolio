@@ -56,9 +56,9 @@ export default function Nav({
           onMouseLeave={() => {
             setSelectedIndicator(pathname);
           }}
-          className="mt-[100px] flex flex-col gap-[5px] text-[36px] sm:mt-[80px] sm:text-[46px]"
+          className="mt-[100px] flex flex-col gap-[2.5px] text-[30px] xs:gap-[5px] xs:text-[36px] sm:mt-[80px] sm:text-[46px]"
         >
-          <div className="second-gray mb-[40px] border-b-[1px] border-solid border-white/20 pb-5 text-xs font-medium uppercase text-second-gray sm:pb-10">
+          <div className="second-gray mb-[40px] border-b-[1px] border-solid border-white/20 pb-5 text-[10px] font-medium uppercase text-second-gray xs:text-xs sm:pb-10">
             <p>Navigation</p>
           </div>
           {navItems.map((data, index) => {

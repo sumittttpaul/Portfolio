@@ -89,9 +89,9 @@ export default function RootLayout({ children }: Props) {
       <body className={BodyClass}>
         <MotionOptimize>
           <Header />
-            <RouteTransitionWrapper>
+            {/* <RouteTransitionWrapper> */}
               {children}
-            </RouteTransitionWrapper>
+            {/* </RouteTransitionWrapper> */}
         </MotionOptimize>
         <Analytics />
       </body>
