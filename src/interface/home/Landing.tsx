@@ -94,12 +94,15 @@ export default function Landing() {
               />
               <LabelTag
                 name="design"
-                ContainerClassName="-ml-[1em] xs:-ml-[0.5em]"
+                ContainerClassName="-ml-[1.4em] xs:-ml-[0.5em]"
               />
-              <LabelTag name="creativity" ContainerClassName="ml-[3em]" />
+              <LabelTag
+                name="creativity"
+                ContainerClassName="ml-[2em] xs:ml-[3em]"
+              />
             </div>
           </div>
-          <div className="relative ml-4 mt-4">
+          <div className="relative ml-4 mt-6">
             <RotateIconAnimation />
           </div>
         </div>

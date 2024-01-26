@@ -159,13 +159,13 @@ export default function Header() {
           </Magnetic>
         </div>
       </div>
-      <div ref={button} className="fixed right-0 z-[4] scale-0">
+      <div ref={button} className="fixed right-0 z-[6] scale-0">
         <RoundedButton
           disableHoverEffectOnMobile
           onClick={() => {
             setIsActive(!isActive);
           }}
-          className={`relative m-[14px] xs:m-[20px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
+          className={`relative m-[14px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:m-[20px] xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
             isActive ? "bg-hover-blue" : "bg-medium-black"
           } transition-colors duration-300`}
         >
