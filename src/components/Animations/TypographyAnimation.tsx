@@ -7,31 +7,31 @@ const Div_className =
 export default function TypographyAnimation({ label }: { label: string }) {
   if (label.toLocaleLowerCase() === "connect") {
     return (
-      <div className="flex items-center justify-start whitespace-nowrap">
-        <h1 className={H1_className}>C</h1>
-        <div className={`letter-moving-animation ${Div_className}`} />
-        <h1 className={H1_className}>nnect</h1>
-      </div>
+      <h1 className="flex items-center justify-start whitespace-nowrap">
+        <span className={H1_className}>C</span>
+        <span className={`letter-moving-animation ${Div_className}`} />
+        <span className={H1_className}>nnect</span>
+      </h1>
     );
   }
 
   if (label.toLocaleLowerCase() === "through") {
     return (
-      <div className="flex items-center justify-start whitespace-nowrap">
-        <h1 className={H1_className}>Thr</h1>
-        <div
+      <h1 className="flex items-center justify-start whitespace-nowrap">
+        <span className={H1_className}>Thr</span>
+        <span
           className={`letter-moving-animation animation-delay-7 ${Div_className}`}
         />
-        <h1 className={H1_className}>ugh</h1>
-      </div>
+        <span className={H1_className}>ugh</span>
+      </h1>
     );
   }
 
   if (label.toLocaleLowerCase() === "ideas") {
     return (
-      <div className="flex items-center whitespace-nowrap">
-        <h1 className={H1_className}>ideas</h1>
-      </div>
+      <h1 className="flex items-center whitespace-nowrap">
+        <span className={H1_className}>ideas</span>
+      </h1>
     );
   }
 }
