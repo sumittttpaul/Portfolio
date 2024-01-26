@@ -2,7 +2,6 @@ import Image from "next/image";
 import TypographyAnimation from "components/Animations/TypographyAnimation";
 import LabelTag from "components/LabelTag";
 import PhotoButton from "components/Photo/Button";
-import ThreadIcon from "../../../public/icons/thread.svg";
 import RotateIconAnimation from "components/Animations/RotateIconAnimation";
 
 export default function Test() {
