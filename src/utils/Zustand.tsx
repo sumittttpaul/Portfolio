@@ -9,7 +9,7 @@ interface HeaderColorState {
 }
 
 export const useHeaderColorState = create<HeaderColorState>()((set) => ({
-  Color: White,
+  Color: White, // default value : White
   toggleColor: (value) =>
     set(() => ({ Color: value == "White" ? White : Black })),
 }));
@@ -20,7 +20,7 @@ interface PreloaderState {
 }
 
 export const usePreloaderState = create<PreloaderState>()((set) => ({
-  Visible: true,
+  Visible: true, // default value : true
   toggleVisible: () => set((value) => ({ Visible: !value.Visible })),
 }));
 
@@ -30,6 +30,6 @@ interface ModalState {
 }
 
 export const useModalState = create<ModalState>()((set) => ({
-  PhotoShow: false,
+  PhotoShow: false, // default value : false
   setPhotoShow: (value) => set(() => ({ PhotoShow: value })),
 }));

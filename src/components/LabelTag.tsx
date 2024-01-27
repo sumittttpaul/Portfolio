@@ -59,7 +59,7 @@ export default function LabelTag({
           <Image
             src="/icons/design-animation-white.gif"
             width={80}
-            height={80}
+            height={60}
             alt="design animation"
             className="ml-2"
           />

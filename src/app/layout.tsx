@@ -68,7 +68,7 @@ type Props = NextPageProps<{
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Sumeet Kumar Paul • Freelance Developer",
+  title: "Sumeet Kumar Paul • Freelance Web Developer",
   description:
     "Helping brands thrive in the digital world. Delivering tailor-made digital designs and building interactive websites from scratch.",
   icons: "/favicon.ico",

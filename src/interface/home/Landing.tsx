@@ -1,20 +1,20 @@
 import LocationContainer from "../../../public/icons/location-container.svg";
-import BGImage from "../../../public/bg_character.png";
-import DancingTruck from "../../../public/dancing_truck.gif";
-import GlobeAnimation from "components/Animations/GlobeAnimation";
-import LandingClient from "components/Clients/LandingClient";
-import { ArrowDownRightIcon } from "@heroicons/react/24/outline";
 import MovingTextAnimation from "components/Animations/MovingTextAnimation";
 import TypographyAnimation from "components/Animations/TypographyAnimation";
+import RotateIconAnimation from "components/Animations/RotateIconAnimation";
+import GlobeAnimation from "components/Animations/GlobeAnimation";
+import { ArrowDownRightIcon } from "@heroicons/react/24/outline";
+import DancingTruck from "../../../public/dancing_truck.gif";
+import LandingClient from "components/Clients/LandingClient";
+import BGImage from "../../../public/bg_character.png";
 import PhotoButton from "components/Photo/Button";
 import LabelTag from "components/LabelTag";
 import Image from "next/image";
-import RotateIconAnimation from "components/Animations/RotateIconAnimation";
 
 export default function Landing() {
   return (
-    <LandingClient className="relative flex h-auto w-auto flex-col overflow-hidden bg-white px-2.5 sm:bg-black sm:p-5">
-      <div className="relative mt-20 flex h-auto w-auto flex-col rounded-b-3xl rounded-t-[50px] bg-black px-2.5 pb-6 pt-2.5 xs:mt-24 xs:rounded-t-[60px] sm:mt-0 sm:rounded-none sm:p-0">
+    <LandingClient className="relative flex h-auto w-auto flex-col overflow-hidden bg-white px-2.5 sm:bg-black sm:p-0">
+      <div className="relative mt-20 flex h-auto w-auto flex-col rounded-b-3xl rounded-t-[50px] bg-black px-2.5 pb-6 pt-2.5 xs:mt-24 xs:rounded-t-[60px] sm:mt-0 sm:rounded-none sm:px-0 sm:pb-0 sm:pt-0">
         {/* User photo and rotate icon animation, only for mobile */}
         <div className="flex sm:hidden">
           <PhotoButton />
@@ -113,6 +113,7 @@ export default function Landing() {
         {/* Truck dancing animation */}
         <div className="flex w-full justify-center sm:hidden">
           <Image
+            priority
             height={229}
             width={350}
             src={DancingTruck}

@@ -19,7 +19,7 @@ export default function RouteTransitionWrapper({
   }, [pathname]);
 
   return (
-    <AnimatePresence initial={pathname === "/" ? false : true} mode="wait">
+    <AnimatePresence initial={true} mode="wait">
       <MotionDiv key={pathname}>
         <FrozenRoute>{children}</FrozenRoute>
       </MotionDiv>

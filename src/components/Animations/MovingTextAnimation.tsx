@@ -3,14 +3,31 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap/gsap-core";
+import { MotionDiv } from "utils/FramerMotion";
+import { usePreloaderState } from "utils/Zustand";
 
 export default function MovingTextAnimation() {
   const [MobileAnimation, setMobileAnimation] = useState("");
+  const preloader = usePreloaderState();
   const firstText = useRef(null);
   const secondText = useRef(null);
   const slider = useRef(null);
   let xPercent = 0;
   let direction = -1;
+
+  const slideUp = {
+    initial: {
+      y: 300,
+    },
+    enter: {
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.33, 1, 0.68, 1],
+        delay: preloader.Visible ? 2.7 : 0.6,
+      },
+    },
+  };
 
   const animate = () => {
     if (xPercent < -100) {
@@ -45,7 +62,12 @@ export default function MovingTextAnimation() {
   }, []);
 
   return (
-    <div className="z-[1] block sm:absolute sm:bottom-[calc(var(--big-name-bottom,1vh)*33)] sm:pb-[calc(var(--big-name-padding)*1.4)] md:bottom-[15vh] xl:bottom-[12vh]">
+    <MotionDiv
+      variants={slideUp}
+      initial="initial"
+      animate="enter"
+      className="z-[1] block sm:absolute sm:bottom-[calc(var(--big-name-bottom,1vh)*33)] sm:pb-[calc(var(--big-name-padding)*1.4)] md:bottom-[15vh] xl:bottom-[12vh]"
+    >
       <div
         ref={slider}
         className={`${MobileAnimation} relative whitespace-nowrap`}
@@ -63,6 +85,6 @@ export default function MovingTextAnimation() {
           Sumeet Kumar Paul —
         </h1>
       </div>
-    </div>
+    </MotionDiv>
   );
 }

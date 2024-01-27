@@ -1,9 +1,9 @@
-import SlideUpClient from "components/Clients/SlideUpClient";
+import MainClient from "components/Clients/MainClient";
 
 export default function Contact() {
   return (
-    <SlideUpClient className="flex h-screen w-full items-center justify-center bg-white text-5xl text-black">
+    <MainClient className="flex h-screen w-full items-center justify-center bg-white text-5xl text-black">
       Contact
-    </SlideUpClient>
+    </MainClient>
   );
 }

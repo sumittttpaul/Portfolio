@@ -1,15 +1,17 @@
 "use client";
 
+import RoundedMagneticButton from "components/Magnetic/RoundedMagneticButton";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useHeaderColorState } from "utils/Zustand";
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import RoundedButton from "components/RoundedButton";
 import Magnetic from "components/Magnetic";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { gsap } from "gsap";
+
+// gsap.config({ nullTargetWarn: false });
 
 const Nav = dynamic(() => import("components/Nav"), { ssr: false });
 const NavBackground = dynamic(() => import("components/Nav/Background"), {
@@ -60,15 +62,6 @@ export default function Header() {
       }
     }
   }, [isActive]);
-
-  useEffect(() => {
-    if (window.innerWidth > 640) {
-      (async () => {
-        const LocomotiveScroll = (await import("locomotive-scroll")).default;
-        const locomotiveScroll = new LocomotiveScroll();
-      })();
-    }
-  }, []);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -160,21 +153,19 @@ export default function Header() {
         </div>
       </div>
       <div ref={button} className="fixed right-0 z-[6] scale-0">
-        <RoundedButton
+        <RoundedMagneticButton
           disableHoverEffectOnMobile
-          onClick={() => {
-            setIsActive(!isActive);
-          }}
+          onClick={() => setIsActive(!isActive)}
           className={`relative m-[14px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:m-[20px] xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
             isActive ? "bg-hover-blue" : "bg-medium-black"
           } transition-colors duration-300`}
         >
-          <div
-            className={`relative z-[1] w-full ${
+          <span
+            className={`relative w-full ${
               isActive ? "header-burger-active" : ""
             } header-burger`}
           />
-        </RoundedButton>
+        </RoundedMagneticButton>
       </div>
       <AnimatePresence mode="wait">
         {isActive && (

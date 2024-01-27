@@ -87,7 +87,7 @@ export default function PreloaderAnimation() {
         height: dimension.height ? dimension.height : "100%",
         width: dimension.width ? dimension.width : "100%",
       }}
-      className="fixed z-[999] flex items-center justify-center bg-white"
+      className="fixed z-[999] flex items-center justify-center bg-almost-black sm:bg-white"
     >
       {dimension.width > 0 && (
         <>
@@ -95,17 +95,19 @@ export default function PreloaderAnimation() {
             variants={opacity}
             initial="initial"
             animate="enter"
-            className="absolute z-[1] flex items-center text-center text-[calc(clamp(3.25em,5vw,4.5em)*.75)] text-medium-black"
+            className="absolute z-[1] flex items-center text-center text-[2em] text-white xs:text-[calc(clamp(3.25em,5vw,4.5em)*.75)] sm:text-medium-black"
           >
             <span className="mr-[10px] scale-[.8]">•</span>
-            <span className="font-bold">{words[index]}</span>
+            <span className="font-normal xs:font-medium sm:font-bold">
+              {words[index]}
+            </span>
           </MotionP>
           <svg className="absolute top-0 h-[calc(100%+300px)] w-full ">
             <MotionPath
               variants={curve}
               initial="initial"
               exit="exit"
-              className="fill-white"
+              className="fill-almost-black sm:fill-white"
             />
           </svg>
         </>

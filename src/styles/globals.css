@@ -62,13 +62,13 @@ img::selection {
   top: 0;
 }
 
-.rounded-button p {
+.rounded-button span {
   position: relative;
   z-index: 1;
   transition: color 0.4s linear;
 }
 
-.rounded-button:hover p {
+.rounded-button:hover span {
   color: white;
 }
 

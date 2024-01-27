@@ -1,11 +1,11 @@
 import TypographyAnimation from "components/Animations/TypographyAnimation";
-import LabelTag from "components/LabelTag";
-import PhotoButton from "components/Photo/Button";
-import DancingTruck from "../../../public/dancing_truck.gif";
-import Image from "next/image";
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
-import RoundedLink from "components/RoundedLink";
 import DivInViewAnimation from "components/Animations/DivInViewAnimation";
+import RoundedMagneticLink from "components/Magnetic/RoundedMagneticLink";
+import DancingTruck from "../../../public/dancing_truck.gif";
+import PhotoButton from "components/Photo/Button";
+import LabelTag from "components/LabelTag";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -14,7 +14,7 @@ export default function About() {
         about . about . about . about
       </h2> */}
       {/* Description, about me and myself */}
-      <div className="relative mx-auto flex w-full max-w-screen-max-size flex-col items-center justify-center px-5 pb-[200px] pt-[60px] font-normal text-black sm:pt-[100px] md:mx-20 md:flex-row md:space-x-[5em] md:py-[200px] max-size:mx-auto">
+      <div className="relative mx-auto flex w-full max-w-screen-max-size flex-col items-center justify-center px-5 pb-[200px] pt-[60px] font-normal text-black sm:pt-[100px] md:flex-row md:space-x-[5em] md:py-[200px] max-size:mx-auto">
         <div className="flex w-full">
           <TextInViewAnimation
             Animation="Word"
@@ -30,14 +30,15 @@ export default function About() {
         <div
           data-scroll
           data-scroll-speed={0.1}
-          className="absolute right-14 top-[70%] md:left-[calc(100%-340px)] md:top-[80%]"
+          className="absolute right-14 top-[70%] flex md:left-[calc(100%-340px)] md:top-[80%]"
         >
-          <RoundedLink
+          <RoundedMagneticLink
             href="/about"
+            disableHoverEffectOnMobile
             className="flex h-[12em] w-[12em] bg-almost-black text-[12px] text-white xs:text-[13px] sm:h-[clamp(9em,12vw,11em)] sm:w-[clamp(9em,12vw,11em)] sm:text-base"
           >
-            <p>About me</p>
-          </RoundedLink>
+            <span>About me</span>
+          </RoundedMagneticLink>
         </div>
       </div>
       {/* Ideas connect through text, only for desktop */}

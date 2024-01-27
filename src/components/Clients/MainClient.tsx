@@ -1,27 +1,42 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePreloaderState } from "utils/Zustand";
+import { useEffect } from "react";
+import { MotionMain } from "utils/FramerMotion";
 
 export default function MainClient({
   children,
+  className,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
 }) {
-  const [Height, setHeight] = useState("");
-  const preloaderState = usePreloaderState();
+  const slideUp = {
+    initial: {
+      y: 300,
+    },
+    enter: {
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.33, 1, 0.68, 1],
+        delay: 0.6,
+      },
+    },
+  };
 
   useEffect(() => {
-    if (preloaderState.Visible) setHeight(`${window.innerHeight}px`);
-    else setHeight("auto");
-  }, [preloaderState.Visible]);
+    window.scrollTo(0, 0);
+    document.documentElement.style.setProperty("--body-color", "#ffffff");
+  }, []);
 
   return (
-    <main
-      style={{ height: Height }}
-      className={preloaderState.Visible ? "overflow-hidden" : ""}
+    <MotionMain
+      variants={slideUp}
+      initial="initial"
+      animate="enter"
+      className={className}
     >
       {children}
-    </main>
+    </MotionMain>
   );
 }
