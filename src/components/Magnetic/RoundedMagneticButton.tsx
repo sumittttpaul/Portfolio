@@ -23,14 +23,18 @@ export default function RoundedMagneticButton({
   const [isMobile, setIsMobile] = useState(false);
 
   const manageMouseEnter = () => {
-    if (timeoutId) clearTimeout(timeoutId);
-    timeline.current.tweenFromTo("enter", "exit");
+    if (!isMobile) {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeline.current.tweenFromTo("enter", "exit");
+    }
   };
 
   const manageMouseLeave = () => {
-    timeoutId = setTimeout(() => {
-      timeline.current.play();
-    }, 300);
+    if (!isMobile) {
+      timeoutId = setTimeout(() => {
+        timeline.current.play();
+      }, 300);
+    }
   };
 
   useEffect(() => {

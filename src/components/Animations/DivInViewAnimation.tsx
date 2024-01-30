@@ -20,15 +20,15 @@ const opacity: Variants = {
 
 const slideUp: Variants = {
   initial: {
-    y: "15%",
+    y: "15px",
   },
   open: {
-    y: "0%",
-    transition: { duration: 0.5 },
+    y: "0px",
+    transition: { duration: 0.3 },
   },
   closed: {
-    y: "15%",
-    transition: { duration: 0.5 },
+    y: "15px",
+    transition: { duration: 0.3 },
   },
 };
 
@@ -36,13 +36,35 @@ export default function DivInViewAnimation({
   Animation,
   className,
   children,
+  animationConfig,
 }: {
   Animation: "Opacity" | "Slide";
-  className: string;
   children: React.ReactNode;
+  className?: string;
+  duration?: number;
+  animationConfig?: {
+    start: string | number;
+    end: string | number;
+    duration?: number;
+  };
 }) {
   const ContainerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ContainerRef);
+
+  const slideUp: Variants = {
+    initial: {
+      y: animationConfig?.start ?? "15%",
+    },
+    open: {
+      y: animationConfig?.end ?? "0%",
+      transition: { duration: animationConfig?.duration ?? 0.5 },
+    },
+    closed: {
+      y: animationConfig?.start ?? "15%",
+      transition: { duration: animationConfig?.duration ?? 0.5 },
+    },
+  };
+
   return (
     <>
       {Animation === "Opacity" && (

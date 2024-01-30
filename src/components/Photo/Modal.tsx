@@ -5,7 +5,7 @@ import { UserIcon } from "@heroicons/react/24/outline";
 import { MotionDiv } from "utils/FramerMotion";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useModalState } from "utils/Zustand";
-import Sumit_Photo from "../../../public/sumit_photo.png";
+import Sumit_Photo from "../../../public/images/sumit_photo.png";
 import Image from "next/image";
 
 export default function PhotoModal() {

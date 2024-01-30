@@ -1,6 +1,6 @@
 "use client";
 
-import Sumit_Paul from "../../../public/sumit_photo.png";
+import Sumit_Paul from "../../../public/images/sumit_photo.png";
 import { MotionButton } from "utils/FramerMotion";
 import { useModalState } from "utils/Zustand";
 import Image from "next/image";

@@ -6,6 +6,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Header from "components/Header";
 import "styles/globals.css";
+import "styles/swiper.css";
 
 const NeueMontreal = localFont({
   src: [
@@ -89,9 +90,9 @@ export default function RootLayout({ children }: Props) {
       <body className={BodyClass}>
         <MotionOptimize>
           <Header />
-            <RouteTransitionWrapper>
-              {children}
-            </RouteTransitionWrapper>
+          <RouteTransitionWrapper>
+            {children}
+          </RouteTransitionWrapper>
         </MotionOptimize>
         <Analytics />
       </body>

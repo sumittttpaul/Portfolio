@@ -33,11 +33,13 @@ const opacity: Variants = {
 };
 
 export default function TextInViewAnimation({
-  Text,
+  children,
   Animation,
+  className,
 }: {
-  Text: string;
+  children: string;
   Animation: "Opacity" | "Word";
+  className?: string;
 }) {
   const ContainerRef = useRef<HTMLParagraphElement>(null);
   const isInView = useInView(ContainerRef);
@@ -45,23 +47,26 @@ export default function TextInViewAnimation({
     <div ref={ContainerRef} className="flex w-full">
       {Animation === "Word" && (
         <p className="text-in-view">
-          {Text.split(" ").map((word, index) => {
-            return (
-              <span
-                key={index}
-                className="relative inline-flex overflow-hidden"
-              >
-                <MotionSpan
-                  variants={slideUp}
-                  custom={index}
-                  animate={isInView ? "open" : "closed"}
+          {children
+            .toString()
+            .split(" ")
+            .map((word, index) => {
+              return (
+                <span
                   key={index}
+                  className="relative inline-flex overflow-hidden"
                 >
-                  {word}
-                </MotionSpan>
-              </span>
-            );
-          })}
+                  <MotionSpan
+                    variants={slideUp}
+                    custom={index}
+                    animate={isInView ? "open" : "closed"}
+                    key={index}
+                  >
+                    {word}
+                  </MotionSpan>
+                </span>
+              );
+            })}
         </p>
       )}
       {Animation === "Opacity" && (
@@ -70,8 +75,9 @@ export default function TextInViewAnimation({
             <MotionSpan
               variants={opacity}
               animate={isInView ? "open" : "closed"}
+              className={className}
             >
-              {Text}
+              {children}
             </MotionSpan>
           </span>
         </p>

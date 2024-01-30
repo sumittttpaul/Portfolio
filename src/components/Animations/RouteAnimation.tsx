@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { type Variants } from "framer-motion";
 
-const routes: any = {
-  "/": "Home",
-  "/work": "Work",
-  "/about": "About",
-  "/contact": "Contact",
+const routes = (pathname: string) => {
+  if (pathname === "/") return "Home" as string;
+  if (pathname === "/work") return "Work" as string;
+  if (pathname === "/about") return "About" as string;
+  if (pathname === "/contact") return "Contact" as string;
+  else return "Not Found" as string;
 };
 
 const anim = (variants: Variants) => {
@@ -107,7 +108,7 @@ export default function RouteTransition({ children }: React.PropsWithChildren) {
         {...anim(text)}
       >
         <span className="mr-[10px] scale-[.8]">•</span>
-        {routes[pathname]}
+        {routes(pathname)}
       </MotionP>
       {dimensions.width != null && (
         <SVG
