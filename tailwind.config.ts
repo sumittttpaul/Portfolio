@@ -14,6 +14,7 @@ const config: Config = {
         "medium-black": "#202020",
         "second-black": "#303030",
         "second-gray": "#999999",
+        "hover-light-blue": "#0b3cff",
         "hover-blue": "#455CE9",
         "dark-pink-purple": "#2E1C39",
         "dark-red": "#4B0000",
@@ -44,6 +45,7 @@ const config: Config = {
       },
       fontFamily: {
         neue: ["var(--font-neue)"],
+        pacifico: ["var(--font-pacifico)"],
       },
     },
   },

@@ -1,12 +1,24 @@
 import RouteTransitionWrapper from "utils/RouteTransitionWrapper";
 import { MotionOptimize } from "utils/FramerMotion";
 import { Analytics } from "@vercel/analytics/react";
-import { Inter } from "next/font/google";
+import { Inter, Pacifico } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Header from "components/Header";
 import "styles/globals.css";
 import "styles/swiper.css";
+
+type RouteProps = {
+  params?: Record<string, string>;
+  searchParams?: Record<string, string>;
+  children?: React.ReactNode;
+};
+
+type NextPageProps<P extends RouteProps> = P;
+
+type Props = NextPageProps<{
+  children?: React.ReactNode;
+}>;
 
 const NeueMontreal = localFont({
   src: [
@@ -54,19 +66,14 @@ const NeueMontreal = localFont({
   variable: "--font-neue",
 });
 
-type RouteProps = {
-  params?: Record<string, string>;
-  searchParams?: Record<string, string>;
-  children?: React.ReactNode;
-};
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
-type NextPageProps<P extends RouteProps> = P;
-
-type Props = NextPageProps<{
-  children?: React.ReactNode;
-}>;
-
-const inter = Inter({ subsets: ["latin"] });
+const pacifico = Pacifico({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-pacifico",
+});
 
 export const metadata: Metadata = {
   title: "Sumeet Kumar Paul • Freelance Web Developer",
@@ -82,7 +89,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const BodyClass = `${inter.className} ${NeueMontreal.variable} overflow-x-hidden overflow-y-scroll m-0`;
+const BodyClass = `${inter.className} ${NeueMontreal.variable} ${pacifico.variable} overflow-x-hidden overflow-y-scroll m-0`;
 
 export default function RootLayout({ children }: Props) {
   return (
@@ -90,9 +97,9 @@ export default function RootLayout({ children }: Props) {
       <body className={BodyClass}>
         <MotionOptimize>
           <Header />
-          <RouteTransitionWrapper>
-            {children}
-          </RouteTransitionWrapper>
+          {/* <RouteTransitionWrapper> */}
+          {children}
+          {/* </RouteTransitionWrapper> */}
         </MotionOptimize>
         <Analytics />
       </body>

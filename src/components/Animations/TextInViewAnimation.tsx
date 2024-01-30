@@ -44,9 +44,9 @@ export default function TextInViewAnimation({
   const ContainerRef = useRef<HTMLParagraphElement>(null);
   const isInView = useInView(ContainerRef);
   return (
-    <div ref={ContainerRef} className="flex w-full">
+    <span ref={ContainerRef} className="flex w-full">
       {Animation === "Word" && (
-        <p className="text-in-view">
+        <span className={className}>
           {children
             .toString()
             .split(" ")
@@ -67,21 +67,20 @@ export default function TextInViewAnimation({
                 </span>
               );
             })}
-        </p>
+        </span>
       )}
       {Animation === "Opacity" && (
-        <p className="text-[1em] md:text-[1.3em]">
+        <span className={className}>
           <span className="relative inline-flex overflow-hidden">
             <MotionSpan
               variants={opacity}
               animate={isInView ? "open" : "closed"}
-              className={className}
             >
               {children}
             </MotionSpan>
           </span>
-        </p>
+        </span>
       )}
-    </div>
+    </span>
   );
 }

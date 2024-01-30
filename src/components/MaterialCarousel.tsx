@@ -1,6 +1,5 @@
 import Image, { StaticImageData } from "next/image";
 import Script from "next/script";
-import { useEffect } from "react";
 
 // Edit "swiper-material" class in "swiper.css" file to change the height and width and to change the spaceBetween go to the "SwiperScript.js" and at the end you will see the options.
 export default function MaterialCarousel({
@@ -11,7 +10,7 @@ export default function MaterialCarousel({
   return (
     <>
       <Script type="module" src="/scripts/SwiperScript.js" async></Script>
-      <section className="mt-10 box-border flex h-[250px] w-full flex-col px-2.5 sm:hidden">
+      <section className="box-border flex h-[250px] w-full flex-col px-2.5 sm:hidden">
         <div className="demo-slider">
           <div className="swiper">
             <div className="swiper-wrapper">

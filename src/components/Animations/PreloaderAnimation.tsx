@@ -97,7 +97,7 @@ export default function PreloaderAnimation() {
             animate="enter"
             className="absolute z-[1] flex items-center text-center text-[2em] text-white xs:text-[calc(clamp(3.25em,5vw,4.5em)*.75)] sm:text-medium-black"
           >
-            <span className="mr-[10px] scale-[.8]">•</span>
+            <span className="mr-[10px] scale-[.7] sm:scale-[.8]">•</span>
             <span className="font-normal xs:font-medium sm:font-bold">
               {words[index]}
             </span>

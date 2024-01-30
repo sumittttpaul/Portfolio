@@ -4,9 +4,9 @@ import LocomotiveScrollWrapper from "utils/LocomotiveScrollWrapper";
 export default function RootTemplate({ children }: React.PropsWithChildren) {
   return (
     <>
-      <RouteTransition>
+      {/* <RouteTransition> */}
         <LocomotiveScrollWrapper>{children}</LocomotiveScrollWrapper>
-      </RouteTransition>
+      {/* </RouteTransition> */}
     </>
   );
 }

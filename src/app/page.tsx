@@ -1,9 +1,8 @@
 import MainClientForInitial from "components/Clients/MainClient.Initial";
+import Preloader from "interface/home/Preloader";
 import Landing from "interface/home/Landing";
 import Description from "interface/home/Description";
 import ToolBox from "interface/home/ToolBox";
-import PhotoModal from "components/Photo/Modal";
-import Preloader from "interface/home/Preloader";
 import { parse } from "next-useragent";
 import { headers } from "next/headers";
 
@@ -16,11 +15,10 @@ export default function Home() {
   const devices = { isMobile, isTablet, isDesktop };
   return (
     <MainClientForInitial>
+      <Preloader />
       <Landing device={devices} />
       <Description />
-      <ToolBox />
-      <PhotoModal />
-      <Preloader />
+      <ToolBox device={devices} />
     </MainClientForInitial>
   );
 }

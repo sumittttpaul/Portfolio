@@ -1,10 +1,6 @@
-import Image from "next/image";
-import TypographyAnimation from "components/Animations/TypographyAnimation";
-import LabelTag from "components/LabelTag";
-import PhotoButton from "components/Photo/Button";
-import RotateIconAnimation from "components/Animations/RotateIconAnimation";
 import ParallaxScrollCard from "components/ParallaxScrollCard";
 import MaterialCarousel from "components/MaterialCarousel";
+import LogoSlidingAnimation from "components/Animations/LogoSlidingAnimation";
 
 import ToolImage0 from "../../../public/images/tools/clerk.png";
 import ToolImage1 from "../../../public/images/tools/firebase.png";
@@ -24,6 +20,7 @@ import ToolImage14 from "../../../public/images/tools/gsap.png";
 import ToolImage15 from "../../../public/images/tools/framer.png";
 import ToolImage16 from "../../../public/images/tools/swiperjs.png";
 import ToolImage17 from "../../../public/images/tools/material.png";
+import SpotlightButton from "components/SpotlightButton";
 
 const images = [
   ToolImage0,
@@ -85,10 +82,23 @@ export default function Test() {
       {/* <h2 className="-mt-[max(48px,5.2vw)] ml-[2rem] block whitespace-nowrap text-[max(5.3em,9vw)] font-[900] text-black 2xl:ml-[6rem]">
         about . about . about . about
       </h2> */}
-      <div className="flex h-screen items-center justify-center bg-black">
-        <video height={500} width={500} autoPlay loop muted>
-          <source src="/videos/time-animation.webm" type="video/webm" />
-        </video>
+      <span className="mb-20 h-52 w-full bg-black" />
+      <div className="mx-auto w-full max-w-screen-screen-1000">
+        <h1 className="text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] xs:text-[36px] sm:text-[46px] sm:leading-[1.2] screen-1000:px-0 lg:text-[56px] xl:text-[64px]">
+          <span className="whitespace-nowrap">Designing Impact,</span>
+          <span className="ml-10 whitespace-nowrap sm:ml-20">
+            Driving Change
+          </span>
+        </h1>
+        <p className="mx-auto mb-10 mt-5 w-full max-w-screen-sm text-pretty px-5 text-[1em] leading-normal text-black sm:mt-6 md:text-[1.3em] screen-1000:px-0">
+          Curious about the magic behind your website? Delve into the tools and
+          technologies I employ to bring your vision to life. Here&apos;s a
+          glimpse into my web development toolkit, carefully curated to craft
+          seamless and innovative online experiences for you. Let&apos;s explore
+          how we can transform your ideas into a stunning website, utilizing a
+          blend of cutting-edge technologies and meticulous craftsmanship.
+        </p>
+        <LogoSlidingAnimation />
       </div>
       <MaterialCarousel images={images} />
       <div className="h-screen bg-white" />
