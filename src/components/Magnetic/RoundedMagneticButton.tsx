@@ -131,7 +131,7 @@ export default function RoundedMagneticButton({
       style={{ overflow: "hidden" }}
       onMouseEnter={manageMouseEnter}
       onMouseLeave={manageMouseLeave}
-      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full`}
+      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-ful outline-none`}
     >
       {cloneElement(children, { ref: magneticChild })}
       <div

@@ -3,7 +3,7 @@
 import RoundedMagneticButton from "components/Magnetic/RoundedMagneticButton";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useHeaderColorState } from "utils/Zustand";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, useScroll } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Magnetic from "components/Magnetic";
@@ -156,8 +156,8 @@ export default function Header() {
         <RoundedMagneticButton
           disableHoverEffectOnMobile
           onClick={() => setIsActive(!isActive)}
-          className={`relative m-[14px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:m-[20px] xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
-            isActive ? "bg-hover-blue" : "bg-medium-black"
+          className={`menu-button-border relative m-[14px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:m-[20px] xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
+            isActive ? "bg-hover-blue" : "bg-almost-black"
           } transition-colors duration-300`}
         >
           <span

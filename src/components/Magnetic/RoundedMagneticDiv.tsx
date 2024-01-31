@@ -104,7 +104,7 @@ export default function RoundedMagneticDiv({
         style={{ overflow: "hidden" }}
         onMouseEnter={manageMouseEnter}
         onMouseLeave={manageMouseLeave}
-        className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full border-0 outline-none`}
+        className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none`}
       >
         {cloneElement(children, { ref: magneticChild })}
         {!isMobile && (
@@ -123,7 +123,7 @@ export default function RoundedMagneticDiv({
       style={{ overflow: "hidden" }}
       onMouseEnter={manageMouseEnter}
       onMouseLeave={manageMouseLeave}
-      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full`}
+      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none`}
     >
       {cloneElement(children, { ref: magneticChild })}
       <div
