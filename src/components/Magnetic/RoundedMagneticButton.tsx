@@ -11,7 +11,7 @@ export default function RoundedMagneticButton({
 }: {
   disableHoverEffectOnMobile?: boolean;
   children: React.ReactElement;
-  className: string;
+  className?: string;
   onClick: () => void;
 }) {
   const circle = useRef(null);
@@ -111,7 +111,7 @@ export default function RoundedMagneticButton({
         style={{ overflow: "hidden" }}
         onMouseEnter={manageMouseEnter}
         onMouseLeave={manageMouseLeave}
-        className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full border-0 outline-none`}
+        className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none`}
       >
         {cloneElement(children, { ref: magneticChild })}
         {!isMobile && (

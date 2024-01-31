@@ -38,12 +38,12 @@ export default function Description() {
         <div
           data-scroll
           data-scroll-speed={0.1}
-          className="absolute right-10 top-[70%] flex xs:right-14 md:left-[calc(100%-340px)] md:top-[80%]"
+          className="absolute right-10 top-[70%] z-[1] flex xs:right-14 xs:top-[66%] md:left-[calc(100%-340px)] md:top-[80%]"
         >
           <RoundedMagneticLink
             href="/about"
             disableHoverEffectOnMobile
-            className="flex h-[12em] w-[12em] bg-almost-black text-[12px] text-white xs:text-[13px] sm:h-[clamp(9em,12vw,11em)] sm:w-[clamp(9em,12vw,11em)] sm:text-base"
+            className="flex h-[12em] w-[12em] bg-almost-black text-[12px] text-white xs:text-[13px] sm:h-[clamp(11em,12vw,13em)] sm:w-[clamp(11em,12vw,13em)] sm:text-base"
           >
             <span>About me</span>
           </RoundedMagneticLink>

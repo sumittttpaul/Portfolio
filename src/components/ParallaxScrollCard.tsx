@@ -76,10 +76,10 @@ const Column = ({
       className={`${className} parallax-scroll-card-column relative h-full w-full flex-col gap-[2vw]`}
       style={{ y }}
     >
-      {images.map((src, i) => {
+      {images.map((src, index) => {
         return (
           <div
-            key={i}
+            key={`parallax_scroll_${index}`}
             className="relative h-[35vh] w-full overflow-hidden rounded-[1vw] sm:h-full"
           >
             <Image

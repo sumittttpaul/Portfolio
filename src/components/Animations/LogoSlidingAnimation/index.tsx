@@ -114,7 +114,11 @@ const LogoSliding = ({
         >
           {companies.map((company, index) => {
             return (
-              <Logos key={index} src={company.images} label={company.label} />
+              <Logos
+                key={`Company_Logo_${index}`}
+                src={company.images}
+                label={company.label}
+              />
             );
           })}
         </div>
@@ -129,7 +133,11 @@ const LogoSliding = ({
         >
           {companies.map((company, index) => {
             return (
-              <Logos key={index} src={company.images} label={company.label} />
+              <Logos
+                key={`Company_Logo_${index}`}
+                src={company.images}
+                label={company.label}
+              />
             );
           })}
         </div>

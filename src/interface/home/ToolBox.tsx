@@ -1,6 +1,6 @@
 import LogoSlidingAnimation from "components/Animations/LogoSlidingAnimation";
 import ArrowPoints from "components/ArrowPoints";
-
+import PointsBackground from "../../../public/images/points_background.png";
 import ToolImage0 from "../../../public/images/tools/clerk.png";
 import ToolImage1 from "../../../public/images/tools/firebase.png";
 import ToolImage2 from "../../../public/images/tools/mongodb.png";
@@ -23,6 +23,7 @@ import MaterialCarousel from "components/MaterialCarousel";
 import ParallaxScrollCard from "components/ParallaxScrollCard";
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
 import DivInViewAnimation from "components/Animations/DivInViewAnimation";
+import Image from "next/image";
 
 const MaterialCarouselImages = [
   ToolImage14,
@@ -68,9 +69,9 @@ const ParallaxScrollCardImages = [
 export default function ToolBox({ device }: DeviceType) {
   const { isMobile, isTablet, isDesktop } = device;
   return (
-    <section className="flex h-full w-full flex-col bg-white">
+    <section className="relative flex h-full w-full flex-col bg-white">
       <div className="mx-auto w-full max-w-screen-screen-1000 overflow-hidden">
-        <h1 className="flex w-full flex-col px-5 text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:px-0 sm:text-[46px] sm:leading-[1.2] screen-1000:px-0 lg:text-[56px] xl:text-[64px]">
+        <h1 className="flex w-full flex-col px-5 text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:text-[46px] sm:leading-[1.2] screen-1000:px-0 lg:px-0 lg:text-[56px] xl:text-[64px]">
           <TextInViewAnimation Animation="Word">
             Designing&nbsp;Impact,
           </TextInViewAnimation>
@@ -98,7 +99,23 @@ export default function ToolBox({ device }: DeviceType) {
         >
           <LogoSlidingAnimation />
         </DivInViewAnimation>
-        <div className="mx-auto mb-10 w-full max-w-screen-sm space-y-5 px-5 sm:mb-20">
+        <div className="absolute -left-[475px] hidden md:flex">
+          <Image
+            src={PointsBackground}
+            width={1000}
+            height={554}
+            alt="points background"
+          />
+        </div>
+        <div className="absolute -right-[475px] hidden md:flex">
+          <Image
+            src={PointsBackground}
+            width={1000}
+            height={554}
+            alt="points background"
+          />
+        </div>
+        <div className="relative mx-auto mb-10 w-full max-w-screen-sm space-y-5 px-5 sm:mb-[100px]">
           <DivInViewAnimation
             Animation="Slide"
             animationConfig={{ start: "50px", end: "0px" }}
@@ -143,7 +160,6 @@ export default function ToolBox({ device }: DeviceType) {
       {(isDesktop || isTablet) && (
         <ParallaxScrollCard images={ParallaxScrollCardImages} />
       )}
-      <div className="h-screen bg-white" />
     </section>
   );
 }

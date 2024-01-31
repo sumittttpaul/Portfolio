@@ -14,9 +14,9 @@ export default function MaterialCarousel({
         <div className="demo-slider">
           <div className="swiper">
             <div className="swiper-wrapper">
-              {images.map((src, i) => {
+              {images.map((src, index) => {
                 return (
-                  <div key={i} className="swiper-slide">
+                  <div key={`swiper_slide_${index}`} className="swiper-slide">
                     <div className="swiper-material-wrapper">
                       <div className="swiper-material-content">
                         <Image

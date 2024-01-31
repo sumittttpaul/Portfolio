@@ -1,8 +1,8 @@
 "use client";
 
-import { Variants, useInView } from "framer-motion";
-import { useRef } from "react";
+import { Variants, useInView, useScroll } from "framer-motion";
 import { MotionSpan } from "utils/FramerMotion";
+import { useEffect, useRef, useState } from "react";
 
 const slideUp: Variants = {
   initial: {
@@ -42,7 +42,22 @@ export default function TextInViewAnimation({
   className?: string;
 }) {
   const ContainerRef = useRef<HTMLParagraphElement>(null);
-  const isInView = useInView(ContainerRef);
+  const ContainerView = useInView(ContainerRef, { amount: 0.5 });
+  const [isInView, setIsInView] = useState(false);
+  const { scrollY } = useScroll();
+
+  useEffect(() => {
+    return scrollY.on("change", (latest) => {
+      const container = ContainerRef.current;
+      const previous = scrollY.getPrevious();
+      if (container) {
+        if (latest < 0) return;
+        if (previous - latest < 0 && ContainerView) setIsInView(true);
+        if (latest < container.offsetTop && !ContainerView) setIsInView(false);
+      }
+    });
+  }, [scrollY, ContainerView]);
+
   return (
     <span ref={ContainerRef} className="flex w-full">
       {Animation === "Word" && (
@@ -53,14 +68,14 @@ export default function TextInViewAnimation({
             .map((word, index) => {
               return (
                 <span
-                  key={index}
+                  key={`TextInView_${index}`}
                   className="relative inline-flex overflow-hidden"
                 >
                   <MotionSpan
                     variants={slideUp}
                     custom={index}
                     animate={isInView ? "open" : "closed"}
-                    key={index}
+                    key={`TextInView_${index}`}
                   >
                     {word}
                   </MotionSpan>

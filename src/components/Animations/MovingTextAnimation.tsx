@@ -2,9 +2,9 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { gsap } from "gsap/gsap-core";
-import { MotionDiv } from "utils/FramerMotion";
 import { usePreloaderState } from "utils/Zustand";
+import { MotionDiv } from "utils/FramerMotion";
+import { gsap } from "gsap/gsap-core";
 
 export default function MovingTextAnimation() {
   const [MobileAnimation, setMobileAnimation] = useState("");

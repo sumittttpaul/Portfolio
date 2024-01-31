@@ -5,6 +5,7 @@ import Description from "interface/home/Description";
 import ToolBox from "interface/home/ToolBox";
 import { parse } from "next-useragent";
 import { headers } from "next/headers";
+import Projects from "interface/home/Projects";
 
 export default function Home() {
   const headersList = headers();
@@ -19,6 +20,7 @@ export default function Home() {
       <Landing device={devices} />
       <Description />
       <ToolBox device={devices} />
+      <Projects device={devices} />
     </MainClientForInitial>
   );
 }

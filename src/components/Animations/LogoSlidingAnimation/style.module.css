@@ -12,7 +12,7 @@
   width: 150px;
   height: 100%;
   content: "";
-  z-index: 2;
+  z-index: 1;
 }
 
 .logo:before {
@@ -76,6 +76,6 @@
     width: 250px;
     height: 100%;
     content: "";
-    z-index: 2;
+    z-index: 1;
   }
 }

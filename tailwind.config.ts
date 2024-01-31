@@ -16,6 +16,7 @@ const config: Config = {
         "second-gray": "#999999",
         "hover-light-blue": "#0b3cff",
         "hover-blue": "#455CE9",
+        "light-gray": "#c9c9c9",
         "dark-pink-purple": "#2E1C39",
         "dark-red": "#4B0000",
         "dark-pink": "#45004B",
