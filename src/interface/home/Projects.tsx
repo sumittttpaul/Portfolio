@@ -29,7 +29,7 @@ const projects = [
     title: "Agewear Lifestyle",
     description: "Clothing Brand",
     color: "#483C32",
-    date: "2023",
+    date: "2022",
   },
 ];
 
