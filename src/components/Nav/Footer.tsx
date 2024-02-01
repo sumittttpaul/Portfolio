@@ -9,7 +9,7 @@ export default function NavFooter() {
         <h3 className="text-[10px] font-medium uppercase tracking-wide text-white/50 xs:text-xs">
           Socials
         </h3>
-        <div className="flex w-full justify-between sm:w-auto sm:justify-end sm:space-x-5">
+        <div className="flex w-full justify-between">
           <Magnetic>
             <Link
               href="#"

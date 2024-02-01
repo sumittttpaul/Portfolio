@@ -1,6 +1,6 @@
-import { MotionDiv } from "utils/FramerMotion";
+import { MotionDiv, MotionSpan } from "utils/FramerMotion";
 import { Variants } from "framer-motion";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Link from "next/link";
 import Magnetic from "components/Magnetic";
 
@@ -34,32 +34,90 @@ export default function NavLink({
   isActive: boolean;
   setSelectedIndicator: Dispatch<SetStateAction<string>>;
 }) {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const { title, href, index } = data;
+
+  const onMouseEnterMobile = () => {
+    if (isMobile) setSelectedIndicator(href);
+  };
+
+  const onMouseEnterDesktop = () => {
+    if (!isMobile) setSelectedIndicator(href);
+  };
+
+  useEffect(() => {
+    if (window.innerWidth < 640) setIsMobile(true);
+    else setIsMobile(false);
+  }, []);
 
   return (
     <MotionDiv
       className="relative flex w-full items-center"
-      onMouseEnter={() => {
-        setSelectedIndicator(href);
-      }}
+      onMouseEnter={onMouseEnterMobile}
       custom={index}
       variants={slide}
       initial="initial"
       animate="enter"
       exit="exit"
     >
+      <ResponsiveLink
+        href={href}
+        isActive={isActive}
+        title={title}
+        isMobile={isMobile}
+        onMouseEnterDesktop={onMouseEnterDesktop}
+      />
+    </MotionDiv>
+  );
+}
+
+const ResponsiveLink = ({
+  href,
+  title,
+  isActive,
+  isMobile,
+  onMouseEnterDesktop,
+}: {
+  href: string;
+  title: string;
+  isActive: boolean;
+  isMobile: boolean | null;
+  onMouseEnterDesktop: () => void;
+}) => {
+  if (isMobile) {
+    return (
       <Magnetic>
-        <div className="flex w-full items-center justify-between md:w-auto md:justify-start">
-          <MotionDiv
+        <Link
+          href={href}
+          scroll={false}
+          className="flex w-full items-center justify-between sm:w-auto sm:justify-start"
+        >
+          <MotionSpan
             variants={scale}
             animate={isActive ? "open" : "closed"}
-            className="order-2 mr-5 block h-[8px] w-[8px] rounded-[50%] bg-white xs:h-[10px] xs:w-[10px] md:absolute md:-left-[30px] md:order-1 md:mr-0"
+            className="order-2 mr-5 block h-[8px] w-[8px] rounded-[50%] bg-white xs:h-[10px] xs:w-[10px] sm:absolute sm:-left-[30px] sm:order-1 sm:mr-0"
           />
-          <Link href={href} scroll={false} className=" order-1 md:order-2">
+          <span className=" order-1 sm:order-2">{title}</span>
+        </Link>
+      </Magnetic>
+    );
+  } else {
+    return (
+      <Magnetic>
+        <div
+          onMouseEnter={onMouseEnterDesktop}
+          className="flex w-full items-center justify-between sm:w-auto sm:justify-start"
+        >
+          <MotionSpan
+            variants={scale}
+            animate={isActive ? "open" : "closed"}
+            className="order-2 mr-5 block h-[8px] w-[8px] rounded-[50%] bg-white xs:h-[10px] xs:w-[10px] sm:absolute sm:-left-[30px] sm:order-1 sm:mr-0"
+          />
+          <Link href={href} scroll={false} className=" order-1 sm:order-2">
             {title}
           </Link>
         </div>
       </Magnetic>
-    </MotionDiv>
-  );
-}
+    );
+  }
+};
