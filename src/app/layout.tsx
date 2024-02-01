@@ -1,4 +1,5 @@
 import RouteTransitionWrapper from "utils/RouteTransitionWrapper";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { MotionOptimize } from "utils/FramerMotion";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter, Pacifico } from "next/font/google";
@@ -215,12 +216,11 @@ export default function RootLayout({ children }: Props) {
       <body className={BodyClass}>
         <MotionOptimize>
           <Header />
-          <RouteTransitionWrapper>
-            {children}
-          </RouteTransitionWrapper>
+          <RouteTransitionWrapper>{children}</RouteTransitionWrapper>
           <Footer />
         </MotionOptimize>
         <Analytics />
+        <SpeedInsights/>
       </body>
     </html>
   );
