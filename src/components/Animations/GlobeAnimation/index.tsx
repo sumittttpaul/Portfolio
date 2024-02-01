@@ -1,6 +1,6 @@
 import style from "./style.module.css";
 
-export default function index() {
+export default function GlobeAnimation() {
   return (
     <div className={style.globe}>
       <div className={style.wrapper}>

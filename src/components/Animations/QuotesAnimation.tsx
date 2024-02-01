@@ -1,6 +1,7 @@
 "use client";
 
 import { TypeAnimation } from "react-type-animation";
+import { usePreloaderState } from "utils/Zustand";
 
 const Quotes = [
   `Web development is my art, and every project is a canvas where I translate ideas into interactive realities, building a bridge between imagination and implementation.`,
@@ -32,12 +33,17 @@ const Quotes = [
 ];
 
 export default function QuotesAnimation() {
+  const preloader = usePreloaderState();
   return (
     <TypeAnimation
       speed={20}
       wrapper="h2"
       cursor={false}
-      sequence={["", 3500, Quotes[Math.floor(Math.random() * Quotes.length)]]}
+      sequence={[
+        "",
+        preloader.Visible ? 3500 : 1500,
+        Quotes[Math.floor(Math.random() * Quotes.length)],
+      ]}
       className="flex w-full text-pretty text-center text-sm font-normal leading-[1.5] ease-in xs:text-base"
     />
   );

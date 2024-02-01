@@ -84,7 +84,7 @@ const ResponsiveLink = ({
   isMobile: boolean | null;
   onMouseEnterDesktop: () => void;
 }) => {
-  if (isMobile) {
+  if (isMobile === true) {
     return (
       <Magnetic>
         <Link
@@ -101,7 +101,8 @@ const ResponsiveLink = ({
         </Link>
       </Magnetic>
     );
-  } else {
+  }
+  if (isMobile === false) {
     return (
       <Magnetic>
         <div

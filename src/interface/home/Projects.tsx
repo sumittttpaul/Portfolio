@@ -12,6 +12,8 @@ import Image from "next/image";
 const projects = [
   {
     image: WorkImage1,
+    imageHeight: 201,
+    imageWidth: 400,
     title: "Sumeet Kumar Paul",
     description: "Portfolio",
     color: "#373737",
@@ -19,6 +21,8 @@ const projects = [
   },
   {
     image: WorkImage2,
+    imageHeight: 225,
+    imageWidth: 400,
     title: "Emotion",
     description: "E-commerce Store",
     color: "#344148",
@@ -26,6 +30,8 @@ const projects = [
   },
   {
     image: WorkImage3,
+    imageHeight: 225,
+    imageWidth: 400,
     title: "Agewear Lifestyle",
     description: "Clothing Brand",
     color: "#483C32",
@@ -79,7 +85,7 @@ export default function Projects({ device }: DeviceType) {
         <RoundedMagneticLink
           href="#"
           disableHoverEffectOnMobile
-          className="sm:border-light-gray sm:group relative flex w-full items-center justify-center bg-almost-black py-[12px] sm:w-auto sm:border sm:border-solid sm:bg-transparent sm:px-[60px] sm:py-[30px]"
+          className="sm:group relative flex w-full items-center justify-center bg-almost-black py-[12px] sm:w-auto sm:border sm:border-solid sm:border-light-gray sm:bg-transparent sm:px-[60px] sm:py-[30px]"
         >
           <span className="z-[1] flex text-[12px] text-white transition-colors duration-[400ms] group-hover:text-white xs:text-[13px] sm:text-base sm:text-black">
             More work

@@ -5,7 +5,7 @@ import RotateIcon4 from "../../../../public/icons/rotate-4.png";
 import styles from "./style.module.css";
 import Image from "next/image";
 
-export default function index() {
+export default function RotateAnimation() {
   return (
     <div className="absolute left-0 top-0 flex h-[20px] w-[155px] items-center justify-start">
       <Image

@@ -51,7 +51,7 @@ export default function FooterDesktop() {
     <MotionDiv
       style={{ y }}
       ref={container}
-      className="flex h-[100lvh] w-full flex-col items-center justify-center bg-almost-black text-white"
+      className="flex h-[100lvh] w-full flex-col items-center justify-center bg-almost-black text-white relative"
     >
       <div className="mt-10 flex h-full w-full max-w-screen-screen-1180 flex-col items-center justify-center px-5">
         <div className="relative w-full border-b border-solid border-white/20 pb-[5em] sm:pb-[8em] lg:pb-[50px]">

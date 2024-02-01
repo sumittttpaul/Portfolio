@@ -29,8 +29,6 @@ export default function ProjectLink({
     description: string;
     date: string;
     image: StaticImageData;
-    imageHeight: number;
-    imageWidth: number;
     color: string;
   }[];
 }) {
@@ -136,19 +134,14 @@ export default function ProjectLink({
           className="relative h-full w-full transition-[top] duration-[500ms] ease-[cubic-bezier(0.76,0,0.24,1)]"
         >
           {projects.map((project, index) => {
-            const { image, imageWidth, imageHeight, color } = project;
+            const { image, color } = project;
             return (
               <div
                 className="flex h-full w-full items-center justify-center"
                 style={{ backgroundColor: color }}
                 key={`Project_Modal_${index}`}
               >
-                <Image
-                  src={image}
-                  width={imageWidth}
-                  height={imageHeight}
-                  alt="project image"
-                />
+                <Image src={image} width={400} height={267} alt="projects" />
               </div>
             );
           })}

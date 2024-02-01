@@ -47,6 +47,8 @@ const config: Config = {
       fontFamily: {
         neue: ["var(--font-neue)"],
         pacifico: ["var(--font-pacifico)"],
+        grtsk: ["var(--font-grtsk)"],
+        "grtsk-bkslnt": ["var(--font-grtsk-bkslnt)"],
       },
     },
   },

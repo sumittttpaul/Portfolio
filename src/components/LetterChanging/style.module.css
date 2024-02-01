@@ -1,0 +1,40 @@
+.letterChangingForSayHey {
+  line-height: 0rem;
+  position: absolute;
+}
+
+.letterChangingForSayHey:after {
+  content: "";
+  animation-name: letter-changing-for-say-hey;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes letter-changing-for-say-hey {
+  0% {
+    content: "s";
+  }
+  14% {
+    content: "a";
+  }
+  28% {
+    content: "y";
+  }
+  42% {
+    content: "h";
+  }
+  56% {
+    content: "e";
+  }
+  70% {
+    content: "y";
+  }
+  84% {
+    content: "!";
+  }
+  100% {
+    content: "s";
+  }
+}

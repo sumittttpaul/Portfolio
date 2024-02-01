@@ -150,11 +150,11 @@ const Logos = ({ src, label }: { label: string; src: StaticImageData }) => {
   return (
     <span className="mx-10 flex items-center space-x-1 sm:mx-16">
       <Image
-        height={50}
-        width={50}
+        height={33}
+        width={33}
         src={src}
         alt="company logo"
-        className="aspect-[3/2] min-h-[50x] min-w-[50px] object-contain"
+        className="block aspect-square min-h-[33x] min-w-[33px] object-contain"
       />
       <span className="font-pacifico text-[1.5em] text-black sm:text-[2em]">
         {label}

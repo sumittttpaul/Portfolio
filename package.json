@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^2.1.1",
     "@vercel/analytics": "^1.1.1",
+    "critters": "^0.0.20",
     "cssnano": "^6.0.3",
     "framer-motion": "^10.18.0",
     "gsap": "^3.12.4",

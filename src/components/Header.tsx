@@ -3,7 +3,7 @@
 import RoundedMagneticButton from "components/Magnetic/RoundedMagneticButton";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useHeaderColorState } from "utils/Zustand";
-import { AnimatePresence, useScroll } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Magnetic from "components/Magnetic";
@@ -11,12 +11,10 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { gsap } from "gsap";
 
-// gsap.config({ nullTargetWarn: false });
+gsap.config({ nullTargetWarn: false });
 
-const Nav = dynamic(() => import("components/Nav"), { ssr: false });
-const NavBackground = dynamic(() => import("components/Nav/Background"), {
-  ssr: false,
-});
+const Nav = dynamic(() => import("components/Nav"));
+const NavBackground = dynamic(() => import("components/Nav/Background"));
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);

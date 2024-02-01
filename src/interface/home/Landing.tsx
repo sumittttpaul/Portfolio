@@ -1,16 +1,16 @@
 import LocationContainer from "../../../public/icons/location-container.svg";
 import MovingTextAnimation from "components/Animations/MovingTextAnimation";
 import RotateIconAnimation from "components/Animations/RotateIconAnimation";
+import QuotationMaker from "../../../public/icons/quotation-mark.svg";
 import QuotesAnimation from "components/Animations/QuotesAnimation";
 import GlobeAnimation from "components/Animations/GlobeAnimation";
+import BGImage from "../../../public/images/bg_character.png";
+import LandingClient from "components/Clients/LandingClient";
+import Image from "next/image";
 import {
   ArrowRightIcon,
   ArrowDownRightIcon,
 } from "@heroicons/react/24/outline";
-import QuotationMaker from "../../../public/icons/quotation-mark.svg";
-import LandingClient from "components/Clients/LandingClient";
-import BGImage from "../../../public/images/bg_character.png";
-import Image from "next/image";
 
 export default function index({ device }: DeviceType) {
   const { isMobile, isTablet, isDesktop } = device;

@@ -1,4 +1,4 @@
-import Footer from "components/Footer";
+import SayHey from "interface/home/SayHey";
 import { parse } from "next-useragent";
 import { headers } from "next/headers";
 
@@ -10,7 +10,7 @@ export default function Test() {
   const isTablet = parse(userAgent).isTablet;
   const devices = { isMobile, isTablet, isDesktop };
   return (
-    <div className="flex h-auto w-screen flex-col overflow-hidden bg-white">
+    <div className="flex h-screen w-screen flex-col overflow-hidden bg-black">
       {/* Gradient Background */}
       {/* <div className="absolute left-32 top-[25%] block aspect-square h-[500px] min-h-[500px] w-[500px] min-w-[500px] bg-gradient-radial from-dark-pink-purple to-75%" /> */}
       {/* 3D Card */}
@@ -47,11 +47,6 @@ export default function Test() {
       {/* <h2 className="-mt-[max(48px,5.2vw)] ml-[2rem] block whitespace-nowrap text-[max(5.3em,9vw)] font-[900] text-black 2xl:ml-[6rem]">
         about . about . about . about
       </h2> */}
-      <div className="min-h-screen w-full bg-black" />
-      <div className="z-[1] grid min-h-screen w-full place-content-center bg-white text-black">
-        ABC
-      </div>
-      <Footer device={devices} />
     </div>
   );
 }

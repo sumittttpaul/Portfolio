@@ -59,7 +59,7 @@ export default function TextInViewAnimation({
   }, [scrollY, ContainerView]);
 
   return (
-    <span ref={ContainerRef} className="flex w-full">
+    <span ref={ContainerRef} className="relative flex w-full">
       {Animation === "Word" && (
         <span className={className}>
           {children
@@ -68,14 +68,13 @@ export default function TextInViewAnimation({
             .map((word, index) => {
               return (
                 <span
-                  key={`TextInView_${index}`}
+                  key={`TextInView_Letters_${index}`}
                   className="relative inline-flex overflow-hidden"
                 >
                   <MotionSpan
                     variants={slideUp}
                     custom={index}
                     animate={isInView ? "open" : "closed"}
-                    key={`TextInView_${index}`}
                   >
                     {word}
                   </MotionSpan>

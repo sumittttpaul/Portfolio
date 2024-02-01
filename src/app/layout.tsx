@@ -5,6 +5,7 @@ import { Inter, Pacifico } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Header from "components/Header";
+import Footer from "components/Footer";
 import "styles/globals.css";
 import "styles/swiper.css";
 
@@ -66,6 +67,123 @@ const NeueMontreal = localFont({
   variable: "--font-neue",
 });
 
+const Grtsk = localFont({
+  src: [
+    {
+      path: "../../public/fonts/GrtskMega-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-BoldItalic.ttf",
+      weight: "700",
+      style: "italic",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-SemiBoldItalic.ttf",
+      weight: "600",
+      style: "italic",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-MediumItalic.ttf",
+      weight: "500",
+      style: "italic",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-RegularItalic.ttf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-LightItalic.ttf",
+      weight: "300",
+      style: "italic",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-ExtraLight.ttf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-ExtraLightItalic.ttf",
+      weight: "200",
+      style: "italic",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-Thin.ttf",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMega-ThinItalic.ttf",
+      weight: "100",
+      style: "italic",
+    },
+  ],
+  variable: "--font-grtsk",
+});
+
+const Grtsk_Bkslnt = localFont({
+  src: [
+    {
+      path: "../../public/fonts/GrtskMegaBkslnt-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMegaBkslnt-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMegaBkslnt-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMegaBkslnt-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMegaBkslnt-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMegaBkslnt-ExtraLight.ttf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GrtskMegaBkslnt-Thin.ttf",
+      weight: "100",
+      style: "normal",
+    },
+  ],
+  variable: "--font-grtsk-bkslnt",
+});
+
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 const pacifico = Pacifico({
@@ -89,7 +207,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const BodyClass = `${inter.className} ${NeueMontreal.variable} ${pacifico.variable} overflow-x-hidden overflow-y-scroll m-0`;
+const BodyClass = `${inter.className} ${NeueMontreal.variable} ${pacifico.variable} ${Grtsk.variable} ${Grtsk_Bkslnt.variable} overflow-x-hidden overflow-y-scroll m-0`;
 
 export default function RootLayout({ children }: Props) {
   return (
@@ -98,8 +216,9 @@ export default function RootLayout({ children }: Props) {
         <MotionOptimize>
           <Header />
           <RouteTransitionWrapper>
-          {children}
+            {children}
           </RouteTransitionWrapper>
+          <Footer />
         </MotionOptimize>
         <Analytics />
       </body>

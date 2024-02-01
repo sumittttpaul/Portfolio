@@ -4,9 +4,9 @@ import Preloader from "interface/home/Preloader";
 import Projects from "interface/home/Projects";
 import Landing from "interface/home/Landing";
 import ToolBox from "interface/home/ToolBox";
+import SayHey from "interface/home/SayHey";
 import { parse } from "next-useragent";
 import { headers } from "next/headers";
-import Footer from "components/Footer";
 
 export default function Home() {
   const headersList = headers();
@@ -22,7 +22,7 @@ export default function Home() {
       <Description />
       <ToolBox device={devices} />
       <Projects device={devices} />
-      <Footer device={devices} />
+      <SayHey />
     </MainClientForInitial>
   );
 }
