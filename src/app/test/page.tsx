@@ -1,4 +1,3 @@
-import SayHey from "interface/home/SayHey";
 import { parse } from "next-useragent";
 import { headers } from "next/headers";
 

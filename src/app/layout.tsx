@@ -220,7 +220,7 @@ export default function RootLayout({ children }: Props) {
           <Footer />
         </MotionOptimize>
         <Analytics />
-        <SpeedInsights/>
+        <SpeedInsights />
       </body>
     </html>
   );
