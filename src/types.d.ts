@@ -1,7 +1,7 @@
 type DeviceType = {
   device: {
-    isMobile: boolean;
-    isDesktop: boolean;
+    isMobile?: boolean;
+    isDesktop?: boolean;
   };
 };
 
@@ -23,8 +23,8 @@ type LinkAttributesType = {
 };
 
 type SearchParamsType = {
-  searchParams: {
+  searchParams?: {
     // [key: string]: string | string[] | undefined;
-    viewport: string;
+    viewport?: string;
   };
 };

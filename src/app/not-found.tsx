@@ -3,7 +3,10 @@ import CurrentTime from "components/CurrentTime";
 import Magnetic from "components/Magnetic";
 import Link from "next/link";
 
-export default function NotFound() {
+export default function NotFound({ searchParams }: SearchParamsType) {
+  const isMobile = searchParams?.viewport === "mobile" ? true : false;
+  const isDesktop = searchParams?.viewport === "desktop" ? true : false;
+  const devices = { isMobile, isDesktop };
   return (
     <div className="fixed flex h-full w-full items-center bg-white">
       <LargeTripleTextAnimation />
@@ -41,7 +44,7 @@ export default function NotFound() {
             Socials
           </h3>
           <div className="flex w-full justify-between sm:w-auto sm:justify-end sm:space-x-5">
-            <Magnetic>
+            <Magnetic device={devices}>
               <Link
                 href="#"
                 scroll={false}
@@ -50,7 +53,7 @@ export default function NotFound() {
                 Linkedin
               </Link>
             </Magnetic>
-            <Magnetic>
+            <Magnetic device={devices}>
               <Link
                 href="#"
                 scroll={false}
@@ -59,7 +62,7 @@ export default function NotFound() {
                 Instagram
               </Link>
             </Magnetic>
-            <Magnetic>
+            <Magnetic device={devices}>
               <Link
                 href="#"
                 scroll={false}
@@ -68,7 +71,7 @@ export default function NotFound() {
                 Facebook
               </Link>
             </Magnetic>
-            <Magnetic>
+            <Magnetic device={devices}>
               <Link
                 href="#"
                 scroll={false}

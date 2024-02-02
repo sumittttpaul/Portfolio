@@ -1,7 +1,7 @@
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
 import RoundedMagneticLink from "components/Magnetic/RoundedMagneticLink";
 
-export default function Description() {
+export default function Description({ device }: DeviceType) {
   return (
     <section className="relative flex h-full w-full flex-col bg-white">
       {/* Description, about me and myself */}
@@ -42,6 +42,7 @@ export default function Description() {
         >
           <RoundedMagneticLink
             href="/about"
+            device={device}
             className="flex h-[12em] w-[12em] bg-almost-black text-[12px] text-white xs:text-[13px] sm:h-[clamp(11em,12vw,13em)] sm:w-[clamp(11em,12vw,13em)] sm:text-base"
           >
             <span>About me</span>

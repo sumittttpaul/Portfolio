@@ -7,17 +7,17 @@ import ToolBox from "interface/home/ToolBox";
 import SayHey from "interface/home/SayHey";
 
 export default function Home({ searchParams }: SearchParamsType) {
-  const isMobile = searchParams.viewport === "mobile" ? true : false;
-  const isDesktop = searchParams.viewport === "desktop" ? true : false;
+  const isMobile = searchParams?.viewport === "mobile" ? true : false;
+  const isDesktop = searchParams?.viewport === "desktop" ? true : false;
   const devices = { isMobile, isDesktop };
   return (
     <MainClientForInitial>
       <Preloader />
       <Landing device={devices} />
-      <Description />
+      <Description device={devices} />
       <ToolBox device={devices} />
       <Projects device={devices} />
-      <SayHey />
+      <SayHey device={devices} />
     </MainClientForInitial>
   );
 }

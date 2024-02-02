@@ -1,23 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const Desktop = dynamic(() => import("./Responsive").then((f) => f.Desktop));
 
 export default function Magnetic({
   children,
+  device,
 }: {
   children: React.ReactElement;
-}) {
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    if (window.innerWidth < 640) setIsMobile(true);
-    else setIsMobile(false);
-  }, []);
-
-  if (isMobile === true) return <>{children}</>;
-
-  if (isMobile === false) return <Desktop>{children}</Desktop>;
+} & DeviceType) {
+  const { isMobile, isDesktop } = device;
+  if (isMobile) return <>{children}</>;
+  if (isDesktop) return <Desktop>{children}</Desktop>;
 }

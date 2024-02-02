@@ -48,7 +48,7 @@ export default function Test({ searchParams }: SearchParamsType) {
         about . about . about . about
       </h2> */}
       <div className="grid h-full w-full place-content-center text-3xl text-black">
-        {searchParams.viewport}
+        {searchParams?.viewport}
       </div>
     </div>
   );

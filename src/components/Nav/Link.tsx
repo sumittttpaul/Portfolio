@@ -1,8 +1,10 @@
+"use client";
+
 import { MotionDiv, MotionSpan } from "utils/FramerMotion";
-import { Variants } from "framer-motion";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
 import Magnetic from "components/Magnetic";
+import { Variants } from "framer-motion";
+import Link from "next/link";
 
 export const slide: Variants = {
   initial: { x: 80 },
@@ -25,6 +27,7 @@ export default function NavLink({
   data,
   isActive,
   setSelectedIndicator,
+  device,
 }: {
   data: {
     title: string;
@@ -33,8 +36,8 @@ export default function NavLink({
   };
   isActive: boolean;
   setSelectedIndicator: Dispatch<SetStateAction<string>>;
-}) {
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+} & DeviceType) {
+  const { isMobile, isDesktop } = device;
   const { title, href, index } = data;
 
   const onMouseEnterMobile = () => {
@@ -42,13 +45,8 @@ export default function NavLink({
   };
 
   const onMouseEnterDesktop = () => {
-    if (!isMobile) setSelectedIndicator(href);
+    if (isDesktop) setSelectedIndicator(href);
   };
-
-  useEffect(() => {
-    if (window.innerWidth < 640) setIsMobile(true);
-    else setIsMobile(false);
-  }, []);
 
   return (
     <MotionDiv
@@ -62,9 +60,9 @@ export default function NavLink({
     >
       <ResponsiveLink
         href={href}
-        isActive={isActive}
         title={title}
-        isMobile={isMobile}
+        device={device}
+        isActive={isActive}
         onMouseEnterDesktop={onMouseEnterDesktop}
       />
     </MotionDiv>
@@ -75,36 +73,35 @@ const ResponsiveLink = ({
   href,
   title,
   isActive,
-  isMobile,
+  device,
   onMouseEnterDesktop,
 }: {
   href: string;
   title: string;
   isActive: boolean;
-  isMobile: boolean | null;
   onMouseEnterDesktop: () => void;
-}) => {
-  if (isMobile === true) {
+} & DeviceType) => {
+  const { isMobile, isDesktop } = device;
+
+  if (isMobile) {
     return (
-      <Magnetic>
-        <Link
-          href={href}
-          scroll={false}
-          className="flex w-full items-center justify-between sm:w-auto sm:justify-start"
-        >
-          <MotionSpan
-            variants={scale}
-            animate={isActive ? "open" : "closed"}
-            className="order-2 mr-5 block h-[8px] w-[8px] rounded-[50%] bg-white xs:h-[10px] xs:w-[10px] sm:absolute sm:-left-[30px] sm:order-1 sm:mr-0"
-          />
-          <span className=" order-1 sm:order-2">{title}</span>
-        </Link>
-      </Magnetic>
+      <Link
+        href={href}
+        scroll={false}
+        className="flex w-full items-center justify-between sm:w-auto sm:justify-start"
+      >
+        <MotionSpan
+          variants={scale}
+          animate={isActive ? "open" : "closed"}
+          className="order-2 mr-5 block h-[8px] w-[8px] rounded-[50%] bg-white xs:h-[10px] xs:w-[10px] sm:absolute sm:-left-[30px] sm:order-1 sm:mr-0"
+        />
+        <span className=" order-1 sm:order-2">{title}</span>
+      </Link>
     );
   }
-  if (isMobile === false) {
+  if (isDesktop) {
     return (
-      <Magnetic>
+      <Magnetic device={device}>
         <div
           onMouseEnter={onMouseEnterDesktop}
           className="flex w-full items-center justify-between sm:w-auto sm:justify-start"

@@ -1,7 +1,9 @@
+"use client";
+
 import Magnetic from "components/Magnetic";
 import Link from "next/link";
 
-export default function NavFooter() {
+export default function NavFooter({ device }: DeviceType) {
   return (
     <div className="flex w-full flex-col justify-between pb-12">
       <div className="my-8 flex h-[1px] w-full bg-white/20" />
@@ -10,7 +12,7 @@ export default function NavFooter() {
           Socials
         </h3>
         <div className="flex w-full justify-between">
-          <Magnetic>
+          <Magnetic device={device}>
             <Link
               href="#"
               scroll={false}
@@ -19,7 +21,7 @@ export default function NavFooter() {
               Linkedin
             </Link>
           </Magnetic>
-          <Magnetic>
+          <Magnetic device={device}>
             <Link
               href="#"
               scroll={false}
@@ -28,7 +30,7 @@ export default function NavFooter() {
               Instagram
             </Link>
           </Magnetic>
-          <Magnetic>
+          <Magnetic device={device}>
             <Link
               href="#"
               scroll={false}
@@ -37,7 +39,7 @@ export default function NavFooter() {
               Facebook
             </Link>
           </Magnetic>
-          <Magnetic>
+          <Magnetic device={device}>
             <Link
               href="#"
               scroll={false}

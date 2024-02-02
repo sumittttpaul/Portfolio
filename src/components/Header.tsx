@@ -17,8 +17,13 @@ const NavBackground = dynamic(() => import("components/Nav/Background"));
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
+  const [device, setDevice] = useState<{
+    isMobile?: boolean;
+    isDesktop?: boolean;
+  }>({ isMobile: undefined, isDesktop: undefined });
   const header = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLDivElement>(null);
+  const { isMobile, isDesktop } = device;
   const pathname = usePathname();
 
   const valuePath = (route: string) => {
@@ -39,6 +44,13 @@ export default function Header() {
       if (color === "White") _document.style.setProperty(property, white);
     }, 1000);
   };
+
+  useEffect(() => {
+    setDevice({
+      isMobile: window.innerWidth < 640,
+      isDesktop: window.innerWidth > 640,
+    });
+  }, []);
 
   useEffect(() => {
     if (isActive) setIsActive(false);
@@ -105,10 +117,9 @@ export default function Header() {
       <header>
         <div
           ref={header}
-          // style={{ color: HeaderColor.Color }}
           className="header-color absolute top-0 z-[2] box-border flex w-full items-center justify-between px-2 py-[17px] transition-transform duration-300 ease-[cubic-bezier(0.7,0,0.2,1)] xs:py-[25px] sm:px-[35px]"
         >
-          <Magnetic>
+          <Magnetic device={device}>
             <Link
               href="/"
               scroll={false}
@@ -125,31 +136,40 @@ export default function Header() {
               </div>
             </Link>
           </Magnetic>
-          <div className="header-logo-transition-all hidden h-[50px] items-center sm:flex">
-            <HorizontalNav pathname={pathname} href="/work">
-              Work
-            </HorizontalNav>
-            <HorizontalNav pathname={pathname} href="/about">
-              About
-            </HorizontalNav>
-            <HorizontalNav pathname={pathname} href="/contact">
-              Contact
-            </HorizontalNav>
-          </div>
-          <div className="flex h-[50px] items-center sm:hidden">
-            <Magnetic>
-              <button
-                onClick={() => setIsActive(true)}
-                className="relative z-[1] flex cursor-pointer items-center space-x-1.5 p-[15px] text-[13px] font-bold xs:space-x-2 xs:text-[15px] sm:text-[17px] sm:font-[500]"
+          {isDesktop && (
+            <div className="header-logo-transition-all hidden h-[50px] items-center sm:flex">
+              <HorizontalNav device={device} pathname={pathname} href="/work">
+                Work
+              </HorizontalNav>
+              <HorizontalNav device={device} pathname={pathname} href="/about">
+                About
+              </HorizontalNav>
+              <HorizontalNav
+                device={device}
+                pathname={pathname}
+                href="/contact"
               >
-                <div className="header-logo-transition-all header-bg-color h-[5px] w-[5px] scale-100 rounded-[50%] xs:h-[6px] xs:w-[6px]" />
-                <p className="cursor-pointer">Menu</p>
-              </button>
-            </Magnetic>
-          </div>
+                Contact
+              </HorizontalNav>
+            </div>
+          )}
+          {isMobile && (
+            <div className="flex h-[50px] items-center sm:hidden">
+              <Magnetic device={device}>
+                <button
+                  onClick={() => setIsActive(true)}
+                  className="relative z-[1] flex cursor-pointer items-center space-x-1.5 p-[15px] text-[13px] font-bold xs:space-x-2 xs:text-[15px] sm:text-[17px] sm:font-[500]"
+                >
+                  <div className="header-logo-transition-all header-bg-color h-[5px] w-[5px] scale-100 rounded-[50%] xs:h-[6px] xs:w-[6px]" />
+                  <p className="cursor-pointer">Menu</p>
+                </button>
+              </Magnetic>
+            </div>
+          )}
         </div>
         <div ref={button} className="fixed right-0 z-[6] scale-0">
           <RoundedMagneticButton
+            device={device}
             onClick={() => setIsActive(!isActive)}
             className={`menu-button-border relative m-[14px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:m-[20px] xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
               isActive ? "bg-hover-blue" : "bg-almost-black"
@@ -166,7 +186,7 @@ export default function Header() {
           {isActive && (
             <>
               <NavBackground setIsActive={setIsActive} />
-              <Nav setIsActive={setIsActive} />
+              <Nav device={device} setIsActive={setIsActive} />
             </>
           )}
         </AnimatePresence>
@@ -179,13 +199,14 @@ function HorizontalNav({
   children,
   href,
   pathname,
+  device,
 }: {
   children?: React.ReactNode;
   href: string;
   pathname: string;
-}) {
+} & DeviceType) {
   return (
-    <Magnetic>
+    <Magnetic device={device}>
       <div className="group relative z-[1] flex cursor-pointer flex-col p-[15px] text-[17px] font-[500]">
         <Link href={href} className="cursor-pointer" scroll={false}>
           {children}

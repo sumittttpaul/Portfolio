@@ -1,3 +1,5 @@
+"use client";
+
 import { Dispatch, SetStateAction } from "react";
 import { MotionPath } from "utils/FramerMotion";
 
@@ -30,7 +32,7 @@ export default function NavCurve({
   return (
     <svg
       onClick={() => setIsActive(false)}
-      className="fill-almost-black absolute left-[-99px] top-0 h-full w-[100px] stroke-none"
+      className="absolute left-[-99px] top-0 h-full w-[100px] fill-almost-black stroke-none"
     >
       <MotionPath
         variants={curve}

@@ -12,7 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import moment from "moment";
 
-export default function FooterDesktop() {
+export default function FooterDesktop({ device }: DeviceType) {
   const container = useRef<HTMLDivElement>(null);
   const modalState = useModalState();
   const [time, setTime] = useState("");
@@ -86,6 +86,7 @@ export default function FooterDesktop() {
           >
             <RoundedMagneticLink
               href="#"
+              device={device}
               className="absolute flex h-[10em] w-[10em] items-center justify-center bg-[#334BD3] text-white sm:h-[13em] sm:w-[13em]"
             >
               <span className="relative z-[1] m-0 text-sm font-light xs:text-base">
@@ -99,6 +100,7 @@ export default function FooterDesktop() {
         <div className="mb-[3em] mt-[8em] flex w-full flex-col space-y-3 sm:flex-row sm:space-x-[35px] sm:space-y-0 lg:mt-[80px] lg:space-x-[70px]">
           {/* Email */}
           <RoundedMagneticLink
+            device={device}
             href="mailto:sumitpaul.work@gmail.com"
             className="border border-solid border-white/20 py-5 sm:px-10 sm:py-6"
           >
@@ -108,6 +110,7 @@ export default function FooterDesktop() {
           </RoundedMagneticLink>
           {/* Phone */}
           <RoundedMagneticLink
+            device={device}
             href="tel:+918794007993"
             className="border border-solid border-white/20 py-5 sm:px-10 sm:py-6"
           >
@@ -138,7 +141,7 @@ export default function FooterDesktop() {
             Socials
           </h3>
           <div className="flex w-full justify-between sm:w-auto sm:justify-end sm:space-x-5">
-            <Magnetic>
+            <Magnetic device={device}>
               <Link
                 href="#"
                 scroll={false}
@@ -147,7 +150,7 @@ export default function FooterDesktop() {
                 Linkedin
               </Link>
             </Magnetic>
-            <Magnetic>
+            <Magnetic device={device}>
               <Link
                 href="#"
                 scroll={false}
@@ -156,7 +159,7 @@ export default function FooterDesktop() {
                 Instagram
               </Link>
             </Magnetic>
-            <Magnetic>
+            <Magnetic device={device}>
               <Link
                 href="#"
                 scroll={false}
@@ -165,7 +168,7 @@ export default function FooterDesktop() {
                 Facebook
               </Link>
             </Magnetic>
-            <Magnetic>
+            <Magnetic device={device}>
               <Link
                 href="#"
                 scroll={false}

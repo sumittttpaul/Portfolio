@@ -12,14 +12,13 @@ import dynamic from "next/dynamic";
 const PhotoModal = dynamic(() => import("../Photo/Modal"));
 
 export default function Footer() {
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const [device, setDevice] = useState<{
+    isMobile?: boolean;
+    isDesktop?: boolean;
+  }>({ isMobile: undefined, isDesktop: undefined });
+  const { isMobile, isDesktop } = device;
   const modalState = useModalState();
   const pathname = usePathname();
-
-  useEffect(() => {
-    if (window.innerWidth < 640) setIsMobile(true);
-    else setIsMobile(false);
-  }, []);
 
   const valuePath = (route: string) => {
     if (route === "/") return true;
@@ -28,12 +27,20 @@ export default function Footer() {
     if (route === "/contact") return true;
     else return false;
   };
+
+  useEffect(() => {
+    setDevice({
+      isMobile: window.innerWidth < 640,
+      isDesktop: window.innerWidth > 640,
+    });
+  }, []);
+
   return (
     <>
       <footer className="overflow-hidden">
         {valuePath(pathname) && <FooterBefore />}
-        {isMobile === true && valuePath(pathname) && <FooterMobile />}
-        {isMobile === false && valuePath(pathname) && <FooterDesktop />}
+        {isMobile && valuePath(pathname) && <FooterMobile />}
+        {isDesktop && valuePath(pathname) && <FooterDesktop device={device} />}
       </footer>
       <AnimatePresence>
         {modalState.PhotoShow && <PhotoModal />}

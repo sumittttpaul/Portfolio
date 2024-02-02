@@ -53,21 +53,29 @@ export default function Projects({ device }: DeviceType) {
       </div>
       <div className="mx-auto w-full max-w-screen-screen-1000 overflow-hidden">
         <h1 className="flex w-full flex-col px-5 text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:text-[46px] sm:leading-[1.2] screen-1000:px-0 lg:px-0 lg:text-[56px] xl:text-[64px]">
-          <TextInViewAnimation Animation="Word" className="hidden sm:flex">
-            Showcasing&nbsp;the
-          </TextInViewAnimation>
-          <TextInViewAnimation
-            Animation="Word"
-            className="ml-20 hidden sm:flex"
-          >
-            Art&nbsp;of&nbsp;Digital&nbsp;Creation
-          </TextInViewAnimation>
-          <TextInViewAnimation Animation="Word" className="flex sm:hidden">
-            Showcasing&nbsp;the&nbsp;Art
-          </TextInViewAnimation>
-          <TextInViewAnimation Animation="Word" className="flex sm:hidden">
-            of&nbsp;Digital&nbsp;Creation
-          </TextInViewAnimation>
+          {isDesktop && (
+            <TextInViewAnimation Animation="Word" className="hidden sm:flex">
+              Showcasing&nbsp;the
+            </TextInViewAnimation>
+          )}
+          {isDesktop && (
+            <TextInViewAnimation
+              Animation="Word"
+              className="ml-20 hidden sm:flex"
+            >
+              Art&nbsp;of&nbsp;Digital&nbsp;Creation
+            </TextInViewAnimation>
+          )}
+          {isMobile && (
+            <TextInViewAnimation Animation="Word" className="flex sm:hidden">
+              Showcasing&nbsp;the&nbsp;Art
+            </TextInViewAnimation>
+          )}
+          {isMobile && (
+            <TextInViewAnimation Animation="Word" className="flex sm:hidden">
+              of&nbsp;Digital&nbsp;Creation
+            </TextInViewAnimation>
+          )}
         </h1>
         <DivInViewAnimation
           Animation="Slide"
@@ -84,6 +92,7 @@ export default function Projects({ device }: DeviceType) {
       <div className="flex w-full items-center justify-center px-5">
         <RoundedMagneticLink
           href="#"
+          device={device}
           className="sm:group relative flex w-full items-center justify-center bg-almost-black py-[12px] sm:w-auto sm:border sm:border-solid sm:border-light-gray sm:bg-transparent sm:px-[60px] sm:py-[30px]"
         >
           <span className="z-[1] flex text-[12px] text-white transition-colors duration-[400ms] group-hover:text-white xs:text-[13px] sm:text-base sm:text-black">

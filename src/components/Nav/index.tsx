@@ -37,9 +37,10 @@ const menuSlide = {
 
 export default function Nav({
   setIsActive,
+  device,
 }: {
   setIsActive: Dispatch<SetStateAction<boolean>>;
-}) {
+} & DeviceType) {
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
@@ -64,6 +65,7 @@ export default function Nav({
           {navItems.map((data, index) => {
             return (
               <NavLink
+                device={device}
                 key={`Nav_Link_${index}`}
                 data={{ ...data, index }}
                 isActive={selectedIndicator == data.href}
@@ -72,7 +74,7 @@ export default function Nav({
             );
           })}
         </div>
-        <NavFooter />
+        <NavFooter device={device} />
       </div>
       <NavCurve setIsActive={setIsActive} />
     </MotionDiv>
