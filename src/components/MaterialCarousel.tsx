@@ -9,7 +9,13 @@ export default function MaterialCarousel({
 }) {
   return (
     <>
-      <Script type="module" src="/scripts/SwiperScript.js" async></Script>
+      <Script
+        type="module"
+        src="/scripts/SwiperScript.js"
+        crossOrigin="anonymous"
+        strategy="lazyOnload"
+        async
+      />
       <section className="box-border flex h-[250px] w-full flex-col px-2.5 sm:hidden">
         <div className="demo-slider">
           <div className="swiper">
