@@ -136,7 +136,7 @@ export default function index({ device }: DeviceType) {
         )}
         {/* Moving big name text something like "sumeet kumar paul" */}
         <div className="-mt-4 flex sm:mt-0">
-          <MovingTextAnimation />
+          <MovingTextAnimation device={device} />
         </div>
         {/* Down arrow, only for mobile */}
         {isMobile && (

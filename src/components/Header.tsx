@@ -2,10 +2,9 @@
 
 import RoundedMagneticButton from "components/Magnetic/RoundedMagneticButton";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useHeaderColorState } from "utils/Zustand";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Magnetic from "components/Magnetic";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -20,22 +19,26 @@ export default function Header() {
   const [isActive, setIsActive] = useState(false);
   const header = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLDivElement>(null);
-  const HeaderColor = useHeaderColorState();
   const pathname = usePathname();
 
   const ChangeColor = (color: "Black" | "White") => {
+    const _document = document.documentElement;
+    const property = "--header-color";
+    const black = "#000000";
+    const white = "#ffffff";
     setTimeout(() => {
-      HeaderColor.toggleColor(color);
+      if (color === "Black") _document.style.setProperty(property, black);
+      if (color === "White") _document.style.setProperty(property, white);
     }, 1000);
   };
 
   useEffect(() => {
     if (isActive) setIsActive(false);
-    if (pathname === "/" && window.innerWidth > 640) ChangeColor("White");
-    else if (pathname === "/") ChangeColor("Black");
-    if (pathname === "/work") ChangeColor("Black");
-    if (pathname === "/about") ChangeColor("Black");
-    if (pathname === "/contact") ChangeColor("Black");
+    if (pathname == "/" && window.innerWidth > 640) ChangeColor("White");
+    else if (pathname == "/" && window.innerWidth < 640) ChangeColor("Black");
+    else if (pathname == "/work") ChangeColor("Black");
+    else if (pathname == "/about") ChangeColor("Black");
+    else if (pathname == "/contact") ChangeColor("Black");
     else ChangeColor("Black");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
@@ -93,8 +96,8 @@ export default function Header() {
     <header>
       <div
         ref={header}
-        style={{ color: HeaderColor.Color }}
-        className="absolute top-0 z-[2] box-border flex w-full items-center justify-between px-2 py-[17px] transition-transform duration-300 ease-[cubic-bezier(0.7,0,0.2,1)] xs:py-[25px] sm:px-[35px]"
+        // style={{ color: HeaderColor.Color }}
+        className="header-color absolute top-0 z-[2] box-border flex w-full items-center justify-between px-2 py-[17px] transition-transform duration-300 ease-[cubic-bezier(0.7,0,0.2,1)] xs:py-[25px] sm:px-[35px]"
       >
         <Magnetic>
           <Link
@@ -114,25 +117,13 @@ export default function Header() {
           </Link>
         </Magnetic>
         <div className="header-logo-transition-all hidden h-[50px] items-center sm:flex">
-          <HorizontalNav
-            color={HeaderColor.Color}
-            pathname={pathname}
-            href="/work"
-          >
+          <HorizontalNav pathname={pathname} href="/work">
             Work
           </HorizontalNav>
-          <HorizontalNav
-            color={HeaderColor.Color}
-            pathname={pathname}
-            href="/about"
-          >
+          <HorizontalNav pathname={pathname} href="/about">
             About
           </HorizontalNav>
-          <HorizontalNav
-            color={HeaderColor.Color}
-            pathname={pathname}
-            href="/contact"
-          >
+          <HorizontalNav pathname={pathname} href="/contact">
             Contact
           </HorizontalNav>
         </div>
@@ -142,10 +133,7 @@ export default function Header() {
               onClick={() => setIsActive(true)}
               className="relative z-[1] flex cursor-pointer items-center space-x-1.5 p-[15px] text-[13px] font-bold xs:space-x-2 xs:text-[15px] sm:text-[17px] sm:font-[500]"
             >
-              <div
-                style={{ backgroundColor: HeaderColor.Color }}
-                className="header-logo-transition-all h-[5px] w-[5px] scale-100 rounded-[50%] xs:h-[6px] xs:w-[6px]"
-              />
+              <div className="header-logo-transition-all header-bg-color h-[5px] w-[5px] scale-100 rounded-[50%] xs:h-[6px] xs:w-[6px]" />
               <p className="cursor-pointer">Menu</p>
             </button>
           </Magnetic>
@@ -182,12 +170,10 @@ function HorizontalNav({
   children,
   href,
   pathname,
-  color,
 }: {
   children?: React.ReactNode;
   href: string;
   pathname: string;
-  color: string;
 }) {
   return (
     <Magnetic>
@@ -196,10 +182,9 @@ function HorizontalNav({
           {children}
         </Link>
         <div
-          style={{ backgroundColor: color }}
           className={`${
             pathname == href ? "scale-100" : "sm:group-hover:scale-100"
-          } header-logo-transition-all absolute left-[50%] top-[45px] h-[6px] w-[6px] -translate-x-[50%] scale-0 rounded-[50%]`}
+          } header-logo-transition-all header-bg-color absolute left-[50%] top-[45px] h-[6px] w-[6px] -translate-x-[50%] scale-0 rounded-[50%]`}
         />
       </div>
     </Magnetic>

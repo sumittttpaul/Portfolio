@@ -5,6 +5,7 @@
 :root {
   --gap-padding: clamp(1.5em, 4vw, 2.5em);
   --body-color: #1c1d20;
+  --header-color: #000000;
   --big-name-padding: clamp(1.5em, 4vw, 2.5em);
   --big-name-bottom: 9.48px;
   --nav-button-border: 0px;
@@ -49,6 +50,14 @@ img::selection {
 ::-webkit-scrollbar {
   display: none;
   width: 0px;
+}
+
+.header-color {
+  color: var(--header-color);
+}
+
+.header-bg-color {
+  background-color: var(--header-color);
 }
 
 .no-select {
@@ -344,6 +353,7 @@ img::selection {
 @media (min-width: 640px) {
   :root {
     --body-color: #ffffff;
+    --header-color: #ffffff;
   }
   .header-logo:hover .header-logo-copyright {
     transform: rotate(360deg);
