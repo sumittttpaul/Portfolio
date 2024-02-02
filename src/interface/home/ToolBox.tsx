@@ -19,10 +19,10 @@ import ToolImage14 from "../../../public/images/tools/gsap.png";
 import ToolImage15 from "../../../public/images/tools/framer.png";
 import ToolImage16 from "../../../public/images/tools/swiperjs.png";
 import ToolImage17 from "../../../public/images/tools/material.png";
-import MaterialCarousel from "components/MaterialCarousel";
-import ParallaxScrollCard from "components/ParallaxScrollCard";
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
 import DivInViewAnimation from "components/Animations/DivInViewAnimation";
+import ParallaxScrollCard from "components/ParallaxScrollCard";
+import MaterialCarousel from "components/MaterialCarousel";
 import Image from "next/image";
 
 const MaterialCarouselImages = [

@@ -1,14 +1,19 @@
 "use client";
 
+import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useModalState } from "utils/Zustand";
 import { useEffect, useState } from "react";
 import FooterDesktop from "./FooterDesktop";
 import FooterBefore from "./FooterBefore";
 import FooterMobile from "./FooterMobile";
-import PhotoModal from "../Photo/Modal";
+import dynamic from "next/dynamic";
+
+const PhotoModal = dynamic(() => import("../Photo/Modal"));
 
 export default function Footer() {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const modalState = useModalState();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -30,7 +35,9 @@ export default function Footer() {
         {isMobile === true && valuePath(pathname) && <FooterMobile />}
         {isMobile === false && valuePath(pathname) && <FooterDesktop />}
       </footer>
-      <PhotoModal />
+      <AnimatePresence>
+        {modalState.PhotoShow && <PhotoModal />}
+      </AnimatePresence>
     </>
   );
 }

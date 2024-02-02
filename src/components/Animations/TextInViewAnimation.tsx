@@ -1,8 +1,8 @@
 "use client";
 
 import { Variants, useInView, useScroll } from "framer-motion";
-import { MotionSpan } from "utils/FramerMotion";
 import { useEffect, useRef, useState } from "react";
+import { MotionSpan } from "utils/FramerMotion";
 
 const slideUp: Variants = {
   initial: {

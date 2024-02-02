@@ -84,7 +84,6 @@ export default function Projects({ device }: DeviceType) {
       <div className="flex w-full items-center justify-center px-5">
         <RoundedMagneticLink
           href="#"
-          disableHoverEffectOnMobile
           className="sm:group relative flex w-full items-center justify-center bg-almost-black py-[12px] sm:w-auto sm:border sm:border-solid sm:border-light-gray sm:bg-transparent sm:px-[60px] sm:py-[30px]"
         >
           <span className="z-[1] flex text-[12px] text-white transition-colors duration-[400ms] group-hover:text-white xs:text-[13px] sm:text-base sm:text-black">
