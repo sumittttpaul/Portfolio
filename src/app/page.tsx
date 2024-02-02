@@ -5,16 +5,11 @@ import Projects from "interface/home/Projects";
 import Landing from "interface/home/Landing";
 import ToolBox from "interface/home/ToolBox";
 import SayHey from "interface/home/SayHey";
-import { parse } from "next-useragent";
-import { headers } from "next/headers";
 
-export default function Home() {
-  const headersList = headers();
-  const userAgent = headersList.get("user-agent") ?? "";
-  const isMobile = parse(userAgent).isMobile;
-  const isDesktop = parse(userAgent).isDesktop;
-  const isTablet = parse(userAgent).isTablet;
-  const devices = { isMobile, isTablet, isDesktop };
+export default function Home({ searchParams }: SearchParamsType) {
+  const isMobile = searchParams.viewport === "mobile" ? true : false;
+  const isDesktop = searchParams.viewport === "desktop" ? true : false;
+  const devices = { isMobile, isDesktop };
   return (
     <MainClientForInitial>
       <Preloader />

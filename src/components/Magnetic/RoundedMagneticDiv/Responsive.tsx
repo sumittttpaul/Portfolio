@@ -3,7 +3,7 @@
 import { useRef, useEffect, cloneElement } from "react";
 import { gsap } from "gsap/gsap-core";
 
-export function Mobile({ className, children }: DivAttributes) {
+export function Mobile({ className, children }: DivAttributesType) {
   return (
     <div
       style={{ overflow: "hidden" }}
@@ -14,7 +14,7 @@ export function Mobile({ className, children }: DivAttributes) {
   );
 }
 
-export function Desktop({ children, className }: DivAttributes) {
+export function Desktop({ children, className }: DivAttributesType) {
   const circle = useRef(null);
   const magneticParent = useRef<HTMLDivElement>(null);
   const magneticChild = useRef<HTMLElement>(null);

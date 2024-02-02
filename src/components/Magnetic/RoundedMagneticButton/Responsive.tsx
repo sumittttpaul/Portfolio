@@ -3,7 +3,7 @@
 import { useRef, useEffect, cloneElement } from "react";
 import { gsap } from "gsap/gsap-core";
 
-export function Mobile({ children, onClick, className }: ButtonAttributes) {
+export function Mobile({ children, onClick, className }: ButtonAttributesType) {
   return (
     <button
       onClick={onClick}
@@ -15,7 +15,11 @@ export function Mobile({ children, onClick, className }: ButtonAttributes) {
   );
 }
 
-export function Desktop({ children, onClick, className }: ButtonAttributes) {
+export function Desktop({
+  children,
+  onClick,
+  className,
+}: ButtonAttributesType) {
   const circle = useRef(null);
   const magneticParent = useRef<HTMLButtonElement>(null);
   const magneticChild = useRef<HTMLElement>(null);

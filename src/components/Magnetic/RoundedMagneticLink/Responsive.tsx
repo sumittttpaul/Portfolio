@@ -4,7 +4,7 @@ import { useRef, useEffect, cloneElement } from "react";
 import { gsap } from "gsap/gsap-core";
 import Link from "next/link";
 
-export function Mobile({ href, className, children }: LinkAttributes) {
+export function Mobile({ href, className, children }: LinkAttributesType) {
   return (
     <Link
       href={href}
@@ -17,7 +17,7 @@ export function Mobile({ href, className, children }: LinkAttributes) {
   );
 }
 
-export function Desktop({ href, className, children }: LinkAttributes) {
+export function Desktop({ href, className, children }: LinkAttributesType) {
   const circle = useRef(null);
   const magneticParent = useRef<HTMLAnchorElement>(null);
   const magneticChild = useRef<HTMLElement>(null);

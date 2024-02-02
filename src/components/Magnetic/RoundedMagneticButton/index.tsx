@@ -10,7 +10,7 @@ export default function RoundedMagneticButton({
   children,
   onClick,
   className,
-}: ButtonAttributes) {
+}: ButtonAttributesType) {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {

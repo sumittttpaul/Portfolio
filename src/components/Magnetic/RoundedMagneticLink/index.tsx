@@ -10,7 +10,7 @@ export default function RoundedMagneticDiv({
   href,
   children,
   className,
-}: LinkAttributes) {
+}: LinkAttributesType) {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {

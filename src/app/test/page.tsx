@@ -1,13 +1,14 @@
-import { parse } from "next-useragent";
-import { headers } from "next/headers";
+// import { parse } from "next-useragent";
+// import { headers } from "next/headers";
 
-export default function Test() {
-  const headersList = headers();
-  const userAgent = headersList.get("user-agent") ?? "";
-  const isMobile = parse(userAgent).isMobile;
-  const isDesktop = parse(userAgent).isDesktop;
-  const isTablet = parse(userAgent).isTablet;
-  const devices = { isMobile, isTablet, isDesktop };
+export default function Test({ searchParams }: SearchParamsType) {
+  // const headersList = headers();
+  // const userAgent = headersList.get("user-agent") ?? "";
+  // const isMobile = parse(userAgent).isMobile;
+  // const isDesktop = parse(userAgent).isDesktop;
+  // const isTablet = parse(userAgent).isTablet;
+  // const devices = { isMobile, isTablet, isDesktop };
+
   return (
     <div className="flex h-screen w-screen flex-col overflow-hidden bg-white">
       {/* Gradient Background */}
@@ -46,6 +47,9 @@ export default function Test() {
       {/* <h2 className="-mt-[max(48px,5.2vw)] ml-[2rem] block whitespace-nowrap text-[max(5.3em,9vw)] font-[900] text-black 2xl:ml-[6rem]">
         about . about . about . about
       </h2> */}
+      <div className="grid h-full w-full place-content-center text-3xl text-black">
+        {searchParams.viewport}
+      </div>
     </div>
   );
 }

@@ -13,12 +13,12 @@ import {
 } from "@heroicons/react/24/outline";
 
 export default function index({ device }: DeviceType) {
-  const { isMobile, isTablet, isDesktop } = device;
+  const { isMobile, isDesktop } = device;
   return (
     <LandingClient className="relative flex h-auto w-auto flex-col overflow-hidden bg-white px-2.5 sm:bg-black sm:p-0">
       <div className="relative mt-20 flex h-auto w-auto flex-col rounded-3xl bg-black px-2.5 pb-6 pt-2.5 xs:mt-24 sm:mt-0 sm:rounded-none sm:px-0 sm:pb-0 sm:pt-0">
         {/* Background Image or character image, only for desktop */}
-        {(isDesktop || isTablet) && (
+        {isDesktop && (
           <div className="hidden w-full items-end justify-center pt-10 sm:flex md:items-start">
             <div
               data-scroll
@@ -78,7 +78,7 @@ export default function index({ device }: DeviceType) {
           </div>
         )}
         {/* Left side location container, only for desktop */}
-        {(isDesktop || isTablet) && (
+        {isDesktop && (
           <div
             data-scroll
             data-scroll-speed={0.1}
@@ -106,7 +106,7 @@ export default function index({ device }: DeviceType) {
           </div>
         )}
         {/* Right side "freelance web developer" text, only for desktop */}
-        {(isDesktop || isTablet) && (
+        {isDesktop && (
           <div
             data-scroll
             data-scroll-speed={0.1}

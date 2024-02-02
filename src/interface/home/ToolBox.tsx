@@ -67,7 +67,7 @@ const ParallaxScrollCardImages = [
 ];
 
 export default function ToolBox({ device }: DeviceType) {
-  const { isMobile, isTablet, isDesktop } = device;
+  const { isMobile, isDesktop } = device;
   return (
     <section className="relative flex h-full w-full flex-col bg-white">
       <div className="mx-auto w-full max-w-screen-screen-1000 overflow-hidden">
@@ -157,9 +157,7 @@ export default function ToolBox({ device }: DeviceType) {
         </div>
       </div>
       {isMobile && <MaterialCarousel images={MaterialCarouselImages} />}
-      {(isDesktop || isTablet) && (
-        <ParallaxScrollCard images={ParallaxScrollCardImages} />
-      )}
+      {isDesktop && <ParallaxScrollCard images={ParallaxScrollCardImages} />}
     </section>
   );
 }

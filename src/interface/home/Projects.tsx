@@ -40,7 +40,7 @@ const projects = [
 ];
 
 export default function Projects({ device }: DeviceType) {
-  const { isMobile, isTablet, isDesktop } = device;
+  const { isMobile, isDesktop } = device;
   return (
     <section className="relative flex w-full flex-col items-center overflow-hidden bg-white py-[50px] sm:py-[100px]">
       <div className="absolute -right-[300px] -top-[240px] hidden md:flex lg:right-0">
@@ -80,7 +80,7 @@ export default function Projects({ device }: DeviceType) {
         </DivInViewAnimation>
       </div>
       {isMobile && <ProjectCard projects={projects} />}
-      {(isDesktop || isTablet) && <ProjectLink projects={projects} />}
+      {isDesktop && <ProjectLink projects={projects} />}
       <div className="flex w-full items-center justify-center px-5">
         <RoundedMagneticLink
           href="#"

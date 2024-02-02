@@ -9,7 +9,7 @@ const Mobile = dynamic(() => import("./Responsive").then((f) => f.Mobile));
 export default function RoundedMagneticDiv({
   children,
   className,
-}: DivAttributes) {
+}: DivAttributesType) {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
