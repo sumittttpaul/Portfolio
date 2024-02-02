@@ -10,7 +10,7 @@ const routes = (pathname: string) => {
   if (pathname === "/work") return "Work" as string;
   if (pathname === "/about") return "About" as string;
   if (pathname === "/contact") return "Contact" as string;
-  else return "Not Found" as string;
+  else return "Error" as string;
 };
 
 const anim = (variants: Variants) => {

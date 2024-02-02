@@ -1,0 +1,34 @@
+.animation {
+  animation-name: move-animation;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+.animationReverse {
+  animation-direction: reverse;
+}
+
+.animationDurationExtend {
+  animation-duration: 15s;
+}
+
+@keyframes move-animation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (min-width: 640px) {
+  .animation {
+    animation-duration: 40s;
+  }
+
+  .animationDurationExtend {
+    animation-duration: 55s;
+  }
+}

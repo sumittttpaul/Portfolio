@@ -13,7 +13,8 @@ export default function NavFooter() {
           <Magnetic>
             <Link
               href="#"
-              className="text-underline cursor-pointer text-sm text-white xs:text-base"
+              scroll={false}
+              className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Linkedin
             </Link>
@@ -21,7 +22,8 @@ export default function NavFooter() {
           <Magnetic>
             <Link
               href="#"
-              className="text-underline cursor-pointer text-sm text-white xs:text-base"
+              scroll={false}
+              className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Instagram
             </Link>
@@ -29,7 +31,8 @@ export default function NavFooter() {
           <Magnetic>
             <Link
               href="#"
-              className="text-underline cursor-pointer text-sm text-white xs:text-base"
+              scroll={false}
+              className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Facebook
             </Link>
@@ -37,7 +40,8 @@ export default function NavFooter() {
           <Magnetic>
             <Link
               href="#"
-              className="text-underline cursor-pointer text-sm text-white xs:text-base"
+              scroll={false}
+              className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Twitter
             </Link>

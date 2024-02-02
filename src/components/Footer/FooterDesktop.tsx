@@ -51,7 +51,7 @@ export default function FooterDesktop() {
     <MotionDiv
       style={{ y }}
       ref={container}
-      className="flex h-[100lvh] w-full flex-col items-center justify-center bg-almost-black text-white relative"
+      className="relative flex h-[100lvh] w-full flex-col items-center justify-center bg-almost-black text-white"
     >
       <div className="mt-10 flex h-full w-full max-w-screen-screen-1180 flex-col items-center justify-center px-5">
         <div className="relative w-full border-b border-solid border-white/20 pb-[5em] sm:pb-[8em] lg:pb-[50px]">
@@ -71,11 +71,11 @@ export default function FooterDesktop() {
                   src={SumitPhoto}
                 />
               </MotionButton>
-              <h2 className="leading-0 ml-[0.3em] text-[2.5em] font-normal xs:text-[2.8em] sm:text-[5vw]">
+              <h2 className="ml-[0.3em] text-[2.5em] font-normal xs:text-[2.8em] sm:text-[5vw]">
                 Let&apos;s work
               </h2>
             </div>
-            <h2 className="leading-0 m-0 text-[2.5em] font-normal xs:text-[2.8em] sm:text-[5vw]">
+            <h2 className="m-0 text-[2.5em] font-normal xs:text-[2.8em] sm:text-[5vw]">
               together
             </h2>
           </div>
@@ -144,7 +144,8 @@ export default function FooterDesktop() {
             <Magnetic>
               <Link
                 href="#"
-                className="text-underline cursor-pointer text-sm text-white xs:text-base"
+                scroll={false}
+                className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
               >
                 Linkedin
               </Link>
@@ -152,7 +153,8 @@ export default function FooterDesktop() {
             <Magnetic>
               <Link
                 href="#"
-                className="text-underline cursor-pointer text-sm text-white xs:text-base"
+                scroll={false}
+                className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
               >
                 Instagram
               </Link>
@@ -160,7 +162,8 @@ export default function FooterDesktop() {
             <Magnetic>
               <Link
                 href="#"
-                className="text-underline cursor-pointer text-sm text-white xs:text-base"
+                scroll={false}
+                className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
               >
                 Facebook
               </Link>
@@ -168,7 +171,8 @@ export default function FooterDesktop() {
             <Magnetic>
               <Link
                 href="#"
-                className="text-underline cursor-pointer text-sm text-white xs:text-base"
+                scroll={false}
+                className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
               >
                 Twitter
               </Link>

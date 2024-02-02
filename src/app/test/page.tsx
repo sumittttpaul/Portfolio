@@ -9,7 +9,7 @@ export default function Test() {
   const isTablet = parse(userAgent).isTablet;
   const devices = { isMobile, isTablet, isDesktop };
   return (
-    <div className="flex h-screen w-screen flex-col overflow-hidden bg-black">
+    <div className="flex h-screen w-screen flex-col overflow-hidden bg-white">
       {/* Gradient Background */}
       {/* <div className="absolute left-32 top-[25%] block aspect-square h-[500px] min-h-[500px] w-[500px] min-w-[500px] bg-gradient-radial from-dark-pink-purple to-75%" /> */}
       {/* 3D Card */}

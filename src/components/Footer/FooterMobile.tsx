@@ -2,13 +2,13 @@
 
 import SumitPhoto from "../../../public/images/sumit_photo.png";
 import { ArrowDownLeftIcon } from "@heroicons/react/24/outline";
+import { useState, useEffect, useRef } from "react";
 import { MotionButton } from "utils/FramerMotion";
 import { useModalState } from "utils/Zustand";
-import { useState, useEffect, useRef } from "react";
+import { useScroll } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import moment from "moment";
-import { useScroll } from "framer-motion";
 
 export default function FooterMobile() {
   const container = useRef<HTMLDivElement>(null);
@@ -41,7 +41,7 @@ export default function FooterMobile() {
   return (
     <div
       ref={container}
-      className="flex h-[100lvh] w-full flex-col items-center justify-center bg-almost-black text-white relative"
+      className="relative flex h-[100lvh] w-full flex-col items-center justify-center bg-almost-black text-white"
     >
       <div className="mt-10 flex h-full w-full max-w-screen-screen-1180 flex-col items-center justify-center px-5">
         <div className="relative w-full border-b border-solid border-white/20 pb-[5em] sm:pb-[8em] lg:pb-[50px]">
@@ -61,11 +61,11 @@ export default function FooterMobile() {
                   src={SumitPhoto}
                 />
               </MotionButton>
-              <h2 className="leading-0 ml-[0.3em] text-[2.5em] font-normal xs:text-[2.8em] sm:text-[5vw]">
+              <h2 className="ml-[0.3em] text-[2.5em] font-normal xs:text-[2.8em] sm:text-[5vw]">
                 Let&apos;s work
               </h2>
             </div>
-            <h2 className="leading-0 m-0 text-[2.5em] font-normal xs:text-[2.8em] sm:text-[5vw]">
+            <h2 className="m-0 text-[2.5em] font-normal xs:text-[2.8em] sm:text-[5vw]">
               together
             </h2>
           </div>
@@ -73,6 +73,7 @@ export default function FooterMobile() {
           <div className="absolute left-[calc(100%-200px)] top-[calc(100%-80px)] sm:left-[calc(100%-400px)] sm:top-[calc(100%-105px)]">
             <Link
               href="#"
+              scroll={false}
               className="rounded-button flex h-[10em] w-[10em] cursor-pointer items-center justify-center rounded-full bg-[#334BD3] text-white outline-none sm:h-[13em] sm:w-[13em]"
             >
               <span className="relative z-[1] m-0 text-sm font-light xs:text-base">
@@ -86,6 +87,7 @@ export default function FooterMobile() {
         <div className="mb-[3em] mt-[8em] flex w-full flex-col space-y-3 sm:flex-row sm:space-x-[35px] sm:space-y-0 lg:mt-[80px] lg:space-x-[70px]">
           {/* Email */}
           <Link
+            scroll={false}
             href="mailto:sumitpaul.work@gmail.com"
             className="rounded-button relative flex cursor-pointer items-center justify-center rounded-full border border-solid border-white/20 py-5 outline-none sm:px-10 sm:py-6"
           >
@@ -95,6 +97,7 @@ export default function FooterMobile() {
           </Link>
           {/* Phone */}
           <Link
+            scroll={false}
             href="tel:+918794007993"
             className="rounded-button relative flex cursor-pointer items-center justify-center rounded-full border border-solid border-white/20 py-5 outline-none sm:px-10 sm:py-6"
           >
@@ -126,26 +129,30 @@ export default function FooterMobile() {
           </h3>
           <div className="flex w-full justify-between sm:w-auto sm:justify-end sm:space-x-5">
             <Link
+              scroll={false}
               href="#"
-              className="text-underline cursor-pointer text-sm text-white xs:text-base"
+              className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Linkedin
             </Link>
             <Link
               href="#"
-              className="text-underline cursor-pointer text-sm text-white xs:text-base"
+              scroll={false}
+              className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Instagram
             </Link>
             <Link
               href="#"
-              className="text-underline cursor-pointer text-sm text-white xs:text-base"
+              scroll={false}
+              className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Facebook
             </Link>
             <Link
               href="#"
-              className="text-underline cursor-pointer text-sm text-white xs:text-base"
+              scroll={false}
+              className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Twitter
             </Link>

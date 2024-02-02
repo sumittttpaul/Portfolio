@@ -36,6 +36,7 @@ export default function Header() {
     if (pathname === "/work") ChangeColor("Black");
     if (pathname === "/about") ChangeColor("Black");
     if (pathname === "/contact") ChangeColor("Black");
+    else ChangeColor("Black");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 

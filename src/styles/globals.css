@@ -204,7 +204,7 @@ img::selection {
   border: var(--nav-button-border) solid rgba(255, 255, 255, 0.2);
 }
 
-.text-underline::after {
+.text-underline-white::after {
   content: "";
   width: 0%;
   height: 1px;
@@ -217,7 +217,24 @@ img::selection {
   transition: width 0.2s linear;
 }
 
-.text-underline:hover::after {
+.text-underline-white:hover::after {
+  width: 100%;
+}
+
+.text-underline-black::after {
+  content: "";
+  width: 0%;
+  height: 1.5px;
+  background-color: black;
+  display: block;
+  margin-top: 2px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.2s linear;
+}
+
+.text-underline-black:hover::after {
   width: 100%;
 }
 
