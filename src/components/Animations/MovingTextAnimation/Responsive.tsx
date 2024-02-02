@@ -23,7 +23,7 @@ export function Desktop() {
       transition: {
         duration: 0.6,
         ease: [0.33, 1, 0.68, 1],
-        delay: preloader.Visible ? 2.7 : 0.6,
+        delay: preloader.Visible ? 2.3 : 0.6,
       },
     },
   };
