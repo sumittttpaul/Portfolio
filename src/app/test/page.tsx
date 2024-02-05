@@ -1,8 +1,3 @@
-// import { parse } from "next-useragent";
-// import { headers } from "next/headers";
-
-import EmailTemplate from "components/EmailTemplate";
-
 export default function Test({ searchParams }: SearchParamsType) {
   // const headersList = headers();
   // const userAgent = headersList.get("user-agent") ?? "";
@@ -52,13 +47,6 @@ export default function Test({ searchParams }: SearchParamsType) {
       {/* <span className="grid h-full w-full place-content-center text-3xl text-black">
         {searchParams?.viewport}
       </span> */}
-      <EmailTemplate
-        name="Sumeet Kumar Paul"
-        email="sumitpaul16102002@gmail.com"
-        company="Emotion Corporation"
-        service="Website Building"
-        description="Hello, sumit i need an help in this ..."
-      />
     </div>
   );
 }

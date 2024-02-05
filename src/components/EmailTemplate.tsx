@@ -12,27 +12,23 @@ import {
   Row,
   Section,
   Text,
+  Button,
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
 
-const SumitPhoto = "https://sumitttpaul.vercel.app/images/sumit_photo.png";
-const Facebook =
-  "https://sumitttpaul.vercel.app/images/socials/facebook_round_white.png";
-const Twitter =
-  "https://sumitttpaul.vercel.app/images/socials/twitter_round_white.png";
-const Snapchat =
-  "https://sumitttpaul.vercel.app/images/socials/snapchat_round_white.png";
-const Thread =
-  "https://sumitttpaul.vercel.app/images/socials/thread_round_white.png";
-const Linkedin =
-  "https://sumitttpaul.vercel.app/images/socials/linkedin_round_white.png";
-const Instagram =
-  "https://sumitttpaul.vercel.app/images/socials/instagram_round_white.png";
+const WebsiteLink = "https://sumitttpaul.vercel.app";
 
-const WebsiteLink = "https://sumitttpaul.vercel.app/";
+const SumitPhoto = `${WebsiteLink}/images/sumit_photo.png`;
+const Facebook = `${WebsiteLink}/images/socials/facebook_round_white.png`;
+const Twitter = `${WebsiteLink}/images/socials/twitter_round_white.png`;
+const Snapchat = `${WebsiteLink}/images/socials/snapchat_round_white.png`;
+const Thread = `${WebsiteLink}/images/socials/thread_round_white.png`;
+const Linkedin = `${WebsiteLink}/images/socials/linkedin_round_white.png`;
+const Instagram = `${WebsiteLink}/images/socials/instagram_round_white.png`;
+
 const FacebookLink = "";
 const TwitterLink = "";
-const SnapChatLink = "";
+const SnapchatLink = "";
 const ThreadLink = "";
 const LinkedinLink = "";
 const InstagramLink = "";
@@ -46,208 +42,162 @@ export default function EmailTemplate({
 }: DetailsType) {
   return (
     <Html>
+      <Head />
+      <Preview>Conformation Email</Preview>
       <Tailwind>
-        <Head />
-        <Preview>Conformation Email</Preview>
-        <Body className="relative flex h-auto w-full flex-col items-center justify-center bg-black p-5 text-white sm:p-10">
-          <Container className="relative mx-auto flex h-auto w-full flex-col items-center justify-center">
-            <Link
-              href={WebsiteLink}
-              className="group flex h-[50px] cursor-pointer items-center justify-center px-2.5"
-            >
-              <span className="relative text-sm font-bold text-white xs:text-base sm:text-lg sm:font-[300]">
-                ©
-              </span>
-              <span className="relative ml-[4px] flex h-[28px] items-center overflow-hidden whitespace-nowrap xs:ml-[5px] sm:items-end sm:pr-0">
-                <span className="elative w-full text-center text-[13px] font-bold text-white xs:text-[15px] sm:text-[17px] sm:font-[500]">
-                  <span>Code by Sumeet</span>
-                  <span className="absolute left-[139px]"> Kumar Paul</span>
-                </span>
-              </span>
+        <Body className="mx-auto my-auto max-w-[700px] bg-black p-5 text-center font-sans sm:rounded-3xl sm:border sm:border-solid sm:border-white/20 sm:p-10">
+          <Section className="w-auto text-center">
+            <Link href={WebsiteLink} className="px-2.5 no-underline">
+              <Row>
+                <Column align="right">
+                  <Text className="relative mr-1 text-sm font-bold text-white xs:text-base sm:text-lg sm:font-[300]">
+                    ©
+                  </Text>
+                </Column>
+                <Column align="left">
+                  <Text className="relative w-full text-center text-[13px] font-bold text-white xs:text-[15px] sm:text-[17px] sm:font-[500]">
+                    Code by Sumeet
+                  </Text>
+                </Column>
+              </Row>
             </Link>
-            <Container className="flex w-full justify-center">
-              <Heading
-                as="h1"
-                className="mt-[1em] text-2xl font-bold sm:text-4xl"
-              >
-                Thank You for Responding!
-              </Heading>
-            </Container>
-            <Container className="flex w-full justify-center">
-              <Text className="mt-[1em] text-sm xs:text-base sm:text-lg">
-                Sumeet will get back to you very soon.
-              </Text>
-            </Container>
-            <Container className="flex w-full justify-center">
-              <Link
-                href={WebsiteLink}
-                className="mt-[0.5em] flex items-center rounded-full border border-solid border-white/50 py-1 pl-1 pr-4 sm:mt-[1em]"
-              >
-                <span className="relative mr-2 h-8 w-8 overflow-hidden rounded-full">
+          </Section>
+          <Section className="text-center">
+            <Heading className="text-2xl font-bold leading-[0] sm:text-4xl">
+              Thank You for Responding!
+            </Heading>
+          </Section>
+          <Section className="mt-[1em] text-center sm:mt-0">
+            <Text className="text-sm xs:text-base sm:text-lg">
+              Sumeet will get back to you very soon.
+            </Text>
+          </Section>
+          <Section className="mt-[0.5em] w-auto text-center">
+            <Button
+              href={WebsiteLink}
+              className="rounded-full border border-solid border-white/50 bg-black no-underline"
+            >
+              <Row>
+                <Column align="right" className="pb-[0.25px] pl-1 pr-2 pt-1">
                   <Img
-                    sizes="(min-width: 0px) 32px"
-                    className="overflow-hidden rounded-full"
                     src={SumitPhoto}
-                    alt="sumit photo"
-                    height="100%"
-                    width="100%"
+                    className="rounded-full"
+                    height={32}
+                    width={32}
                   />
-                </span>
-                <Text className="text-sm leading-[0] text-white sm:text-[15px]">
-                  <span>sumitttpaul.vercel.app</span>
-                  <span></span>
-                </Text>
-              </Link>
-            </Container>
-            <Container className="flex w-full justify-center">
-              <Text className="mt-[4em] text-[13px] font-semibold uppercase text-white/50 xs:text-lg sm:mt-[5em] sm:text-sm">
-                Your Response
-              </Text>
-            </Container>
-            <Container className="flex w-full flex-col">
-              <span className="-ml-5 mt-[1.5em] flex h-px w-full bg-white/20 sm:ml-0 sm:w-full" />
-              <span className="relative mx-[1em] mt-[1.5em] flex space-x-5 sm:mx-[3em] md:mt-[3em] md:space-x-10">
-                <Text className="mt-0.5 text-[11px] font-bold leading-[0] text-white/50 sm:text-[14px]">
-                  01
-                </Text>
-                <span className="-mt-[0.8em] flex w-full flex-col sm:-mt-[1.5em]">
-                  <Text className="text-[15px] leading-[0] text-white/50 sm:text-xl">
-                    What&apos;s your name?
+                </Column>
+                <Column align="left" className="pr-4">
+                  <Text className="text-sm leading-[0] text-white sm:text-[15px]">
+                    sumitttpaul.vercel.app
                   </Text>
-                  <Text className="mb-[0.5em] mt-[1em] w-full text-[14px] font-medium leading-[0] text-white sm:-mt-[0.25em] sm:mb-[1em] sm:text-xl">
-                    {name}
-                  </Text>
-                </span>
-              </span>
-              <span className="-ml-5 mt-[1.5em] flex h-px w-full bg-white/20 sm:ml-0 sm:w-full" />
-              <span className="relative mx-[1em] mt-[1.5em] flex space-x-5 sm:mx-[3em] md:mt-[3em] md:space-x-10">
-                <Text className="mt-0.5 text-[11px] font-bold leading-[0] text-white/50 sm:text-[14px]">
-                  02
-                </Text>
-                <span className="-mt-[0.8em] flex w-full flex-col sm:-mt-[1.5em]">
-                  <Text className="text-[15px] leading-[0] text-white/50 sm:text-xl">
-                    What&apos;s your email?
-                  </Text>
-                  <Text className="mb-[0.5em] mt-[1em] w-full text-[14px] font-medium leading-[0] text-white sm:-mt-[0.25em] sm:mb-[1em] sm:text-xl">
-                    {email}
-                  </Text>
-                </span>
-              </span>
-              <span className="-ml-5 mt-[1.5em] flex h-px w-full bg-white/20 sm:ml-0 sm:w-full" />
-              <span className="relative mx-[1em] mt-[1.5em] flex space-x-5 sm:mx-[3em] md:mt-[3em] md:space-x-10">
-                <Text className="mt-0.5 text-[11px] font-bold leading-[0] text-white/50 sm:text-[14px]">
-                  03
-                </Text>
-                <span className="-mt-[0.8em] flex w-full flex-col sm:-mt-[1.5em]">
-                  <Text className="text-[15px] leading-[0] text-white/50 sm:text-xl">
-                    What&apos;s the name of your organization?
-                  </Text>
-                  <Text className="mb-[0.5em] mt-[1em] w-full text-[14px] font-medium leading-[0] text-white sm:-mt-[0.25em] sm:mb-[1em] sm:text-xl">
-                    {company}
-                  </Text>
-                </span>
-              </span>
-              <span className="-ml-5 mt-[1.5em] flex h-px w-full bg-white/20 sm:ml-0 sm:w-full" />
-              <span className="relative mx-[1em] mt-[1.5em] flex space-x-5 sm:mx-[3em] md:mt-[3em] md:space-x-10">
-                <Text className="mt-0.5 text-[11px] font-bold leading-[0] text-white/50 sm:text-[14px]">
-                  04
-                </Text>
-                <span className="-mt-[0.8em] flex w-full flex-col sm:-mt-[1.5em]">
-                  <Text className="text-[15px] leading-[0] text-white/50 sm:text-xl">
-                    What services are you looking for?
-                  </Text>
-                  <Text className="mb-[0.5em] mt-[1em] w-full text-[14px] font-medium leading-[0] text-white sm:-mt-[0.25em] sm:mb-[1em] sm:text-xl">
-                    {service}
-                  </Text>
-                </span>
-              </span>
-              <span className="-ml-5 mt-[1.5em] flex h-px w-full bg-white/20 sm:ml-0 sm:w-full" />
-              <span className="relative mx-[1em] mt-[1.5em] flex space-x-5 sm:mx-[3em] md:mt-[3em] md:space-x-10">
-                <Text className="mt-0.5 text-[11px] font-bold leading-[0] text-white/50 sm:text-[14px]">
-                  05
-                </Text>
-                <span className="-mt-[0.8em] flex w-full flex-col sm:-mt-[1.5em]">
-                  <Text className="text-[15px] leading-[0] text-white/50 sm:text-xl">
-                    Your message
-                  </Text>
-                  <Text className="mb-[0.5em] mt-[1em] w-full text-[14px] font-medium leading-[0] text-white sm:-mt-[0.25em] sm:mb-[1em] sm:text-xl">
-                    {description}
-                  </Text>
-                </span>
-              </span>
-              <span className="-ml-5 mt-[1.5em] flex h-px w-full bg-white/20 sm:ml-0 sm:w-full" />
-            </Container>
-            <Container className="flex w-full justify-center">
-              <Text className="mt-[4em] text-[13px] font-semibold uppercase text-white/50 xs:text-lg sm:mt-[5em] sm:text-sm">
-                Social Handles
-              </Text>
-            </Container>
-            <span className="mx-auto mt-[1em] flex w-full max-w-[250px] justify-between sm:max-w-[300px]">
-              <Link
-                href={FacebookLink}
-                className="block aspect-square min-h-[30px] min-w-[30px]"
-              >
-                <Img
-                  height={30}
-                  width={30}
-                  src={Facebook}
-                  alt="Facebook logo"
-                />
-              </Link>
-              <Link
-                href={InstagramLink}
-                className="block aspect-square min-h-[30px] min-w-[30px]"
-              >
-                <Img
-                  height={30}
-                  width={30}
-                  src={Instagram}
-                  alt="Instagram logo"
-                />
-              </Link>
-              <Link
-                href={LinkedinLink}
-                className="block aspect-square min-h-[30px] min-w-[30px]"
-              >
-                <Img
-                  height={30}
-                  width={30}
-                  src={Linkedin}
-                  alt="Linkedin logo"
-                />
-              </Link>
-              <Link
-                href={TwitterLink}
-                className="block aspect-square min-h-[30px] min-w-[30px]"
-              >
-                <Img height={30} width={30} src={Twitter} alt="Twitter logo" />
-              </Link>
-              <Link
-                href={SnapChatLink}
-                className="block aspect-square min-h-[30px] min-w-[30px]"
-              >
-                <Img
-                  height={30}
-                  width={30}
-                  src={Snapchat}
-                  alt="Snapchat logo"
-                />
-              </Link>
-              <Link
-                href={ThreadLink}
-                className="block aspect-square min-h-[30px] min-w-[30px]"
-              >
-                <Img height={30} width={30} src={Thread} alt="Thread logo" />
-              </Link>
-            </span>
-            <Container className="flex w-full justify-center">
-              <Text className="mt-[5em] text-xs sm:text-sm">
-                This email is an copy of your response.
-              </Text>
-            </Container>
-          </Container>
+                </Column>
+              </Row>
+            </Button>
+          </Section>
+          <Section className="text-center">
+            <Text className="mt-[4em] text-[13px] font-semibold uppercase text-white/50 xs:text-lg sm:mt-[5em] sm:text-sm">
+              Your Response
+            </Text>
+          </Section>
+          <Section className="m-0 w-full p-0 text-start">
+            <Hr className="my-5 border-[0.75px] border-solid border-white/20" />
+            <TextField index="01" question=" What's your name?" answer={name} />
+            <LineBreak />
+            <TextField
+              index="02"
+              question="What's your email?"
+              answer={email}
+            />
+            <LineBreak />
+            <TextField
+              index="03"
+              question="What's the name of your organization?"
+              answer={company}
+            />
+            <LineBreak />
+            <TextField
+              index="04"
+              question="What services are you looking for?"
+              answer={service}
+            />
+            <LineBreak />
+            <TextField
+              index="05"
+              question="Your message"
+              answer={description}
+            />
+            <LineBreak />
+          </Section>
+          <Section className="text-center">
+            <Text className="mt-[4em] text-[13px] font-semibold uppercase text-white/50 xs:text-lg sm:mt-[5em] sm:text-sm">
+              Social Handles
+            </Text>
+          </Section>
+          <Section className="mx-auto mt-[1em] w-full max-w-[250px] sm:max-w-[300px]">
+            <Row>
+              <SocialLink href={FacebookLink} src={Facebook} />
+              <SocialLink href={InstagramLink} src={Instagram} />
+              <SocialLink href={LinkedinLink} src={Linkedin} />
+              <SocialLink href={TwitterLink} src={Twitter} />
+              <SocialLink href={SnapchatLink} src={Snapchat} />
+              <SocialLink href={ThreadLink} src={Thread} />
+            </Row>
+          </Section>
+          <Section className="text-center">
+            <Text className="mt-[5em] text-xs sm:text-sm">
+              This email is an copy of your response.
+            </Text>
+          </Section>
         </Body>
       </Tailwind>
     </Html>
   );
 }
+
+const LineBreak = () => {
+  return (
+    <Hr className="mb-5 mt-2 border-[0.75px] border-solid border-white/20 sm:mt-5" />
+  );
+};
+
+const TextField = ({
+  index,
+  question,
+  answer,
+}: {
+  index: string;
+  question: string;
+  answer: string;
+}) => {
+  return (
+    <Container className="m-0 w-full p-0 text-start">
+      <Row>
+        <Column align="left" className="px-5 sm:pl-10 sm:pr-5">
+          <Text className="text-[11px] font-bold leading-[0] text-white/50 sm:text-[14px]">
+            {index}
+          </Text>
+        </Column>
+        <Column align="left" className="w-full text-start">
+          <Text className="text-[15px] leading-[0] text-white/50 sm:text-xl">
+            {question}
+          </Text>
+        </Column>
+      </Row>
+      <Container className="w-full text-start">
+        <Text className="ml-14 mt-0 text-[14px] font-medium leading-[1.5] text-white sm:-mt-3 sm:ml-[75px] sm:text-[20px]">
+          {answer}
+        </Text>
+      </Container>
+    </Container>
+  );
+};
+
+const SocialLink = ({ href, src }: { href: string; src: string }) => {
+  return (
+    <Column align="center" className=" mr-2">
+      <Link href={href}>
+        <Img height={30} width={30} src={src} alt="social logo" />
+      </Link>
+    </Column>
+  );
+};
