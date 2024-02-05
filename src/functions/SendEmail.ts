@@ -2,6 +2,7 @@
 
 import EmailTemplate from "components/EmailTemplate";
 import { Resend } from "resend";
+import * as React from "react";
 
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
@@ -17,7 +18,7 @@ export default async function SendEmail(formData: FormData) {
       from: "Test <onboarding@resend.dev>",
       to: ["sumitpaul.work@gmail.com"],
       subject: "Request from sumitttpaul",
-      react: EmailTemplate({
+      react: React.createElement(EmailTemplate, {
         name: name,
         email: email,
         company: company,
