@@ -2,7 +2,7 @@
 
 import RoundedMagneticButton from "./Magnetic/RoundedMagneticButton";
 import { FormEvent, useCallback, useState } from "react";
-import SendEmail from "functions/SendEmail";
+// import SendEmail from "functions/SendEmail";
 import TextField from "./TextField";
 import TextArea from "./TextArea";
 
@@ -16,13 +16,13 @@ const InitialValue = "";
 
 const emailExpression = `/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/`;
 
-function objectToFormData(obj: Object) {
-  const formData = new FormData();
-  Object.entries(obj).forEach(([key, value]) => {
-    formData.append(key, value);
-  });
-  return formData;
-}
+// function objectToFormData(obj: Object) {
+//   const formData = new FormData();
+//   Object.entries(obj).forEach(([key, value]) => {
+//     formData.append(key, value);
+//   });
+//   return formData;
+// }
 
 export default function ContactForm({ device }: DeviceType) {
   const [Details, setDetails] = useState({
@@ -82,40 +82,40 @@ export default function ContactForm({ device }: DeviceType) {
     }
   };
 
-  const handleFocus = () => {
-    if (isMobile) {
-      const NameField = document.getElementById("contact-textfield-name");
-      const EmailField = document.getElementById("contact-textfield-email");
-      const ServiceField = document.getElementById("contact-textfield-service");
-      if (!validName) {
-        NameField?.focus();
-      } else if (!validEmail) {
-        EmailField?.focus();
-      } else if (!validService) {
-        ServiceField?.focus();
-      }
-    }
-  };
+  // const handleFocus = () => {
+  //   if (isMobile) {
+  //     const NameField = document.getElementById("contact-textfield-name");
+  //     const EmailField = document.getElementById("contact-textfield-email");
+  //     const ServiceField = document.getElementById("contact-textfield-service");
+  //     if (!validName) {
+  //       NameField?.focus();
+  //     } else if (!validEmail) {
+  //       EmailField?.focus();
+  //     } else if (!validService) {
+  //       ServiceField?.focus();
+  //     }
+  //   }
+  // };
 
-  const handleEmail = useCallback(async (data: FormData) => {
-    const res = await SendEmail(data);
-    console.log("res: ", res);
-  }, []);
+  // const handleEmail = useCallback(async (data: FormData) => {
+  //   const res = await SendEmail(data);
+  //   console.log("res: ", res);
+  // }, []);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { name, email, company, service, description } = Details;
+    // const { name, email, company, service, description } = Details;
 
-    if (!validName || !validEmail || !validService) {
-      handleError();
-      handleFocus();
-      if (isDesktop) {
-        window.scrollTo({
-          top: 760,
-          behavior: "smooth",
-        });
-      }
-    } else if (validEmail && validEmail && validService) {
+    // if (!validName || !validEmail || !validService) {
+    //   handleError();
+    //   handleFocus();
+    //   if (isDesktop) {
+    //     window.scrollTo({
+    //       top: 760,
+    //       behavior: "smooth",
+    //     });
+    //   }
+    // } else if (validEmail && validEmail && validService) {
       // handleEmail(
       //   objectToFormData({
       //     name: name,
@@ -125,7 +125,7 @@ export default function ContactForm({ device }: DeviceType) {
       //     description: description,
       //   }),
       // );
-    }
+    // }
   };
 
   return (
