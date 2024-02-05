@@ -19,7 +19,7 @@ export default function Contact({ searchParams }: SearchParamsType) {
         />
       </div> */}
       {/* <Landing device={devices} /> */}
-      <Footer device={devices} />
+      {/* <Footer device={devices} /> */}
     </MainClient>
   );
 }
