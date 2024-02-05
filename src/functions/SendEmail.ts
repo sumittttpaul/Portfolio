@@ -1,8 +1,8 @@
 "use server";
 
-import EmailTemplate from "components/EmailTemplate";
+// import EmailTemplate from "components/EmailTemplate";
 import { Resend } from "resend";
-import * as React from "react";
+// import * as React from "react";
 
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
@@ -18,13 +18,14 @@ export default async function SendEmail(formData: FormData) {
       from: "Test <onboarding@resend.dev>",
       to: ["sumitpaul.work@gmail.com"],
       subject: "Request from sumitttpaul",
-      react: React.createElement(EmailTemplate, {
-        name: name,
-        email: email,
-        company: company,
-        service: service,
-        description: description,
-      }),
+      // react: React.createElement(EmailTemplate, {
+      //   name: name,
+      //   email: email,
+      //   company: company,
+      //   service: service,
+      //   description: description,
+      // }),
+      html: `<h1>${name} ${email} ${company} ${service} ${description}</h1>`,
     });
 
     // Error
