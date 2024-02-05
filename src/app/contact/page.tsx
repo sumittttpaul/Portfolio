@@ -1,11 +1,13 @@
-// import DancingTruck from "../../../public/images/dancing_truck.gif";
-// import DivInViewAnimation from "components/Animations/DivInViewAnimation";
 import MainClient from "components/Clients/MainClient";
-// import Image from "next/image";
+import Landing from "interface/contact/Landing";
+import Footer from "interface/contact/Footer";
 
-export default function Contact() {
+export default function Contact({ searchParams }: SearchParamsType) {
+  const isMobile = searchParams?.viewport === "mobile" ? true : false;
+  const isDesktop = searchParams?.viewport === "desktop" ? true : false;
+  const devices = { isMobile, isDesktop };
   return (
-    <MainClient className="flex h-screen w-full items-center justify-center bg-white text-5xl text-black">
+    <MainClient>
       {/* Truck dancing animation */}
       {/* <div className="flex h-[229px] w-[350px] justify-center bg-black">
         <Image
@@ -16,7 +18,8 @@ export default function Contact() {
           alt="dancing truck"
         />
       </div> */}
-      Contact
+      <Landing device={devices} />
+      <Footer device={devices} />
     </MainClient>
   );
 }

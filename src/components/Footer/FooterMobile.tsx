@@ -74,7 +74,7 @@ export default function FooterMobile() {
             <Link
               href="#"
               scroll={false}
-              className="rounded-button flex h-[10em] w-[10em] cursor-pointer items-center justify-center rounded-full bg-[#334BD3] text-white outline-none sm:h-[13em] sm:w-[13em]"
+              className="rounded-button flex h-[10em] w-[10em] cursor-pointer items-center justify-center rounded-full bg-button-blue text-white outline-none sm:h-[13em] sm:w-[13em]"
             >
               <span className="relative z-[1] m-0 text-sm font-light xs:text-base">
                 Get in touch

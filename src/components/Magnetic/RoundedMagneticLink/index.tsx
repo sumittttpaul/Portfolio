@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 const Desktop = dynamic(() => import("./Responsive").then((f) => f.Desktop));
 const Mobile = dynamic(() => import("./Responsive").then((f) => f.Mobile));
 
-export default function RoundedMagneticDiv({
+export default function RoundedMagneticLink({
   href,
   children,
   className,

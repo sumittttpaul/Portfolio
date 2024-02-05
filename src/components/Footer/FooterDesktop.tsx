@@ -87,7 +87,7 @@ export default function FooterDesktop({ device }: DeviceType) {
             <RoundedMagneticLink
               href="#"
               device={device}
-              className="absolute flex h-[10em] w-[10em] items-center justify-center bg-[#334BD3] text-white sm:h-[13em] sm:w-[13em]"
+              className="bg-button-blue absolute flex h-[10em] w-[10em] items-center justify-center text-white sm:h-[13em] sm:w-[13em]"
             >
               <span className="relative z-[1] m-0 text-sm font-light xs:text-base">
                 Get in touch

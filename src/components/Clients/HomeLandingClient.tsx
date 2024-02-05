@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { MotionSection } from "utils/FramerMotion";
 import { usePreloaderState } from "utils/Zustand";
 
-export default function LandingClient({
+export default function HomeLandingClient({
   children,
   className,
 }: {

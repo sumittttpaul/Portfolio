@@ -24,7 +24,6 @@ export default function Footer() {
     if (route === "/") return true;
     if (route === "/work") return true;
     if (route === "/about") return true;
-    if (route === "/contact") return true;
     else return false;
   };
 

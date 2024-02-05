@@ -14,6 +14,7 @@ const config: Config = {
         "medium-black": "#202020",
         "second-black": "#303030",
         "second-gray": "#999999",
+        "button-blue": "#334BD3",
         "hover-light-blue": "#0b3cff",
         "hover-blue": "#455CE9",
         "light-gray": "#c9c9c9",

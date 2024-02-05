@@ -11,7 +11,12 @@ export default function ArrowPoints({
   return (
     <div className="flex w-full flex-col text-black">
       <span className="relative -mb-6 h-[20px] w-[20px] min-w-[20px] xs:h-[25px] xs:w-[25px] xs:min-w-[25px] sm:-mb-7">
-        <Image fill src={CheckIcon} sizes="25px" alt="check icon" />
+        <Image
+          fill
+          src={CheckIcon}
+          sizes="(min-width: 0px) 25px"
+          alt="check icon"
+        />
       </span>
       <h4 className="text-pretty indent-7 text-[1em] sm:indent-8 md:text-[1.3em]">
         <span className="mr-2 font-bold">{title}:</span>

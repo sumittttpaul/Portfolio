@@ -22,7 +22,7 @@ export default function Work() {
             Animation="Slide"
             className="box-border flex flex-col sm:relative sm:h-[288px] sm:w-[545px] sm:flex-row screen-1000:h-[501px] screen-1000:w-[950px] screen-1180:h-[570px] screen-1180:w-[1080px]"
           >
-            <PhotoButton />
+            <PhotoButton className="mb-2 h-[80px] w-[80px] min-w-[80px] rounded-full rounded-bl-[0px] xs:mb-2.5 xs:h-[110px] xs:w-[110px] sm:h-[90px] sm:w-[90px] sm:min-w-[90px] sm:rounded-bl-full sm:rounded-br-[0px] screen-1000:h-[150px] screen-1000:w-[150px] screen-1180:h-[175px] screen-1180:w-[175px]" sizes="(min-width: 1180px) 175px, (min-width: 1000px) 150px,(min-width: 640px) 90px, 110px" />
             <div className="-mt-1 flex flex-col sm:ml-5 sm:mt-0 screen-1000:ml-8">
               <div className="flex w-full flex-col sm:flex-row sm:space-x-4 screen-1000:space-x-5 screen-1180:space-x-6">
                 <TypographyAnimation label="ideas" />

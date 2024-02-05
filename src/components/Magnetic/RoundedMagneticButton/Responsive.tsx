@@ -3,11 +3,17 @@
 import { useRef, useEffect, cloneElement } from "react";
 import { gsap } from "gsap/gsap-core";
 
-export function Mobile({ children, onClick, className }: ButtonAttributesType) {
+export function Mobile({
+  type,
+  onClick,
+  children,
+  className,
+}: ButtonAttributesType) {
   return (
     <button
       onClick={onClick}
       style={{ overflow: "hidden" }}
+      type={type}
       className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none`}
     >
       {children}
@@ -16,8 +22,9 @@ export function Mobile({ children, onClick, className }: ButtonAttributesType) {
 }
 
 export function Desktop({
-  children,
+  type,
   onClick,
+  children,
   className,
 }: ButtonAttributesType) {
   const circle = useRef(null);
@@ -100,6 +107,7 @@ export function Desktop({
 
   return (
     <button
+      type={type}
       onClick={onClick}
       ref={magneticParent}
       style={{ overflow: "hidden" }}

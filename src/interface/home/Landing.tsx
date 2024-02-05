@@ -5,7 +5,7 @@ import QuotationMaker from "../../../public/icons/quotation-mark.svg";
 import QuotesAnimation from "components/Animations/QuotesAnimation";
 import GlobeAnimation from "components/Animations/GlobeAnimation";
 import BGImage from "../../../public/images/bg_character.png";
-import LandingClient from "components/Clients/LandingClient";
+import HomeLandingClient from "components/Clients/HomeLandingClient";
 import Image from "next/image";
 import {
   ArrowRightIcon,
@@ -15,7 +15,7 @@ import {
 export default function index({ device }: DeviceType) {
   const { isMobile, isDesktop } = device;
   return (
-    <LandingClient className="relative flex h-auto w-auto flex-col overflow-hidden bg-white px-2.5 sm:bg-black sm:p-0">
+    <HomeLandingClient className="relative flex h-auto w-auto flex-col overflow-hidden bg-white px-2.5 sm:bg-black sm:p-0">
       <div className="relative mt-20 flex h-auto w-auto flex-col rounded-3xl bg-black px-2.5 pb-6 pt-2.5 xs:mt-24 sm:mt-0 sm:rounded-none sm:px-0 sm:pb-0 sm:pt-0">
         {/* Background Image or character image, only for desktop */}
         {isDesktop && (
@@ -157,6 +157,6 @@ export default function index({ device }: DeviceType) {
           </div>
         )}
       </div>
-    </LandingClient>
+    </HomeLandingClient>
   );
 }
