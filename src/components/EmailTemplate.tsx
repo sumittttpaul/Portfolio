@@ -1,3 +1,5 @@
+'use server'
+
 import {
   Body,
   Container,
@@ -33,7 +35,7 @@ const ThreadLink = "";
 const LinkedinLink = "";
 const InstagramLink = "";
 
-export default function EmailTemplate({
+export default async function EmailTemplate({
   name,
   email,
   company,
