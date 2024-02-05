@@ -1,13 +1,17 @@
 import {
-  Html,
   Body,
-  Head,
-  Preview,
-  Text,
-  Link,
-  Img,
   Container,
+  Column,
+  Head,
   Heading,
+  Hr,
+  Html,
+  Img,
+  Link,
+  Preview,
+  Row,
+  Section,
+  Text,
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
 
@@ -43,9 +47,7 @@ export default function EmailTemplate({
   return (
     <Html>
       <Tailwind>
-        <Head>
-          <title>Thank You for Responding!</title>
-        </Head>
+        <Head />
         <Preview>Conformation Email</Preview>
         <Body className="relative flex h-auto w-full flex-col items-center justify-center bg-black p-5 text-white sm:p-10">
           <Container className="relative mx-auto flex h-auto w-full flex-col items-center justify-center">
