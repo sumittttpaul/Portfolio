@@ -116,15 +116,15 @@ export default function ContactForm({ device }: DeviceType) {
         });
       }
     } else if (validEmail && validEmail && validService) {
-      handleEmail(
-        objectToFormData({
-          name: name,
-          email: email,
-          company: company,
-          service: service,
-          description: description,
-        }),
-      );
+      // handleEmail(
+      //   objectToFormData({
+      //     name: name,
+      //     email: email,
+      //     company: company,
+      //     service: service,
+      //     description: description,
+      //   }),
+      // );
     }
   };
 
