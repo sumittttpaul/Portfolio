@@ -9,6 +9,11 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     webVitalsAttribution: ["CLS", "LCP"],
+    serverComponentsExternalPackages: [
+      "resend",
+      "@react-email/components",
+      "@react-email/tailwind",
+    ],
     // typedRoutes: true,
   },
   async headers() {

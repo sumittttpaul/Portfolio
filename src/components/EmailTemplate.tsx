@@ -42,9 +42,9 @@ export default function EmailTemplate({
 }: DetailsType) {
   return (
     <Html>
-      <Head />
-      <Preview>Conformation Email</Preview>
       <Tailwind>
+        <Head />
+        <Preview>Conformation Email</Preview>
         <Body className="mx-auto my-auto max-w-[700px] bg-black p-5 text-center font-sans sm:rounded-3xl sm:border sm:border-solid sm:border-white/20 sm:p-10">
           <Section className="w-auto text-center">
             <Link href={WebsiteLink} className="px-2.5 no-underline">
@@ -63,12 +63,12 @@ export default function EmailTemplate({
             </Link>
           </Section>
           <Section className="text-center">
-            <Heading className="text-2xl font-bold leading-[0] sm:text-4xl">
+            <Heading className="text-2xl font-bold leading-[0] text-white sm:text-4xl">
               Thank You for Responding!
             </Heading>
           </Section>
           <Section className="mt-[1em] text-center sm:mt-0">
-            <Text className="text-sm xs:text-base sm:text-lg">
+            <Text className="text-sm text-white xs:text-base sm:text-lg">
               Sumeet will get back to you very soon.
             </Text>
           </Section>
@@ -144,7 +144,7 @@ export default function EmailTemplate({
             </Row>
           </Section>
           <Section className="text-center">
-            <Text className="mt-[5em] text-xs sm:text-sm">
+            <Text className="mt-[5em] text-xs text-white sm:text-sm">
               This email is an copy of your response.
             </Text>
           </Section>
@@ -156,7 +156,7 @@ export default function EmailTemplate({
 
 const LineBreak = () => {
   return (
-    <Hr className="mb-5 mt-2 border-[0.75px] border-solid border-white/20 sm:mt-5" />
+    <Hr className="mb-5 mt-2 border-[0.75px] border-solid border-white/50 sm:mt-5" />
   );
 };
 
