@@ -64,23 +64,23 @@ export default function ContactForm({ device }: DeviceType) {
     return name.length > 0 ? ChangeOpacity : InitialOpacity;
   };
 
-  const handleError = () => {
-    if (!validName) {
-      setDetailsError((prev) => {
-        return { ...prev, name: true };
-      });
-    }
-    if (!validEmail) {
-      setDetailsError((prev) => {
-        return { ...prev, email: true };
-      });
-    }
-    if (!validService) {
-      setDetailsError((prev) => {
-        return { ...prev, service: true };
-      });
-    }
-  };
+  // const handleError = () => {
+  //   if (!validName) {
+  //     setDetailsError((prev) => {
+  //       return { ...prev, name: true };
+  //     });
+  //   }
+  //   if (!validEmail) {
+  //     setDetailsError((prev) => {
+  //       return { ...prev, email: true };
+  //     });
+  //   }
+  //   if (!validService) {
+  //     setDetailsError((prev) => {
+  //       return { ...prev, service: true };
+  //     });
+  //   }
+  // };
 
   // const handleFocus = () => {
   //   if (isMobile) {

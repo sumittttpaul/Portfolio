@@ -18,7 +18,7 @@ export default function Contact({ searchParams }: SearchParamsType) {
           alt="dancing truck"
         />
       </div> */}
-      <Landing device={devices} />
+      {/* <Landing device={devices} /> */}
       <Footer device={devices} />
     </MainClient>
   );
