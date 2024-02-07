@@ -1,4 +1,3 @@
-import EmailTemplate from "components/EmailTemplate";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
@@ -24,13 +23,14 @@ export async function POST(_request: NextRequest, _response: NextResponse) {
       from: "Acme <onboarding@resend.dev>",
       to: ["delivered@resend.dev"],
       subject: "Hello world",
-      react: EmailTemplate({
-        name: name,
-        email: email,
-        company: company,
-        service: service,
-        description: description,
-      }),
+      // react: EmailTemplate({
+      //   name: name,
+      //   email: email,
+      //   company: company,
+      //   service: service,
+      //   description: description,
+      // }),
+      html: '',
     });
     return NextResponse.json(
       {
