@@ -15,7 +15,7 @@ export default function Landing({ device }: DeviceType) {
           <span>Let&apos;s start a</span>
           <span>project together</span>
         </h1>
-        <ContactForm device={device} />
+        {/* <ContactForm device={device} /> */}
       </div>
       {/* Right side */}
       <div className="order-1 flex h-full flex-col md:order-2 md:space-y-[6em] md:pl-[3vw]">
