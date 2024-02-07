@@ -1,10 +1,11 @@
 "use client";
 
 import RoundedMagneticButton from "./Magnetic/RoundedMagneticButton";
-import { FormEvent, useState } from "react";
+import { FormEvent, useCallback, useState } from "react";
 import TextField from "./TextField";
 import TextArea from "./TextArea";
 import { ToastHook } from "utils/Zustand";
+import SendEmail from "functions/SendEmail";
 
 type ChangeEventType =
   | React.ChangeEvent<HTMLInputElement>
@@ -14,7 +15,8 @@ const ChangeOpacity = 0.4;
 const InitialOpacity = 1;
 const InitialValue = "";
 
-const emailExpression = `/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/`;
+const emailExpression =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 function objectToFormData(obj: Object) {
   const formData = new FormData();
@@ -39,6 +41,8 @@ export default function ContactForm({ device }: DeviceType) {
     service: false,
   });
 
+  const [DisabledSubmit, setDisabledSubmit] = useState(false);
+
   const { setToastValue } = ToastHook();
 
   const { isMobile, isDesktop } = device;
@@ -46,9 +50,8 @@ export default function ContactForm({ device }: DeviceType) {
   const validName = Details.name.length > 2;
   const validService = Details.service.length > 2;
   const validEmail =
-    (Details.email.toLowerCase().match(emailExpression) &&
-      Details.email.length > 2) ||
-    false;
+    Details.email.length > 2 &&
+    Details.email.toLowerCase().match(emailExpression);
 
   const handleDetails = (e: ChangeEventType) => {
     const name = e.target.name;
@@ -99,6 +102,22 @@ export default function ContactForm({ device }: DeviceType) {
     }
   };
 
+  const handleEmail = useCallback(async (data: FormData) => {
+    const response = await SendEmail(data);
+    if (response) {
+      console.log(response);
+      const data = JSON.parse(response) as EmailResponseType;
+      setToastValue({
+        Show: true,
+        Title: data.name,
+        Description: data.message,
+        Type: data.type,
+      });
+      setDisabledSubmit(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { name, email, company, service, description } = Details;
@@ -113,6 +132,16 @@ export default function ContactForm({ device }: DeviceType) {
         });
       }
     } else if (validEmail && validEmail && validService) {
+      setDisabledSubmit(true);
+      handleEmail(
+        objectToFormData({
+          name: name,
+          email: email,
+          company: company,
+          service: service,
+          description: description,
+        }),
+      );
     }
   };
 
@@ -182,7 +211,10 @@ export default function ContactForm({ device }: DeviceType) {
         labelOpacity={handleLabelOpacity(Details.description)}
       />
       <span className="mt-[6.5em] flex h-px w-full bg-black/20" />
-      <div className="-mt-[calc(clamp(9em,12vw,11em)*0.5)] flex w-full justify-end pr-[clamp(2em,5vw,10em)]">
+      <div className="relative -mt-[calc(clamp(9em,12vw,11em)*0.5)] flex w-full justify-end pr-[clamp(2em,5vw,10em)]">
+        {DisabledSubmit && (
+          <div className="absolute z-[1] h-full w-full bg-white/20" />
+        )}
         <RoundedMagneticButton
           type="submit"
           device={device}

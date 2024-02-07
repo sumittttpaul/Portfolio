@@ -1,3 +1,5 @@
+import EmailTemplate from "components/EmailTemplate";
+
 export default function Test({ searchParams }: SearchParamsType) {
   // const headersList = headers();
   // const userAgent = headersList.get("user-agent") ?? "";
@@ -7,7 +9,7 @@ export default function Test({ searchParams }: SearchParamsType) {
   // const devices = { isMobile, isTablet, isDesktop };
 
   return (
-    <div className="flex h-auto w-screen flex-col bg-white">
+    <div className="flex h-auto w-screen flex-col bg-black">
       {/* Gradient Background */}
       {/* <div className="absolute left-32 top-[25%] block aspect-square h-[500px] min-h-[500px] w-[500px] min-w-[500px] bg-gradient-radial from-dark-pink-purple to-75%" /> */}
       {/* 3D Card */}
@@ -47,6 +49,13 @@ export default function Test({ searchParams }: SearchParamsType) {
       {/* <span className="grid h-full w-full place-content-center text-3xl text-black">
         {searchParams?.viewport}
       </span> */}
+      {/* <EmailTemplate
+        name="Sumeet Kumar Paul"
+        email="sumitpaul16102002@gmail.com"
+        company="Emotion Corporation"
+        service="Website Building"
+        description="Looking sexy buddy ..."
+      /> */}
     </div>
   );
 }

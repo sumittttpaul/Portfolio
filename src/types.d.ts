@@ -43,16 +43,17 @@ type SearchParamsType = {
   };
 };
 
-type APIPostMessage = {
+type EmailResponseType = {
   name: string;
   message: string;
+  type: "Error" | "Success" | "Info" | "Warning";
 };
 
 type ToastSettingType = {
   Show: boolean;
   Title: string;
   Description: string;
-  Type: "Error" | "Success" | "Info" | "Warning" | "" | "";
+  Type: "Error" | "Success" | "Info" | "Warning" | "";
 };
 
 interface ToastProps {
