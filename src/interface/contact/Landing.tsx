@@ -51,7 +51,7 @@ export default function Landing({ device }: DeviceType) {
             <div className="flex flex-col items-start justify-start space-y-0.5">
               <Magnetic device={device}>
                 <Link
-                  href="#"
+                  href="mailto:sumitpaul.work@gmail.com"
                   scroll={false}
                   className="text-underline-black cursor-pointer text-[14px] font-medium leading-[1.5] text-black xs:text-[clamp(16px,1.2vw,19px)]"
                 >
@@ -60,11 +60,11 @@ export default function Landing({ device }: DeviceType) {
               </Magnetic>
               <Magnetic device={device}>
                 <Link
-                  href="#"
+                  href="tel:+918794007993"
                   scroll={false}
                   className="text-underline-black cursor-pointer text-[14px] font-medium leading-[1.5] text-black xs:text-[clamp(16px,1.2vw,19px)]"
                 >
-                  +91 879 407 993
+                  +91 879 400 7993
                 </Link>
               </Magnetic>
             </div>
@@ -90,8 +90,8 @@ export default function Landing({ device }: DeviceType) {
               <div className="flex flex-col items-start justify-start space-y-0.5">
                 <Magnetic device={device}>
                   <Link
-                    href="#"
                     scroll={false}
+                    href="https://www.linkedin.com/in/sumitttpaul/"
                     className="text-underline-black cursor-pointer text-[clamp(16px,1.2vw,19px)] font-medium leading-[1.5] text-black"
                   >
                     Linkedin
@@ -99,8 +99,8 @@ export default function Landing({ device }: DeviceType) {
                 </Magnetic>
                 <Magnetic device={device}>
                   <Link
-                    href="#"
                     scroll={false}
+                    href="https://www.instagram.com/_sumitttpaul"
                     className="text-underline-black cursor-pointer text-[clamp(16px,1.2vw,19px)] font-medium leading-[1.5] text-black"
                   >
                     Instagram
@@ -108,8 +108,8 @@ export default function Landing({ device }: DeviceType) {
                 </Magnetic>
                 <Magnetic device={device}>
                   <Link
-                    href="#"
                     scroll={false}
+                    href="https://www.facebook.com/sumitttpaul"
                     className="text-underline-black cursor-pointer text-[clamp(16px,1.2vw,19px)] font-medium leading-[1.5] text-black"
                   >
                     Facebook
@@ -117,8 +117,8 @@ export default function Landing({ device }: DeviceType) {
                 </Magnetic>
                 <Magnetic device={device}>
                   <Link
-                    href="#"
                     scroll={false}
+                    href="https://twitter.com/sumitttkp16"
                     className="text-underline-black cursor-pointer text-[clamp(16px,1.2vw,19px)] font-medium leading-[1.5] text-black"
                   >
                     Twitter

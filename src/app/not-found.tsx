@@ -46,8 +46,8 @@ export default function NotFound({ searchParams }: SearchParamsType) {
           <div className="flex w-full justify-between sm:w-auto sm:justify-end sm:space-x-5">
             <Magnetic device={devices}>
               <Link
-                href="#"
                 scroll={false}
+                href="https://www.linkedin.com/in/sumitttpaul/"
                 className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
               >
                 Linkedin
@@ -55,8 +55,8 @@ export default function NotFound({ searchParams }: SearchParamsType) {
             </Magnetic>
             <Magnetic device={devices}>
               <Link
-                href="#"
                 scroll={false}
+                href="https://www.instagram.com/_sumitttpaul"
                 className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
               >
                 Instagram
@@ -64,8 +64,8 @@ export default function NotFound({ searchParams }: SearchParamsType) {
             </Magnetic>
             <Magnetic device={devices}>
               <Link
-                href="#"
                 scroll={false}
+                href="https://www.facebook.com/sumitttpaul"
                 className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
               >
                 Facebook
@@ -73,8 +73,8 @@ export default function NotFound({ searchParams }: SearchParamsType) {
             </Magnetic>
             <Magnetic device={devices}>
               <Link
-                href="#"
                 scroll={false}
+                href="https://twitter.com/sumitttkp16"
                 className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
               >
                 Twitter

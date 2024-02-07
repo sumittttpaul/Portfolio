@@ -130,28 +130,28 @@ export default function FooterMobile() {
           <div className="flex w-full justify-between sm:w-auto sm:justify-end sm:space-x-5">
             <Link
               scroll={false}
-              href="#"
+              href="https://www.linkedin.com/in/sumitttpaul/"
               className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Linkedin
             </Link>
             <Link
-              href="#"
               scroll={false}
+              href="https://www.instagram.com/_sumitttpaul"
               className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Instagram
             </Link>
             <Link
-              href="#"
               scroll={false}
+              href="https://www.facebook.com/sumitttpaul"
               className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Facebook
             </Link>
             <Link
-              href="#"
               scroll={false}
+              href="https://twitter.com/sumitttkp16"
               className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Twitter

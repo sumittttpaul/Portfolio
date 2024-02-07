@@ -85,9 +85,9 @@ export default function FooterDesktop({ device }: DeviceType) {
             className="absolute left-[calc(100%-300px)] top-[calc(100%-80px)] sm:left-[calc(100%-400px)] sm:top-[calc(100%-105px)]"
           >
             <RoundedMagneticLink
-              href="#"
+              href="/contact"
               device={device}
-              className="bg-button-blue absolute flex h-[10em] w-[10em] items-center justify-center text-white sm:h-[13em] sm:w-[13em]"
+              className="absolute flex h-[10em] w-[10em] items-center justify-center bg-button-blue text-white sm:h-[13em] sm:w-[13em]"
             >
               <span className="relative z-[1] m-0 text-sm font-light xs:text-base">
                 Get in touch
@@ -143,8 +143,8 @@ export default function FooterDesktop({ device }: DeviceType) {
           <div className="flex w-full justify-between sm:w-auto sm:justify-end sm:space-x-5">
             <Magnetic device={device}>
               <Link
-                href="#"
                 scroll={false}
+                href="https://www.linkedin.com/in/sumitttpaul/"
                 className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
               >
                 Linkedin
@@ -152,8 +152,8 @@ export default function FooterDesktop({ device }: DeviceType) {
             </Magnetic>
             <Magnetic device={device}>
               <Link
-                href="#"
                 scroll={false}
+                href="https://www.instagram.com/_sumitttpaul"
                 className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
               >
                 Instagram
@@ -161,8 +161,8 @@ export default function FooterDesktop({ device }: DeviceType) {
             </Magnetic>
             <Magnetic device={device}>
               <Link
-                href="#"
                 scroll={false}
+                href="https://www.facebook.com/sumitttpaul"
                 className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
               >
                 Facebook
@@ -170,8 +170,8 @@ export default function FooterDesktop({ device }: DeviceType) {
             </Magnetic>
             <Magnetic device={device}>
               <Link
-                href="#"
                 scroll={false}
+                href="https://twitter.com/sumitttkp16"
                 className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
               >
                 Twitter

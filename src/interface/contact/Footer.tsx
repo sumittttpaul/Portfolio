@@ -29,8 +29,8 @@ export default function Footer({ device }: DeviceType) {
         <div className="flex w-full justify-between sm:w-auto sm:justify-end sm:space-x-5">
           <Magnetic device={device}>
             <Link
-              href="#"
               scroll={false}
+              href="https://www.linkedin.com/in/sumitttpaul/"
               className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
             >
               Linkedin
@@ -38,8 +38,8 @@ export default function Footer({ device }: DeviceType) {
           </Magnetic>
           <Magnetic device={device}>
             <Link
-              href="#"
               scroll={false}
+              href="https://www.instagram.com/_sumitttpaul"
               className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
             >
               Instagram
@@ -47,8 +47,8 @@ export default function Footer({ device }: DeviceType) {
           </Magnetic>
           <Magnetic device={device}>
             <Link
-              href="#"
               scroll={false}
+              href="https://www.facebook.com/sumitttpaul"
               className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
             >
               Facebook
@@ -56,8 +56,8 @@ export default function Footer({ device }: DeviceType) {
           </Magnetic>
           <Magnetic device={device}>
             <Link
-              href="#"
               scroll={false}
+              href="https://twitter.com/sumitttkp16"
               className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
             >
               Twitter
