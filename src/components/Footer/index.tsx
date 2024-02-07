@@ -2,14 +2,15 @@
 
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useModalState } from "utils/Zustand";
+import { ToastHook, useModalState } from "utils/Zustand";
 import { useEffect, useState } from "react";
 import FooterDesktop from "./FooterDesktop";
 import FooterBefore from "./FooterBefore";
 import FooterMobile from "./FooterMobile";
 import dynamic from "next/dynamic";
 
-const PhotoModal = dynamic(() => import("../Photo/Modal"));
+const Toast = dynamic(() => import("components/Toast"));
+const PhotoModal = dynamic(() => import("components/Photo/Modal"));
 
 export default function Footer() {
   const [device, setDevice] = useState<{
@@ -17,6 +18,7 @@ export default function Footer() {
     isDesktop?: boolean;
   }>({ isMobile: undefined, isDesktop: undefined });
   const { isMobile, isDesktop } = device;
+  const { ToastValue, setToastValue } = ToastHook();
   const modalState = useModalState();
   const pathname = usePathname();
 
@@ -41,6 +43,23 @@ export default function Footer() {
         {isMobile && valuePath(pathname) && <FooterMobile />}
         {isDesktop && valuePath(pathname) && <FooterDesktop device={device} />}
       </footer>
+      <Toast
+        Toast={{
+          Open: ToastValue.Show,
+          onClose: (value) =>
+            setToastValue({
+              ...ToastValue,
+              Show: value,
+            }),
+          MessageTitle: ToastValue.Title,
+          MessageDescription: ToastValue.Description,
+          Type: ToastValue.Type,
+        }}
+        SlideDirection="down"
+        Vertical="top"
+        Horizontal="center"
+        HideDuration={6}
+      />
       <AnimatePresence>
         {modalState.PhotoShow && <PhotoModal />}
       </AnimatePresence>

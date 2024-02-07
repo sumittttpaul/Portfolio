@@ -42,3 +42,29 @@ type SearchParamsType = {
     viewport?: string;
   };
 };
+
+type APIPostMessage = {
+  name: string;
+  message: string;
+};
+
+type ToastSettingType = {
+  Show: boolean;
+  Title: string;
+  Description: string;
+  Type: "Error" | "Success" | "Info" | "Warning" | "" | "";
+};
+
+interface ToastProps {
+  SlideDirection: "left" | "right" | "up" | "down";
+  Vertical: "top" | "bottom";
+  Horizontal: "left" | "center" | "right";
+  HideDuration: number;
+  Toast: {
+    Open: boolean;
+    onClose: (value: boolean) => void;
+    MessageTitle: string;
+    MessageDescription: string;
+    Type: "Error" | "Success" | "Info" | "Warning" | "";
+  };
+}

@@ -1,9 +1,12 @@
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import RouteTransitionWrapper from "utils/RouteTransitionWrapper";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { MotionOptimize } from "utils/FramerMotion";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter, Pacifico } from "next/font/google";
 import type { Metadata, Viewport } from "next";
+import { MuiTheme } from "theme/MaterialUI";
 import localFont from "next/font/local";
 import Header from "components/Header";
 import Footer from "components/Footer";
@@ -214,13 +217,18 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
       <body className={BodyClass}>
-        <MotionOptimize>
-          <Header />
-          {/* <RouteTransitionWrapper> */}
-            {children}
-          {/* </RouteTransitionWrapper> */}
-          <Footer />
-        </MotionOptimize>
+        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+          <ThemeProvider theme={MuiTheme}>
+            <MotionOptimize>
+              <CssBaseline />
+              <Header />
+              {/* <RouteTransitionWrapper> */}
+              {children}
+              {/* </RouteTransitionWrapper> */}
+              <Footer />
+            </MotionOptimize>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
         <Analytics />
         <SpeedInsights />
       </body>
