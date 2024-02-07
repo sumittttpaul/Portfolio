@@ -1,6 +1,7 @@
 import MainClient from "components/Clients/MainClient";
 import Landing from "interface/contact/Landing";
 import Footer from "interface/contact/Footer";
+import ContactToast from "interface/contact/Toast";
 
 export default function Contact({ searchParams }: SearchParamsType) {
   const isMobile = searchParams?.viewport === "mobile" ? true : false;
@@ -20,6 +21,7 @@ export default function Contact({ searchParams }: SearchParamsType) {
       </div> */}
       <Landing device={devices} />
       <Footer device={devices} />
+      <ContactToast />
     </MainClient>
   );
 }

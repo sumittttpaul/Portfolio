@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { Slide, SlideProps } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";

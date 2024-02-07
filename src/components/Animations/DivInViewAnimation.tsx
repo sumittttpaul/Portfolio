@@ -59,7 +59,7 @@ export default function DivInViewAnimation({
   useEffect(() => {
     return scrollY.on("change", (latest) => {
       const container = ContainerRef.current;
-      const previous = scrollY.getPrevious();
+      const previous = scrollY.getPrevious() ?? 0;
       if (container) {
         if (latest < 0) return;
         if (previous - latest < 0 && ContainerView) setIsInView(true);

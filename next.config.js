@@ -7,7 +7,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = {
   // output: "standalone",
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true,
     webVitalsAttribution: ["CLS", "LCP"],
     // typedRoutes: true,
   },
@@ -31,9 +31,6 @@ const nextConfig = {
         ],
       },
     ];
-  },
-  compiler: {
-    styledComponents: true,
   },
   // async redirects() {
   //   return [

@@ -1,3 +1,5 @@
+"use client";
+
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Snackbar } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
