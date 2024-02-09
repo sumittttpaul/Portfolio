@@ -113,6 +113,13 @@ export default function ContactForm({ device }: DeviceType) {
         Description: data.message,
         Type: data.type,
       });
+      setDetails({
+        name: InitialValue,
+        email: InitialValue,
+        company: InitialValue,
+        service: InitialValue,
+        description: InitialValue,
+      });
       setDisabledSubmit(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

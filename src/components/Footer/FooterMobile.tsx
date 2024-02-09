@@ -72,7 +72,7 @@ export default function FooterMobile() {
           {/* Get in touch */}
           <div className="absolute left-[calc(100%-200px)] top-[calc(100%-80px)] sm:left-[calc(100%-400px)] sm:top-[calc(100%-105px)]">
             <Link
-              href="#"
+              href="/contact"
               scroll={false}
               className="rounded-button flex h-[10em] w-[10em] cursor-pointer items-center justify-center rounded-full bg-button-blue text-white outline-none sm:h-[13em] sm:w-[13em]"
             >

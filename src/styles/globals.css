@@ -47,23 +47,13 @@ img::selection {
   -webkit-user-drag: none;
 }
 
-input::-ms-reveal,
-input::-ms-clear {
-  display: none;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-text-fill-color: #000000 !important;
-  -webkit-box-shadow: 0 0 0 50px white inset;
-  background: #ffffff;
-  box-shadow: none;
-  text-shadow: none;
-  transition-delay: 99999s;
-  animation-fill-mode: both;
-  animation-name: onAutoFillStart !important;
+  color: black !important;
+  -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
 
 ::-webkit-scrollbar {

@@ -1,15 +1,13 @@
-import EmailTemplate from "components/EmailTemplate";
+import TextInViewAnimation from "components/Animations/TextInViewAnimation";
+import SocialHandles from "interface/contact/SocialHandles";
 
 export default function Test({ searchParams }: SearchParamsType) {
-  // const headersList = headers();
-  // const userAgent = headersList.get("user-agent") ?? "";
-  // const isMobile = parse(userAgent).isMobile;
-  // const isDesktop = parse(userAgent).isDesktop;
-  // const isTablet = parse(userAgent).isTablet;
-  // const devices = { isMobile, isTablet, isDesktop };
+  const isMobile = searchParams?.viewport === "mobile" ? true : false;
+  const isDesktop = searchParams?.viewport === "desktop" ? true : false;
+  const devices = { isMobile, isDesktop };
 
   return (
-    <div className="flex h-auto w-screen flex-col bg-black">
+    <div className="flex h-screen w-screen flex-col bg-almost-black">
       {/* Gradient Background */}
       {/* <div className="absolute left-32 top-[25%] block aspect-square h-[500px] min-h-[500px] w-[500px] min-w-[500px] bg-gradient-radial from-dark-pink-purple to-75%" /> */}
       {/* 3D Card */}

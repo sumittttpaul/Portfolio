@@ -91,7 +91,7 @@ export default function Projects({ device }: DeviceType) {
       {isDesktop && <ProjectLink projects={projects} />}
       <div className="flex w-full items-center justify-center px-5">
         <RoundedMagneticLink
-          href="#"
+          href="/work"
           device={device}
           className="sm:group relative flex w-full items-center justify-center bg-almost-black py-[12px] sm:w-auto sm:border sm:border-solid sm:border-light-gray sm:bg-transparent sm:px-[60px] sm:py-[30px]"
         >

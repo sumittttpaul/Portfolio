@@ -68,7 +68,7 @@ export default function TextInViewAnimation({
             .map((word, index) => {
               return (
                 <span
-                  key={`TextInView_Letters_${index}`}
+                  key={`TextInView_Letters_${children}_${index}`}
                   className="relative inline-flex overflow-hidden"
                 >
                   <MotionSpan

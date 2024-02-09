@@ -6,13 +6,15 @@ import { MotionMain } from "utils/FramerMotion";
 export default function MainClient({
   children,
   className,
+  device,
 }: {
   children?: React.ReactNode;
   className?: string;
-}) {
+} & DeviceType) {
+  const { isMobile } = device;
   const slideUp = {
     initial: {
-      y: 300,
+      y: isMobile ? 100 : 300,
     },
     enter: {
       y: 0,

@@ -70,7 +70,7 @@ export default function ToolBox({ device }: DeviceType) {
   const { isMobile, isDesktop } = device;
   return (
     <section className="relative flex h-full w-full flex-col bg-white">
-      <div className="mx-auto w-full max-w-screen-screen-1000 overflow-hidden">
+      <div className="mx-auto flex w-full max-w-screen-screen-1000 flex-col overflow-hidden">
         <h1 className="flex w-full flex-col px-5 text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:text-[46px] sm:leading-[1.2] screen-1000:px-0 lg:px-0 lg:text-[56px] xl:text-[64px]">
           <TextInViewAnimation Animation="Word">
             Designing&nbsp;Impact,

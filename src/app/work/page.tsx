@@ -7,9 +7,15 @@ import MainClient from "components/Clients/MainClient";
 // import Image from "next/image";
 // import PhotoModal from "components/Photo/Modal";
 
-export default function Work() {
+export default function Work({ searchParams }: SearchParamsType) {
+  const isMobile = searchParams?.viewport === "mobile" ? true : false;
+  const isDesktop = searchParams?.viewport === "desktop" ? true : false;
+  const devices = { isMobile, isDesktop };
   return (
-    <MainClient className="flex h-screen w-full flex-col items-center justify-center bg-white text-5xl text-black">
+    <MainClient
+      device={devices}
+      className="flex h-screen w-full flex-col items-center justify-center bg-white text-5xl text-black"
+    >
       {/* Desktop version */}
       {/* <div
         // data-scroll

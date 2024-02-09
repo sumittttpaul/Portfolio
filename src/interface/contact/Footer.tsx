@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Footer({ device }: DeviceType) {
   return (
-    <div className="relative mt-20 flex w-full flex-col justify-between px-5 pb-5 sm:flex-row sm:px-10 sm:pb-10">
+    <footer className="relative mt-20 flex w-full flex-col justify-between px-5 pb-5 sm:flex-row sm:px-10 sm:pb-10">
       <div className="order-3 flex items-center justify-between space-x-10 sm:order-1 sm:justify-start">
         <div className="flex flex-col space-y-3">
           <h3 className="text-[10px] font-black uppercase tracking-wide text-black/50 xs:text-xs">
@@ -30,7 +30,7 @@ export default function Footer({ device }: DeviceType) {
           <Magnetic device={device}>
             <Link
               scroll={false}
-              href="https://www.linkedin.com/in/sumitttpaul/"
+              href="https://www.linkedin.com/in/sumitttpaul"
               className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
             >
               Linkedin
@@ -65,6 +65,6 @@ export default function Footer({ device }: DeviceType) {
           </Magnetic>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
