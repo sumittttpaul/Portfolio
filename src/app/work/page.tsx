@@ -1,87 +1,163 @@
-// import DivInViewAnimation from "components/Animations/DivInViewAnimation";
-// import TypographyAnimation from "components/Animations/TypographyAnimation";
-// import DancingTruck from "../../../public/images/dancing_truck.gif";
 import MainClient from "components/Clients/MainClient";
-// import LabelTag from "components/LabelTag";
-// import PhotoButton from "components/Photo/Button";
-// import Image from "next/image";
-// import PhotoModal from "components/Photo/Modal";
+import LetsConnect from "interface/work/LetsConnect";
+import Projects from "interface/work/Projects";
+import Landing from "interface/work/Landing";
+// Over all projects
+import WorkImage01 from "../../../public/images/work/01.png";
+import WorkImage02 from "../../../public/images/work/02.png";
+import WorkImage03 from "../../../public/images/work/03.png";
+import WorkImage04 from "../../../public/images/work/04.png";
+import WorkImage05 from "../../../public/images/work/05.png";
+import WorkImage06 from "../../../public/images/work/06.png";
+import WorkImage07 from "../../../public/images/work/07.png";
+import WorkImage08 from "../../../public/images/work/08.png";
+// Authentication
+import AuthenticationImage01 from "../../../public/images/work/authentication/01.png";
+import AuthenticationImage02 from "../../../public/images/work/authentication/02.png";
+import AuthenticationImage03 from "../../../public/images/work/authentication/03.png";
+import AuthenticationImage04 from "../../../public/images/work/authentication/04.png";
+import AuthenticationImage05 from "../../../public/images/work/authentication/05.png";
+import AuthenticationImage06 from "../../../public/images/work/authentication/06.png";
+import AuthenticationImage07 from "../../../public/images/work/authentication/07.png";
+import AuthenticationImage08 from "../../../public/images/work/authentication/08.png";
+import AuthenticationImage09 from "../../../public/images/work/authentication/09.png";
+import AuthenticationImage10 from "../../../public/images/work/authentication/10.png";
+import AuthenticationImage11 from "../../../public/images/work/authentication/11.png";
+import AuthenticationImage12 from "../../../public/images/work/authentication/12.png";
+import AuthenticationImage13 from "../../../public/images/work/authentication/13.png";
+import AuthenticationImage14 from "../../../public/images/work/authentication/14.png";
+import AuthenticationImage15 from "../../../public/images/work/authentication/15.png";
+import AuthenticationImage16 from "../../../public/images/work/authentication/16.png";
+import AuthenticationImage17 from "../../../public/images/work/authentication/17.png";
+import AuthenticationImage18 from "../../../public/images/work/authentication/18.png";
+import AuthenticationImage19 from "../../../public/images/work/authentication/19.png";
+import AuthenticationImage20 from "../../../public/images/work/authentication/20.png";
+import AuthenticationImage21 from "../../../public/images/work/authentication/21.png";
+import AuthenticationImage22 from "../../../public/images/work/authentication/22.png";
+import AuthenticationImage23 from "../../../public/images/work/authentication/23.png";
+import AuthenticationImage24 from "../../../public/images/work/authentication/24.png";
+import AuthenticationImage25 from "../../../public/images/work/authentication/25.png";
+// Clothing
+import ClothingImage01 from "../../../public/images/work/clothing/01.png";
+// Emotion
+import EmotionImage01 from "../../../public/images/work/emotion/01.png";
+import EmotionImage02 from "../../../public/images/work/emotion/02.png";
+import EmotionImage03 from "../../../public/images/work/emotion/03.png";
+import EmotionImage04 from "../../../public/images/work/emotion/04.png";
+import EmotionImage05 from "../../../public/images/work/emotion/05.png";
+// Portfolio
+import PortfolioImage01 from "../../../public/images/work/portfolio/01.png";
+
+const ClothingImages = [ClothingImage01];
+const PortfolioImages = [PortfolioImage01];
+const EmotionImages = [
+  EmotionImage01,
+  EmotionImage02,
+  EmotionImage03,
+  EmotionImage04,
+  EmotionImage05,
+];
+const AuthenticationImages = [
+  AuthenticationImage01,
+  AuthenticationImage02,
+  AuthenticationImage03,
+  AuthenticationImage04,
+  AuthenticationImage05,
+  AuthenticationImage06,
+  AuthenticationImage07,
+  AuthenticationImage08,
+  AuthenticationImage09,
+  AuthenticationImage10,
+  AuthenticationImage11,
+  AuthenticationImage12,
+  AuthenticationImage13,
+  AuthenticationImage14,
+  AuthenticationImage15,
+  AuthenticationImage16,
+  AuthenticationImage17,
+  AuthenticationImage18,
+  AuthenticationImage19,
+  AuthenticationImage20,
+  AuthenticationImage21,
+  AuthenticationImage22,
+  AuthenticationImage23,
+  AuthenticationImage24,
+  AuthenticationImage25,
+];
+const images = {
+  clothing: ClothingImages,
+  portfolio: PortfolioImages,
+  emotion: EmotionImages,
+  authentication: AuthenticationImages,
+};
+const projects = [
+  {
+    image: WorkImage01,
+    title: "Sumeet Kumar Paul",
+    description: "Portfolio",
+    color: "#373737",
+    date: "2024",
+  },
+  {
+    image: WorkImage02,
+    title: "Emotion",
+    description: "E-commerce Store",
+    color: "#344148",
+    date: "2023",
+  },
+  {
+    image: WorkImage03,
+    title: "Agewear Lifestyle",
+    description: "Clothing Brand",
+    color: "#483C32",
+    date: "2022",
+  },
+  {
+    image: WorkImage04,
+    title: "Agewear Lifestyle",
+    description: "Clothing Brand",
+    color: "#483C32",
+    date: "2022",
+  },
+  {
+    image: WorkImage05,
+    title: "Authentication",
+    description: "Brand Project",
+    color: "#0F0F0F",
+    date: "2021",
+  },
+  {
+    image: WorkImage06,
+    title: "Agewear Lifestyle",
+    description: "Clothing Brand",
+    color: "#483C32",
+    date: "2022",
+  },
+  {
+    image: WorkImage07,
+    title: "Agewear Lifestyle",
+    description: "Clothing Brand",
+    color: "#483C32",
+    date: "2022",
+  },
+  {
+    image: WorkImage08,
+    title: "Agewear Lifestyle",
+    description: "Clothing Brand",
+    color: "#474747",
+    date: "2022",
+  },
+];
 
 export default function Work({ searchParams }: SearchParamsType) {
   const isMobile = searchParams?.viewport === "mobile" ? true : false;
   const isDesktop = searchParams?.viewport === "desktop" ? true : false;
   const devices = { isMobile, isDesktop };
   return (
-    <MainClient
-      device={devices}
-      className="flex h-screen w-full flex-col items-center justify-center bg-white text-5xl text-black"
-    >
-      {/* Desktop version */}
-      {/* <div
-        // data-scroll
-        // data-scroll-speed={0.3}
-        // data-scroll-position="top"
-        className="mx-auto h-full w-full max-w-screen-max-size px-5 py-[150px] flex"
-      >
-        <div className="relative grid h-[750px] w-full place-content-start rounded-[40px] bg-black p-5 sm:h-[500px] sm:place-content-center sm:p-10 screen-1000:h-[800px]">
-          <DivInViewAnimation
-            Animation="Slide"
-            className="box-border flex flex-col sm:relative sm:h-[288px] sm:w-[545px] sm:flex-row screen-1000:h-[501px] screen-1000:w-[950px] screen-1180:h-[570px] screen-1180:w-[1080px]"
-          >
-            <PhotoButton className="mb-2 h-[80px] w-[80px] min-w-[80px] rounded-full rounded-bl-[0px] xs:mb-2.5 xs:h-[110px] xs:w-[110px] sm:h-[90px] sm:w-[90px] sm:min-w-[90px] sm:rounded-bl-full sm:rounded-br-[0px] screen-1000:h-[150px] screen-1000:w-[150px] screen-1180:h-[175px] screen-1180:w-[175px]" sizes="(min-width: 1180px) 175px, (min-width: 1000px) 150px,(min-width: 640px) 90px, 110px" />
-            <div className="-mt-1 flex flex-col sm:ml-5 sm:mt-0 screen-1000:ml-8">
-              <div className="flex w-full flex-col sm:flex-row sm:space-x-4 screen-1000:space-x-5 screen-1180:space-x-6">
-                <TypographyAnimation label="ideas" />
-                <TypographyAnimation label="connect" />
-              </div>
-              <div className="flex w-full flex-col">
-                <TypographyAnimation label="through" />
-                <div className="-mt-1 flex w-full flex-col -space-y-2 sm:-space-y-3 screen-1000:mt-3 screen-1000:space-y-4 screen-1180:mt-5 screen-1180:space-y-6">
-                  <LabelTag name="strategy" ContainerClassName="ml-[6em]" />
-                  <LabelTag name="design" ContainerClassName="ml-[8em]" />
-                  <LabelTag name="creativity" ContainerClassName="ml-[10em]" />
-                </div>
-              </div>
-            </div>
-            <div className="absolute bottom-0 left-0 flex w-full justify-center sm:-left-5 sm:top-24 sm:w-auto screen-1000:top-40 screen-1180:top-44">
-              <div className="relative mb-5 h-[229px] w-[350px] sm:mb-0 sm:h-[190px] sm:w-[290px] screen-1000:h-[333px] screen-1000:w-[508px] screen-1180:h-[398px] screen-1180:w-[608px]">
-                <Image
-                  fill
-                  sizes="(min-width: 1180px) 608px,(min-width: 1000px) 333px,(min-width: 640px) 290px,"
-                  src={DancingTruck}
-                  alt="dancing truck"
-                />
-              </div>
-            </div>
-          </DivInViewAnimation>
-        </div>
-      </div> */}
-      {/* Mobile version */}
-      {/* <div className="flex flex-col">
-        <div className="flex w-full flex-col">
-          <TypographyAnimation label="ideas" />
-          <TypographyAnimation label="connect" />
-        </div>
-        <div className="flex w-full flex-col">
-          <TypographyAnimation label="through" />
-          <div className="-mt-2 flex w-full flex-col -space-y-5 xs:-mt-1 xs:-space-y-2">
-            <LabelTag
-              name="strategy"
-              ContainerClassName="-ml-[5em] xs:-ml-[4em]"
-            />
-            <LabelTag
-              name="design"
-              ContainerClassName="-ml-[1.4em] xs:-ml-[0.5em]"
-            />
-            <LabelTag
-              name="creativity"
-              ContainerClassName="ml-[2em] xs:ml-[3em]"
-            />
-          </div>
-        </div>
-      </div> */}
-      {/* <PhotoModal /> */}
-      Work
+    <MainClient device={devices}>
+      <Landing device={devices} projects={projects} />
+      <Projects images={images} device={devices} projects={projects} />
+      <LetsConnect device={devices} />
     </MainClient>
   );
 }

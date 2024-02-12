@@ -16,7 +16,7 @@ export default function HomeLandingClient({
   const preloader = usePreloaderState();
   const slideUp = {
     initial: {
-      y: isMobile ? 100 : 300,
+      y: isMobile ? 125 : 300,
     },
     enter: {
       y: 0,

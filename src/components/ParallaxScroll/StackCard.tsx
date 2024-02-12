@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { MotionDiv } from "utils/FramerMotion";
 
-export default function ParallaxScrollCard({
+export default function ParallaxScrollStackCard({
   images,
 }: {
   images: StaticImageData[];
@@ -85,12 +85,11 @@ const Column = ({
             <Image
               fill
               src={src}
+              draggable={false}
               alt="tool image"
               placeholder="blur"
-              style={{
-                objectFit: "cover",
-                objectPosition: "top",
-              }}
+              blurDataURL={src.blurDataURL}
+              className="object-cover object-top"
               sizes="(min-width: 1920px) 432px, (min-width: 1500px) 338px, (min-width: 640px) 225px, (min-width: 401px) 194px, 188px"
             />
           </div>

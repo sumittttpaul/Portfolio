@@ -85,7 +85,7 @@ const companies_3 = [
 
 export default function LogoSlidingAnimation() {
   return (
-    <div className="my-14 flex w-full flex-col space-y-5 sm:space-y-14">
+    <div className="mb-14 mt-2 flex w-full flex-col space-y-5 sm:space-y-14">
       <LogoSliding companies={companies_1} animation={1} />
       <LogoSliding companies={companies_3} animation={2} />
       <LogoSliding companies={companies_2} animation={3} />
@@ -153,6 +153,7 @@ const Logos = ({ src, label }: { label: string; src: StaticImageData }) => {
         height={33}
         width={33}
         src={src}
+        draggable={false}
         alt="company logo"
         className="block aspect-square min-h-[33x] min-w-[33px] object-contain"
       />

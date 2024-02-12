@@ -14,7 +14,7 @@ export default function MainClient({
   const { isMobile } = device;
   const slideUp = {
     initial: {
-      y: isMobile ? 100 : 300,
+      y: isMobile ? 125 : 300,
     },
     enter: {
       y: 0,

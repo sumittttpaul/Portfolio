@@ -11,24 +11,28 @@ export default function RotateAnimation() {
       <Image
         loading="eager"
         src={RotateIcon1}
+        draggable={false}
         alt="first rotate icon"
         className={`${styles.firstRotateIcon} ${styles.rotateIconAnimation} z-[4]`}
       />
       <Image
         loading="eager"
         src={RotateIcon2}
+        draggable={false}
         alt="second rotate icon"
         className={`${styles.secondRotateIcon} ${styles.rotateIconAnimation} z-[3]`}
       />
       <Image
         loading="eager"
         src={RotateIcon3}
+        draggable={false}
         alt="third rotate icon"
         className={`${styles.thirdRotateIcon} ${styles.rotateIconAnimation} z-[2]`}
       />
       <Image
         loading="eager"
         src={RotateIcon4}
+        draggable={false}
         alt="forth rotate icon"
         className={`${styles.forthRotateIcon} ${styles.rotateIconAnimation} z-[1]`}
       />

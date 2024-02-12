@@ -85,9 +85,10 @@ export default function ThreeDCard({
               height={Size.Height - 16}
               src={ImageSrc}
               alt="work experience"
-              layout="responsive"
-              style={{ objectFit: "cover", objectPosition: "center" }}
               placeholder="blur"
+              className="object-cover object-center"
+              draggable={false}
+              blurDataURL={ImageSrc.blurDataURL}
             />
           </div>
         </div>

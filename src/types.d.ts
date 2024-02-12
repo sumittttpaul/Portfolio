@@ -69,3 +69,5 @@ interface ToastProps {
     Type: "Error" | "Success" | "Info" | "Warning" | "";
   };
 }
+
+type WorkImagesType = "clothing" | "portfolio" | "emotion" | "authentication";

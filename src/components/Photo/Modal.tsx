@@ -39,9 +39,10 @@ export default function PhotoModal() {
             <div className="relative h-[250px] w-[250px] xs:h-[300px] xs:w-[300px] sm:h-[380px] sm:w-[380px] lg:h-[477px] lg:w-[477px]">
               <Image
                 fill
-                priority
+                draggable={false}
                 src={Sumit_Photo}
                 placeholder="blur"
+                blurDataURL={Sumit_Photo.blurDataURL}
                 alt="Sumeet Kumar Paul"
                 className="rounded-full"
                 sizes="(min-width: 1024px) 477px,(min-width: 640px) 382px,(min-width: 401px) 300px, 250px"

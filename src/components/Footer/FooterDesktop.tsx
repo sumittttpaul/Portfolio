@@ -65,6 +65,7 @@ export default function FooterDesktop({ device }: DeviceType) {
               >
                 <Image
                   fill
+                  draggable={false}
                   alt="profile photo"
                   sizes="(min-width: 640px) 100px, 50px"
                   className="rounded-full object-cover"

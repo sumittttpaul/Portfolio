@@ -12,5 +12,9 @@ export const MotionButton = m.button;
 export const MotionSpan = m.span;
 
 export function MotionOptimize({ children }: React.PropsWithChildren) {
-  return <LazyMotion features={domAnimation}>{children}</LazyMotion>;
+  return (
+    <LazyMotion strict features={domAnimation}>
+      {children}
+    </LazyMotion>
+  );
 }

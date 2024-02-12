@@ -21,7 +21,7 @@ import ToolImage16 from "../../../public/images/tools/swiperjs.png";
 import ToolImage17 from "../../../public/images/tools/material.png";
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
 import DivInViewAnimation from "components/Animations/DivInViewAnimation";
-import ParallaxScrollCard from "components/ParallaxScrollCard";
+import ParallaxScrollStackCard from "components/ParallaxScroll/StackCard";
 import MaterialCarousel from "components/MaterialCarousel";
 import Image from "next/image";
 
@@ -45,7 +45,7 @@ const MaterialCarouselImages = [
   ToolImage7,
 ];
 
-const ParallaxScrollCardImages = [
+const ParallaxScrollStackCardImages = [
   ToolImage0,
   ToolImage1,
   ToolImage2,
@@ -115,7 +115,7 @@ export default function ToolBox({ device }: DeviceType) {
             alt="points background"
           />
         </div>
-        <div className="relative mx-auto mb-10 w-full max-w-screen-sm space-y-5 px-5 sm:mb-[100px]">
+        <div className="relative mx-auto mb-10 w-full max-w-screen-sm space-y-5 px-5 sm:mb-[150px] sm:space-y-10">
           <DivInViewAnimation
             Animation="Slide"
             animationConfig={{ start: "50px", end: "0px" }}
@@ -157,7 +157,9 @@ export default function ToolBox({ device }: DeviceType) {
         </div>
       </div>
       {isMobile && <MaterialCarousel images={MaterialCarouselImages} />}
-      {isDesktop && <ParallaxScrollCard images={ParallaxScrollCardImages} />}
+      {isDesktop && (
+        <ParallaxScrollStackCard images={ParallaxScrollStackCardImages} />
+      )}
     </section>
   );
 }

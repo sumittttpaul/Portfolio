@@ -20,23 +20,21 @@ export default function MaterialCarousel({
         <div className="demo-slider">
           <div className="swiper">
             <div className="swiper-wrapper">
-              {images.map((src, index) => {
+              {images.map((image, index) => {
                 return (
                   <div key={`swiper_slide_${index}`} className="swiper-slide">
                     <div className="swiper-material-wrapper">
                       <div className="swiper-material-content">
                         <Image
-                          src={src}
+                          src={image}
                           width={154}
                           height={250}
                           placeholder="blur"
+                          draggable={false}
                           alt="material carousel slide"
-                          className="demo-material-image"
                           data-swiper-material-scale="1.25"
-                          style={{
-                            objectFit: "cover",
-                            objectPosition: "top",
-                          }}
+                          blurDataURL={image.blurDataURL}
+                          className="demo-material-image object-cover object-top"
                         />
                         {/* <span className="demo-material-label swiper-material-animate-opacity">
                           Slide

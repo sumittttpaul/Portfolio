@@ -51,6 +51,9 @@ export default function SocialCards({
               <Image
                 fill
                 src={src}
+                draggable={false}
+                placeholder="blur"
+                blurDataURL={src.blurDataURL}
                 className="object-cover object-left-top"
                 sizes="(min-width: 1024px) 1000px, 600px"
                 alt="image"

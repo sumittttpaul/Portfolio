@@ -141,7 +141,15 @@ export default function ProjectLink({
                 style={{ backgroundColor: color }}
                 key={`Project_Modal_${index}`}
               >
-                <Image src={image} width={400} height={267} alt="projects" />
+                <Image
+                  src={image}
+                  placeholder="blur"
+                  blurDataURL={image.blurDataURL}
+                  draggable={false}
+                  width={400}
+                  height={267}
+                  alt="projects"
+                />
               </div>
             );
           })}

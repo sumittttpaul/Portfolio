@@ -30,11 +30,11 @@ export default function index({ device }: DeviceType) {
               className="relative -ml-[200px] h-[1000px] min-h-[1000px] w-[664px] min-w-[664px] md:h-[1100px] md:min-h-[1100px] md:w-[730px] md:min-w-[730px]"
             >
               <Image
-                style={{ objectFit: "cover" }}
                 sizes="(min-width: 768px) 730px, 664px"
-                src={BGImage}
                 alt="background image"
-                draggable="false"
+                className="object-cover"
+                src={BGImage}
+                draggable={false}
                 priority
                 fill
               />
@@ -49,10 +49,9 @@ export default function index({ device }: DeviceType) {
                 src={QuotationMaker}
                 width={20}
                 height={15}
+                draggable={false}
                 alt="quotation mark icon"
-                style={{
-                  display: "block",
-                }}
+                className="block"
               />
             </div>
             <div className="flex h-[125px] w-full items-center justify-center px-5 xs:h-[160px]">
@@ -63,11 +62,9 @@ export default function index({ device }: DeviceType) {
                 src={QuotationMaker}
                 width={20}
                 height={15}
+                draggable={false}
                 alt="quotation mark icon"
-                style={{
-                  display: "block",
-                  rotate: "180deg",
-                }}
+                className="block rotate-180"
               />
             </div>
           </div>
@@ -93,6 +90,7 @@ export default function index({ device }: DeviceType) {
                 src={LocationContainer}
                 height={114}
                 width={283}
+                draggable={false}
                 alt="location container"
               />
               <div className="absolute left-0 top-[50%] flex w-full -translate-y-[50%] items-center justify-start pl-14">

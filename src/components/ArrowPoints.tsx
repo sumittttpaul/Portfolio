@@ -14,8 +14,9 @@ export default function ArrowPoints({
         <Image
           fill
           src={CheckIcon}
-          sizes="(min-width: 0px) 25px"
+          draggable={false}
           alt="check icon"
+          sizes="(min-width: 0px) 25px"
         />
       </span>
       <h4 className="text-pretty indent-7 text-[1em] sm:indent-8 md:text-[1.3em]">

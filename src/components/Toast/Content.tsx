@@ -95,7 +95,13 @@ export default function ToastContent(props: ToastContentProps) {
       >
         <div className="flex h-full w-full space-x-3 px-1 pt-1">
           <div className="flex h-full items-start py-3 pl-2">
-            <Image height={40} width={40} src={props.Icon} alt="" />
+            <Image
+              height={40}
+              width={40}
+              draggable={false}
+              src={props.Icon}
+              alt=""
+            />
           </div>
           <div className="flex w-full flex-col py-2">
             <h5 className="text-[15px] font-[600] text-white">

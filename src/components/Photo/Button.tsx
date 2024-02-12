@@ -22,6 +22,7 @@ export default function PhotoButton({
       <Image
         fill
         priority
+        draggable={false}
         sizes={sizes}
         src={Sumit_Paul}
         className="transition-all duration-200 ease-linear group-hover:scale-[1.2]"

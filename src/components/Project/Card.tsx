@@ -26,7 +26,15 @@ export default function ProjectCard({
               className="flex w-full items-center justify-center px-5 py-20"
               style={{ backgroundColor: color }}
             >
-              <Image src={image} width={400} height={267} alt="projects" />
+              <Image
+                src={image}
+                width={400}
+                height={267}
+                placeholder="blur"
+                blurDataURL={image.blurDataURL}
+                draggable={false}
+                alt="projects"
+              />
             </div>
             <h4 className="text-[1.75em] font-medium text-black">{title}</h4>
             <div className="h-[1px] w-full bg-light-gray" />

@@ -1,13 +1,10 @@
-import TextInViewAnimation from "components/Animations/TextInViewAnimation";
-import SocialHandles from "interface/contact/SocialHandles";
-
 export default function Test({ searchParams }: SearchParamsType) {
   const isMobile = searchParams?.viewport === "mobile" ? true : false;
   const isDesktop = searchParams?.viewport === "desktop" ? true : false;
   const devices = { isMobile, isDesktop };
 
   return (
-    <div className="flex h-screen w-screen flex-col bg-almost-black">
+    <div className="flex h-screen w-screen flex-col items-center justify-center bg-almost-black">
       {/* Gradient Background */}
       {/* <div className="absolute left-32 top-[25%] block aspect-square h-[500px] min-h-[500px] w-[500px] min-w-[500px] bg-gradient-radial from-dark-pink-purple to-75%" /> */}
       {/* 3D Card */}
@@ -15,45 +12,7 @@ export default function Test({ searchParams }: SearchParamsType) {
         Size={{ Height: 300, Width: 400 }}
         ImageSrc={Sumit_Paul}
         BGColor="bg-white"
-        className="left-[510px] top-[150px] z-[0]"
-      />
-      <ThreeDCard
-        Size={{ Height: 300, Width: 300 }}
-        ImageSrc={Sumit_Paul}
-        BGColor="bg-white"
-        className="left-[300px] top-[350px] z-[0]"
-      />
-      <ThreeDCard
-        Size={{ Height: 200, Width: 200 }}
-        ImageSrc={Sumit_Paul}
-        BGColor="bg-white"
-        className="left-[550px] top-[540px] z-[2]"
-      />
-      <ThreeDCard
-        Size={{ Height: 300, Width: 300 }}
-        ImageSrc={Sumit_Paul}
-        BGColor="bg-white"
-        className="left-[1020px] top-[80px] z-[0]"
-      />
-      <ThreeDCard
-        Size={{ Height: 350, Width: 350 }}
-        ImageSrc={Sumit_Paul}
-        BGColor="bg-white"
-        className="left-[1200px] top-[390px] z-[2]"
-      /> */}
-      {/* <h2 className="-mt-[max(48px,5.2vw)] ml-[2rem] block whitespace-nowrap text-[max(5.3em,9vw)] font-[900] text-black 2xl:ml-[6rem]">
-        about . about . about . about
-      </h2> */}
-      {/* <span className="grid h-full w-full place-content-center text-3xl text-black">
-        {searchParams?.viewport}
-      </span> */}
-      {/* <EmailTemplate
-        name="Sumeet Kumar Paul"
-        email="sumitpaul16102002@gmail.com"
-        company="Emotion Corporation"
-        service="Website Building"
-        description="Looking sexy buddy ..."
-      /> */}
+        className="left-[510px] top-[150px] z-[0]"/> */}
     </div>
   );
 }

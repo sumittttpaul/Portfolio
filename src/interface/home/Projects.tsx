@@ -1,46 +1,80 @@
+"use client";
+
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
+import PointsBackground from "../../../public/images/points_background.png";
 import RoundedMagneticLink from "components/Magnetic/RoundedMagneticLink";
 import DivInViewAnimation from "components/Animations/DivInViewAnimation";
-import PointsBackground from "../../../public/images/points_background.png";
-import WorkImage1 from "../../../public/images/work/01.png";
-import WorkImage2 from "../../../public/images/work/02.png";
-import WorkImage3 from "../../../public/images/work/03.png";
+import Image, { StaticImageData } from "next/image";
 import ProjectLink from "components/ProjectLink";
 import ProjectCard from "components/ProjectCard";
-import Image from "next/image";
+import ImageViewer from "components/ImageViewer";
+import { useState } from "react";
 
-const projects = [
-  {
-    image: WorkImage1,
-    imageHeight: 201,
-    imageWidth: 400,
-    title: "Sumeet Kumar Paul",
-    description: "Portfolio",
-    color: "#373737",
-    date: "2024",
-  },
-  {
-    image: WorkImage2,
-    imageHeight: 225,
-    imageWidth: 400,
-    title: "Emotion",
-    description: "E-commerce Store",
-    color: "#344148",
-    date: "2023",
-  },
-  {
-    image: WorkImage3,
-    imageHeight: 225,
-    imageWidth: 400,
-    title: "Agewear Lifestyle",
-    description: "Clothing Brand",
-    color: "#483C32",
-    date: "2022",
-  },
-];
+type ModalState = {
+  show: boolean;
+  images: StaticImageData[] | null;
+};
 
-export default function Projects({ device }: DeviceType) {
+export default function Projects({
+  device,
+  images,
+  projects,
+}: {
+  images: {
+    clothing: StaticImageData[];
+    portfolio: StaticImageData[];
+    emotion: StaticImageData[];
+    authentication: StaticImageData[];
+  };
+  projects: {
+    title: string;
+    description: string;
+    date: string;
+    image: StaticImageData;
+    imageHeight: number;
+    imageWidth: number;
+    color: string;
+  }[];
+} & DeviceType) {
   const { isMobile, isDesktop } = device;
+  const [ImageViewerData, setImageViewerData] = useState<ModalState>({
+    show: false,
+    images: null,
+  });
+
+  const handleClose = () => {
+    setImageViewerData((prev) => {
+      if (prev.show) {
+        return { ...prev, show: false };
+      } else {
+        return { ...prev };
+      }
+    });
+  };
+
+  const handleImages = (image: WorkImagesType) => {
+    setImageViewerData((prev) => {
+      if (!prev.show) {
+        if (image === "portfolio") {
+          return { images: images.portfolio, show: true };
+        }
+        if (image === "emotion") {
+          return { images: images.emotion, show: true };
+        }
+        if (image === "authentication") {
+          return { images: images.authentication, show: true };
+        }
+        if (image === "clothing") {
+          return { images: images.clothing, show: true };
+        } else {
+          return { ...prev, show: false };
+        }
+      } else {
+        return { ...prev, show: false };
+      }
+    });
+  };
+
   return (
     <section className="relative flex w-full flex-col items-center overflow-hidden bg-white py-[50px] sm:py-[100px]">
       <div className="absolute -right-[300px] -top-[240px] hidden md:flex lg:right-0">
@@ -87,7 +121,9 @@ export default function Projects({ device }: DeviceType) {
           </p>
         </DivInViewAnimation>
       </div>
-      {isMobile && <ProjectCard projects={projects} />}
+      {isMobile && (
+        <ProjectCard handleImages={handleImages} projects={projects} />
+      )}
       {isDesktop && <ProjectLink projects={projects} />}
       <div className="flex w-full items-center justify-center px-5">
         <RoundedMagneticLink
@@ -97,10 +133,16 @@ export default function Projects({ device }: DeviceType) {
         >
           <span className="z-[1] flex text-[12px] text-white transition-colors duration-[400ms] group-hover:text-white xs:text-[13px] sm:text-base sm:text-black">
             More work
-            <span className="-mt-1 ml-1 block text-[10px] sm:text-xs">5</span>
+            <span className="-mt-1 ml-1 block text-[10px] sm:text-xs">4</span>
           </span>
         </RoundedMagneticLink>
       </div>
+      <ImageViewer
+        device={device}
+        onClose={handleClose}
+        open={ImageViewerData.show}
+        images={ImageViewerData.images}
+      />
     </section>
   );
 }
