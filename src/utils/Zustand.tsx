@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import { create } from "zustand";
 
 interface PreloaderState {
@@ -28,4 +29,20 @@ interface ToastHookState {
 export const ToastHook = create<ToastHookState>()((set) => ({
   ToastValue: { Show: false, Title: "", Description: "", Type: "" },
   setToastValue: (value) => set(() => ({ ToastValue: value })),
+}));
+
+interface ImageViewerState {
+  ImageViewerData: {
+    show: boolean;
+    images: StaticImageData[] | null;
+  };
+  setImageViewerData: (value: {
+    show: boolean;
+    images: StaticImageData[] | null;
+  }) => void;
+}
+
+export const useImageViewerState = create<ImageViewerState>()((set) => ({
+  ImageViewerData: { show: false, images: null },
+  setImageViewerData: (value) => set(() => ({ ImageViewerData: value })),
 }));

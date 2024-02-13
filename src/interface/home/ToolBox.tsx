@@ -1,6 +1,13 @@
 import LogoSlidingAnimation from "components/Animations/LogoSlidingAnimation";
-import ArrowPoints from "components/ArrowPoints";
 import PointsBackground from "../../../public/images/points_background.png";
+import TextInViewAnimation from "components/Animations/TextInViewAnimation";
+import DivInViewAnimation from "components/Animations/DivInViewAnimation";
+import ParallaxScrollStackCard from "components/ParallaxScroll/StackCard";
+import MaterialCarousel from "components/MaterialCarousel";
+import ArrowPoints from "components/ArrowPoints";
+import Image from "next/image";
+
+// Over all tools
 import ToolImage0 from "../../../public/images/tools/clerk.png";
 import ToolImage1 from "../../../public/images/tools/firebase.png";
 import ToolImage2 from "../../../public/images/tools/mongodb.png";
@@ -19,11 +26,6 @@ import ToolImage14 from "../../../public/images/tools/gsap.png";
 import ToolImage15 from "../../../public/images/tools/framer.png";
 import ToolImage16 from "../../../public/images/tools/swiperjs.png";
 import ToolImage17 from "../../../public/images/tools/material.png";
-import TextInViewAnimation from "components/Animations/TextInViewAnimation";
-import DivInViewAnimation from "components/Animations/DivInViewAnimation";
-import ParallaxScrollStackCard from "components/ParallaxScroll/StackCard";
-import MaterialCarousel from "components/MaterialCarousel";
-import Image from "next/image";
 
 const MaterialCarouselImages = [
   ToolImage14,

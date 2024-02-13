@@ -5,6 +5,7 @@ import SocialCards from "components/SocialCards";
 import { useScroll } from "framer-motion";
 import { useRef } from "react";
 
+// Over all social handles
 import FacebookImage from "../../../public/images/socials/facebook_profile.png";
 import InstagramImage from "../../../public/images/socials/instagram_profile.png";
 import TwitterImage from "../../../public/images/socials/twitter_profile.png";

@@ -3,6 +3,7 @@
 import { MotionButton, MotionDiv } from "utils/FramerMotion";
 import { Variants, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function LetsConnect({ device }: DeviceType) {
@@ -57,6 +58,7 @@ export default function LetsConnect({ device }: DeviceType) {
             {isDesktop && <SpotlightButton />}
             {isMobile && (
               <Link
+                scroll={false}
                 href="/contact"
                 className="relative flex w-full items-center justify-center rounded-full bg-white py-[12px] text-xs font-bold text-black xs:text-sm"
               >
@@ -73,6 +75,8 @@ export default function LetsConnect({ device }: DeviceType) {
 const SpotlightButton = () => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const spanRef = useRef<HTMLSpanElement>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     const _spanRef = spanRef.current;
@@ -109,6 +113,7 @@ const SpotlightButton = () => {
   return (
     <MotionButton
       ref={btnRef}
+      onClick={() => router.push("/contact", { scroll: false })}
       whileTap={{ scale: 0.95 }}
       className="relative w-full max-w-[275px] overflow-hidden rounded-full bg-white/10 px-4 py-3 text-base font-medium text-white"
     >
