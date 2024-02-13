@@ -21,6 +21,7 @@ type DivAttributesType = {
 type ButtonAttributesType = {
   children: React.ReactElement;
   className?: string;
+  name?: string;
   onClick: () => void;
   type?: "submit" | "reset" | "button";
 };

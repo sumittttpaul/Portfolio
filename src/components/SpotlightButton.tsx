@@ -32,12 +32,11 @@ export default function SpotlightButton() {
   return (
     <MotionButton
       ref={btnRef}
+      name="explore_now_button"
       whileTap={{ scale: 0.985 }}
-      className="relative w-full sm:max-w-xs overflow-hidden rounded-full bg-black px-4 py-3 text-base font-medium text-white outline-none"
+      className="relative w-full overflow-hidden rounded-full bg-black px-4 py-3 text-base font-medium text-white outline-none sm:max-w-xs"
     >
-      <span className="pointer-events-none relative z-10 ">
-        Explore now
-      </span>
+      <span className="pointer-events-none relative z-10 ">Explore now</span>
       <span
         ref={spanRef}
         className="pointer-events-none absolute left-[50%] top-[50%] h-32 w-32 -translate-x-[50%] -translate-y-[50%] rounded-full bg-white/20"

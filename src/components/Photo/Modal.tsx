@@ -50,6 +50,7 @@ export default function PhotoModal() {
             </div>
           </div>
           <button
+            name="sumit_photo_exit_modal_button"
             onClick={() => modalState.setPhotoShow(false)}
             className="absolute right-0 top-0 m-2 -mr-3 -mt-3 flex h-auto w-auto cursor-default place-content-center rounded-full p-3 outline-none transition-colors duration-300 ease-in-out hover:bg-white/20"
           >

@@ -49,6 +49,7 @@ export default function FooterMobile() {
           <div className="flex w-full flex-col -space-y-3 xl:-space-y-8">
             <div className="flex items-center">
               <MotionButton
+                name="sumit_photo_button"
                 whileTap={{ scale: 0.9 }}
                 onClick={() => modalState.setPhotoShow(true)}
                 className="relative h-[50px] w-[50px] sm:h-[100px] sm:w-[100px]"

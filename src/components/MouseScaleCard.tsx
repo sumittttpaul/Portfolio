@@ -95,6 +95,7 @@ export default function MouseScaleCard({
     >
       <MotionButton
         ref={FirstImage}
+        name="work_zoom_card_button"
         whileTap={{ scale: 0.95 }}
         variants={FirstImageSlideUp}
         onClick={() => {}}
@@ -133,6 +134,7 @@ export default function MouseScaleCard({
 
       <MotionButton
         ref={SecondImage}
+        name="work_zoom_card_button"
         whileTap={{ scale: 0.95 }}
         variants={SecondImageSlideUp}
         onClick={() => {}}

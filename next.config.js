@@ -5,11 +5,16 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   // output: "standalone",
   experimental: {
+    swcMinify: true,
     optimizeCss: true,
     webVitalsAttribution: ["CLS", "LCP"],
     // typedRoutes: true,
+  },
+  compiler: {
+    styledComponents: true,
   },
   async headers() {
     return [

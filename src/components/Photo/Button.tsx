@@ -15,6 +15,7 @@ export default function PhotoButton({
   const modalState = useModalState();
   return (
     <MotionButton
+      name="sumit_photo_modal_button"
       whileTap={{ scale: 0.9 }}
       onClick={() => modalState.setPhotoShow(true)}
       className={`${className} group relative overflow-hidden`}

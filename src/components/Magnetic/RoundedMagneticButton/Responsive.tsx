@@ -5,15 +5,18 @@ import { gsap } from "gsap/gsap-core";
 
 export function Mobile({
   type,
+  name,
   onClick,
   children,
   className,
 }: ButtonAttributesType) {
   return (
     <button
+      name={name}
+      type={type}
+      aria-label={name}
       onClick={onClick}
       style={{ overflow: "hidden" }}
-      type={type}
       className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none`}
     >
       {children}
@@ -23,6 +26,7 @@ export function Mobile({
 
 export function Desktop({
   type,
+  name,
   onClick,
   children,
   className,
@@ -107,7 +111,9 @@ export function Desktop({
 
   return (
     <button
+      name={name}
       type={type}
+      aria-label={name}
       onClick={onClick}
       ref={magneticParent}
       style={{ overflow: "hidden" }}

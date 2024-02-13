@@ -50,6 +50,7 @@ export default function Thumbnail({
       <div className="mx-auto flex">
         {images.map((image, index) => (
           <MotionButton
+            name="work_image_thumbnail_button"
             key={index}
             ref={ThumbnailRef}
             whileTap={{ scale: 0.9 }}

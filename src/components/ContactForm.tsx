@@ -224,6 +224,7 @@ export default function ContactForm({ device }: DeviceType) {
         )}
         <RoundedMagneticButton
           type="submit"
+          name="submit_button"
           device={device}
           onClick={() => {}}
           className="h-[clamp(9em,12vw,11em)] w-[clamp(9em,12vw,11em)] bg-button-blue"

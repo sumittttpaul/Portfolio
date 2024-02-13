@@ -4,8 +4,9 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Snackbar } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
 import { useEffect, useRef } from "react";
-import { m, useAnimationControls } from "framer-motion";
+import { useAnimationControls } from "framer-motion";
 import Image from "next/image";
+import { MotionButton, MotionDiv } from "utils/FramerMotion";
 
 export interface ToastContentProps {
   Open: boolean;
@@ -112,17 +113,18 @@ export default function ToastContent(props: ToastContentProps) {
             </h6>
           </div>
           <div className="flex h-full flex-col items-start justify-center">
-            <m.button
+            <MotionButton
+              name="toast_exit_button"
               onClick={props.onClose}
               whileTap={{ scale: 0.9 }}
               className="m-0 cursor-default rounded-full bg-transparent p-2.5 hover:bg-white/10"
             >
               <XMarkIcon className="h-5 w-5 text-white" />
-            </m.button>
+            </MotionButton>
           </div>
         </div>
         <div ref={containerRef} className="flex w-full px-2 pb-2">
-          <m.div
+          <MotionDiv
             ref={progressRef}
             onAnimationComplete={handleAnimationComplete}
             initial={{ width: "100%" }}

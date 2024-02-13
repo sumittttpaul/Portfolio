@@ -53,6 +53,7 @@ export function MobileLeftArrowButton({
     >
       <AnimatePresence>
         <MotionButton
+          name="work_image_mobile_prev_button"
           exit={LeftAnimate.exit}
           whileTap={{ scale: IsPreviousImage ? 0.9 : 1 }}
           animate={LeftAnimate.open}
@@ -87,6 +88,7 @@ export function MobileRightArrowButton({
     >
       <AnimatePresence>
         <MotionButton
+          name="work_image_mobile_next_button"
           exit={RightAnimate.exit}
           whileTap={{ scale: IsNextImage ? 0.9 : 1 }}
           onClick={handleNextImage}
@@ -120,6 +122,7 @@ export function DesktopLeftArrowButton({
       <AnimatePresence>
         {IsPreviousImage && (
           <MotionButton
+            name="work_image_desktop_prev_button"
             whileTap={{ scale: 0.9 }}
             exit={LeftAnimate.exit}
             animate={LeftAnimate.open}
@@ -154,6 +157,7 @@ export function DesktopRightArrowButton({
       <AnimatePresence>
         {IsNextImage && (
           <MotionButton
+            name="work_image_desktop_next_button"
             whileTap={{ scale: 0.9 }}
             exit={RightAnimate.exit}
             animate={RightAnimate.open}
@@ -198,6 +202,7 @@ export function ImagePagination({
 export function ExitButton({ onClick }: { onClick: () => void }) {
   return (
     <MotionButton
+      name="work_image_exit_button"
       whileTap={{ scale: 0.9 }}
       onClick={onClick}
       className="absolute right-5 top-5 z-[2] grid aspect-square h-[45px] w-[45px] place-content-center rounded-full bg-white/10 sm:h-[60px] sm:w-[60px] screen-1000:transition-colors screen-1000:duration-200 screen-1000:ease-in screen-1000:hover:bg-white/20 max-size:right-0"

@@ -19,10 +19,10 @@ export default function ArrowPoints({
           sizes="(min-width: 0px) 25px"
         />
       </span>
-      <h4 className="text-pretty indent-7 text-[1em] sm:indent-8 md:text-[1.3em]">
+      <h2 className="text-pretty indent-7 text-[1em] sm:indent-8 md:text-[1.3em]">
         <span className="mr-2 font-bold">{title}:</span>
         <span className="text-[0.9em] xs:text-[1em]">{children}</span>
-      </h4>
+      </h2>
     </div>
   );
 }

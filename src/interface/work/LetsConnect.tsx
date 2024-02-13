@@ -113,6 +113,7 @@ const SpotlightButton = () => {
   return (
     <MotionButton
       ref={btnRef}
+      name="get_in_touch_button"
       onClick={() => router.push("/contact", { scroll: false })}
       whileTap={{ scale: 0.95 }}
       className="relative w-full max-w-[275px] overflow-hidden rounded-full bg-white/10 px-4 py-3 text-base font-medium text-white"

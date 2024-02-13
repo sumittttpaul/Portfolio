@@ -141,6 +141,7 @@ export default function ProjectCard({
         return (
           <DivInViewAnimation Animation="Slide" key={index}>
             <button
+              name="div_inview_button"
               onClick={() => handleImagesSelection(title)}
               className="flex w-full flex-col space-y-2"
             >

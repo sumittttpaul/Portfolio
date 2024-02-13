@@ -11,19 +11,20 @@ export default function RoundedMagneticButton({
   onClick,
   children,
   className,
+  name,
 }: ButtonAttributesType & DeviceType) {
   const { isMobile, isDesktop } = device;
 
   if (isMobile)
     return (
-      <Mobile type={type} onClick={onClick} className={className}>
+      <Mobile name={name} type={type} onClick={onClick} className={className}>
         {children}
       </Mobile>
     );
 
   if (isDesktop)
     return (
-      <Desktop type={type} onClick={onClick} className={className}>
+      <Desktop name={name} type={type} onClick={onClick} className={className}>
         {children}
       </Desktop>
     );
