@@ -31,13 +31,12 @@ export default function index({ device }: DeviceType) {
             >
               <Image
                 fill
-                placeholder="blur"
-                blurDataURL={BGImage.blurDataURL}
-                sizes="(min-width: 768px) 730px, 664px"
-                alt="background image"
-                className="object-cover"
+                priority
                 src={BGImage}
                 draggable={false}
+                alt="background image"
+                className="object-cover"
+                sizes="(min-width: 768px) 730px, 664px"
               />
             </div>
           </div>
