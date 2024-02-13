@@ -2,10 +2,10 @@ import LocationContainer from "../../../public/icons/location-container.svg";
 import MovingTextAnimation from "components/Animations/MovingTextAnimation";
 import RotateIconAnimation from "components/Animations/RotateIconAnimation";
 import QuotationMaker from "../../../public/icons/quotation-mark.svg";
+import HomeLandingClient from "components/Clients/HomeLandingClient";
 import QuotesAnimation from "components/Animations/QuotesAnimation";
 import GlobeAnimation from "components/Animations/GlobeAnimation";
 import BGImage from "../../../public/images/bg_character.png";
-import HomeLandingClient from "components/Clients/HomeLandingClient";
 import Image from "next/image";
 import {
   ArrowRightIcon,
@@ -31,11 +31,12 @@ export default function index({ device }: DeviceType) {
             >
               <Image
                 fill
-                priority
                 src={BGImage}
                 draggable={false}
+                placeholder="blur"
                 alt="background image"
                 className="object-cover"
+                blurDataURL={BGImage.blurDataURL}
                 sizes="(min-width: 768px) 730px, 664px"
               />
             </div>
