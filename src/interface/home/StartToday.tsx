@@ -1,6 +1,8 @@
+"use client";
+
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
-import DivInViewAnimation from "components/Animations/DivInViewAnimation";
 import PointsBackground from "../../../public/images/points_background.png";
+import DivInViewAnimation from "components/Animations/DivInViewAnimation";
 import Image from "next/image";
 
 export default function StartToday({ device }: DeviceType) {

@@ -1,3 +1,5 @@
+"use client";
+
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
 import RoundedMagneticLink from "components/Magnetic/RoundedMagneticLink";
 

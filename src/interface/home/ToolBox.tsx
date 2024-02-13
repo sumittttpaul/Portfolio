@@ -1,10 +1,11 @@
+"use client";
+
 import LogoSlidingAnimation from "components/Animations/LogoSlidingAnimation";
 import PointsBackground from "../../../public/images/points_background.png";
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
 import DivInViewAnimation from "components/Animations/DivInViewAnimation";
-import ParallaxScrollStackCard from "components/ParallaxScroll/StackCard";
-import MaterialCarousel from "components/MaterialCarousel";
 import ArrowPoints from "components/ArrowPoints";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 
 // Over all tools
@@ -26,6 +27,11 @@ import ToolImage14 from "../../../public/images/tools/gsap.png";
 import ToolImage15 from "../../../public/images/tools/framer.png";
 import ToolImage16 from "../../../public/images/tools/swiperjs.png";
 import ToolImage17 from "../../../public/images/tools/material.png";
+
+const MaterialCarousel = dynamic(() => import("components/MaterialCarousel"));
+const ParallaxScrollStackCard = dynamic(
+  () => import("components/ParallaxScroll/StackCard"),
+);
 
 const MaterialCarouselImages = [
   ToolImage14,

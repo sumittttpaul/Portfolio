@@ -22,7 +22,7 @@ const opacity = {
   },
   enter: {
     opacity: 1,
-    transition: { duration: 1, delay: 0.2 },
+    transition: { duration: 1 },
   },
 };
 

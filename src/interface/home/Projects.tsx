@@ -1,3 +1,5 @@
+"use client";
+
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
 import PointsBackground from "../../../public/images/points_background.png";
 import RoundedMagneticLink from "components/Magnetic/RoundedMagneticLink";

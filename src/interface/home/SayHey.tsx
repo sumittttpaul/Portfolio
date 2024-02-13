@@ -1,3 +1,5 @@
+"use client";
+
 import LetterChanging from "components/LetterChanging";
 
 export default function SayHey({ device }: DeviceType) {
