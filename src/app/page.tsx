@@ -1,4 +1,5 @@
 import MainClientForInitial from "components/Clients/MainClient.Initial";
+import LazyLoadComponents from "interface/home/LazyLoadComponents";
 // import Description from "interface/home/Description";
 // import StartToday from "interface/home/StartToday";
 import Preloader from "interface/home/Preloader";
@@ -6,7 +7,6 @@ import Preloader from "interface/home/Preloader";
 import Landing from "interface/home/Landing";
 // import ToolBox from "interface/home/ToolBox";
 // import SayHey from "interface/home/SayHey";
-import LazyLoadComponents from "interface/home/LazyLoadComponents";
 
 export default function Home({ searchParams }: SearchParamsType) {
   const isMobile = searchParams?.viewport === "mobile" ? true : false;

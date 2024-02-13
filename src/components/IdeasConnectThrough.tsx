@@ -1,3 +1,5 @@
+"use client";
+
 import TypographyAnimation from "components/Animations/TypographyAnimation";
 import DancingTruck from "../../public/images/dancing_truck.gif";
 import LabelTag from "components/LabelTag";

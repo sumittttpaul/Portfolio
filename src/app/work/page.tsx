@@ -1,6 +1,7 @@
+import LazyLoadComponents from "interface/work/LazyLoadComponents";
 import MainClient from "components/Clients/MainClient";
-import LetsConnect from "interface/work/LetsConnect";
-import Projects from "interface/work/Projects";
+// import LetsConnect from "interface/work/LetsConnect";
+// import Projects from "interface/work/Projects";
 import Landing from "interface/work/Landing";
 
 export default function Work({ searchParams }: SearchParamsType) {
@@ -10,8 +11,9 @@ export default function Work({ searchParams }: SearchParamsType) {
   return (
     <MainClient device={devices}>
       <Landing device={devices} />
-      <Projects device={devices} />
-      <LetsConnect device={devices} />
+      <LazyLoadComponents device={devices} />
+      {/* <Projects device={devices} />
+      <LetsConnect device={devices} /> */}
     </MainClient>
   );
 }

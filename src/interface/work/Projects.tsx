@@ -1,3 +1,5 @@
+"use client";
+
 import ImageViewer from "components/ImageViewer";
 import dynamic from "next/dynamic";
 

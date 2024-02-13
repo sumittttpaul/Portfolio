@@ -1,9 +1,13 @@
+"use client";
+
 import SignatureAnimation from "components/Animations/SignatureAnimation";
 import { ArrowDownRightIcon } from "@heroicons/react/24/outline";
 import PhotoButton from "components/Photo/Button";
-import ContactForm from "components/ContactForm";
 import Magnetic from "components/Magnetic";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+
+const ContactForm = dynamic(() => import("components/ContactForm"));
 
 export default function Landing({ device }: DeviceType) {
   const { isMobile, isDesktop } = device;

@@ -91,7 +91,7 @@ export default function MouseScaleCard({
   return (
     <section
       onMouseMove={manageMouseMove}
-      className="work-image-zoom flex h-[60vw] max-size:h-[45vw]"
+      className="work-image-zoom flex h-[60vw] items-start max-size:h-[45vw]"
     >
       <MotionButton
         ref={FirstImage}

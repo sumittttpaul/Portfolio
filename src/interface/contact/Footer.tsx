@@ -1,3 +1,5 @@
+"use client";
+
 import CurrentTime from "components/CurrentTime";
 import Magnetic from "components/Magnetic";
 import Link from "next/link";

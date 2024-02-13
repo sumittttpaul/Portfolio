@@ -23,7 +23,7 @@ export default function SocialHandles() {
 
   return (
     <section className="relative flex w-full flex-col items-center justify-center pt-[5em] lg:pb-[5em]">
-      <h1 className="sticky top-[100px] mb-[100px] flex flex-col px-5 text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:text-[46px] sm:leading-[1.2] screen-1000:px-0 lg:px-0 lg:text-[56px] xl:text-[64px]">
+      <h1 className="sticky top-[70px] xs:top-[100px] mb-[100px] flex flex-col px-5 text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:text-[46px] sm:leading-[1.2] screen-1000:px-0 lg:px-0 lg:text-[56px] xl:text-[64px]">
         <TextInViewAnimation Animation="Word">
           Connect&nbsp;with&nbsp;Me
         </TextInViewAnimation>
