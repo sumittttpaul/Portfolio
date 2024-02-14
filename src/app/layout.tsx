@@ -12,6 +12,7 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import "styles/globals.css";
 import "styles/swiper.css";
+import BodyClient from "components/Clients/BodyClient";
 
 type RouteProps = {
   params?: Record<string, string>;
@@ -211,27 +212,25 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const BodyClass = `${inter.className} ${NeueMontreal.variable} ${pacifico.variable} ${Grtsk.variable} ${Grtsk_Bkslnt.variable} overflow-x-hidden overflow-y-scroll m-0`;
+const BodyClass = `${inter.className} ${NeueMontreal.variable} ${pacifico.variable} ${Grtsk.variable} ${Grtsk_Bkslnt.variable}`;
 
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      <body className={BodyClass}>
+      <BodyClient className={BodyClass}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={MuiTheme}>
             <MotionOptimize>
               <CssBaseline />
               <Header />
-              <RouteTransitionWrapper>
-                {children}
-              </RouteTransitionWrapper>
+              <RouteTransitionWrapper>{children}</RouteTransitionWrapper>
               <Footer />
             </MotionOptimize>
           </ThemeProvider>
         </AppRouterCacheProvider>
         <Analytics />
         <SpeedInsights />
-      </body>
+      </BodyClient>
     </html>
   );
 }

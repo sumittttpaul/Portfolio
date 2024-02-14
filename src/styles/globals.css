@@ -83,7 +83,7 @@ input:-webkit-autofill:active {
 
 .scrollbar-x-visible::-webkit-scrollbar {
   display: block;
-  width: 10px;
+  height: 10px;
   transition: all 1s ease 0s;
 }
 .scrollbar-x-visible::-webkit-scrollbar-thumb {
@@ -97,7 +97,7 @@ input:-webkit-autofill:active {
   background: transparent;
 }
 .scrollbar-x-visible::-webkit-scrollbar-thumb:active {
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 .header-color {
   color: var(--header-color);
@@ -497,10 +497,11 @@ input:-webkit-autofill:active {
     }
   }
 }
+
 @media (min-width: 1000px) {
   .screen-1000\:scrollbar-x-visible::-webkit-scrollbar {
     display: block;
-    width: 10px;
+    height: 10px;
     transition: all 1s ease 0s;
   }
   .screen-1000\:scrollbar-x-visible::-webkit-scrollbar-thumb {
@@ -514,7 +515,7 @@ input:-webkit-autofill:active {
     background: transparent;
   }
   .screen-1000\:scrollbar-x-visible::-webkit-scrollbar-thumb:active {
-    border: 2px solid transparent;
+    border: 1px solid transparent;
   }
   @keyframes letter-moving-animation {
     0% {

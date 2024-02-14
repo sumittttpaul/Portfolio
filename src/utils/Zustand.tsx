@@ -46,3 +46,14 @@ export const useImageViewerState = create<ImageViewerState>()((set) => ({
   ImageViewerData: { show: false, images: null },
   setImageViewerData: (value) => set(() => ({ ImageViewerData: value })),
 }));
+
+interface StopScrollingState {
+  isScrolling: boolean;
+  toggleIsScrolling: () => void;
+}
+
+export const useStopScrollingState = create<StopScrollingState>()((set) => ({
+  isScrolling: true, // default value : true
+  toggleIsScrolling: () =>
+    set((value) => ({ isScrolling: !value.isScrolling })),
+}));

@@ -2,7 +2,7 @@
 
 import DivInViewAnimation from "./Animations/DivInViewAnimation";
 import Image, { StaticImageData } from "next/image";
-import { useImageViewerState } from "utils/Zustand";
+import { useImageViewerState, useStopScrollingState } from "utils/Zustand";
 
 // Authentication
 import AuthenticationImage01 from "../../public/images/work/authentication/01.png";
@@ -96,19 +96,24 @@ export default function ProjectCard({
   }[];
 }) {
   const { ImageViewerData, setImageViewerData } = useImageViewerState();
+  const { toggleIsScrolling } = useStopScrollingState();
 
   const handleImages = (image: WorkImagesType) => {
     if (!ImageViewerData.show) {
       if (image === "portfolio") {
+        toggleIsScrolling();
         setImageViewerData({ images: images.portfolio, show: true });
       }
       if (image === "emotion") {
+        toggleIsScrolling();
         setImageViewerData({ images: images.emotion, show: true });
       }
       if (image === "authentication") {
+        toggleIsScrolling();
         setImageViewerData({ images: images.authentication, show: true });
       }
       if (image === "clothing") {
+        toggleIsScrolling();
         setImageViewerData({ images: images.clothing, show: true });
       }
     }

@@ -2,8 +2,89 @@
 
 import Image, { StaticImageData } from "next/image";
 import { useState, useRef, useEffect } from "react";
-import { MotionDiv } from "utils/FramerMotion";
+import { MotionDiv, MotionSpan } from "utils/FramerMotion";
 import { gsap } from "gsap/gsap-core";
+import { useImageViewerState, useStopScrollingState } from "utils/Zustand";
+
+// Authentication
+import AuthenticationImage01 from "../../public/images/work/authentication/01.png";
+import AuthenticationImage02 from "../../public/images/work/authentication/02.png";
+import AuthenticationImage03 from "../../public/images/work/authentication/03.png";
+import AuthenticationImage04 from "../../public/images/work/authentication/04.png";
+import AuthenticationImage05 from "../../public/images/work/authentication/05.png";
+import AuthenticationImage06 from "../../public/images/work/authentication/06.png";
+import AuthenticationImage07 from "../../public/images/work/authentication/07.png";
+import AuthenticationImage08 from "../../public/images/work/authentication/08.png";
+import AuthenticationImage09 from "../../public/images/work/authentication/09.png";
+import AuthenticationImage10 from "../../public/images/work/authentication/10.png";
+import AuthenticationImage11 from "../../public/images/work/authentication/11.png";
+import AuthenticationImage12 from "../../public/images/work/authentication/12.png";
+import AuthenticationImage13 from "../../public/images/work/authentication/13.png";
+import AuthenticationImage14 from "../../public/images/work/authentication/14.png";
+import AuthenticationImage15 from "../../public/images/work/authentication/15.png";
+import AuthenticationImage16 from "../../public/images/work/authentication/16.png";
+import AuthenticationImage17 from "../../public/images/work/authentication/17.png";
+import AuthenticationImage18 from "../../public/images/work/authentication/18.png";
+import AuthenticationImage19 from "../../public/images/work/authentication/19.png";
+import AuthenticationImage20 from "../../public/images/work/authentication/20.png";
+import AuthenticationImage21 from "../../public/images/work/authentication/21.png";
+import AuthenticationImage22 from "../../public/images/work/authentication/22.png";
+import AuthenticationImage23 from "../../public/images/work/authentication/23.png";
+import AuthenticationImage24 from "../../public/images/work/authentication/24.png";
+import AuthenticationImage25 from "../../public/images/work/authentication/25.png";
+// Clothing
+import ClothingImage01 from "../../public/images/work/clothing/01.png";
+// Emotion
+import EmotionImage01 from "../../public/images/work/emotion/01.png";
+import EmotionImage02 from "../../public/images/work/emotion/02.png";
+import EmotionImage03 from "../../public/images/work/emotion/03.png";
+import EmotionImage04 from "../../public/images/work/emotion/04.png";
+import EmotionImage05 from "../../public/images/work/emotion/05.png";
+// Portfolio
+import PortfolioImage01 from "../../public/images/work/portfolio/01.png";
+
+const ClothingImages = [ClothingImage01];
+const PortfolioImages = [PortfolioImage01];
+const EmotionImages = [
+  EmotionImage01,
+  EmotionImage02,
+  EmotionImage03,
+  EmotionImage04,
+  EmotionImage05,
+];
+const AuthenticationImages = [
+  AuthenticationImage01,
+  AuthenticationImage02,
+  AuthenticationImage03,
+  AuthenticationImage04,
+  AuthenticationImage05,
+  AuthenticationImage06,
+  AuthenticationImage07,
+  AuthenticationImage08,
+  AuthenticationImage09,
+  AuthenticationImage10,
+  AuthenticationImage11,
+  AuthenticationImage12,
+  AuthenticationImage13,
+  AuthenticationImage14,
+  AuthenticationImage15,
+  AuthenticationImage16,
+  AuthenticationImage17,
+  AuthenticationImage18,
+  AuthenticationImage19,
+  AuthenticationImage20,
+  AuthenticationImage21,
+  AuthenticationImage22,
+  AuthenticationImage23,
+  AuthenticationImage24,
+  AuthenticationImage25,
+];
+const images = {
+  clothing: ClothingImages,
+  portfolio: PortfolioImages,
+  emotion: EmotionImages,
+  authentication: AuthenticationImages,
+};
 
 const scaleAnimation = {
   initial: { scale: 0, x: "-50%", y: "-50%" },
@@ -36,9 +117,12 @@ export default function ProjectLink({
 }) {
   const [modal, setModal] = useState({ active: false, index: 0 });
   const { active, index } = modal;
-  const modalContainer = useRef(null);
-  const cursor = useRef(null);
-  const cursorLabel = useRef(null);
+  const modalContainer = useRef<HTMLDivElement>(null);
+  const cursor = useRef<HTMLSpanElement>(null);
+  const cursorLabel = useRef<HTMLSpanElement>(null);
+
+  const { ImageViewerData, setImageViewerData } = useImageViewerState();
+  const { toggleIsScrolling } = useStopScrollingState();
 
   let xMoveContainer = useRef<gsap.QuickToFunc | null>(null);
   let yMoveContainer = useRef<gsap.QuickToFunc | null>(null);
@@ -48,7 +132,7 @@ export default function ProjectLink({
   let yMoveCursorLabel = useRef<gsap.QuickToFunc | null>(null);
 
   useEffect(() => {
-    //Move Container
+    // Move Container
     xMoveContainer.current = gsap.quickTo(modalContainer.current, "left", {
       duration: 0.8,
       ease: "power3",
@@ -57,7 +141,7 @@ export default function ProjectLink({
       duration: 0.8,
       ease: "power3",
     });
-    //Move cursor
+    // Move cursor
     xMoveCursor.current = gsap.quickTo(cursor.current, "left", {
       duration: 0.5,
       ease: "power3",
@@ -66,7 +150,7 @@ export default function ProjectLink({
       duration: 0.5,
       ease: "power3",
     });
-    //Move cursor label
+    // Move cursor label
     xMoveCursorLabel.current = gsap.quickTo(cursorLabel.current, "left", {
       duration: 0.45,
       ease: "power3",
@@ -94,6 +178,7 @@ export default function ProjectLink({
       yMoveCursorLabel.current(y);
     }
   };
+
   const manageModal = (
     active: boolean,
     index: number,
@@ -102,6 +187,47 @@ export default function ProjectLink({
   ) => {
     moveItems(x, y);
     setModal({ active, index });
+  };
+
+  const handleImages = (image: WorkImagesType) => {
+    if (!ImageViewerData.show) {
+      if (image === "portfolio") {
+        toggleIsScrolling();
+        setImageViewerData({ images: images.portfolio, show: true });
+      }
+      if (image === "emotion") {
+        toggleIsScrolling();
+        setImageViewerData({ images: images.emotion, show: true });
+      }
+      if (image === "authentication") {
+        toggleIsScrolling();
+        setImageViewerData({ images: images.authentication, show: true });
+      }
+      if (image === "clothing") {
+        toggleIsScrolling();
+        setImageViewerData({ images: images.clothing, show: true });
+      }
+    }
+  };
+
+  const handleImagesSelection = () => {
+    const Type1 = "sumeet kumar paul";
+    const Type2 = "emotion";
+    const Type3 = "agewear lifestyle";
+    const Type4 = "authentication";
+    // check
+    if (projects[index].title.toLowerCase() === Type1) {
+      handleImages("portfolio");
+    }
+    if (projects[index].title.toLowerCase() === Type2) {
+      handleImages("emotion");
+    }
+    if (projects[index].title.toLowerCase() === Type3) {
+      handleImages("clothing");
+    }
+    if (projects[index].title.toLowerCase() === Type4) {
+      handleImages("authentication");
+    }
   };
 
   return (
@@ -115,11 +241,12 @@ export default function ProjectLink({
         {projects.map((project, index) => {
           return (
             <Project
+              key={index}
               index={index}
               title={project.title}
-              description={project.description}
               manageModal={manageModal}
-              key={`Project_Modal_${index}`}
+              onClick={handleImagesSelection}
+              description={project.description}
             />
           );
         })}
@@ -139,9 +266,9 @@ export default function ProjectLink({
             const { image, imageWidth, imageHeight, color } = project;
             return (
               <div
-                className="flex h-full w-full items-center justify-center"
+                key={index}
                 style={{ backgroundColor: color }}
-                key={`Project_Modal_${index}`}
+                className="flex h-full w-full items-center justify-center"
               >
                 <Image
                   src={image}
@@ -154,22 +281,22 @@ export default function ProjectLink({
           })}
         </div>
       </MotionDiv>
-      <MotionDiv
+      <MotionSpan
         ref={cursor}
-        className="pointer-events-none fixed z-[1] flex h-[80px] w-[80px] items-center justify-center rounded-full bg-hover-blue text-sm text-white"
-        variants={scaleAnimation}
         initial="initial"
+        variants={scaleAnimation}
         animate={active ? "enter" : "closed"}
+        className="pointer-events-none fixed z-[1] flex h-[80px] w-[80px] rounded-full bg-hover-blue"
       />
-      <MotionDiv
-        ref={cursorLabel}
-        className="pointer-events-none fixed z-[1] flex h-[80px] w-[80px] items-center justify-center rounded-full bg-transparent text-sm text-white"
-        variants={scaleAnimation}
+      <MotionSpan
         initial="initial"
+        ref={cursorLabel}
+        variants={scaleAnimation}
         animate={active ? "enter" : "closed"}
+        className="pointer-events-none fixed z-[1] flex h-[80px] w-[80px] items-center justify-center rounded-full bg-transparent text-sm text-white"
       >
         View
-      </MotionDiv>
+      </MotionSpan>
     </div>
   );
 }
@@ -179,23 +306,26 @@ const Project = ({
   title,
   description,
   manageModal,
+  onClick,
 }: {
   index: number;
   title: string;
   description: string;
+  onClick: () => void;
   manageModal: (active: boolean, index: number, x: number, y: number) => void;
 }) => {
   return (
     <div
+      onClick={onClick}
       onMouseEnter={(e) => {
         manageModal(true, index, e.clientX, e.clientY);
       }}
       onMouseLeave={(e) => {
         manageModal(false, index, e.clientX, e.clientY);
       }}
-      className="group flex w-full cursor-pointer items-center justify-between border-t border-light-gray px-[100px] py-[50px] transition-all duration-200 last-of-type:border-b last-of-type:border-solid last-of-type:border-light-gray md:px-[50px] lg:px-[150px]"
+      className="group m-0 flex w-full cursor-pointer items-center justify-between border-t border-light-gray px-[100px] py-[50px] transition-all duration-200 last-of-type:border-b last-of-type:border-solid last-of-type:border-light-gray md:px-[50px] lg:px-[150px]"
     >
-      <h2 className="m-0 text-[24px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black transition-all duration-[400ms] group-hover:-translate-x-[10px] group-hover:opacity-50 md:text-[32px] screen-1000:px-0 lg:px-0 lg:text-[46px] xl:text-[50px]">
+      <h2 className="text-[24px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black transition-all duration-[400ms] group-hover:-translate-x-[10px] group-hover:opacity-50 md:text-[32px] screen-1000:px-0 lg:px-0 lg:text-[46px] xl:text-[50px]">
         {title}
       </h2>
       <p className="font-medium text-black transition-all duration-[400ms] group-hover:translate-x-[10px] group-hover:opacity-50">

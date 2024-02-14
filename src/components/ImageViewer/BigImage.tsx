@@ -55,7 +55,7 @@ export default function BigImage({
         className="relative mx-auto mt-5 flex aspect-video h-full max-h-[750px] w-full max-w-[1333px] overflow-hidden"
         {...handlers}
       >
-        <div className="z-[100] w-full overflow-hidden">
+        <div className="z-[1] w-full overflow-hidden">
           <div className="relative flex aspect-video items-center justify-center">
             <AnimatePresence initial={false} custom={direction}>
               <MotionDiv
