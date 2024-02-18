@@ -22,7 +22,7 @@ export default function PhotoModal() {
         animate={{ scale: 1, rotate: "0deg" }}
         exit={{ scale: 0, rotate: "0deg" }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full cursor-default overflow-hidden rounded-xl bg-gradient-to-br from-black to-almost-black p-5 text-white shadow-xl xs:w-auto sm:p-6"
+        className="relative h-auto w-auto cursor-default overflow-hidden rounded-xl bg-gradient-to-br from-black to-almost-black p-5 text-white shadow-xl sm:p-6"
       >
         <UserIcon
           strokeWidth={1}
@@ -36,7 +36,7 @@ export default function PhotoModal() {
             Sumeet Kumar Paul&apos;s profile photo.
           </p>
           <div className="flex h-full w-full place-content-center lg:px-5 lg:pb-3">
-            <div className="relative h-[250px] w-[250px] xs:h-[300px] xs:w-[300px] sm:h-[380px] sm:w-[380px] lg:h-[477px] lg:w-[477px]">
+            <div className="relative h-[290px] w-[290px] xs:h-[310px] xs:w-[310px] sm:h-[380px] sm:w-[380px] lg:h-[477px] lg:w-[477px]">
               <Image
                 fill
                 draggable={false}
@@ -45,7 +45,7 @@ export default function PhotoModal() {
                 blurDataURL={Sumit_Photo.blurDataURL}
                 alt="Sumeet Kumar Paul"
                 className="rounded-full"
-                sizes="(min-width: 1024px) 477px,(min-width: 640px) 382px,(min-width: 401px) 300px, 250px"
+                sizes="(min-width: 1024px) 477px,(min-width: 640px) 382px,(min-width: 401px) 310px, 290px"
               />
             </div>
           </div>

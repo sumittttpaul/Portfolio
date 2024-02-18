@@ -12,6 +12,8 @@ import { gsap } from "gsap";
 
 gsap.config({ nullTargetWarn: false });
 
+const SMWidth = 640;
+
 const Nav = dynamic(() => import("components/Nav"));
 const NavBackground = dynamic(() => import("components/Nav/Background"));
 
@@ -47,15 +49,16 @@ export default function Header() {
 
   useEffect(() => {
     setDevice({
-      isMobile: window.innerWidth < 640,
-      isDesktop: window.innerWidth > 640,
+      isMobile: window.innerWidth < SMWidth,
+      isDesktop: window.innerWidth > SMWidth,
     });
   }, []);
 
   useEffect(() => {
-    if (isActive) setIsActive(false);
-    if (pathname == "/" && window.innerWidth > 640) ChangeColor("White");
-    else if (pathname == "/" && window.innerWidth < 640) ChangeColor("Black");
+    if (isActive) setTimeout(() => setIsActive(false), 1000);
+    if (pathname == "/" && window.innerWidth > SMWidth) ChangeColor("White");
+    else if (pathname == "/" && window.innerWidth < SMWidth)
+      ChangeColor("Black");
     else if (pathname == "/work") ChangeColor("Black");
     else if (pathname == "/about") ChangeColor("Black");
     else if (pathname == "/contact") ChangeColor("Black");
@@ -107,7 +110,7 @@ export default function Header() {
             duration: 0.25,
             ease: "power1.out",
           });
-          window.innerWidth > 640 && setIsActive(false);
+          window.innerWidth > SMWidth && setIsActive(false);
         },
       },
     });

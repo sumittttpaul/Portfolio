@@ -26,6 +26,14 @@ type ButtonAttributesType = {
   type?: "submit" | "reset" | "button";
 };
 
+type OptionAttributesType = {
+  name?: string;
+  label: string;
+  className?: string;
+  onClick: () => void;
+  active: boolean;
+};
+
 type SubmitAttributesType = {
   children: React.ReactElement;
   className?: string;
@@ -72,3 +80,5 @@ interface ToastProps {
 }
 
 type WorkImagesType = "clothing" | "portfolio" | "emotion" | "authentication";
+
+type AboutOptionType = "Introduction" | "Education" | "Contact";

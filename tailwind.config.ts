@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        "svg-black": "#141517",
         "almost-black": "#1C1D20",
         "medium-black": "#202020",
         "second-black": "#303030",
@@ -38,6 +39,7 @@ const config: Config = {
         "max-size": "1500px",
         "screen-1180": "1180px",
         "screen-1000": "1000px",
+        "screen-1410": "1410px",
         xs: "401px",
       },
       backgroundImage: {

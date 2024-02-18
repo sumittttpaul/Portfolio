@@ -79,9 +79,9 @@ const projects = [
 export default function Landing({ device }: DeviceType) {
   const { isMobile, isDesktop } = device;
   return (
-    <section className="relative h-auto w-full pt-10 sm:pt-[20vh] ">
+    <section className="relative h-auto w-full pt-10 xs:pt-14 md:pt-[25vh] ">
       {isDesktop && (
-        <h1 className="mx-auto mb-[3vw] flex flex-col px-5 text-[calc(clamp(3.25em,7vw,8em)*.875)] font-semibold leading-[1.065] text-black sm:max-w-[80vw] sm:px-10">
+        <h1 className="mx-auto mb-[3vw] hidden flex-col px-5 text-[calc(clamp(3.25em,7vw,8em)*.875)]  font-semibold leading-[1.065] text-almost-black sm:max-w-[80vw] sm:px-10 md:flex">
           <span>Developing better digital</span>
           <span>solutions</span>
         </h1>

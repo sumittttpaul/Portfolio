@@ -4,6 +4,8 @@ import { MotionDiv, MotionP, MotionPath } from "utils/FramerMotion";
 import { useEffect, useState } from "react";
 import { usePreloaderState } from "utils/Zustand";
 
+const SMWidth = 640;
+
 const words = [
   "Hello",
   "Bonjour",
@@ -38,12 +40,12 @@ const slideUp = {
 
 export default function PreloaderAnimation() {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
-  const [index, setIndex] = useState(0);
   const preloaderState = usePreloaderState();
+  const [index, setIndex] = useState(0);
 
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
     dimension.height
-  } Q${dimension.width / 2} ${dimension.height + 300} 0 ${
+  } Q${dimension.width / 2} ${dimension.width < SMWidth ? dimension.height + 100 : dimension.height + 300} 0 ${
     dimension.height
   }  L0 0`;
   const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
@@ -64,7 +66,11 @@ export default function PreloaderAnimation() {
   const handleAnimationComplete = () => preloaderState.toggleVisible();
 
   useEffect(() => {
-    setDimension({ width: window.innerWidth, height: window.innerHeight });
+    setDimension({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -87,7 +93,7 @@ export default function PreloaderAnimation() {
         height: dimension.height ? dimension.height : "100%",
         width: dimension.width ? dimension.width : "100%",
       }}
-      className="fixed z-[999] flex items-center justify-center bg-almost-black sm:bg-white"
+      className="bg-svg-black fixed z-[1001] flex items-center justify-center sm:bg-white"
     >
       {dimension.width > 0 && (
         <>
@@ -102,12 +108,12 @@ export default function PreloaderAnimation() {
               {words[index]}
             </span>
           </MotionP>
-          <svg className="absolute top-0 h-[calc(100%+300px)] w-full ">
+          <svg className="absolute top-0 h-[calc(100%+100px)] w-full sm:h-[calc(100%+300px)] ">
             <MotionPath
               variants={curve}
               initial="initial"
               exit="exit"
-              className="fill-almost-black sm:fill-white"
+              className="fill-svg-black sm:fill-white"
             />
           </svg>
         </>

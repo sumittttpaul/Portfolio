@@ -1,14 +1,19 @@
 import LargeTripleTextAnimation from "components/Animations/LargeTripleTextAnimation";
 import CurrentTime from "components/CurrentTime";
 import Magnetic from "components/Magnetic";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Error • Sumeet Kumar Paul",
+};
 
 export default function NotFound({ searchParams }: SearchParamsType) {
   const isMobile = searchParams?.viewport === "mobile" ? true : false;
   const isDesktop = searchParams?.viewport === "desktop" ? true : false;
   const devices = { isMobile, isDesktop };
   return (
-    <div className="fixed flex h-full w-full items-center bg-white">
+    <main className="fixed flex h-full w-full items-center bg-white">
       <LargeTripleTextAnimation />
       <h2 className="absolute top-0 z-[1] flex h-[50px] w-full items-center justify-center space-x-1 whitespace-nowrap px-5 pt-5 text-black sm:px-10 sm:pt-10">
         <span className="relative text-sm font-bold xs:text-base sm:-mt-0.5 sm:text-[20px] sm:font-[300]">
@@ -83,6 +88,6 @@ export default function NotFound({ searchParams }: SearchParamsType) {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

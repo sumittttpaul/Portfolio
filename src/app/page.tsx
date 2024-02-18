@@ -1,12 +1,7 @@
 import MainClientForInitial from "components/Clients/MainClient.Initial";
 import LazyLoadComponents from "interface/home/LazyLoadComponents";
-// import Description from "interface/home/Description";
-// import StartToday from "interface/home/StartToday";
 import Preloader from "interface/home/Preloader";
-// import Projects from "interface/home/Projects";
 import Landing from "interface/home/Landing";
-// import ToolBox from "interface/home/ToolBox";
-// import SayHey from "interface/home/SayHey";
 
 export default function Home({ searchParams }: SearchParamsType) {
   const isMobile = searchParams?.viewport === "mobile" ? true : false;
@@ -17,11 +12,6 @@ export default function Home({ searchParams }: SearchParamsType) {
       <Preloader />
       <Landing device={devices} />
       <LazyLoadComponents device={devices} />
-      {/* <Description device={devices} />
-      <ToolBox device={devices} />
-      <Projects device={devices} />
-      <StartToday device={devices} />
-      <SayHey device={devices} /> */}
     </MainClientForInitial>
   );
 }

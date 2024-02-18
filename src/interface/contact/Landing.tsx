@@ -15,7 +15,7 @@ export default function Landing({ device }: DeviceType) {
     <section className="relative mx-auto flex h-auto w-full max-w-screen-max-size flex-col justify-between px-5 pt-[13vh] md:flex-row md:pt-[25vh]">
       {/* Left side */}
       <div className="relative order-2 flex h-full w-full flex-col transition-all duration-300 md:order-1 md:pr-[3vw]">
-        <h1 className="hidden flex-col text-[calc(clamp(3.25em,7vw,8em)*.875)] font-semibold leading-[1.065] text-black md:flex">
+        <h1 className="hidden flex-col text-[calc(clamp(3.25em,7vw,8em)*.875)] font-semibold leading-[1.065] text-almost-black md:flex">
           <span>Let&apos;s start a</span>
           <span>project together</span>
         </h1>
@@ -31,7 +31,7 @@ export default function Landing({ device }: DeviceType) {
             />
           )}
           {isMobile && (
-            <h1 className="flex flex-col pt-[7vh] text-[calc(clamp(2.7em,7vw,8em)*.875)] font-semibold leading-[1.065] text-black md:hidden">
+            <h1 className="flex flex-col pt-[7vh] text-[calc(clamp(2.7em,7vw,8em)*.875)] font-semibold leading-[1.065] text-almost-black md:hidden">
               <span className="flex items-center space-x-2.5">
                 <PhotoButton
                   className="h-[50px] w-[50px] rounded-full sm:h-[100px] sm:w-[100px]"

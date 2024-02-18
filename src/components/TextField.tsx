@@ -45,7 +45,7 @@ export default function TextField({
           onChange={onChange}
           required={required}
           placeholder={placeholder}
-          className="w-full bg-white pb-[1.75em] pt-[0.5em] text-[14px] font-bold leading-[0] text-black outline-none placeholder:font-medium placeholder:text-black/40 autofill:text-black xs:pb-[1.5em] xs:text-[clamp(18px,1.5vw,1.5em)] md:pb-[2.25em]"
+          className="w-full bg-white pb-[1.75em] pt-[0.5em] text-[14px] font-bold leading-[0] text-black outline-none selection:bg-hover-blue selection:text-white placeholder:select-none placeholder:font-medium placeholder:text-black/40 autofill:text-black xs:pb-[1.5em] xs:text-[clamp(18px,1.5vw,1.5em)] md:pb-[2.25em]"
         />
         {error && (
           <span className="error-alert-before relative ml-px -translate-y-[clamp(1.5em,2vw,2.5em)] leading-[1.1em]">

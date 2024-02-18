@@ -31,7 +31,7 @@ export default function NavBackground({
       animate="open"
       exit="closed"
       onClick={() => setIsActive(false)}
-      className="fixed right-0 top-0 z-[2] hidden h-screen w-full bg-gradient-to-l from-black/30 sm:block"
+      className="fixed right-0 top-0 z-[2] h-[100dvh] w-full bg-black/50 sm:bg-transparent sm:bg-gradient-to-l sm:from-black/30"
     />
   );
 }

@@ -227,9 +227,9 @@ export default function ContactForm({ device }: DeviceType) {
           name="submit_button"
           device={device}
           onClick={() => {}}
-          className="h-[clamp(9em,12vw,11em)] w-[clamp(9em,12vw,11em)] bg-button-blue"
+          className="h-[12em] w-[12em] bg-button-blue text-[12px] text-white xs:text-[13px] sm:h-[clamp(9em,12vw,11em)] sm:w-[clamp(9em,12vw,11em)] sm:text-base"
         >
-          <span className="z-[1]">Send it!</span>
+          <span>Send it!</span>
         </RoundedMagneticButton>
       </div>
     </form>

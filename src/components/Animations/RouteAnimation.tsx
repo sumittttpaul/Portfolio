@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { type Variants } from "framer-motion";
 
+const SMWidth = 640;
+
 const routes = (pathname: string) => {
   if (pathname === "/") return "Home" as string;
   if (pathname === "/work") return "Work" as string;
@@ -101,10 +103,10 @@ export default function RouteTransition({ children }: React.PropsWithChildren) {
     <div className="min-h-[calc(100vh-80px)] w-full bg-transparent p-0">
       <div
         style={{ opacity: dimensions.width == null ? 1 : 0 }}
-        className="page-transition-label-bg-transition pointer-events-none fixed left-0 top-0 z-[99] h-[calc(100vh+600px)] w-screen bg-medium-black"
+        className="page-transition-label-bg-transition bg-svg-black pointer-events-none fixed left-0 top-0 z-[999] h-[calc(100vh+600px)] w-screen"
       />
       <MotionP
-        className="fixed left-[50%] top-[47.5%] z-[101] flex -translate-x-[50%] items-center text-center text-[2em] text-white xs:text-[calc(clamp(3.25em,5vw,4.5em)*.75)]"
+        className="pointer-events-none fixed left-[50%] top-[47.5%] z-[1000] flex -translate-x-[50%] items-center text-center text-[2em] text-white xs:text-[calc(clamp(3.25em,5vw,4.5em)*.75)]"
         {...anim(text)}
       >
         <span className="mr-[10px] scale-[.8]">•</span>
@@ -112,10 +114,10 @@ export default function RouteTransition({ children }: React.PropsWithChildren) {
       </MotionP>
       {dimensions.width != null && (
         <SVG
-          fill="#202020"
+          fill="#141517"
           height={dimensions.height}
           width={dimensions.width}
-          className="pointer-events-none fixed left-0 top-0 z-[100] h-[calc(100vh+600px)] w-screen"
+          className="pointer-events-none fixed left-0 top-0 z-[999] h-[calc(100vh+600px)] w-screen"
         />
       )}
       {children}
@@ -136,16 +138,16 @@ const SVG = ({
 }) => {
   if (height !== null && width !== null) {
     const initialPath = `
-    M0 300 
-    Q${width / 2} 0 ${width} 300
+    M0 ${width < SMWidth ? 100 : 200} 
+    Q${width / 2} 0 ${width} ${width < SMWidth ? 100 : 200}
     L${width} ${height + 300}
-    Q${width / 2} ${height + 600} 0 ${height + 300}
+    Q${width / 2} ${width < SMWidth ? height + 400 : height + 600} 0 ${height + 300}
     L0 0
     `;
 
     const targetPath = `
-    M0 300
-    Q${width / 2} 0 ${width} 300
+    M0 ${width < SMWidth ? 100 : 300}
+    Q${width / 2} 0 ${width} ${width < SMWidth ? 100 : 300}
     L${width} ${height}
     Q${width / 2} ${height} 0 ${height}
     L0 0

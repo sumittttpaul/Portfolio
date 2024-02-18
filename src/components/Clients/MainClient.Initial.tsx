@@ -13,7 +13,10 @@ export default function MainClientForInitial({
 
   useEffect(() => {
     if (preloaderState.Visible) setHeight(`${window.innerHeight}px`);
-    else setHeight("auto");
+    else {
+      setHeight("auto");
+      window.scrollTo(0, 0);
+    }
   }, [preloaderState.Visible]);
 
   return (

@@ -36,11 +36,13 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="overflow-hidden">
-        {valuePath(pathname) && <FooterBefore />}
-        {isMobile && valuePath(pathname) && <FooterMobile />}
-        {isDesktop && valuePath(pathname) && <FooterDesktop device={device} />}
-      </footer>
+      {valuePath(pathname) && (
+        <footer className="overflow-hidden">
+          <FooterBefore />
+          {isMobile && <FooterMobile />}
+          {isDesktop && <FooterDesktop device={device} />}
+        </footer>
+      )}
       <AnimatePresence>
         {modalState.PhotoShow && <PhotoModal />}
       </AnimatePresence>

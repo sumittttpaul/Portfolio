@@ -32,12 +32,12 @@ export default function LetsConnect({ device }: DeviceType) {
     <>
       {isMobile && (
         <section className="relative h-auto w-full">
-          <h1 className="mx-auto mb-[3vw] flex flex-col px-5 text-[calc(clamp(3.25em,7vw,8em)*.875)] font-semibold leading-[1.065] text-black sm:max-w-[80vw] sm:px-10">
+          <h1 className="mx-auto mb-[3vw] flex flex-col px-5 text-[calc(clamp(3.25em,7vw,8em)*.875)] font-semibold leading-[1.065] text-almost-black sm:max-w-[80vw] sm:px-10">
             Creating next level digital products
           </h1>
         </section>
       )}
-      <section className="mx-auto flex h-full w-full max-w-screen-max-size px-5 pb-20 pt-5">
+      <section className="mx-auto flex h-full w-full max-w-screen-max-size px-5 pb-16 sm:pb-20 pt-5">
         <MotionDiv
           ref={ContainerRef}
           variants={slideUp}

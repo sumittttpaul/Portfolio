@@ -73,7 +73,7 @@ export default async function EmailTemplate({
           <Section className="mt-[0.5em] w-auto text-center">
             <Button
               href={WebsiteLink}
-              className="rounded-full border-[1.5px] border-solid border-white/30 bg-black no-underline"
+              className="rounded-full border-[1.5px] border-solid border-white/30 no-underline"
             >
               <Row>
                 <Column align="right" className="pb-[0.25px] pl-1 pr-2 pt-1">
@@ -192,7 +192,7 @@ const TextField = ({
 const SocialLink = ({ href, src }: { href: string; src: string }) => {
   return (
     <Column align="center" className="mr-2">
-      <Link href={href}>
+      <Link href={href} className="no-underline">
         <Img height={30} width={30} src={src} />
       </Link>
     </Column>

@@ -14,7 +14,7 @@ export default function FooterBefore() {
   return (
     <div ref={container} className="relative z-[1] flex flex-col bg-white">
       <MotionDiv style={{ height }} className="relative bg-white">
-        <div className="footer-shadow absolute -left-[10%] z-[1] h-[1550%] w-[120%] rounded-b-[50%] bg-white" />
+        <div className="sm:footer-shadow absolute -left-[10%] -top-[200%] z-[1] h-[400%] w-[120%] rounded-b-[50%] bg-white sm:top-0 sm:h-[1550%]" />
       </MotionDiv>
     </div>
   );
