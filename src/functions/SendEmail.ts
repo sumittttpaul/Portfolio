@@ -39,12 +39,10 @@ export default async function SendEmail(formData: FormData) {
       type: "Success",
     } as EmailResponseType);
   } catch (error) {
-    if (error instanceof Error) {
-      return JSON.stringify({
-        name: "Something went wrong",
-        message: error.message,
-        type: "Error",
-      } as EmailResponseType);
-    }
+    return JSON.stringify({
+      name: "Something went wrong",
+      message: "We kindly request that you attempt to resend the email.",
+      type: "Error",
+    } as EmailResponseType);
   }
 }
