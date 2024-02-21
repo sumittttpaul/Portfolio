@@ -4,28 +4,22 @@ import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useModalState } from "utils/Zustand";
 import { useEffect, useState } from "react";
-import FooterDesktop from "./FooterDesktop";
-import FooterBefore from "./FooterBefore";
-import FooterMobile from "./FooterMobile";
 import dynamic from "next/dynamic";
 
 const PhotoModal = dynamic(() => import("components/Photo/Modal"));
+const FooterDesktop = dynamic(() => import("./FooterDesktop"));
+const FooterMobile = dynamic(() => import("./FooterMobile"));
+const FooterBefore = dynamic(() => import("./FooterBefore"));
 
 export default function Footer() {
   const [device, setDevice] = useState<{
     isMobile?: boolean;
     isDesktop?: boolean;
   }>({ isMobile: undefined, isDesktop: undefined });
+  const [Routes, setRoutes] = useState<boolean>(false);
   const { isMobile, isDesktop } = device;
   const modalState = useModalState();
   const pathname = usePathname();
-
-  const valuePath = (route: string) => {
-    if (route === "/") return true;
-    if (route === "/work") return true;
-    if (route === "/about") return true;
-    else return false;
-  };
 
   useEffect(() => {
     setDevice({
@@ -34,9 +28,20 @@ export default function Footer() {
     });
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setRoutes(() => {
+        if (pathname === "/") return true;
+        if (pathname === "/work") return true;
+        if (pathname === "/about") return true;
+        else return false;
+      });
+    }, 1500); // 1000
+  }, [pathname]);
+
   return (
     <>
-      {valuePath(pathname) && (
+      {Routes && (
         <footer className="overflow-hidden">
           <FooterBefore />
           {isMobile && <FooterMobile />}

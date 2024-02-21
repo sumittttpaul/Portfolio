@@ -1,6 +1,3 @@
-import PhotoMotionButton from "components/Photo/MotionButton";
-import ChatResponse from "components/Chat/Response";
-import ChatBubble from "components/Chat/Bubble";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

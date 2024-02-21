@@ -2,6 +2,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import RouteTransitionWrapper from "utils/RouteTransitionWrapper";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import BodyClient from "components/Clients/BodyClient";
 import { MotionOptimize } from "utils/FramerMotion";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter, Pacifico } from "next/font/google";
@@ -12,7 +13,6 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import "styles/globals.css";
 import "styles/swiper.css";
-import BodyClient from "components/Clients/BodyClient";
 
 type RouteProps = {
   params?: Record<string, string>;
@@ -223,9 +223,7 @@ export default function RootLayout({ children }: Props) {
             <MotionOptimize>
               <CssBaseline />
               <Header />
-              <RouteTransitionWrapper>
-                {children}
-              </RouteTransitionWrapper>
+              <RouteTransitionWrapper>{children}</RouteTransitionWrapper>
               <Footer />
             </MotionOptimize>
           </ThemeProvider>

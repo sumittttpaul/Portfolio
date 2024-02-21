@@ -90,6 +90,7 @@ export default function ToastContent(props: ToastContentProps) {
       }}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
+      className="z-10"
     >
       <div
         className={`${props.Color} Toast-DropShadow flex h-full flex-col overflow-hidden rounded-xl border border-solid border-white/20 text-white md:max-w-[500px]`}
@@ -101,14 +102,14 @@ export default function ToastContent(props: ToastContentProps) {
               width={40}
               draggable={false}
               src={props.Icon}
-              alt=""
+              alt="toast_icon"
             />
           </div>
           <div className="flex w-full flex-col py-2">
-            <h5 className="text-[15px] font-[600] text-white">
+            <h5 className="text-[14px] font-[600] text-white sm:text-[15px]">
               {props.MessageTitle}
             </h5>
-            <h6 className="text-[13px] font-medium leading-4 text-white/[0.85]">
+            <h6 className="text-[12px] font-medium leading-4 text-white/[0.85] sm:text-[13px]">
               {props.MessageDescription}
             </h6>
           </div>

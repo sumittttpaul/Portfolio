@@ -6,9 +6,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import { ToastContentProps } from "./Content";
 import dynamic from "next/dynamic";
 
-const ToastContent = dynamic<ToastContentProps>(() => import("./Content"), {
-  ssr: false,
-});
+const ToastContent = dynamic<ToastContentProps>(() => import("./Content"));
 
 export default function Toast(props: ToastProps) {
   const SlideTransition = (prop: SlideProps) => {
