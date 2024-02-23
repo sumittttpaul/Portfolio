@@ -82,3 +82,5 @@ interface ToastProps {
 type WorkImagesType = "clothing" | "portfolio" | "emotion" | "authentication";
 
 type AboutOptionType = "Introduction" | "Education" | "Contact";
+
+type AboutBubbleAnimateType = "open" | "closed" | "nothing";

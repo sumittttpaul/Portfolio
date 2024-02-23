@@ -252,9 +252,9 @@ export default function ProjectLink({
         })}
       </div>
       <MotionDiv
+        initial="initial"
         ref={modalContainer}
         variants={scaleAnimation}
-        initial="initial"
         animate={active ? "enter" : "closed"}
         className="pointer-events-none fixed left-[50%] top-[50%] z-[1] h-[450px] w-[450px] overflow-hidden bg-white"
       >
@@ -273,8 +273,8 @@ export default function ProjectLink({
                 <Image
                   src={image}
                   width={imageWidth}
-                  height={imageHeight}
                   alt="project image"
+                  height={imageHeight}
                 />
               </div>
             );
@@ -304,9 +304,9 @@ export default function ProjectLink({
 const Project = ({
   index,
   title,
+  onClick,
   description,
   manageModal,
-  onClick,
 }: {
   index: number;
   title: string;

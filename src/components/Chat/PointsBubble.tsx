@@ -1,14 +1,14 @@
 import { Transition, Variants } from "framer-motion";
 import { MotionDiv } from "utils/FramerMotion";
 
-export default function SecondBubble({
+export default function PointsBubble({
   children,
   variants,
   transition,
 }: {
+  children: React.ReactNode;
   variants: Variants;
   transition: Transition;
-  children: React.ReactNode;
 }) {
   return (
     <MotionDiv

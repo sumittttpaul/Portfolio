@@ -16,16 +16,16 @@ export default function FirstBubble({
     <MotionDiv
       variants={variants}
       transition={transition}
-      className="flex w-full flex-col items-start lg:flex-row lg:items-end"
+      className="mb-1 flex w-full flex-col items-start lg:mb-1.5"
     >
       <Image
         width={38}
         height={18}
         alt="message_bubble"
         src={MessageBubbleTop}
-        className="order-2 rotate-180 scale-x-[-1] lg:order-1 lg:-rotate-90 lg:scale-x-[1]"
+        className="rotate-180 -scale-x-[1] -scale-y-[1] opacity-[.89]"
       />
-      <div className="order-1 rounded-r-[2em] rounded-tl-[2em] bg-almost-black px-5 py-4 sm:px-7 sm:py-6 lg:order-2 lg:-mb-2.5 lg:-ml-2.5 lg:rounded-r-[2.25em] lg:rounded-tl-[2.25em]">
+      <div className="rounded-r-[1.5em] rounded-bl-[1.5em] sm:rounded-r-[2em] sm:rounded-bl-[2em] bg-almost-black px-5 py-4 sm:px-7 sm:py-6">
         {children}
       </div>
     </MotionDiv>

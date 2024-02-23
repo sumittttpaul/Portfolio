@@ -16,7 +16,8 @@ export function Mobile({
       name={name}
       aria-label={name}
       onClick={onClick}
-      whileTap={{ scale: 0.9 }}
+      type="button"
+      whileTap={{ scale: active ? 1 : 0.9 }}
       style={{ overflow: "hidden" }}
       className={`${className} ${active ? "bg-almost-black" : "bg-transparent"} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none transition-colors duration-150 ease-in`}
     >
@@ -140,6 +141,7 @@ export function Desktop({
   return (
     <button
       name={name}
+      type="button"
       aria-label={name}
       onClick={onClick}
       ref={magneticParent}

@@ -12,22 +12,20 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useModalState } from "utils/Zustand";
 
-const LGWidth = 1024;
-const MaxWidth = 1410;
-
 type AnimationType = "moveLeft" | "opacity";
 
 export default function PhotoMotionButton({
   device,
   onAnimationComplete,
 }: { onAnimationComplete: () => void } & DeviceType) {
-  const [viewport, setViewport] = useState({ width: 0, height: 0 });
   const [Animation, setAnimation] = useState<AnimationType>();
   const [Delay, setDelay] = useState<boolean>(false);
   const { setPhotoShow } = useModalState();
   const { isMobile } = device;
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const mt = useMotionValue(0);
+  const ml = useMotionValue(0);
 
   const handleClick = () => setPhotoShow(true);
 
@@ -52,8 +50,6 @@ export default function PhotoMotionButton({
   const Variant: Variants = {
     initial: {
       opacity: 0,
-      marginTop: 0,
-      marginLeft: 0,
       height: isMobile ? 130 : 195,
       width: isMobile ? 130 : 195,
     },
@@ -62,8 +58,6 @@ export default function PhotoMotionButton({
     },
     moveLeft: {
       opacity: 1,
-      marginTop: viewport.width > LGWidth ? -40 : -6,
-      marginLeft: viewport.width > MaxWidth ? -44 : 0,
       height: isMobile ? 40 : 50,
       width: isMobile ? 40 : 50,
       x: 0,
@@ -73,12 +67,20 @@ export default function PhotoMotionButton({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      x.set(window.innerWidth / 3);
-      y.set(isMobile ? -window.innerHeight / 3 : -window.innerHeight / 3.5);
-      setViewport({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
+      x.set(
+        window.innerWidth > 1024
+          ? window.innerWidth / 3
+          : window.innerWidth > 400
+            ? window.innerWidth / 3.5
+            : window.innerWidth / 3.75,
+      );
+      y.set(
+        isMobile
+          ? window.innerWidth > 400
+            ? -window.innerHeight / 4 + 200
+            : -window.innerHeight / 4 + 150
+          : -window.innerHeight / 3.5 + 150,
+      );
       setAnimation("opacity");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,7 +90,7 @@ export default function PhotoMotionButton({
     <AnimatePresence mode="wait">
       <MotionButton
         type="button"
-        style={{ x, y }}
+        style={{ x, y, marginTop: mt, marginLeft: ml }}
         initial="initial"
         variants={Variant}
         animate={Animation}
@@ -98,7 +100,7 @@ export default function PhotoMotionButton({
         name="about_photo_motion_button"
         aria-label="about_photo_motion_button"
         onAnimationComplete={onAnimationCompleted}
-        className="relative z-[1] -mt-1.5 flex cursor-pointer rounded-full opacity-0 lg:-mt-10 screen-1410:-ml-11"
+        className="relative z-[1] flex cursor-pointer rounded-full opacity-0"
       >
         <Image
           priority

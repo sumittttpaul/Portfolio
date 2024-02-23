@@ -1,6 +1,5 @@
+import LazyLoadComponents from "interface/about/LazyLoadComponents";
 import MainClient from "components/Clients/MainClient";
-import Explanation from "interface/about/Explanation";
-import KnowMeChat from "interface/about/KnowMeChat";
 import Landing from "interface/about/Landing";
 import { Metadata } from "next";
 
@@ -15,8 +14,7 @@ export default function About({ searchParams }: SearchParamsType) {
   return (
     <MainClient device={devices}>
       <Landing device={devices} />
-      <KnowMeChat device={devices} />
-      <Explanation device={devices} />
+      <LazyLoadComponents device={devices} />
     </MainClient>
   );
 }
