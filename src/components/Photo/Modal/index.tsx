@@ -10,7 +10,14 @@ const Mobile = dynamic(() => import("./Mobile"));
 export default function PhotoModal({ device }: DeviceType) {
   const { isMobile, isDesktop } = device;
   const modalState = useModalState();
-  if (isMobile) return <Mobile />;
+
+  if (isMobile)
+    return (
+      <AnimatePresence mode="wait">
+        {modalState.PhotoShow && <Mobile />}
+      </AnimatePresence>
+    );
+
   if (isDesktop)
     return (
       <AnimatePresence mode="wait">
