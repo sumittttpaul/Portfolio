@@ -27,8 +27,8 @@ export default function MainClient({
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     document.documentElement.style.setProperty("--body-color", "#ffffff");
+    window.scrollTo(0, 0);
   }, []);
 
   return (

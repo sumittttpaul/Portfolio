@@ -93,7 +93,7 @@ export default function PreloaderAnimation() {
         height: dimension.height ? dimension.height : "100%",
         width: dimension.width ? dimension.width : "100%",
       }}
-      className="bg-svg-black fixed z-[1001] flex items-center justify-center sm:bg-white"
+      className="fixed z-[1001] flex items-center justify-center bg-svg-black sm:bg-white"
     >
       {dimension.width > 0 && (
         <>

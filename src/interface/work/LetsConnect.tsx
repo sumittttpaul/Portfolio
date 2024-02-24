@@ -37,7 +37,7 @@ export default function LetsConnect({ device }: DeviceType) {
           </h1>
         </section>
       )}
-      <section className="mx-auto flex h-full w-full max-w-screen-max-size px-5 pb-16 sm:pb-20 pt-5">
+      <section className="mx-auto flex h-full w-full max-w-screen-max-size px-5 pb-16 pt-5 sm:pb-20">
         <MotionDiv
           ref={ContainerRef}
           variants={slideUp}

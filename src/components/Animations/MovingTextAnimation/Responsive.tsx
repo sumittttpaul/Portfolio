@@ -1,8 +1,8 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePreloaderState } from "utils/Zustand";
+import { useLayoutEffect, useRef } from "react";
 import { MotionDiv } from "utils/FramerMotion";
 import { gsap } from "gsap/gsap-core";
 
@@ -23,7 +23,7 @@ export function Desktop() {
       transition: {
         duration: 0.6,
         ease: [0.33, 1, 0.68, 1],
-        delay: preloader.Visible ? 2.2 : 0.6,
+        delay: preloader.Visible ? 2.4 : 0.6,
       },
     },
   };

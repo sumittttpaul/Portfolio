@@ -25,7 +25,7 @@ export default function FirstBubble({
         src={MessageBubbleTop}
         className="rotate-180 -scale-x-[1] -scale-y-[1] opacity-[.89]"
       />
-      <div className="rounded-r-[1.5em] rounded-bl-[1.5em] sm:rounded-r-[2em] sm:rounded-bl-[2em] bg-almost-black px-5 py-4 sm:px-7 sm:py-6">
+      <div className="rounded-r-[1.5em] rounded-bl-[1.5em] bg-almost-black px-5 py-4 sm:rounded-r-[2em] sm:rounded-bl-[2em] sm:px-7 sm:py-6">
         {children}
       </div>
     </MotionDiv>

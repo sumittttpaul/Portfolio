@@ -1,6 +1,6 @@
 "use client";
 
-import { LazyMotion, domAnimation, m } from "framer-motion";
+import { LazyMotion, m } from "framer-motion";
 
 export const MotionP = m.p;
 export const MotionDiv = m.div;
@@ -13,7 +13,10 @@ export const MotionSpan = m.span;
 
 export function MotionOptimize({ children }: React.PropsWithChildren) {
   return (
-    <LazyMotion strict features={domAnimation}>
+    <LazyMotion
+      strict
+      features={async () => (await import("./Features")).default}
+    >
       {children}
     </LazyMotion>
   );
