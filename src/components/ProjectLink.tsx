@@ -256,7 +256,7 @@ export default function ProjectLink({
         ref={modalContainer}
         variants={scaleAnimation}
         animate={active ? "enter" : "closed"}
-        className="pointer-events-none fixed left-[50%] top-[50%] z-[1] h-[450px] w-[450px] overflow-hidden bg-white"
+        className="pointer-events-none fixed left-[50%] top-[50%] z-[2] h-[450px] w-[450px] overflow-hidden bg-white"
       >
         <div
           style={{ top: index * -100 + "%" }}
@@ -286,14 +286,14 @@ export default function ProjectLink({
         initial="initial"
         variants={scaleAnimation}
         animate={active ? "enter" : "closed"}
-        className="pointer-events-none fixed z-[1] flex h-[80px] w-[80px] rounded-full bg-hover-blue"
+        className="pointer-events-none fixed z-[2] flex h-[80px] w-[80px] rounded-full bg-hover-blue"
       />
       <MotionSpan
         initial="initial"
         ref={cursorLabel}
         variants={scaleAnimation}
         animate={active ? "enter" : "closed"}
-        className="pointer-events-none fixed z-[1] flex h-[80px] w-[80px] items-center justify-center rounded-full bg-transparent text-sm text-white"
+        className="pointer-events-none fixed z-[2] flex h-[80px] w-[80px] items-center justify-center rounded-full bg-transparent text-sm text-white"
       >
         View
       </MotionSpan>

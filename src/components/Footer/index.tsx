@@ -1,8 +1,6 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useModalState } from "utils/Zustand";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
@@ -18,7 +16,6 @@ export default function Footer() {
   }>({ isMobile: undefined, isDesktop: undefined });
   const [Routes, setRoutes] = useState<boolean>(false);
   const { isMobile, isDesktop } = device;
-  const modalState = useModalState();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -48,9 +45,7 @@ export default function Footer() {
           {isDesktop && <FooterDesktop device={device} />}
         </footer>
       )}
-      <AnimatePresence>
-        {modalState.PhotoShow && <PhotoModal />}
-      </AnimatePresence>
+      <PhotoModal device={device} />
     </>
   );
 }

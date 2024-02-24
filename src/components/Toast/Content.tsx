@@ -1,12 +1,12 @@
 "use client";
 
-import { XMarkIcon } from "@heroicons/react/24/solid";
-import { Snackbar } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
-import { useEffect, useRef } from "react";
-import { useAnimationControls } from "framer-motion";
-import Image from "next/image";
 import { MotionButton, MotionDiv } from "utils/FramerMotion";
+import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useAnimationControls } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { Snackbar } from "@mui/material";
+import Image from "next/image";
 
 export interface ToastContentProps {
   Open: boolean;
@@ -106,10 +106,10 @@ export default function ToastContent(props: ToastContentProps) {
             />
           </div>
           <div className="flex w-full flex-col py-2">
-            <h5 className="text-[14px] font-[600] text-white sm:text-[15px]">
+            <h5 className="text-[13px] font-[600] text-white xs:text-[14px] sm:text-[15px]">
               {props.MessageTitle}
             </h5>
-            <h6 className="text-[12px] font-medium leading-4 text-white/[0.85] sm:text-[13px]">
+            <h6 className="text-[11px] font-medium leading-4 text-white/[0.85] xs:text-[12px] sm:text-[13px]">
               {props.MessageDescription}
             </h6>
           </div>
@@ -124,14 +124,14 @@ export default function ToastContent(props: ToastContentProps) {
             </MotionButton>
           </div>
         </div>
-        <div ref={containerRef} className="flex w-full px-2 pb-2">
+        <div ref={containerRef} className="flex w-full px-2 pb-1.5 xs:pb-2">
           <MotionDiv
             ref={progressRef}
             onAnimationComplete={handleAnimationComplete}
             initial={{ width: "100%" }}
             animate={animate}
             transition={{ duration: props.HideDuration }}
-            className="h-[2px] w-full bg-white"
+            className="h-[1px] w-full bg-white sm:h-[2px]"
           />
         </div>
       </div>

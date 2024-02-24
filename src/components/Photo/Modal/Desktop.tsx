@@ -1,20 +1,20 @@
 "use client";
 
-import { UserIcon } from "@heroicons/react/24/outline";
+import Sumit_Photo from "../../../../public/images/sumit_photo.png";
 import { MotionDiv } from "utils/FramerMotion";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { UserIcon } from "@heroicons/react/24/outline";
 import { useModalState } from "utils/Zustand";
-import Sumit_Photo from "../../../public/images/sumit_photo.png";
 import Image from "next/image";
 
-export default function PhotoModal() {
-  const modalState = useModalState();
+export default function Desktop() {
+  const { setPhotoShow } = useModalState();
   return (
     <MotionDiv
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={() => modalState.setPhotoShow(false)}
+      onClick={() => setPhotoShow(false)}
       className="fixed inset-0 z-50 grid h-full w-full place-items-center overflow-y-scroll bg-black/75 p-5 backdrop-blur sm:p-8"
     >
       <MotionDiv
@@ -51,7 +51,7 @@ export default function PhotoModal() {
           </div>
           <button
             name="sumit_photo_exit_modal_button"
-            onClick={() => modalState.setPhotoShow(false)}
+            onClick={() => setPhotoShow(false)}
             className="absolute right-0 top-0 m-2 -mr-3 -mt-3 flex h-auto w-auto cursor-default place-content-center rounded-full p-3 outline-none transition-colors duration-300 ease-in-out hover:bg-white/20"
           >
             <XMarkIcon className="h-[25px] w-[25px] text-white sm:h-[30px] sm:w-[30px] sm:stroke-[1]" />

@@ -2,10 +2,11 @@
 
 import RoundedMagneticButton from "./Magnetic/RoundedMagneticButton";
 import { FormEvent, useCallback, useState } from "react";
+import SendEmail from "functions/SendEmail";
+import { ToastHook } from "utils/Zustand";
 import TextField from "./TextField";
 import TextArea from "./TextArea";
-import { ToastHook } from "utils/Zustand";
-import SendEmail from "functions/SendEmail";
+import { CircularProgress } from "@mui/material";
 
 type ChangeEventType =
   | React.ChangeEvent<HTMLInputElement>
@@ -220,7 +221,9 @@ export default function ContactForm({ device }: DeviceType) {
       <span className="mt-[6.5em] flex h-px w-full bg-black/20" />
       <div className="relative -mt-[calc(clamp(9em,12vw,11em)*0.5)] flex w-full justify-end pr-[clamp(2em,5vw,10em)]">
         {DisabledSubmit && (
-          <div className="absolute z-[1] h-full w-full bg-white/20" />
+          <div className="absolute z-[2] flex h-[145px] w-[145px] items-center justify-center rounded-full bg-hover-blue sm:h-[clamp(9em,12vw,11em)] sm:w-[clamp(9em,12vw,11em)]">
+            <CircularProgress className="max-h-7 max-w-7 text-white sm:max-h-8 sm:max-w-8" />
+          </div>
         )}
         <RoundedMagneticButton
           type="submit"
