@@ -12,8 +12,9 @@ export default function HomeLandingClient({
   children?: React.ReactNode;
   className?: string;
 } & DeviceType) {
+  const { Visible, Start } = usePreloaderState();
   const { isMobile } = device;
-  const preloader = usePreloaderState();
+
   const slideUp = {
     initial: {
       y: isMobile ? 125 : 300,
@@ -23,7 +24,7 @@ export default function HomeLandingClient({
       transition: {
         duration: 0.6,
         ease: [0.33, 1, 0.68, 1],
-        delay: preloader.Visible ? 2.35 : 0.6,
+        delay: Visible ? 0 : 0.6,
       },
     },
   };
@@ -37,11 +38,15 @@ export default function HomeLandingClient({
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    console.log(Start);
+  }, [Start]);
+
   return (
     <MotionSection
       variants={slideUp}
       initial="initial"
-      animate="enter"
+      animate={Start ? "enter" : ""}
       className={className}
     >
       {children}

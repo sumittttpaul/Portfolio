@@ -118,7 +118,7 @@ export default function ToastContent(props: ToastContentProps) {
               name="toast_exit_button"
               onClick={props.onClose}
               whileTap={{ scale: 0.9 }}
-              className="m-0 cursor-default rounded-full bg-transparent p-2.5 hover:bg-white/10"
+              className="m-0 cursor-default rounded-full bg-transparent p-2.5 transition-colors duration-300 ease-in-out hover:bg-white/20"
             >
               <XMarkIcon className="h-5 w-5 text-white" />
             </MotionButton>

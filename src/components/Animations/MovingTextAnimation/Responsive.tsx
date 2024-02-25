@@ -7,7 +7,7 @@ import { MotionDiv } from "utils/FramerMotion";
 import { gsap } from "gsap/gsap-core";
 
 export function Desktop() {
-  const preloader = usePreloaderState();
+  const { Visible, Start } = usePreloaderState();
   const firstText = useRef(null);
   const secondText = useRef(null);
   const slider = useRef(null);
@@ -23,7 +23,7 @@ export function Desktop() {
       transition: {
         duration: 0.6,
         ease: [0.33, 1, 0.68, 1],
-        delay: preloader.Visible ? 2.4 : 0.6,
+        delay: Visible ? 0.1 : 0.6,
       },
     },
   };
@@ -60,7 +60,7 @@ export function Desktop() {
     <MotionDiv
       variants={slideUp}
       initial="initial"
-      animate="enter"
+      animate={Start ? "enter" : ""}
       className="z-[1] block sm:absolute sm:bottom-[calc(var(--big-name-bottom,1vh)*33)] sm:pb-[calc(var(--big-name-padding)*1.4)] md:bottom-[15vh] xl:bottom-[12vh]"
     >
       <div ref={slider} className="relative whitespace-nowrap">
@@ -82,7 +82,8 @@ export function Desktop() {
 }
 
 export function Mobile() {
-  const preloader = usePreloaderState();
+  const { Visible, Start } = usePreloaderState();
+
   const slideUp = {
     initial: {
       y: 300,
@@ -92,7 +93,7 @@ export function Mobile() {
       transition: {
         duration: 0.6,
         ease: [0.33, 1, 0.68, 1],
-        delay: preloader.Visible ? 2.3 : 0.6,
+        delay: Visible ? 0 : 0.6,
       },
     },
   };
@@ -101,7 +102,7 @@ export function Mobile() {
     <MotionDiv
       variants={slideUp}
       initial="initial"
-      animate="enter"
+      animate={Start ? "enter" : ""}
       className="z-[1] block sm:absolute sm:bottom-[calc(var(--big-name-bottom,1vh)*33)] sm:pb-[calc(var(--big-name-padding)*1.4)] md:bottom-[15vh] xl:bottom-[12vh]"
     >
       <div className="big-name-move-animation relative whitespace-nowrap">

@@ -12,6 +12,7 @@ export default function TextField({
   errorLabel,
   required,
   onkeyUp,
+  onkeyDown,
   onFocus,
   onBlur,
 }: {
@@ -29,6 +30,7 @@ export default function TextField({
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onkeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onkeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
@@ -53,6 +55,7 @@ export default function TextField({
           onKeyUp={onkeyUp}
           onFocus={onFocus}
           onBlur={onBlur}
+          onKeyDown={onkeyDown}
           autoComplete="false"
           aria-autocomplete="none"
           placeholder={placeholder}

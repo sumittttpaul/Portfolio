@@ -40,7 +40,7 @@ const slideUp = {
 
 export default function PreloaderAnimation() {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
-  const preloaderState = usePreloaderState();
+  const { toggleVisible, toggleStart } = usePreloaderState();
   const [index, setIndex] = useState(0);
 
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${
@@ -63,8 +63,6 @@ export default function PreloaderAnimation() {
     },
   };
 
-  const handleAnimationComplete = () => preloaderState.toggleVisible();
-
   useEffect(() => {
     setDimension({
       width: window.innerWidth,
@@ -85,22 +83,23 @@ export default function PreloaderAnimation() {
 
   return (
     <MotionDiv
-      variants={slideUp}
-      initial="initial"
       exit="exit"
-      onAnimationComplete={handleAnimationComplete}
+      initial="initial"
+      variants={slideUp}
+      onAnimationStart={() => setTimeout(() => toggleStart(), 650)}
+      onAnimationComplete={() => toggleVisible()}
       style={{
-        height: dimension.height ? dimension.height : "100%",
         width: dimension.width ? dimension.width : "100%",
+        height: dimension.height ? dimension.height : "100%",
       }}
       className="fixed z-[1001] flex items-center justify-center bg-svg-black sm:bg-white"
     >
       {dimension.width > 0 && (
         <>
           <MotionP
-            variants={opacity}
-            initial="initial"
             animate="enter"
+            initial="initial"
+            variants={opacity}
             className="absolute z-[1] flex items-center text-center text-[2em] text-white xs:text-[calc(clamp(3.25em,5vw,4.5em)*.75)] sm:text-medium-black"
           >
             <span className="mr-[10px] scale-[.7] sm:scale-[.8]">•</span>
@@ -110,9 +109,9 @@ export default function PreloaderAnimation() {
           </MotionP>
           <svg className="absolute top-0 h-[calc(100%+100px)] w-full sm:h-[calc(100%+300px)] ">
             <MotionPath
-              variants={curve}
-              initial="initial"
               exit="exit"
+              initial="initial"
+              variants={curve}
               className="fill-svg-black sm:fill-white"
             />
           </svg>

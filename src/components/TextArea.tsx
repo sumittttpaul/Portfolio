@@ -8,6 +8,7 @@ export default function TextArea({
   placeholder,
   labelOpacity,
   onkeyUp,
+  onkeyDown,
   onFocus,
   onBlur,
 }: {
@@ -21,6 +22,7 @@ export default function TextArea({
   onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
   onkeyUp?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  onkeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }) {
   return (
@@ -42,6 +44,7 @@ export default function TextArea({
           name={name}
           value={value}
           onKeyUp={onkeyUp}
+          onKeyDown={onkeyDown}
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}

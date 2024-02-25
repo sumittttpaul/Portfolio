@@ -3,12 +3,16 @@ import { create } from "zustand";
 
 interface PreloaderState {
   Visible: boolean;
+  Start: boolean;
   toggleVisible: () => void;
+  toggleStart: () => void;
 }
 
 export const usePreloaderState = create<PreloaderState>()((set) => ({
   Visible: true, // default value : true
+  Start: false, // default value : false
   toggleVisible: () => set((value) => ({ Visible: !value.Visible })),
+  toggleStart: () => set((value) => ({ Start: !value.Start })),
 }));
 
 interface ModalState {

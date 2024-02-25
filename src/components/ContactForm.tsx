@@ -125,7 +125,6 @@ export default function ContactForm({ device }: DeviceType) {
         });
       }
     }
-    if (BackspaceKey(e, Details.email)) NameField?.focus();
   };
   const handleCompanyKeyUp = (e: KeyboardEventType) => {
     if (EnterKey(e)) {
@@ -135,7 +134,6 @@ export default function ContactForm({ device }: DeviceType) {
       });
       ServiceField?.focus();
     }
-    if (BackspaceKey(e, Details.company)) EmailField?.focus();
   };
   const handleServiceKeyUp = (e: KeyboardEventType) => {
     if (EnterKey(e)) {
@@ -150,7 +148,6 @@ export default function ContactForm({ device }: DeviceType) {
         });
       }
     }
-    if (BackspaceKey(e, Details.service)) CompanyField?.focus();
   };
   const handleDescriptionKeyUp = (e: KeyboardEventType) => {
     if (EnterKey(e)) {
@@ -159,6 +156,18 @@ export default function ContactForm({ device }: DeviceType) {
         else return prev;
       });
     }
+  };
+
+  const handleEmailKeyDown = (e: KeyboardEventType) => {
+    if (BackspaceKey(e, Details.email)) NameField?.focus();
+  };
+  const handleCompanyKeyDown = (e: KeyboardEventType) => {
+    if (BackspaceKey(e, Details.company)) EmailField?.focus();
+  };
+  const handleServiceKeyDown = (e: KeyboardEventType) => {
+    if (BackspaceKey(e, Details.service)) CompanyField?.focus();
+  };
+  const handleDescriptionKeyDown = (e: KeyboardEventType) => {
     if (BackspaceKey(e, Details.description)) ServiceField?.focus();
   };
 
@@ -212,7 +221,6 @@ export default function ContactForm({ device }: DeviceType) {
   const handleEmail = useCallback(async (data: FormData) => {
     const response = await SendEmail(data);
     if (response) {
-      console.log(response);
       const data = JSON.parse(response) as EmailResponseType;
       setToastValue({
         Show: true,
@@ -292,6 +300,7 @@ export default function ContactForm({ device }: DeviceType) {
         value={Details.email}
         onChange={handleDetails}
         onkeyUp={handleEmailKeyUp}
+        onkeyDown={handleEmailKeyDown}
         error={DetailsError.email}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
@@ -308,6 +317,7 @@ export default function ContactForm({ device }: DeviceType) {
         value={Details.company}
         onChange={handleDetails}
         onkeyUp={handleCompanyKeyUp}
+        onkeyDown={handleCompanyKeyDown}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         labelOpacity={handleLabelOpacity(Details.company)}
@@ -324,6 +334,7 @@ export default function ContactForm({ device }: DeviceType) {
         value={Details.service}
         onChange={handleDetails}
         onkeyUp={handleServiceKeyUp}
+        onkeyDown={handleServiceKeyDown}
         error={DetailsError.service}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
@@ -339,6 +350,7 @@ export default function ContactForm({ device }: DeviceType) {
         onChange={handleDetails}
         value={Details.description}
         onkeyUp={handleDescriptionKeyUp}
+        onkeyDown={handleDescriptionKeyDown}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         labelOpacity={handleLabelOpacity(Details.description)}

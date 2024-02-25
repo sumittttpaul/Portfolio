@@ -39,9 +39,17 @@ export default async function EmailTemplate({
   description,
 }: DetailsType) {
   return (
-    <Html>
+    <Html lang="en">
       <Tailwind>
-        <Head />
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="color-scheme" content="dark" />
+          <title>Sumeet Kumar Paul • Freelance Web Developer</title>
+          <meta
+            name="description"
+            content="Helping brands thrive in the digital world. Delivering tailor-made digital designs and building interactive websites from scratch."
+          />
+        </Head>
         <Preview>Thank You for Responding!</Preview>
         <Body className="mx-auto my-auto max-w-[700px] bg-black p-5 text-center font-sans sm:rounded-3xl sm:border sm:border-solid sm:border-white/30 sm:p-10">
           <Section className="w-auto text-center">
@@ -182,7 +190,7 @@ const TextField = ({
       </Row>
       <Container className="w-full text-start">
         <Text className="ml-14 mt-0 text-[14px] font-medium leading-[1.5] text-white sm:-mt-3 sm:ml-[75px] sm:text-[20px]">
-          {answer}
+          {answer ?? "-"}
         </Text>
       </Container>
     </Container>
