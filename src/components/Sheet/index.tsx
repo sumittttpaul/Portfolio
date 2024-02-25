@@ -14,18 +14,25 @@ import {
   MotionValue,
 } from "framer-motion";
 
-export const DRAG_CLOSE_THRESHOLD = 0.6;
 export const DRAG_VELOCITY_THRESHOLD = 500;
+export const DRAG_CLOSE_THRESHOLD = 0.6;
 
 const transition: Transition = {
   type: "tween",
-  ease: [0.76, 0, 0.24, 1],
   duration: 0.8,
+  ease: [0.76, 0, 0.24, 1],
 };
 
 type SheetType = {
   onClose: () => void;
   children: ReactNode;
+};
+
+type OpacityProps = {
+  exit: { opacity: number };
+  animate: { opacity: number };
+  initial: { opacity: number };
+  transition: Transition;
 };
 
 type SheetProps = {
@@ -109,6 +116,13 @@ export default function Sheet({ children, onClose }: SheetType) {
     onDragEnd,
   };
 
+  const opacityProps: OpacityProps = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+    transition,
+  };
+
   useEffect(() => {
     const handleResize = () =>
       window.innerWidth > 640
@@ -138,19 +152,17 @@ export default function Sheet({ children, onClose }: SheetType) {
             style={{ transform: indicator2Transform }}
           />
         </div>
-        <div
+        <MotionDiv
+          {...opacityProps}
           style={{ height: ChildHeight }}
           className="relative w-full px-5 pb-5 sm:px-6 sm:pb-6"
         >
           {children}
-        </div>
+        </MotionDiv>
       </MotionDiv>
       <MotionDiv
         onClick={onClose}
-        exit={{ opacity: 0 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={transition}
+        {...opacityProps}
         className="absolute h-full w-full bg-black/75 backdrop-blur"
       />
     </div>

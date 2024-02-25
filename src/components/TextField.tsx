@@ -11,6 +11,9 @@ export default function TextField({
   error,
   errorLabel,
   required,
+  onkeyUp,
+  onFocus,
+  onBlur,
 }: {
   name: string;
   id?: string;
@@ -23,6 +26,9 @@ export default function TextField({
   errorLabel?: string;
   placeholder: string;
   labelOpacity: number;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onkeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
@@ -44,6 +50,11 @@ export default function TextField({
           value={value}
           onChange={onChange}
           required={required}
+          onKeyUp={onkeyUp}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          autoComplete="false"
+          aria-autocomplete="none"
           placeholder={placeholder}
           className="w-full bg-white pb-[1.75em] pt-[0.5em] text-[14px] font-bold leading-[0] text-black outline-none selection:bg-hover-blue selection:text-white placeholder:select-none placeholder:font-medium placeholder:text-black/40 autofill:text-black xs:pb-[1.5em] xs:text-[clamp(18px,1.5vw,1.5em)] md:pb-[2.25em]"
         />

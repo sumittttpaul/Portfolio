@@ -1,16 +1,31 @@
 "use client";
 
 import RoundedMagneticButton from "./Magnetic/RoundedMagneticButton";
-import { FormEvent, useCallback, useState } from "react";
+import { CircularProgress } from "@mui/material";
 import SendEmail from "functions/SendEmail";
 import { ToastHook } from "utils/Zustand";
 import TextField from "./TextField";
 import TextArea from "./TextArea";
-import { CircularProgress } from "@mui/material";
+import {
+  useState,
+  FormEvent,
+  ChangeEvent,
+  useCallback,
+  KeyboardEvent,
+  FocusEvent,
+} from "react";
 
 type ChangeEventType =
-  | React.ChangeEvent<HTMLInputElement>
-  | React.ChangeEvent<HTMLTextAreaElement>;
+  | ChangeEvent<HTMLInputElement>
+  | ChangeEvent<HTMLTextAreaElement>;
+
+type KeyboardEventType =
+  | KeyboardEvent<HTMLInputElement>
+  | KeyboardEvent<HTMLTextAreaElement>;
+
+type FocusEventType =
+  | FocusEvent<HTMLInputElement>
+  | FocusEvent<HTMLTextAreaElement>;
 
 const ChangeOpacity = 0.4;
 const InitialOpacity = 1;
@@ -44,6 +59,8 @@ export default function ContactForm({ device }: DeviceType) {
 
   const [DisabledSubmit, setDisabledSubmit] = useState(false);
 
+  const [isKeyUp, setIsKeyUp] = useState(false);
+
   const { setToastValue } = ToastHook();
 
   const { isMobile, isDesktop } = device;
@@ -54,6 +71,21 @@ export default function ContactForm({ device }: DeviceType) {
     Details.email.length > 2 &&
     Details.email.toLowerCase().match(emailExpression);
 
+  const getElement = (id: string) => {
+    if (typeof window !== "undefined") return document.getElementById(id);
+    else return null;
+  };
+
+  const EnterKey = (e: KeyboardEventType) => e.key === "Enter";
+  const BackspaceKey = (e: KeyboardEventType, name: string) =>
+    e.key === "Backspace" && name.length < 1;
+
+  const NameField = getElement("contact-textfield-name");
+  const EmailField = getElement("contact-textfield-email");
+  const ServiceField = getElement("contact-textfield-service");
+  const CompanyField = getElement("contact-textfield-company");
+  const DescriptionField = getElement("contact-textfield-description");
+
   const handleDetails = (e: ChangeEventType) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -63,6 +95,83 @@ export default function ContactForm({ device }: DeviceType) {
     setDetailsError((prev) => {
       if (value.length > 2) return { ...prev, [name]: false };
       else return { ...prev };
+    });
+  };
+
+  const handleNameKeyUp = (e: KeyboardEventType) => {
+    if (EnterKey(e)) {
+      setIsKeyUp((prev) => {
+        if (!prev) return true;
+        else return prev;
+      });
+      if (validName) EmailField?.focus();
+      else {
+        setDetailsError((prev) => {
+          return { ...prev, name: true };
+        });
+      }
+    }
+  };
+  const handleEmailKeyUp = (e: KeyboardEventType) => {
+    if (EnterKey(e)) {
+      setIsKeyUp((prev) => {
+        if (!prev) return true;
+        else return prev;
+      });
+      if (validEmail) CompanyField?.focus();
+      else {
+        setDetailsError((prev) => {
+          return { ...prev, email: true };
+        });
+      }
+    }
+    if (BackspaceKey(e, Details.email)) NameField?.focus();
+  };
+  const handleCompanyKeyUp = (e: KeyboardEventType) => {
+    if (EnterKey(e)) {
+      setIsKeyUp((prev) => {
+        if (!prev) return true;
+        else return prev;
+      });
+      ServiceField?.focus();
+    }
+    if (BackspaceKey(e, Details.company)) EmailField?.focus();
+  };
+  const handleServiceKeyUp = (e: KeyboardEventType) => {
+    if (EnterKey(e)) {
+      setIsKeyUp((prev) => {
+        if (!prev) return true;
+        else return prev;
+      });
+      if (validService) DescriptionField?.focus();
+      else {
+        setDetailsError((prev) => {
+          return { ...prev, service: true };
+        });
+      }
+    }
+    if (BackspaceKey(e, Details.service)) CompanyField?.focus();
+  };
+  const handleDescriptionKeyUp = (e: KeyboardEventType) => {
+    if (EnterKey(e)) {
+      setIsKeyUp((prev) => {
+        if (prev) return false;
+        else return prev;
+      });
+    }
+    if (BackspaceKey(e, Details.description)) ServiceField?.focus();
+  };
+
+  const handleOnFocus = (e: FocusEventType) => {
+    setIsKeyUp((prev) => {
+      if (!prev) return true;
+      else return prev;
+    });
+  };
+  const handleOnBlur = (e: FocusEventType) => {
+    setIsKeyUp((prev) => {
+      if (prev) return false;
+      else return prev;
     });
   };
 
@@ -90,9 +199,6 @@ export default function ContactForm({ device }: DeviceType) {
 
   const handleFocus = () => {
     if (isMobile) {
-      const NameField = document.getElementById("contact-textfield-name");
-      const EmailField = document.getElementById("contact-textfield-email");
-      const ServiceField = document.getElementById("contact-textfield-service");
       if (!validName) {
         NameField?.focus();
       } else if (!validEmail) {
@@ -130,26 +236,28 @@ export default function ContactForm({ device }: DeviceType) {
     e.preventDefault();
     const { name, email, company, service, description } = Details;
 
-    if (!validName || !validEmail || !validService) {
-      handleError();
-      handleFocus();
-      if (isDesktop) {
-        window.scrollTo({
-          top: 760,
-          behavior: "smooth",
-        });
+    if (!isKeyUp) {
+      if (!validName || !validEmail || !validService) {
+        handleError();
+        handleFocus();
+        if (isDesktop) {
+          window.scrollTo({
+            top: 760,
+            behavior: "smooth",
+          });
+        }
+      } else if (validEmail && validEmail && validService) {
+        setDisabledSubmit(true);
+        handleEmail(
+          objectToFormData({
+            name: name,
+            email: email,
+            company: company,
+            service: service,
+            description: description,
+          }),
+        );
       }
-    } else if (validEmail && validEmail && validService) {
-      setDisabledSubmit(true);
-      handleEmail(
-        objectToFormData({
-          name: name,
-          email: email,
-          company: company,
-          service: service,
-          description: description,
-        }),
-      );
     }
   };
 
@@ -157,30 +265,36 @@ export default function ContactForm({ device }: DeviceType) {
     <form onSubmit={handleSubmit}>
       <span className="mt-[5em] flex h-px w-full bg-black/20 md:mt-[16em]" />
       <TextField
-        id="contact-textfield-name"
         index="01"
         name="name"
         type="text"
         label="What's your name?"
+        id="contact-textfield-name"
         placeholder="Sumeet Kumar Paul *"
         errorLabel="Please enter a valid name"
         value={Details.name}
         onChange={handleDetails}
+        onkeyUp={handleNameKeyUp}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         error={DetailsError.name}
         labelOpacity={handleLabelOpacity(Details.name)}
       />
       <span className="flex h-px w-full bg-black/20" />
       <TextField
-        id="contact-textfield-email"
         index="02"
         name="email"
         type="text"
         label="What's your email?"
+        id="contact-textfield-email"
         placeholder="sumitpaul.work@gmail.com *"
         errorLabel="Please enter a valid email address"
         value={Details.email}
         onChange={handleDetails}
+        onkeyUp={handleEmailKeyUp}
         error={DetailsError.email}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         labelOpacity={handleLabelOpacity(Details.email)}
       />
       <span className="flex h-px w-full bg-black/20" />
@@ -188,24 +302,31 @@ export default function ContactForm({ device }: DeviceType) {
         index="03"
         type="text"
         name="company"
+        id="contact-textfield-company"
         placeholder="Emotion Corporation"
         label="What's the name of your organization?"
         value={Details.company}
         onChange={handleDetails}
+        onkeyUp={handleCompanyKeyUp}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         labelOpacity={handleLabelOpacity(Details.company)}
       />
       <span className="flex h-px w-full bg-black/20" />
       <TextField
-        id="contact-textfield-service"
         index="04"
         type="text"
         name="service"
+        id="contact-textfield-service"
         placeholder="Web Development, ... *"
         errorLabel="Please enter a valid service"
         label="What services are you looking for?"
         value={Details.service}
         onChange={handleDetails}
+        onkeyUp={handleServiceKeyUp}
         error={DetailsError.service}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         labelOpacity={handleLabelOpacity(Details.service)}
       />
       <span className="flex h-px w-full bg-black/20" />
@@ -213,9 +334,13 @@ export default function ContactForm({ device }: DeviceType) {
         index="05"
         name="description"
         label="Your message"
+        id="contact-textfield-description"
         placeholder="Hello Sumeet, can you help me with ..."
         onChange={handleDetails}
         value={Details.description}
+        onkeyUp={handleDescriptionKeyUp}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         labelOpacity={handleLabelOpacity(Details.description)}
       />
       <span className="mt-[6.5em] flex h-px w-full bg-black/20" />

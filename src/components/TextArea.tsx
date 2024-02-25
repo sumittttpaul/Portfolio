@@ -1,4 +1,5 @@
 export default function TextArea({
+  id,
   name,
   index,
   label,
@@ -6,13 +7,20 @@ export default function TextArea({
   onChange,
   placeholder,
   labelOpacity,
+  onkeyUp,
+  onFocus,
+  onBlur,
 }: {
+  id?: string;
   name: string;
   index: string;
   label: string;
   value: string;
   placeholder: string;
   labelOpacity: number;
+  onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onkeyUp?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }) {
   return (
@@ -28,11 +36,17 @@ export default function TextArea({
           {label}
         </label>
         <textarea
+          id={id}
           rows={5}
           cols={57}
           name={name}
           value={value}
+          onKeyUp={onkeyUp}
           onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          autoComplete="false"
+          aria-autocomplete="none"
           placeholder={placeholder}
           className="scrollbar-visible w-full resize-none bg-white pb-0 pt-[0.3em] text-[14px] font-bold leading-[1.6] text-black outline-none placeholder:select-none placeholder:font-medium placeholder:text-black/40 xs:text-[clamp(18px,1.5vw,1.5em)]"
         />
