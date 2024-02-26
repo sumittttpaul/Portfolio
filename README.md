@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Hello, I am Sumeet Kumar Paul and here is my portfolio, so let's get started.
 
 ## Getting Started
 
-First, run the development server:
+These portfolio contains three sections :-
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Naming
+2. Social Handles
+3. About Me
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Components Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+These are all the components with files extensions :-
+You can find these files in components folder.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+1. About.Short.tsx
+2. Badge.tsx
+3. Card.tsx
+4. Causes.tsx
+5. ClientDiv.tsx
+6. Header.tsx
+7. Loader.tsx
+8. Mascot.tsx
+9. Name.tsx
+10. Preference.tsx
+11. Skills.tsx
+12. Spotlight.tsx
+13. StarBackground.tsx
+14. Talks.tsx
+15. TextArrayAnimation.tsx
+16. TextTypeAnimation.tsx
+16. UserButton.tsx
+17. About.tsx
+```
 
-## Learn More
+## Libraries Used
 
-To learn more about Next.js, take a look at the following resources:
+These are all the libraries that has been used to build this project :-
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+1. Framer Motion
+2. Next Useragent
+3. Spring
+4. Three
+5. Vercel Analytics
+6. Type Animation
+7. Zustand
+8. Sharp
+9. Tailwindcss
+10. cssnano
+11. AnimeJs
+12. Headlessui
+13. Heroicons
+14. Dev - PostCss, Prettier, Eslint, Typescript, React, Next
+```

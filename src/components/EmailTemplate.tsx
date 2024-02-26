@@ -16,20 +16,9 @@ import {
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
 
-const WebsiteLink = "https://sumitttpaul.vercel.app";
-
-const SumitPhoto = `${WebsiteLink}/images/sumit_small_photo.png`;
-const Facebook = `${WebsiteLink}/images/socials/facebook_round_small_white.png`;
-const Twitter = `${WebsiteLink}/images/socials/twitter_round_small_white.png`;
-const Thread = `${WebsiteLink}/images/socials/thread_round_small_white.png`;
-const Linkedin = `${WebsiteLink}/images/socials/linkedin_round_small_white.png`;
-const Instagram = `${WebsiteLink}/images/socials/instagram_round_small_white.png`;
-
-const FacebookLink = "https://www.facebook.com/sumitttpaul";
-const TwitterLink = "https://twitter.com/sumitttkp16";
-const ThreadLink = "https://www.threads.net/@_sumitttpaul";
-const LinkedinLink = "https://www.linkedin.com/in/sumitttpaul/";
-const InstagramLink = "https://www.instagram.com/_sumitttpaul";
+const WebsiteLink = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "";
 
 export default async function EmailTemplate({
   name,
@@ -86,7 +75,7 @@ export default async function EmailTemplate({
               <Row>
                 <Column align="right" className="pb-[0.25px] pl-1 pr-2 pt-1">
                   <Img
-                    src={SumitPhoto}
+                    src={`${WebsiteLink}/images/sumit_small_photo.png`}
                     className="rounded-full"
                     height={32}
                     width={32}
@@ -141,11 +130,26 @@ export default async function EmailTemplate({
           </Section>
           <Section className="mx-auto mt-[1em] w-full max-w-[250px] sm:max-w-[300px]">
             <Row>
-              <SocialLink href={FacebookLink} src={Facebook} />
-              <SocialLink href={InstagramLink} src={Instagram} />
-              <SocialLink href={LinkedinLink} src={Linkedin} />
-              <SocialLink href={TwitterLink} src={Twitter} />
-              <SocialLink href={ThreadLink} src={Thread} />
+              <SocialLink
+                href="https://www.facebook.com/sumitttpaul"
+                src={`${WebsiteLink}/images/socials/facebook_round_small_white.png`}
+              />
+              <SocialLink
+                href="https://www.instagram.com/_sumitttpaul"
+                src={`${WebsiteLink}/images/socials/instagram_round_small_white.png`}
+              />
+              <SocialLink
+                href="https://www.linkedin.com/in/sumitttpaul/"
+                src={`${WebsiteLink}/images/socials/linkedin_round_small_white.png`}
+              />
+              <SocialLink
+                href="https://twitter.com/sumitttkp16"
+                src={`${WebsiteLink}/images/socials/twitter_round_small_white.png`}
+              />
+              <SocialLink
+                href="https://www.threads.net/@_sumitttpaul"
+                src={`${WebsiteLink}/images/socials/thread_round_small_white.png`}
+              />
             </Row>
           </Section>
           <Section className="text-center">
