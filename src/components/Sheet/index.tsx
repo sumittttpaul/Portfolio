@@ -1,17 +1,17 @@
 "use client";
 
-import { ReactNode, useEffect, useRef, useState } from "react";
 import { MotionDiv, MotionSpan } from "utils/FramerMotion";
+import { ReactNode, useRef } from "react";
 import { validateSnapTo } from "./utils";
 import { useEvent } from "./hooks";
 import {
   PanInfo,
+  animate,
   Transition,
+  MotionValue,
+  DragHandlers,
   useTransform,
   useMotionValue,
-  animate,
-  DragHandlers,
-  MotionValue,
 } from "framer-motion";
 
 export const DRAG_VELOCITY_THRESHOLD = 500;
@@ -24,8 +24,11 @@ const transition: Transition = {
 };
 
 type SheetType = {
+  contentClass?: string;
   onClose: () => void;
   children: ReactNode;
+  height: number;
+  disable?: boolean;
 };
 
 type OpacityProps = {
@@ -36,7 +39,7 @@ type OpacityProps = {
 };
 
 type SheetProps = {
-  drag: "y";
+  drag: "y" | boolean;
   dragElastic: number;
   exit: { y: number };
   initial: { y: number };
@@ -48,9 +51,14 @@ type SheetProps = {
   onDragEnd: DragHandlers["onDragEnd"];
 };
 
-export default function Sheet({ children, onClose }: SheetType) {
+export default function Sheet({
+  height,
+  disable,
+  onClose,
+  children,
+  contentClass,
+}: SheetType) {
   const sheetRef = useRef<HTMLDivElement>(null);
-  const [ChildHeight, setChildHeight] = useState(0);
   const indicatorRotation = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -65,52 +73,56 @@ export default function Sheet({ children, onClose }: SheetType) {
   );
 
   const onDrag = useEvent((_, { delta }: PanInfo) => {
-    // Update drag indicator rotation based on drag velocity
-    const velocity = y.getVelocity();
+    if (!disable) {
+      // Update drag indicator rotation based on drag velocity
+      const velocity = y.getVelocity();
 
-    if (velocity > 0) indicatorRotation.set(10);
-    if (velocity < 0) indicatorRotation.set(-10);
+      if (velocity > 0) indicatorRotation.set(10);
+      if (velocity < 0) indicatorRotation.set(-10);
 
-    // Make sure user cannot drag beyond the top of the sheet
-    // y.set(Math.max(y.get() + delta.y, 0));
+      // Make sure user cannot drag beyond the top of the sheet
+      // y.set(Math.max(y.get() + delta.y, 0));
+    }
   });
 
   const onDragEnd = useEvent((_, { velocity }: PanInfo) => {
-    if (velocity.y > DRAG_VELOCITY_THRESHOLD) {
-      // User flicked the sheet down
-      onClose();
-    } else {
-      const sheetEl = sheetRef.current;
-      if (!sheetEl) return;
-      const sheetHeight = sheetEl.clientHeight;
-      const currentY = y.get();
+    if (!disable) {
+      if (velocity.y > DRAG_VELOCITY_THRESHOLD) {
+        // User flicked the sheet down
+        onClose();
+      } else {
+        const sheetEl = sheetRef.current;
+        if (!sheetEl) return;
+        const sheetHeight = sheetEl.clientHeight;
+        const currentY = y.get();
 
-      let snapTo = 0;
+        let snapTo = 0;
 
-      if (currentY / sheetHeight > 0.4) snapTo = sheetHeight;
+        if (currentY / sheetHeight > 0.4) snapTo = sheetHeight;
 
-      snapTo = validateSnapTo({ snapTo, sheetHeight });
-      // Update the spring value so that the sheet is animated to the snap point
-      animate(y, snapTo);
+        snapTo = validateSnapTo({ snapTo, sheetHeight });
+        // Update the spring value so that the sheet is animated to the snap point
+        animate(y, snapTo);
 
-      const roundedSheetHeight = Math.round(sheetHeight);
-      const shouldClose = snapTo >= roundedSheetHeight;
+        const roundedSheetHeight = Math.round(sheetHeight);
+        const shouldClose = snapTo >= roundedSheetHeight;
 
-      if (shouldClose) onClose();
+        if (shouldClose) onClose();
+      }
+
+      // Reset indicator rotation after dragging
+      indicatorRotation.set(0);
     }
-
-    // Reset indicator rotation after dragging
-    indicatorRotation.set(0);
   });
 
   const dragProps: SheetProps = {
-    drag: "y",
+    drag: !disable ? "y" : false,
     style: { y },
     dragElastic: 0.19,
     dragConstraints: { top: 0 },
-    initial: { y: 702 },
+    initial: { y: height + 44 },
     animate: { y: 0 },
-    exit: { y: 702 },
+    exit: { y: height + 44 },
     transition,
     onDrag,
     onDragEnd,
@@ -123,48 +135,45 @@ export default function Sheet({ children, onClose }: SheetType) {
     transition,
   };
 
-  useEffect(() => {
-    const handleResize = () =>
-      window.innerWidth > 640
-        ? setChildHeight(760)
-        : window.innerWidth > 400
-          ? setChildHeight(685)
-          : setChildHeight(665);
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const contentProps: OpacityProps = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+    transition: { ...transition, duration: 0.5 },
+  };
 
-  return (
-    <div className="fixed inset-0 z-50 grid h-full w-full place-items-end ">
-      <MotionDiv
-        ref={sheetRef}
-        {...dragProps}
-        className="shadow-t-xl relative z-[1] mx-auto -mb-[200px] flex h-auto w-full max-w-screen-sm cursor-default flex-col overflow-hidden rounded-t-[40px] bg-svg-black"
-      >
-        <div className="flex w-full cursor-ns-resize justify-center p-5 sm:p-6">
-          <MotionSpan
-            className="h-1 w-[18px] rounded-full bg-[#ddd]"
-            style={{ transform: indicator1Transform }}
-          />
-          <MotionSpan
-            className="h-1 w-[18px] rounded-full bg-[#ddd]"
-            style={{ transform: indicator2Transform }}
-          />
-        </div>
+  if (height > 0) {
+    return (
+      <div className="fixed inset-0 z-50 grid h-full w-full place-items-end ">
+        <MotionDiv
+          ref={sheetRef}
+          {...dragProps}
+          className="shadow-t-xl relative z-[1] mx-auto -mb-[300px] flex h-auto w-full max-w-screen-sm cursor-default flex-col overflow-hidden rounded-t-[20px] bg-svg-black"
+        >
+          <div className="absolute top-0 z-10 flex w-full cursor-ns-resize justify-center p-5 sm:p-6">
+            <MotionSpan
+              className="h-1 w-[18px] rounded-full bg-[#ddd]"
+              style={{ transform: indicator1Transform }}
+            />
+            <MotionSpan
+              className="h-1 w-[18px] rounded-full bg-[#ddd]"
+              style={{ transform: indicator2Transform }}
+            />
+          </div>
+          <MotionDiv
+            {...contentProps}
+            style={{ height: height + 44 }}
+            className={`relative w-full ${contentClass}`}
+          >
+            {children}
+          </MotionDiv>
+        </MotionDiv>
         <MotionDiv
           {...opacityProps}
-          style={{ height: ChildHeight }}
-          className="relative w-full px-5 pb-5 sm:px-6 sm:pb-6"
-        >
-          {children}
-        </MotionDiv>
-      </MotionDiv>
-      <MotionDiv
-        onClick={onClose}
-        {...opacityProps}
-        className="absolute h-full w-full bg-black/75 backdrop-blur"
-      />
-    </div>
-  );
+          onClick={onClose}
+          className="absolute h-full w-full bg-black/75 backdrop-blur"
+        />
+      </div>
+    );
+  }
 }

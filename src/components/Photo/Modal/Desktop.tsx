@@ -1,14 +1,20 @@
 "use client";
 
 import Sumit_Photo from "../../../../public/images/sumit_photo.png";
-import { MotionDiv } from "utils/FramerMotion";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { UserIcon } from "@heroicons/react/24/outline";
+import { useKeyPress, KeyboardKey } from "utils/Hooks";
+import { MotionDiv } from "utils/FramerMotion";
 import { useModalState } from "utils/Zustand";
 import Image from "next/image";
 
 export default function Desktop() {
   const { setPhotoShow } = useModalState();
+
+  useKeyPress(() => {
+    setPhotoShow(false);
+  }, [KeyboardKey.Escape]);
+
   return (
     <MotionDiv
       initial={{ opacity: 0 }}
@@ -52,7 +58,7 @@ export default function Desktop() {
           <button
             name="sumit_photo_exit_modal_button"
             onClick={() => setPhotoShow(false)}
-            className="absolute right-0 top-0 m-2 -mr-3 -mt-3 flex h-auto w-auto cursor-default place-content-center rounded-full p-3 outline-none transition-colors duration-300 ease-in-out hover:bg-white/20"
+            className="absolute right-0 top-0 m-2 -mr-3 -mt-3 flex h-auto w-auto cursor-default place-content-center rounded-full p-3  transition-colors duration-300 ease-in-out hover:bg-white/20"
           >
             <XMarkIcon className="h-[25px] w-[25px] text-white sm:h-[30px] sm:w-[30px] sm:stroke-[1]" />
           </button>

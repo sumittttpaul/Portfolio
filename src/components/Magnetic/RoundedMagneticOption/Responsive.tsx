@@ -19,7 +19,7 @@ export function Mobile({
       type="button"
       whileTap={{ scale: active ? 1 : 0.9 }}
       style={{ overflow: "hidden" }}
-      className={`${className} ${active ? "bg-almost-black" : "bg-transparent"} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none transition-colors duration-150 ease-in`}
+      className={`${className} ${active ? "bg-almost-black" : "bg-transparent"} rounded-button relative flex cursor-pointer items-center justify-center rounded-full transition-colors duration-150 ease-in`}
     >
       <span>{label}</span>
     </MotionButton>
@@ -148,7 +148,7 @@ export function Desktop({
       onMouseEnter={manageMouseEnter}
       onMouseLeave={manageMouseLeave}
       style={{ overflow: "hidden" }}
-      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none`}
+      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full `}
     >
       <span ref={magneticChild}>{label}</span>
       <div

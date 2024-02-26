@@ -76,7 +76,7 @@ export default function FooterMobile() {
             <Link
               href="/contact"
               scroll={false}
-              className="rounded-button flex h-[10em] w-[10em] cursor-pointer items-center justify-center rounded-full bg-button-blue text-white outline-none sm:h-[13em] sm:w-[13em]"
+              className="rounded-button flex h-[10em] w-[10em] cursor-pointer items-center justify-center rounded-full bg-button-blue text-white  sm:h-[13em] sm:w-[13em]"
             >
               <span className="relative z-[1] m-0 text-sm font-light xs:text-base">
                 Get in touch
@@ -91,7 +91,7 @@ export default function FooterMobile() {
           <Link
             scroll={false}
             href="mailto:sumitpaul.work@gmail.com"
-            className="rounded-button relative flex cursor-pointer items-center justify-center rounded-full border border-solid border-white/20 py-5 outline-none sm:px-10 sm:py-6"
+            className="rounded-button relative flex cursor-pointer items-center justify-center rounded-full border border-solid border-white/20 py-5  sm:px-10 sm:py-6"
           >
             <span className="z-[1] text-sm xs:text-base sm:text-[18px]">
               sumitpaul.work@gmail.com
@@ -101,7 +101,7 @@ export default function FooterMobile() {
           <Link
             scroll={false}
             href="tel:+918794007993"
-            className="rounded-button relative flex cursor-pointer items-center justify-center rounded-full border border-solid border-white/20 py-5 outline-none sm:px-10 sm:py-6"
+            className="rounded-button relative flex cursor-pointer items-center justify-center rounded-full border border-solid border-white/20 py-5  sm:px-10 sm:py-6"
           >
             <span className="z-[1] text-sm xs:text-base sm:text-[18px]">
               +91 879 400 7993

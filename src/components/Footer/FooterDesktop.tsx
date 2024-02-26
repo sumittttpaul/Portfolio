@@ -89,7 +89,7 @@ export default function FooterDesktop({ device }: DeviceType) {
             <RoundedMagneticLink
               href="/contact"
               device={device}
-              className="absolute flex h-[10em] w-[10em] items-center justify-center bg-button-blue text-white sm:h-[13em] sm:w-[13em]"
+              className="absolute flex h-[10em] w-[10em] items-center justify-center bg-button-blue text-white  sm:h-[13em] sm:w-[13em]"
             >
               <span className="relative z-[1] m-0 text-sm font-light xs:text-base">
                 Get in touch
@@ -104,7 +104,7 @@ export default function FooterDesktop({ device }: DeviceType) {
           <RoundedMagneticLink
             device={device}
             href="mailto:sumitpaul.work@gmail.com"
-            className="border border-solid border-white/20 py-5 sm:px-10 sm:py-6"
+            className="border border-solid border-white/20 py-5  sm:px-10 sm:py-6"
           >
             <span className="z-[1] text-sm xs:text-base sm:text-[18px]">
               sumitpaul.work@gmail.com
@@ -114,7 +114,7 @@ export default function FooterDesktop({ device }: DeviceType) {
           <RoundedMagneticLink
             device={device}
             href="tel:+918794007993"
-            className="border border-solid border-white/20 py-5 sm:px-10 sm:py-6"
+            className="border border-solid border-white/20 py-5  sm:px-10 sm:py-6"
           >
             <span className="z-[1] text-sm xs:text-base sm:text-[18px]">
               +91 879 400 7993
@@ -147,7 +147,7 @@ export default function FooterDesktop({ device }: DeviceType) {
               <Link
                 scroll={false}
                 href="https://www.linkedin.com/in/sumitttpaul/"
-                className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
+                className="text-underline-white cursor-pointer text-sm text-white  xs:text-base"
               >
                 Linkedin
               </Link>
@@ -156,7 +156,7 @@ export default function FooterDesktop({ device }: DeviceType) {
               <Link
                 scroll={false}
                 href="https://www.instagram.com/_sumitttpaul"
-                className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
+                className="text-underline-white cursor-pointer text-sm text-white  xs:text-base"
               >
                 Instagram
               </Link>
@@ -165,7 +165,7 @@ export default function FooterDesktop({ device }: DeviceType) {
               <Link
                 scroll={false}
                 href="https://www.facebook.com/sumitttpaul"
-                className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
+                className="text-underline-white cursor-pointer text-sm text-white  xs:text-base"
               >
                 Facebook
               </Link>
@@ -174,7 +174,7 @@ export default function FooterDesktop({ device }: DeviceType) {
               <Link
                 scroll={false}
                 href="https://twitter.com/sumitttkp16"
-                className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
+                className="text-underline-white cursor-pointer text-sm text-white  xs:text-base"
               >
                 Twitter
               </Link>

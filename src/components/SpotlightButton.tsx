@@ -34,7 +34,7 @@ export default function SpotlightButton() {
       ref={btnRef}
       name="explore_now_button"
       whileTap={{ scale: 0.985 }}
-      className="relative w-full overflow-hidden rounded-full bg-black px-4 py-3 text-base font-medium text-white outline-none sm:max-w-xs"
+      className="relative w-full overflow-hidden rounded-full bg-black px-4 py-3 text-base font-medium text-white sm:max-w-xs"
     >
       <span className="pointer-events-none relative z-10 ">Explore now</span>
       <span

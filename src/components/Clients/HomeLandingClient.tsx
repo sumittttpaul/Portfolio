@@ -38,10 +38,6 @@ export default function HomeLandingClient({
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    console.log(Start);
-  }, [Start]);
-
   return (
     <MotionSection
       variants={slideUp}

@@ -177,7 +177,7 @@ export default function Header() {
             name="nav_menu_button"
             device={device}
             onClick={() => setIsActive(!isActive)}
-            className={`menu-button-border relative m-[14px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] outline-none xs:m-[20px] xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
+            className={`menu-button-border relative m-[14px] flex h-[62px] w-[62px] cursor-pointer items-center justify-center rounded-[50%] xs:m-[20px] xs:h-[65px] xs:w-[65px] sm:h-[80px] sm:w-[80px] ${
               isActive ? "bg-hover-blue" : "bg-almost-black"
             } transition-colors duration-300`}
           >

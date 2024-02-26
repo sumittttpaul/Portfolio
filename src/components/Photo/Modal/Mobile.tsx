@@ -1,14 +1,38 @@
 "use client";
 
 import Sumit_Photo from "../../../../public/images/sumit_photo.png";
+import { useKeyPress, KeyboardKey } from "utils/Hooks";
 import { useModalState } from "utils/Zustand";
+import { useEffect, useState } from "react";
 import Sheet from "components/Sheet";
 import Image from "next/image";
 
 export default function Mobile() {
+  const [childHeight, setChildHeight] = useState(0);
   const { setPhotoShow } = useModalState();
+
+  useKeyPress(() => {
+    setPhotoShow(false);
+  }, [KeyboardKey.Escape]);
+
+  useEffect(() => {
+    const handleResize = () =>
+      window.innerWidth > 640
+        ? setChildHeight(860)
+        : window.innerWidth > 400
+          ? setChildHeight(785)
+          : setChildHeight(765);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <Sheet onClose={() => setPhotoShow(false)}>
+    <Sheet
+      height={childHeight}
+      onClose={() => setPhotoShow(false)}
+      contentClass="px-5 pb-5 pt-11 sm:px-6 sm:pb-6"
+    >
       <div className="relative z-10">
         <h3 className="mb-2 text-left text-base font-medium sm:font-bold lg:text-xl">
           Profile photo
@@ -31,9 +55,11 @@ export default function Mobile() {
           </div>
         </div>
         <button
+          type="button"
           name="sumit_photo_exit_modal_button"
+          aria-label="sumit_photo_exit_modal_button"
           onClick={() => setPhotoShow(false)}
-          className="mt-7 flex h-auto w-full cursor-default place-content-center rounded-full border border-solid border-white/20 p-3 text-[12px] outline-none transition-colors duration-300 ease-in-out xs:text-[13px] sm:text-base"
+          className="mt-7 flex h-auto w-full cursor-default place-content-center rounded-full border border-solid border-white/20 p-3 text-[12px]  transition-colors duration-300 ease-in-out xs:text-[13px] sm:text-base"
         >
           Close
         </button>

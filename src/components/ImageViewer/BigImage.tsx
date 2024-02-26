@@ -1,5 +1,6 @@
 "use client";
 
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { AnimatePresence, MotionConfig, Variants } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import { useSwipeable } from "react-swipeable";
@@ -38,7 +39,7 @@ export default function BigImage({
   handleNextImage: () => void;
 }) {
   const handlers = useSwipeable({
-    trackMouse: true,
+    trackMouse: false,
     trackTouch: true,
     onSwipedLeft: handleNextImage,
     onSwipedRight: handlePreviousImage,
@@ -67,17 +68,25 @@ export default function BigImage({
                 key={currentImageIndex}
                 className="absolute"
               >
-                <Image
-                  width={1333}
-                  height={750}
-                  sizes="(min-width: 0px) 1333px"
-                  draggable={false}
-                  alt="work image"
-                  placeholder="blur"
-                  className="cursor-grab active:cursor-grabbing"
-                  blurDataURL={images[currentImageIndex].blurDataURL}
-                  src={images[currentImageIndex]}
-                />
+                <TransformWrapper
+                  initialScale={1}
+                  initialPositionX={0}
+                  initialPositionY={0}
+                  pinch={{ step: 1 }}
+                >
+                  <TransformComponent contentClass="cursor-grab active:cursor-grabbing">
+                    <Image
+                      width={1333}
+                      height={750}
+                      draggable={false}
+                      alt="work image"
+                      placeholder="blur"
+                      sizes="(min-width: 0px) 1333px"
+                      blurDataURL={images[currentImageIndex].blurDataURL}
+                      src={images[currentImageIndex]}
+                    />
+                  </TransformComponent>
+                </TransformWrapper>
               </MotionDiv>
             </AnimatePresence>
           </div>

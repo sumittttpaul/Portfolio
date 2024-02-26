@@ -55,7 +55,7 @@ export default function Thumbnail({
             ref={ThumbnailRef}
             whileTap={{ scale: 0.9 }}
             onClick={() => handleChangeImage(index)}
-            className={`${currentImageIndex === index ? "border-white/50" : "border-white/0 screen-1000:hover:border-white/30"} ml-1 mr-1 block min-h-[70px] min-w-[125px] border border-solid outline-none transition-colors duration-200 ease-in`}
+            className={`${currentImageIndex === index ? "border-white/75" : "border-white/0 screen-1000:hover:border-white/30"} ml-1 mr-1 block min-h-[70px] min-w-[125px] border border-solid transition-colors duration-200 ease-in`}
           >
             <Image
               width={125}

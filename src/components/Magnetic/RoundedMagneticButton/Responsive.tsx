@@ -17,7 +17,7 @@ export function Mobile({
       aria-label={name}
       onClick={onClick}
       style={{ overflow: "hidden" }}
-      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none`}
+      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full`}
     >
       {children}
     </button>
@@ -119,7 +119,7 @@ export function Desktop({
       style={{ overflow: "hidden" }}
       onMouseEnter={manageMouseEnter}
       onMouseLeave={manageMouseLeave}
-      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full outline-none`}
+      className={`${className} rounded-button relative flex cursor-pointer items-center justify-center rounded-full `}
     >
       {cloneElement(children, { ref: magneticChild })}
       <div

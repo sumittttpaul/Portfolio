@@ -51,7 +51,7 @@ export default function TextArea({
           autoComplete="false"
           aria-autocomplete="none"
           placeholder={placeholder}
-          className="scrollbar-visible w-full resize-none bg-white pb-0 pt-[0.3em] text-[14px] font-bold leading-[1.6] text-black outline-none placeholder:select-none placeholder:font-medium placeholder:text-black/40 xs:text-[clamp(18px,1.5vw,1.5em)]"
+          className="scrollbar-visible w-full resize-none bg-white pb-0 pt-[0.3em] text-[14px] font-bold leading-[1.6] text-black placeholder:select-none placeholder:font-medium placeholder:text-black/40 xs:text-[clamp(18px,1.5vw,1.5em)]"
         />
       </div>
     </div>
