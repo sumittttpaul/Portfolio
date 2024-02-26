@@ -222,9 +222,7 @@ export default function RootLayout({ children }: Props) {
             <MotionOptimize>
               <CssBaseline />
               <Header />
-              {/* <RouteTransitionWrapper> */}
-              {children}
-              {/* </RouteTransitionWrapper> */}
+              <RouteTransitionWrapper>{children}</RouteTransitionWrapper>
               <Footer />
             </MotionOptimize>
           </ThemeProvider>
