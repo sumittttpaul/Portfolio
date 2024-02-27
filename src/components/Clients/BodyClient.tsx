@@ -17,6 +17,14 @@ export default function BodyClient({
   useEffect(() => {
     if (isScrolling) window.scrollTo(0, scrollY.getPrevious() ?? 0);
     else document.body.style.top = `-${scrollY.get()}px`;
+
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+    document.addEventListener("contextmenu", handleContextMenu, false);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu, false);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isScrolling]);
 
