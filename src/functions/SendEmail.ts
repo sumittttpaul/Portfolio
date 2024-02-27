@@ -35,21 +35,21 @@ export default async function SendEmail(formData: FormData) {
     });
     return JSON.stringify({
       name: "Email send successfully",
-      message: "Your email has been received by sumeet.",
+      message: "Your email is being sent successfully to Sumeet.",
       type: "Success",
     } as EmailResponseType);
   } catch (error) {
-    // return JSON.stringify({
-    //   name: "Something went wrong",
-    //   message: "We kindly request that you attempt to resend the email.",
-    //   type: "Error",
-    // } as EmailResponseType);
-    if (error instanceof Error) {
-      return JSON.stringify({
-        name: "Something went wrong",
-        message: error.message,
-        type: "Error",
-      } as EmailResponseType);
-    }
+    return JSON.stringify({
+      name: "Something went wrong",
+      message: "We kindly request that you attempt to resend the email.",
+      type: "Error",
+    } as EmailResponseType);
+    // if (error instanceof Error) {
+    //   return JSON.stringify({
+    //     name: "Something went wrong",
+    //     message: error.message,
+    //     type: "Error",
+    //   } as EmailResponseType);
+    // }
   }
 }

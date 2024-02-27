@@ -30,15 +30,7 @@ export default async function EmailTemplate({
   return (
     <Html lang="en">
       <Tailwind>
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="color-scheme" content="dark" />
-          <title>Sumeet Kumar Paul • Freelance Web Developer</title>
-          <meta
-            name="description"
-            content="Helping brands thrive in the digital world. Delivering tailor-made digital designs and building interactive websites from scratch."
-          />
-        </Head>
+        <Head />
         <Preview>Thank You for Responding!</Preview>
         <Body className="mx-auto my-auto max-w-[700px] bg-black p-5 text-center font-sans sm:rounded-3xl sm:border sm:border-solid sm:border-white/30 sm:p-10">
           <Section className="w-auto text-center">

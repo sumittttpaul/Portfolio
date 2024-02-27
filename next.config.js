@@ -11,6 +11,10 @@ const nextConfig = {
     swcMinify: true,
     optimizeCss: true,
     webVitalsAttribution: ["CLS", "LCP"],
+    serverComponentsExternalPackages: [
+      "@react-email/components",
+      "@react-email/tailwind",
+    ],
     // typedRoutes: true,
   },
   compiler: {
