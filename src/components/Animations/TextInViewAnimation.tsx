@@ -42,7 +42,7 @@ export default function TextInViewAnimation({
   className?: string;
 }) {
   const ContainerRef = useRef<HTMLParagraphElement>(null);
-  const ContainerView = useInView(ContainerRef, { amount: 0.5 });
+  const ContainerView = useInView(ContainerRef, { amount: 0.5, once: true });
   const [isInView, setIsInView] = useState(false);
   const { scrollY } = useScroll();
 

@@ -144,7 +144,7 @@ export default function ProjectCard({
       {projects.map((project, index) => {
         const { title, description, date, image, color } = project;
         return (
-          <DivInViewAnimation showOnce={true} Animation="Slide" key={index}>
+          <DivInViewAnimation Animation="Slide" key={index}>
             <button
               name="div_inview_button"
               onClick={() => handleImagesSelection(title)}

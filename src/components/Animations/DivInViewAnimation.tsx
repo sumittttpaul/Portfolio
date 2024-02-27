@@ -19,13 +19,11 @@ const opacity: Variants = {
 };
 
 export default function DivInViewAnimation({
-  showOnce,
   Animation,
   className,
   children,
   animationConfig,
 }: {
-  showOnce?: boolean;
   Animation: "Opacity" | "Slide";
   children: React.ReactNode;
   className?: string;
@@ -39,7 +37,7 @@ export default function DivInViewAnimation({
   const ContainerRef = useRef<HTMLDivElement>(null);
   const ContainerView = useInView(ContainerRef, {
     amount: 0.5,
-    once: showOnce,
+    once: true,
   });
   const [isInView, setIsInView] = useState(false);
   const { scrollY } = useScroll();
