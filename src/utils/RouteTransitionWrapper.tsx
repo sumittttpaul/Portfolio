@@ -2,19 +2,19 @@
 
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 import { usePreloaderState } from "./Zustand";
 import { MotionMain } from "./FramerMotion";
 import { FrozenRoute } from "./FrozenRoute";
+import { useEffect } from "react";
 
 export default function RouteTransitionWrapper({
   children,
 }: React.PropsWithChildren) {
   const pathname = usePathname();
-  const preloader = usePreloaderState();
+  const { Visible, toggleVisible } = usePreloaderState();
 
   useEffect(() => {
-    if (pathname !== "/" && preloader.Visible) preloader.toggleVisible();
+    if (pathname !== "/" && Visible) toggleVisible();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 

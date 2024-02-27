@@ -9,20 +9,20 @@ export default function MainClientForInitial({
   children: React.ReactNode;
 }) {
   const [Height, setHeight] = useState("");
-  const preloaderState = usePreloaderState();
+  const { Visible } = usePreloaderState();
 
   useEffect(() => {
-    if (preloaderState.Visible) setHeight(`${window.innerHeight}px`);
+    if (Visible) setHeight(`${window.innerHeight}px`);
     else {
       setHeight("auto");
       window.scrollTo(0, 0);
     }
-  }, [preloaderState.Visible]);
+  }, [Visible]);
 
   return (
     <main
       style={{ height: Height }}
-      className={preloaderState.Visible ? "overflow-hidden" : ""}
+      className={Visible ? "overflow-hidden" : ""}
     >
       {children}
     </main>

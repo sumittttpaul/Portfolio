@@ -7,7 +7,7 @@ import PreloaderAnimation from "components/Animations/PreloaderAnimation";
 
 export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
-  const preloader = usePreloaderState();
+  const { Visible } = usePreloaderState();
 
   useEffect(() => {
     setTimeout(() => {
@@ -17,7 +17,7 @@ export default function Preloader() {
 
   return (
     <>
-      {preloader.Visible && (
+      {Visible && (
         <AnimatePresence mode="wait">
           {isLoading && <PreloaderAnimation />}
         </AnimatePresence>
