@@ -12,6 +12,7 @@ import localFont from "next/font/local";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import "styles/globals.css";
+import "styles/swiper.css";
 
 type RouteProps = {
   params?: Record<string, string>;

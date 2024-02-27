@@ -2,7 +2,6 @@
 
 import Image, { StaticImageData } from "next/image";
 import Script from "next/script";
-import "styles/swiper.css";
 
 // Edit "swiper-material" class in "swiper.css" file to change the height and width and to change the spaceBetween go to the "SwiperScript.js" and at the end you will see the options.
 export default function MaterialCarousel({
