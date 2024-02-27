@@ -34,7 +34,7 @@ export default function MaterialCarousel({
                           height={250}
                           placeholder="blur"
                           draggable={false}
-                          alt="material carousel slide"
+                          alt="material_carousel_slide"
                           data-swiper-material-scale="1.25"
                           blurDataURL={image.blurDataURL}
                           className="demo-material-image object-cover object-top"
