@@ -19,7 +19,7 @@ export default function MaterialCarousel({
         strategy="lazyOnload"
         async
       />
-      <section className="box-border flex h-[250px] w-full flex-col px-2.5 sm:hidden">
+      <div className="box-border flex h-[250px] w-full flex-col px-2.5 sm:hidden">
         <div className="demo-slider">
           <div className="swiper">
             <div className="swiper-wrapper">
@@ -50,7 +50,7 @@ export default function MaterialCarousel({
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 }
