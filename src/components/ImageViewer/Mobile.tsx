@@ -41,9 +41,10 @@ export default function Mobile({ onClose, images }: Props) {
       {screen === "transform-image" && (
         <TransformImage
           onBack={() => setScreen("all-image")}
+          images={images}
           index={ImageIndex}
           childHeight={childHeight}
-          images={images[ImageIndex]}
+          setImageIndex={setImageIndex}
         />
       )}
     </Sheet>

@@ -3,8 +3,8 @@
 import { StaticImageData } from "next/image";
 import dynamic from "next/dynamic";
 
-const Desktop = dynamic(() => import("./Desktop"));
 const Mobile = dynamic(() => import("./Mobile"));
+const Desktop = dynamic(() => import("./Desktop"));
 
 export default function Modal({
   onClose,

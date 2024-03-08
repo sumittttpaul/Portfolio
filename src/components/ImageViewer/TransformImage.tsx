@@ -1,9 +1,13 @@
 "use client";
 
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import Image, { StaticImageData } from "next/image";
 import { MotionButton, MotionDiv } from "utils/FramerMotion";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import Image, { StaticImageData } from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Dispatch, SetStateAction } from "react";
+import { Zoom } from "swiper/modules";
+import "swiper/css/zoom";
+import "swiper/css";
 
 const AnimationProps = {
   initial: { opacity: 0 },
@@ -13,21 +17,23 @@ const AnimationProps = {
 
 export default function TransformImage({
   index,
-  childHeight,
-  images,
   onBack,
+  images,
+  childHeight,
+  setImageIndex,
 }: {
   index: number;
-  childHeight: number;
-  images: StaticImageData;
   onBack: () => void;
+  childHeight: number;
+  images: StaticImageData[];
+  setImageIndex: Dispatch<SetStateAction<number>>;
 }) {
   return (
     <MotionDiv
       {...AnimationProps}
       className="relative flex h-full w-full flex-col"
     >
-      <div className="absolute z-[1] mt-11 flex w-full items-center justify-start space-x-2">
+      <div className="absolute z-[2] mt-11 flex w-full items-center justify-start space-x-2">
         <MotionButton
           onClick={onBack}
           whileTap={{ scale: 0.9 }}
@@ -40,31 +46,39 @@ export default function TransformImage({
           Screenshot {index + 1}
         </h3>
       </div>
-      <TransformWrapper
-        initialScale={1}
-        pinch={{ step: 1 }}
-        doubleClick={{ step: 2 }}
-        initialPositionY={(childHeight - 256) / 2.8}
+      <Swiper
+        zoom={true}
+        modules={[Zoom]}
+        spaceBetween={50}
+        slidesPerView={1}
+        initialSlide={index}
+        className="h-auto w-full"
+        style={{ height: childHeight - 256 }}
       >
-        <TransformComponent
-          contentClass="cursor-grab active:cursor-grabbing"
-          wrapperStyle={{
-            height: childHeight - 256,
-            width: "100%",
-          }}
-        >
-          <Image
-            width={1333}
-            height={750}
-            draggable={false}
-            alt="work image"
-            placeholder="blur"
-            sizes="(min-width: 0px) 1333px"
-            blurDataURL={images.blurDataURL}
-            src={images}
-          />
-        </TransformComponent>
-      </TransformWrapper>
+        {images.map((image, index) => {
+          return (
+            <SwiperSlide key={index}>
+              {({ isActive }) => {
+                isActive && setImageIndex(index);
+                return (
+                  <div className="swiper-zoom-container">
+                    <Image
+                      width={1333}
+                      height={750}
+                      draggable={false}
+                      alt="work image"
+                      placeholder="blur"
+                      sizes="(min-width: 0px) 1333px"
+                      blurDataURL={image.blurDataURL}
+                      src={image}
+                    />
+                  </div>
+                );
+              }}
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </MotionDiv>
   );
 }

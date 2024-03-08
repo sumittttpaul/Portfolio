@@ -39,9 +39,6 @@ export default function MaterialCarousel({
                           blurDataURL={image.blurDataURL}
                           className="demo-material-image object-cover object-top"
                         />
-                        {/* <span className="demo-material-label swiper-material-animate-opacity">
-                          Slide
-                        </span> */}
                       </div>
                     </div>
                   </div>
