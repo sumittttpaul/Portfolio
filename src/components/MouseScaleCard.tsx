@@ -246,7 +246,7 @@ export default function MouseScaleCard({
           </div>
         </div>
         <div className="space-y-5 pt-5">
-          <h4 className="text-[2.6vw] font-medium text-black">
+          <h4 className="text-left text-[2.6vw] font-medium text-black">
             {projects[0].title}
           </h4>
           <div className="h-[2px] w-full bg-light-gray" />
@@ -283,7 +283,7 @@ export default function MouseScaleCard({
           </div>
         </div>
         <div className="space-y-5 pt-5">
-          <h4 className="text-[2.6vw] font-medium text-black">
+          <h4 className="text-left text-[2.6vw] font-medium text-black">
             {projects[1].title}
           </h4>
           <div className="h-[2px] w-full bg-light-gray" />
