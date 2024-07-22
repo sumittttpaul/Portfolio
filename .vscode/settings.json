@@ -6,6 +6,7 @@
     "Bkslnt",
     "clickaway",
     "coverflow",
+    "cssnano",
     "csstype",
     "dcoument",
     "easings",
@@ -20,11 +21,15 @@
     "nscript",
     "nums",
     "orbitron",
+    "pacifico",
     "paperplane",
     "recalc",
     "Scroller",
     "sixtyfour",
+    "swipeable",
+    "swiper",
     "tailwindcss",
-    "Uturn"
+    "Uturn",
+    "zustand"
   ]
 }
