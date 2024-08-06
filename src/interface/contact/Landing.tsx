@@ -104,7 +104,7 @@ export default function Landing({ device }: DeviceType) {
                 <Magnetic device={device}>
                   <Link
                     scroll={false}
-                    href="https://www.instagram.com/_sumitttpaul"
+                    href="https://www.instagram.com/sumitttpaul_"
                     className="text-underline-black cursor-pointer text-[clamp(16px,1.2vw,19px)] font-medium leading-[1.5] text-black"
                   >
                     Instagram
@@ -122,7 +122,7 @@ export default function Landing({ device }: DeviceType) {
                 <Magnetic device={device}>
                   <Link
                     scroll={false}
-                    href="https://twitter.com/sumitttkp16"
+                    href="https://x.com/sumitttpaul_"
                     className="text-underline-black cursor-pointer text-[clamp(16px,1.2vw,19px)] font-medium leading-[1.5] text-black"
                   >
                     Twitter

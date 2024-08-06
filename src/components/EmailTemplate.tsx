@@ -127,7 +127,7 @@ export default async function EmailTemplate({
                 src={`${WebsiteLink}/images/socials/facebook_round_small_white.png`}
               />
               <SocialLink
-                href="https://www.instagram.com/_sumitttpaul"
+                href="https://www.instagram.com/sumitttpaul_"
                 src={`${WebsiteLink}/images/socials/instagram_round_small_white.png`}
               />
               <SocialLink
@@ -135,7 +135,7 @@ export default async function EmailTemplate({
                 src={`${WebsiteLink}/images/socials/linkedin_round_small_white.png`}
               />
               <SocialLink
-                href="https://twitter.com/sumitttkp16"
+                href="https://x.com/sumitttpaul_"
                 src={`${WebsiteLink}/images/socials/twitter_round_small_white.png`}
               />
               <SocialLink

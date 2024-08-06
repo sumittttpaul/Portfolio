@@ -151,7 +151,7 @@ export default function ChatBubble({
                   alt="social_icon"
                 />
                 <Link
-                  href="https://www.instagram.com/_sumitttpaul"
+                  href="https://www.instagram.com/sumitttpaul_"
                   className="z-[1] text-pretty text-xs text-sky-400 transition-colors duration-200 ease-in hover:text-white/50 xs:text-sm sm:text-base"
                 >
                   {content[6]}
@@ -179,7 +179,7 @@ export default function ChatBubble({
                   alt="social_icon"
                 />
                 <Link
-                  href="https://twitter.com/sumitttkp16"
+                  href="https://x.com/sumitttpaul_"
                   className="z-[1] text-pretty text-xs text-sky-400 transition-colors duration-200 ease-in hover:text-white/50 xs:text-sm sm:text-base"
                 >
                   {content[8]}

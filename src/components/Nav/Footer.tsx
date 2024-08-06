@@ -24,7 +24,7 @@ export default function NavFooter({ device }: DeviceType) {
           <Magnetic device={device}>
             <Link
               scroll={false}
-              href="https://www.instagram.com/_sumitttpaul"
+              href="https://www.instagram.com/sumitttpaul_"
               className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Instagram
@@ -42,7 +42,7 @@ export default function NavFooter({ device }: DeviceType) {
           <Magnetic device={device}>
             <Link
               scroll={false}
-              href="https://twitter.com/sumitttkp16"
+              href="https://x.com/sumitttpaul_"
               className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Twitter

@@ -41,7 +41,7 @@ export default function Footer({ device }: DeviceType) {
           <Magnetic device={device}>
             <Link
               scroll={false}
-              href="https://www.instagram.com/_sumitttpaul"
+              href="https://www.instagram.com/sumitttpaul_"
               className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
             >
               Instagram
@@ -59,7 +59,7 @@ export default function Footer({ device }: DeviceType) {
           <Magnetic device={device}>
             <Link
               scroll={false}
-              href="https://twitter.com/sumitttkp16"
+              href="https://x.com/sumitttpaul_"
               className="text-underline-black cursor-pointer text-sm font-medium text-black xs:text-base"
             >
               Twitter

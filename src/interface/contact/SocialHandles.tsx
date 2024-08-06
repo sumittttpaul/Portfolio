@@ -33,9 +33,9 @@ export default function SocialHandles() {
   return (
     <section
       ref={container}
-      className="screen-2k:pb-[20vh] relative flex w-full flex-col items-center justify-center px-5 pb-[10vh] pt-[5em] xs:pb-[0vh] sm:pb-[10vh]"
+      className="relative flex w-full flex-col items-center justify-center px-5 pb-[10vh] pt-[5em] xs:pb-[0vh] sm:pb-[10vh] screen-2k:pb-[20vh]"
     >
-      <h1 className="screen-2k:top-[20vh] sticky top-[12.5vh] sm:top-[15vh] mb-[40px] flex flex-col text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:mb-[80px] sm:text-[46px] sm:leading-[1.2] lg:text-[56px] xl:text-[64px]">
+      <h1 className="sticky top-[12.5vh] mb-[40px] flex flex-col text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:top-[15vh] sm:mb-[80px] sm:text-[46px] sm:leading-[1.2] lg:text-[56px] xl:text-[64px] screen-2k:top-[20vh]">
         <TextInViewAnimation Animation="Word">
           Connect&nbsp;with&nbsp;Me
         </TextInViewAnimation>
@@ -72,11 +72,11 @@ const socialHandlesData = [
   },
   {
     src: InstagramImage,
-    href: "https://www.instagram.com/_sumitttpaul",
+    href: "https://www.instagram.com/sumitttpaul_",
   },
   {
     src: TwitterImage,
-    href: "https://twitter.com/sumitttkp16",
+    href: "https://x.com/sumitttpaul_",
   },
   {
     src: FacebookImage,
