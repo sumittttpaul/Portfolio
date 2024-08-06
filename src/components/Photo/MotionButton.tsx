@@ -8,7 +8,7 @@ import {
   Variants,
   useMotionValue,
 } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useModalState } from "utils/Zustand";
 
@@ -20,6 +20,7 @@ export default function PhotoMotionButton({
 }: { onAnimationComplete: () => void } & DeviceType) {
   const [Animation, setAnimation] = useState<AnimationType>();
   const [Delay, setDelay] = useState<boolean>(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { setPhotoShow } = useModalState();
   const { isMobile } = device;
   const x = useMotionValue(0);
@@ -66,51 +67,41 @@ export default function PhotoMotionButton({
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      x.set(
-        window.innerWidth > 1024
-          ? window.innerWidth / 3
-          : window.innerWidth > 400
-            ? window.innerWidth / 3.5
-            : window.innerWidth / 3.75,
-      );
-      y.set(
-        isMobile
-          ? window.innerWidth > 400
-            ? -window.innerHeight / 4 + 200
-            : -window.innerHeight / 4 + 150
-          : -window.innerHeight / 3.5 + 150,
-      );
-      setAnimation("opacity");
-    }
+    const containerWidth = containerRef.current?.clientWidth;
+    if (!containerWidth) return;
+    x.set(containerWidth / 2 - (isMobile ? 130 / 2 : 195 / 2));
+    y.set(isMobile ? 0 : -195 / 2);
+    setAnimation("opacity");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <AnimatePresence mode="wait">
-      <MotionButton
-        type="button"
-        style={{ x, y, marginTop: mt, marginLeft: ml }}
-        initial="initial"
-        variants={Variant}
-        animate={Animation}
-        onClick={handleClick}
-        transition={Transition}
-        whileTap={{ scale: 0.9 }}
-        name="about_photo_motion_button"
-        aria-label="about_photo_motion_button"
-        onAnimationComplete={onAnimationCompleted}
-        className="relative z-[1] flex cursor-pointer rounded-full opacity-0"
-      >
-        <Image
-          priority
-          src={Sumit_Photo}
-          alt="Sumeet Kumar Paul"
-          className="rounded-full"
-          width={isMobile ? 130 : 195}
-          height={isMobile ? 130 : 195}
-        />
-      </MotionButton>
+      <div ref={containerRef} className="w-full">
+        <MotionButton
+          type="button"
+          style={{ x, y, marginTop: mt, marginLeft: ml }}
+          initial="initial"
+          variants={Variant}
+          animate={Animation}
+          onClick={handleClick}
+          transition={Transition}
+          whileTap={{ scale: 0.9 }}
+          name="about_photo_motion_button"
+          aria-label="about_photo_motion_button"
+          onAnimationComplete={onAnimationCompleted}
+          className="relative z-[1] flex cursor-pointer rounded-full opacity-0"
+        >
+          <Image
+            priority
+            src={Sumit_Photo}
+            alt="Sumeet Kumar Paul"
+            className="rounded-full"
+            width={isMobile ? 130 : 195}
+            height={isMobile ? 130 : 195}
+          />
+        </MotionButton>
+      </div>
     </AnimatePresence>
   );
 }

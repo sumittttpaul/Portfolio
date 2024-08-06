@@ -88,10 +88,10 @@ export function Desktop({
         const { height, width, left, top } = ParentRef.getBoundingClientRect();
         const x = clientX - (left + width / 2);
         const y = clientY - (top + height / 2);
-        ParentXTo(x * 0.35);
-        ParentYTo(y * 0.35);
-        ChildXTo(x * 0.35);
-        ChildYTo(y * 0.35);
+        ParentXTo(x * 0.15);
+        ParentYTo(y * 0.15);
+        ChildXTo(x * 0.15);
+        ChildYTo(y * 0.15);
       }
     };
     const manageMouseLeave = () => {

@@ -40,6 +40,7 @@ const config: Config = {
         "screen-1180": "1180px",
         "screen-1000": "1000px",
         "screen-1410": "1410px",
+        "screen-2k": "1921px",
         xs: "401px",
       },
       backgroundImage: {

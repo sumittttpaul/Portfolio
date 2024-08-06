@@ -246,11 +246,11 @@ export default function MouseScaleCard({
           </div>
         </div>
         <div className="space-y-5 pt-5">
-          <h4 className="text-left text-[2.6vw] font-medium text-black">
+          <h4 className="truncate text-left text-[2.6vw] font-medium text-black">
             {projects[0].title}
           </h4>
           <div className="h-[2px] w-full bg-light-gray" />
-          <h6 className="flex w-full justify-between text-lg text-black">
+          <h6 className="flex w-full justify-between truncate text-lg text-black">
             <span>{projects[0].description}</span>
             <span>{projects[0].date}</span>
           </h6>
@@ -283,11 +283,11 @@ export default function MouseScaleCard({
           </div>
         </div>
         <div className="space-y-5 pt-5">
-          <h4 className="text-left text-[2.6vw] font-medium text-black">
+          <h4 className="truncate text-left text-[2.6vw] font-medium text-black">
             {projects[1].title}
           </h4>
           <div className="h-[2px] w-full bg-light-gray" />
-          <h6 className="flex w-full justify-between text-lg text-black">
+          <h6 className="flex w-full justify-between truncate text-lg text-black">
             <span>{projects[1].description}</span>
             <span>{projects[1].date}</span>
           </h6>

@@ -33,7 +33,7 @@ export default function SocialCards({
   return (
     <div
       ref={container}
-      className="sticky top-[240px] flex h-[320px] items-center justify-center xs:h-[420px] lg:top-[325px] lg:h-[600px]"
+      className="sticky top-[35vh] flex h-[320px] items-center justify-center xs:top-[28.5vh] xs:h-[420px] sm:top-[35vh] lg:h-[600px]"
     >
       <MotionDiv
         style={{

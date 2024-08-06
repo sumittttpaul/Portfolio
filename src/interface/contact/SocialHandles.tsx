@@ -3,7 +3,7 @@
 import TextInViewAnimation from "components/Animations/TextInViewAnimation";
 import SocialCards from "components/SocialCards";
 import { useScroll } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Over all social handles
 import FacebookImage from "../../../public/images/socials/facebook_profile.png";
@@ -13,7 +13,9 @@ import LinkedinImage from "../../../public/images/socials/linkedin_profile.png";
 import WhatsappImage from "../../../public/images/socials/whatsapp_profile.png";
 
 export default function SocialHandles() {
-  const container = useRef(null);
+  const [sizes, setSizes] = useState({ width: 0, height: 0 });
+  const container = useRef<HTMLElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end end"],
@@ -21,9 +23,19 @@ export default function SocialHandles() {
 
   const actualLength = socialHandlesData.length - 1;
 
+  useEffect(() => {
+    setSizes((prev) => {
+      if (typeof window === "undefined") return prev;
+      return { width: window.innerWidth, height: window.innerHeight };
+    });
+  }, []);
+
   return (
-    <section className="relative flex w-full flex-col items-center justify-center pt-[5em] lg:pb-[5em]">
-      <h1 className="sticky top-[70px] xs:top-[100px] mb-[100px] flex flex-col px-5 text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:text-[46px] sm:leading-[1.2] screen-1000:px-0 lg:px-0 lg:text-[56px] xl:text-[64px]">
+    <section
+      ref={container}
+      className="screen-2k:pb-[20vh] relative flex w-full flex-col items-center justify-center px-5 pb-[10vh] pt-[5em] xs:pb-[0vh] sm:pb-[10vh]"
+    >
+      <h1 className="screen-2k:top-[20vh] sticky top-[12.5vh] sm:top-[15vh] mb-[40px] flex flex-col text-start text-[32px] font-semibold leading-[1.5] tracking-[-0.2px] text-almost-black xs:text-[36px] sm:mb-[80px] sm:text-[46px] sm:leading-[1.2] lg:text-[56px] xl:text-[64px]">
         <TextInViewAnimation Animation="Word">
           Connect&nbsp;with&nbsp;Me
         </TextInViewAnimation>
@@ -31,22 +43,20 @@ export default function SocialHandles() {
           on&nbsp;Social&nbsp;Media!
         </TextInViewAnimation>
       </h1>
-      <div ref={container} className="relative px-5">
-        {socialHandlesData.map((data, i) => {
-          const targetScale =
-            i == actualLength ? 1 : 1 - (actualLength - i) * 0.05;
-          return (
-            <SocialCards
-              i={i}
-              key={`social_cards_${i}`}
-              {...data}
-              progress={scrollYProgress}
-              range={[i * 0.2, 1]}
-              targetScale={targetScale}
-            />
-          );
-        })}
-      </div>
+      {socialHandlesData.map((data, i) => {
+        const targetScale =
+          i == actualLength ? 1 : 1 - (actualLength - i) * 0.05;
+        return (
+          <SocialCards
+            i={i}
+            {...data}
+            range={[i * 0.2, 1]}
+            targetScale={targetScale}
+            key={`social_cards_${i}`}
+            progress={scrollYProgress}
+          />
+        );
+      })}
     </section>
   );
 }

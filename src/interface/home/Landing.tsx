@@ -22,20 +22,20 @@ export default function index({ device }: DeviceType) {
       <div className="relative mt-20 flex h-auto w-auto flex-col rounded-3xl bg-black px-2.5 pb-6 pt-2.5 xs:mt-24 sm:mt-0 sm:rounded-none sm:px-0 sm:pb-0 sm:pt-0">
         {/* Background Image or character image, only for desktop */}
         {isDesktop && (
-          <div className="hidden w-full items-end justify-center pt-10 sm:flex md:items-start">
+          <div className="hidden h-[120vh] w-full items-end justify-center sm:flex md:items-start">
             <div
               data-scroll
               data-scroll-speed={-0.3}
               data-scroll-position="top"
-              className="relative -ml-[200px] h-[1000px] min-h-[1000px] w-[664px] min-w-[664px] md:h-[1100px] md:min-h-[1100px] md:w-[730px] md:min-w-[730px]"
+              className="relative -ml-[200px] h-[93%] mt-[2%] w-full"
             >
               <Image
                 fill
                 src={BGImage}
                 draggable={false}
-                placeholder="blur"
+                placeholder="empty"
                 alt="background image"
-                className="object-cover"
+                className="object-contain"
                 blurDataURL={BGImage.blurDataURL}
                 sizes="(min-width: 768px) 730px, 664px"
               />
@@ -113,7 +113,7 @@ export default function index({ device }: DeviceType) {
             data-scroll
             data-scroll-speed={0.1}
             data-scroll-position="top"
-            className="absolute right-[15%] top-[28%] z-[1] hidden md:flex"
+            className="absolute right-[15%] top-[30%] z-[1] hidden md:flex"
           >
             <div className="flex flex-col transition-all duration-300 ease-in">
               <ArrowDownRightIcon className="w-[clamp(1.3em,2.3vw,2em)] text-white" />
