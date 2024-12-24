@@ -198,7 +198,7 @@ const pacifico = Pacifico({
 });
 
 export const metadata: Metadata = {
-  title: "Sumeet Kumar Paul • Freelance Web Developer",
+  title: "Sumeet Kumar Paul • NextJS Web Developer",
   description:
     "Helping brands thrive in the digital world. Delivering tailor-made digital designs and building interactive websites from scratch.",
   icons: "/favicon.ico",
