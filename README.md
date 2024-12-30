@@ -1,3 +1,5 @@
+![sumitttpaul vercel app](https://github.com/user-attachments/assets/e41cc81e-4945-4d7c-be9a-51e6373c257e)
+
 Hello, I am Sumeet Kumar Paul and here is my portfolio, so let's get started.
 
 ## Getting Started
