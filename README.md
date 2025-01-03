@@ -2,6 +2,8 @@
 
 Hello, I am Sumeet Kumar Paul and here is my portfolio, so let's get started.
 
+Watch the video to learn about all the features of this project: [video/portfolio](https://drive.google.com/file/d/1Rfle8d1r40dWtdYKt4H1apoQl9435ou5/view?usp=sharing)
+
 ## Getting Started
 
 These portfolio contains three sections :-
