@@ -97,14 +97,14 @@ export default function FooterMobile() {
               sumitpaul.work@gmail.com
             </span>
           </Link>
-          {/* Phone */}
+          {/* Linkedin */}
           <Link
             scroll={false}
-            href="tel:+918794007993"
+            href="https://www.linkedin.com/in/sumitttpaul/"
             className="rounded-button relative flex cursor-pointer items-center justify-center rounded-full border border-solid border-white/20 py-5  sm:px-10 sm:py-6"
           >
             <span className="z-[1] text-sm xs:text-base sm:text-[18px]">
-              +91 879 400 7993
+              Linkedin
             </span>
           </Link>
         </div>
@@ -115,7 +115,9 @@ export default function FooterMobile() {
             <h3 className="text-[10px] font-medium uppercase tracking-wide text-white/50 xs:text-xs">
               Version
             </h3>
-            <h4 className="text-sm text-white xs:text-base">2024 © Edition</h4>
+            <h4 className="text-sm text-white xs:text-base">
+              {new Date().getFullYear()} © Edition
+            </h4>
           </div>
           <div className="flex flex-col space-y-3 text-end sm:text-start">
             <h3 className="text-[10px] font-medium uppercase tracking-wide text-white/50 xs:text-xs">
@@ -144,7 +146,7 @@ export default function FooterMobile() {
             >
               Instagram
             </Link>
-            <Link
+            {/* <Link
               scroll={false}
               href="https://www.facebook.com/sumitttpaul"
               className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
@@ -157,7 +159,7 @@ export default function FooterMobile() {
               className="text-underline-white cursor-pointer text-sm text-white xs:text-base"
             >
               Twitter
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

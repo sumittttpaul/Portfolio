@@ -64,11 +64,11 @@ export default function Landing({ device }: DeviceType) {
               </Magnetic>
               <Magnetic device={device}>
                 <Link
-                  href="tel:+918794007993"
+                  href="https://www.linkedin.com/in/sumitttpaul/"
                   scroll={false}
                   className="text-underline-black cursor-pointer text-[14px] font-medium leading-[1.5] text-black xs:text-[clamp(16px,1.2vw,19px)]"
                 >
-                  +91 879 400 7993
+                  Linkedin
                 </Link>
               </Magnetic>
             </div>
@@ -79,10 +79,10 @@ export default function Landing({ device }: DeviceType) {
             </h3>
             <div className="flex flex-col items-start justify-start space-y-0.5">
               <h6 className="text-[14px] font-medium leading-[1.5] text-black xs:text-[clamp(16px,1.2vw,19px)]">
-                Freelancer
+                Frontend Engineer
               </h6>
               <h6 className="text-[14px] font-medium leading-[1.5] text-black xs:text-[clamp(16px,1.2vw,19px)]">
-                From Bharat
+                From India
               </h6>
             </div>
           </div>

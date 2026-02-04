@@ -110,14 +110,14 @@ export default function FooterDesktop({ device }: DeviceType) {
               sumitpaul.work@gmail.com
             </span>
           </RoundedMagneticLink>
-          {/* Phone */}
+          {/* Linkedin */}
           <RoundedMagneticLink
             device={device}
-            href="tel:+918794007993"
+            href="https://www.linkedin.com/in/sumitttpaul/"
             className="border border-solid border-white/20 py-5  sm:px-10 sm:py-6"
           >
             <span className="z-[1] text-sm xs:text-base sm:text-[18px]">
-              +91 879 400 7993
+              Linkedin
             </span>
           </RoundedMagneticLink>
         </div>
@@ -128,7 +128,7 @@ export default function FooterDesktop({ device }: DeviceType) {
             <h3 className="text-[10px] font-medium uppercase tracking-wide text-white/50 xs:text-xs">
               Version
             </h3>
-            <h4 className="text-sm text-white xs:text-base">2024 © Edition</h4>
+            <h4 className="text-sm text-white xs:text-base">{new Date().getFullYear()} © Edition</h4>
           </div>
           <div className="flex flex-col space-y-3 text-end sm:text-start">
             <h3 className="text-[10px] font-medium uppercase tracking-wide text-white/50 xs:text-xs">
@@ -161,7 +161,7 @@ export default function FooterDesktop({ device }: DeviceType) {
                 Instagram
               </Link>
             </Magnetic>
-            <Magnetic device={device}>
+            {/* <Magnetic device={device}>
               <Link
                 scroll={false}
                 href="https://www.facebook.com/sumitttpaul"
@@ -178,7 +178,7 @@ export default function FooterDesktop({ device }: DeviceType) {
               >
                 Twitter
               </Link>
-            </Magnetic>
+            </Magnetic> */}
           </div>
         </div>
       </div>
