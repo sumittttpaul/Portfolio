@@ -1,6 +1,6 @@
 "use client";
 
-import { Variants, Transition, AnimatePresence } from "framer-motion";
+import { Variants, type Transition, AnimatePresence } from "framer-motion";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import SimpleImageBubble from "./SimpleImageBubble";
 import { MotionDiv } from "utils/FramerMotion";
