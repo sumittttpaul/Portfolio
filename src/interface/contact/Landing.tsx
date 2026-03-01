@@ -79,7 +79,7 @@ export default function Landing({ device }: DeviceType) {
             </h3>
             <div className="flex flex-col items-start justify-start space-y-0.5">
               <h6 className="text-[14px] font-medium leading-[1.5] text-black xs:text-[clamp(16px,1.2vw,19px)]">
-                Frontend Engineer
+                Software Engineer
               </h6>
               <h6 className="text-[14px] font-medium leading-[1.5] text-black xs:text-[clamp(16px,1.2vw,19px)]">
                 From India
