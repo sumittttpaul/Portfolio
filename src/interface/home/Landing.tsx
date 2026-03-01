@@ -118,7 +118,7 @@ export default function index({ device }: DeviceType) {
             <div className="flex flex-col transition-all duration-300 ease-in">
               <ArrowDownRightIcon className="w-[clamp(1.3em,2.3vw,2em)] text-white" />
               <p className="mt-[75px] flex flex-col text-[clamp(1.55em,2.3vw,2.5em)] leading-[1.4]">
-                <span>Frontend</span>
+                <span>Software</span>
                 <span>Engineer</span>
               </p>
             </div>
@@ -150,7 +150,7 @@ export default function index({ device }: DeviceType) {
         {isMobile && (
           <div className="left-0 right-0 flex w-full justify-between sm:absolute sm:bottom-[18vh] sm:mb-0 sm:px-5 md:hidden">
             <p className="flex flex-col text-[18px] leading-[1.5] xs:text-[22px]">
-              <span>Frontend</span>
+              <span>Software</span>
               <span>Engineer</span>
             </p>
             <div className="relative mr-10">
