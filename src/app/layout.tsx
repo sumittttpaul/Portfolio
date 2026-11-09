@@ -1,235 +1,111 @@
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import RouteTransitionWrapper from "utils/RouteTransitionWrapper";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import BodyClient from "components/Clients/BodyClient";
-import { MotionOptimize } from "utils/FramerMotion";
 import { Analytics } from "@vercel/analytics/react";
-import { Inter, Pacifico } from "next/font/google";
 import type { Metadata, Viewport } from "next";
-import { MuiTheme } from "theme/MaterialUI";
+import { Big_Shoulders_Display, Inter, Roboto_Mono } from "next/font/google";
 import localFont from "next/font/local";
-import Header from "components/Header";
-import Footer from "components/Footer";
+import ProgressiveBlur from "components/ui/ProgressiveBlur";
+import SmoothScroll from "components/ui/SmoothScroll";
+import Scrollbar from "components/ui/Scrollbar";
+import ScrollTop from "components/ui/ScrollTop";
+import ImageFade from "components/ui/ImageFade";
+import { MotionOptimize } from "utils/FramerMotion";
+import Header from "components/site/Header";
+import Footer from "components/site/Footer";
+import { site } from "content/site";
 import "styles/globals.css";
 
-type RouteProps = {
-  params?: Record<string, string>;
-  searchParams?: Record<string, string>;
-  children?: React.ReactNode;
-};
-
-type NextPageProps<P extends RouteProps> = P;
-
-type Props = NextPageProps<{
-  children?: React.ReactNode;
-}>;
-
-const NeueMontreal = localFont({
+const neue = localFont({
   src: [
-    {
-      path: "../../public/fonts/NeueMontreal-Bold.otf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/NeueMontreal-BoldItalic.otf",
-      weight: "600",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/NeueMontreal-Medium.otf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/NeueMontreal-MediumItalic.otf",
-      weight: "500",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/NeueMontreal-Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/NeueMontreal-RegularItalic.otf",
-      weight: "400",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/NeueMontreal-Light.otf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/NeueMontreal-LightItalic.otf",
-      weight: "300",
-      style: "italic",
-    },
+    { path: "../../public/fonts/NeueMontreal-Light.otf", weight: "300", style: "normal" },
+    { path: "../../public/fonts/NeueMontreal-Regular.otf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/NeueMontreal-RegularItalic.otf", weight: "400", style: "italic" },
+    { path: "../../public/fonts/NeueMontreal-Medium.otf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/NeueMontreal-Bold.otf", weight: "600", style: "normal" },
   ],
   variable: "--font-neue",
-});
-
-const Grtsk = localFont({
-  src: [
-    {
-      path: "../../public/fonts/GrtskMega-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-BoldItalic.ttf",
-      weight: "700",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-SemiBoldItalic.ttf",
-      weight: "600",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-MediumItalic.ttf",
-      weight: "500",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-RegularItalic.ttf",
-      weight: "400",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-Light.ttf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-LightItalic.ttf",
-      weight: "300",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-ExtraLight.ttf",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-ExtraLightItalic.ttf",
-      weight: "200",
-      style: "italic",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-Thin.ttf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMega-ThinItalic.ttf",
-      weight: "100",
-      style: "italic",
-    },
-  ],
-  variable: "--font-grtsk",
-});
-
-const Grtsk_Bkslnt = localFont({
-  src: [
-    {
-      path: "../../public/fonts/GrtskMegaBkslnt-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMegaBkslnt-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMegaBkslnt-Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMegaBkslnt-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMegaBkslnt-Light.ttf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMegaBkslnt-ExtraLight.ttf",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GrtskMegaBkslnt-Thin.ttf",
-      weight: "100",
-      style: "normal",
-    },
-  ],
-  variable: "--font-grtsk-bkslnt",
-});
-
-const inter = Inter({ subsets: ["latin"], display: "swap" });
-
-const pacifico = Pacifico({
-  weight: "400",
-  subsets: ["latin"],
   display: "swap",
-  variable: "--font-pacifico",
 });
+
+const grtsk = localFont({
+  src: [{ path: "../../public/fonts/GrtskMega-Bold.ttf", weight: "700", style: "normal" }],
+  variable: "--font-grtsk",
+  display: "block",
+});
+
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+// Ultra-condensed, square display face for the name wordmark
+const wordmarkFont = Big_Shoulders_Display({ subsets: ["latin"], weight: ["900"], display: "block", variable: "--font-wordmark" });
+const robotoMono = Roboto_Mono({ subsets: ["latin"], weight: ["400", "600"], display: "swap", variable: "--font-roboto-mono" });
 
 export const metadata: Metadata = {
-  title: "Sumeet Kumar Paul • Software Engineer",
-  description:
-    "Helping brands thrive in the digital world. Delivering tailor-made digital designs and building interactive websites from scratch.",
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} • ${site.role}`,
+    template: `%s • ${site.name}`,
+  },
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  keywords: ["Senior Frontend Engineer", "Frontend Engineer", "Software Engineer", "Next.js", "React", "TypeScript", "Web Developer", "India"],
+  alternates: { canonical: "/" },
   icons: "/favicon.ico",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: site.name,
+    title: `${site.name} • ${site.role}`,
+    description: site.description,
+    images: [{ url: "/media/portfolio-cover.webp", width: 1200, height: 896, alt: site.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@sumitttpaul_",
+    title: `${site.name} • ${site.role}`,
+    description: site.description,
+    images: ["/media/portfolio-cover.webp"],
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#1C1D20",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
 
-const BodyClass = `${inter.className} ${NeueMontreal.variable} ${pacifico.variable} ${Grtsk.variable} ${Grtsk_Bkslnt.variable}`;
-
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en">
-      <BodyClient className={BodyClass}>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={MuiTheme}>
-            <MotionOptimize>
-              <CssBaseline />
-              <Header />
-              <RouteTransitionWrapper>{children}</RouteTransitionWrapper>
-              <Footer />
-            </MotionOptimize>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+    <html lang="en" className={`${neue.variable} ${grtsk.variable} ${inter.variable} ${robotoMono.variable} ${wordmarkFont.variable}`}>
+      <head>
+        {/* Switzer (Fontshare, free licence): primary UI and display face */}
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="" />
+        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" />
+      </head>
+      <body>
+        <a
+          href="#main"
+          className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-bone px-4 py-2 text-ink-900 focus:translate-y-0"
+        >
+          Skip to content
+        </a>
+        <MotionOptimize>
+          <SmoothScroll />
+          <Header />
+          <main id="main" className="relative">
+            {children}
+          </main>
+          <Footer />
+          <ProgressiveBlur />
+          <Scrollbar />
+          <ScrollTop />
+          <ImageFade />
+        </MotionOptimize>
         <Analytics />
         <SpeedInsights />
-      </BodyClient>
+      </body>
     </html>
   );
 }

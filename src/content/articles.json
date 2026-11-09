@@ -1,0 +1,467 @@
+[
+  {
+    "id": "1",
+    "title": "Async race condition in search results",
+    "publishedAt": "Feb 10, 2026",
+    "readTime": "2 min",
+    "banner": "https://res.cloudinary.com/frontendddlab/image/upload/v1770710099/poster_nrye8c.png",
+    "sourceLink": "https://github.com/sumittttpaul/FrontendLab/blob/master/src/app/practice/async-race-condition-in-search-results/page.tsx",
+    "keywords": ["async race condition", "react state", "frontend edge case", "ui correctness", "search"],
+    "content": [
+      {
+        "type": "heading",
+        "value": "Problem"
+      },
+      {
+        "type": "description",
+        "value": "Under rapid input changes and slow network conditions, multiple search requests can remain in flight at the same time. When responses resolve out of order, older results may overwrite newer state, causing the UI to display incorrect data."
+      },
+      {
+        "type": "description",
+        "value": "The implementation assumes that the most recent request will resolve last. This assumption breaks under real-world network latency and asynchronous execution."
+      },
+      {
+        "type": "point",
+        "value": [
+          "Multiple async requests in flight simultaneously.",
+          "Variable or throttled network latency.",
+          "Rapid user input before previous requests resolve.",
+          "State updates tied directly to promise resolution."
+        ]
+      },
+      {
+        "type": "code",
+        "value": "useEffect(() => {\n  if (!query.trim()) return;\n\n  void (async () => {\n    try {\n      const data = await fetchResults(query);\n      console.log(\"commit results for:\", query);\n      setResults(data);\n    } catch (error) {\n      console.error(\"search request failed\", error);\n    }\n  })();\n}, [query]);",
+        "path": "src/app/practice/async-race-condition-in-search-results/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "This implementation works in happy paths but does not guard against out-of-order async resolution. Any response that resolves later is allowed to update state, regardless of when it was initiated."
+      },
+      {
+        "type": "video",
+        "value": "https://res.cloudinary.com/frontendddlab/video/upload/v1770708401/broken_gpijkg.mp4",
+        "thumbnail": "https://res.cloudinary.com/frontendddlab/image/upload/v1770709385/thumbnail_lhsulr.png"
+      },
+      {
+        "type": "spacing",
+        "value": ""
+      },
+      {
+        "type": "heading",
+        "value": "Solution"
+      },
+      {
+        "type": "description",
+        "value": "Each request is assigned an identity, and state updates are only allowed from the most recent request. Responses that resolve out of order are ignored instead of committing stale data."
+      },
+      {
+        "type": "code",
+        "value": "const requestIdRef = useRef(0);\n\nuseEffect(() => {\n  if (!query.trim()) {\n    requestIdRef.current = 0;\n    return;\n  }\n\n  const requestId = ++requestIdRef.current;\n\n  void (async () => {\n    try {\n      const data = await fetchResults(query);\n      if (requestId === requestIdRef.current) {\n        console.log(\"commit results for:\", query);\n        setResults(data);\n      } else {\n        console.log(\"ignored stale response for:\", query);\n      }\n    } catch (error) {\n      console.error(\"search request failed\", error);\n    }\n  })();\n}, [query]);",
+        "path": "src/app/practice/async-race-condition-in-search-results/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "By guarding state updates with request identity, the UI becomes resilient to async timing differences and network variability."
+      },
+      {
+        "type": "video",
+        "value": "https://res.cloudinary.com/frontendddlab/video/upload/v1770708403/fixed_smxrnq.mp4",
+        "thumbnail": "https://res.cloudinary.com/frontendddlab/image/upload/v1770709385/thumbnail_lhsulr.png"
+      },
+      {
+        "type": "separator",
+        "value": ""
+      },
+      {
+        "type": "description",
+        "value": "This issue is not specific to search, debouncing, or React. It occurs whenever UI state is updated directly from asynchronous work without guarding against out-of-order resolution. Treating async responses as untrusted by default and committing state only when intent is still valid prevents an entire class of UI correctness bugs."
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "State update after unmount during navigation",
+    "publishedAt": "Feb 10, 2026",
+    "readTime": "2 min",
+    "banner": "https://res.cloudinary.com/frontendddlab/image/upload/v1770735145/banner_h5rvad.png",
+    "sourceLink": "https://github.com/sumittttpaul/FrontendLab/blob/master/src/app/practice/state-update-after-unmount-during-navigation/page.tsx",
+    "keywords": ["react unmount bug", "state update after unmount", "frontend lifecycle", "async ui failure", "navigation teardown"],
+    "content": [
+      {
+        "type": "heading",
+        "value": "Problem"
+      },
+      {
+        "type": "description",
+        "value": "When a component starts asynchronous work and the user navigates away before it resolves, the async callback may still attempt to update state. At that point, the component no longer exists in the UI tree."
+      },
+      {
+        "type": "description",
+        "value": "This failure usually appears only under fast navigation or slow async resolution, making it easy to miss during development and code review."
+      },
+      {
+        "type": "point",
+        "value": [
+          "Async work initiated inside an effect.",
+          "User navigates away before async resolves.",
+          "Component unmounts while async is still running.",
+          "Async callback commits state after unmount."
+        ]
+      },
+      {
+        "type": "code",
+        "value": "useEffect(() => {\n  console.log(\"[BROKEN] Screen mounted → async work started\");\n\n  void (async () => {\n    await delay(800);\n    console.log(\"[BROKEN] Async finished → updating screen\");\n    setStatus(\"loaded\");\n  })();\n\n  return () => {\n    console.log(\"[BROKEN] Screen unmounted\");\n  };\n}, []);",
+        "path": "src/app/practice/state-update-after-unmount-during-navigation/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "The async task has no awareness of the component lifecycle. Once started, it continues executing even after the component has been removed from the UI."
+      },
+      {
+        "type": "spacing",
+        "value": ""
+      },
+      {
+        "type": "heading",
+        "value": "Solution"
+      },
+      {
+        "type": "description",
+        "value": "Each effect execution is assigned an ownership identity. Cleanup invalidates that ownership, and async work is only allowed to commit state if its ownership is still valid."
+      },
+      {
+        "type": "code",
+        "value": "const effectIdRef = useRef(0);\n\nuseEffect(() => {\n  const effectId = ++effectIdRef.current;\n  console.log(\"[FIXED] Screen mounted → ownership id:\", effectId);\n\n  void (async () => {\n    await delay(800);\n\n    if (effectId !== effectIdRef.current) {\n      console.log(\"[FIXED] Async finished → ownership no longer valid, update skipped:\", effectId);\n      return;\n    }\n\n    console.log(\"[FIXED] Async finished → ownership valid, screen updated:\", effectId);\n    setStatus(\"loaded\");\n  })();\n\n  return () => {\n    if (effectIdRef.current === effectId) {\n      effectIdRef.current = -1;\n    }\n    console.log(\"[FIXED] Screen unmounted → ownership invalidated:\", effectId);\n  };\n}, []);",
+        "path": "src/app/practice/state-update-after-unmount-during-navigation/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "Instead of relying on mount flags, the async work validates ownership before committing state. Cleanup explicitly invalidates intent, making teardown safe even under rapid navigation."
+      },
+      {
+        "type": "video",
+        "value": "https://res.cloudinary.com/frontendddlab/video/upload/v1770735137/broken_fixed_uaka7w.mp4",
+        "thumbnail": "https://res.cloudinary.com/frontendddlab/image/upload/v1770735144/thumbnail_vcaz4d.png"
+      },
+      {
+        "type": "separator",
+        "value": ""
+      },
+      {
+        "type": "description",
+        "value": "This issue is not about React warnings or effect cleanup syntax. It occurs whenever asynchronous work is allowed to outlive the UI intent that created it. Treating async callbacks as untrusted unless their ownership is still valid prevents state leaks, memory issues, and subtle UI corruption during navigation."
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Stale closure in click outside listener",
+    "publishedAt": "Feb 13, 2026",
+    "readTime": "2 min",
+    "banner": "https://res.cloudinary.com/frontendddlab/image/upload/v1770993341/banner_v77iew.png",
+    "sourceLink": "https://github.com/sumittttpaul/FrontendLab/blob/master/src/app/practice/stale-closure-in-click-outside-listener/page.tsx",
+    "keywords": ["stale closure", "react event listener bug", "click outside issue", "frontend state safety", "ui correctness"],
+    "content": [
+      {
+        "type": "heading",
+        "value": "Problem"
+      },
+      {
+        "type": "description",
+        "value": "Event listeners defined inside effects capture state from the render during which they were created. If the listener is attached once and depends on state that later changes, it may continue operating on outdated values."
+      },
+      {
+        "type": "point",
+        "value": [
+          "Dropdown open state toggled by button.",
+          "Document click listener attached once on mount.",
+          "Listener captures initial 'open' value.",
+          "UI state and listener logic fall out of sync."
+        ]
+      },
+      {
+        "type": "code",
+        "value": "useEffect(() => {\n  function handleClick(event: MouseEvent) {\n    console.log(\"[BROKEN] listener sees open =\", open);\n\n    const target = event.target as Node;\n    const isOutside =\n      containerRef.current &&\n      !containerRef.current.contains(target);\n\n    if (open && isOutside) {\n      console.log(\"[BROKEN] closing dropdown\");\n      setOpen(false);\n    }\n  }\n\n  document.addEventListener(\"click\", handleClick);\n\n  return () => {\n    document.removeEventListener(\"click\", handleClick);\n  };\n}, []);",
+        "path": "src/app/practice/stale-closure-click-outside/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "Because the effect runs only once, the event listener permanently captures the initial value of 'open'. The dropdown state changes visually, but the listener continues evaluating stale state."
+      },
+      {
+        "type": "video",
+        "value": "https://res.cloudinary.com/frontendddlab/video/upload/v1770993344/broken_bxya01.mp4",
+        "thumbnail": "https://res.cloudinary.com/frontendddlab/image/upload/v1770993341/thumbnail_broken_j3guxg.png"
+      },
+      {
+        "type": "spacing",
+        "value": ""
+      },
+      {
+        "type": "heading",
+        "value": "Solution"
+      },
+      {
+        "type": "description",
+        "value": "Keep the event listener stable, but separate state freshness from subscription lifecycle. Store the latest state in a mutable ref and read from it inside the listener."
+      },
+      {
+        "type": "code",
+        "value": "const openRef = useRef(open);\nconst containerRef = useRef<HTMLDivElement | null>(null);\n\nuseEffect(() => {\n  openRef.current = open;\n}, [open]);\n\nuseEffect(() => {\n  function handleClick(event: MouseEvent) {\n    const target = event.target as Node;\n    const isOutside =\n      containerRef.current &&\n      !containerRef.current.contains(target);\n\n    console.log(\"[FIXED] click detected | openRef:\", openRef.current, \"| outside:\", isOutside);\n\n    if (openRef.current && isOutside) {\n      console.log(\"[FIXED] closing dropdown\");\n      setOpen(false);\n    }\n  }\n\n  document.addEventListener(\"click\", handleClick);\n\n  return () => {\n    document.removeEventListener(\"click\", handleClick);\n  };\n}, []);",
+        "path": "src/app/practice/stale-closure-click-outside/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "The listener remains attached only once, preventing unnecessary re-subscriptions. State freshness is handled independently through a ref, ensuring the dropdown logic always evaluates the latest value without closure drift."
+      },
+      {
+        "type": "video",
+        "value": "https://res.cloudinary.com/frontendddlab/video/upload/v1770993345/fixed_nk5soq.mp4",
+        "thumbnail": "https://res.cloudinary.com/frontendddlab/image/upload/v1770993341/thumbnail_fixed_lwmgpl.png"
+      },
+      {
+        "type": "separator",
+        "value": ""
+      },
+      {
+        "type": "description",
+        "value": "Closures capture values at creation time. When subscriptions remain stable but state changes over time, logic may silently operate on outdated data. Separating subscription stability from state freshness prevents subtle UI inconsistencies and aligns event handling with real user behavior."
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Double submit caused by UI state lag",
+    "publishedAt": "Feb 16, 2026",
+    "readTime": "2 min",
+    "banner": "https://res.cloudinary.com/frontendddlab/image/upload/v1771221159/banner_xg92mm.png",
+    "sourceLink": "https://github.com/sumittttpaul/FrontendLab/blob/master/src/app/practice/double-submit-caused-by-ui-state-lag/page.tsx",
+    "keywords": ["double submit bug", "frontend edge case", "react button disable race", "ui correctness", "state safety"],
+    "content": [
+      {
+        "type": "heading",
+        "value": "Problem"
+      },
+      {
+        "type": "description",
+        "value": "A submit button is disabled only after state updates to 'loading'. Under rapid user interaction, multiple clicks can occur before the UI visually reflects the disabled state."
+      },
+      {
+        "type": "point",
+        "value": [
+          "User clicks button rapidly.",
+          "State update is scheduled but not yet committed.",
+          "Multiple submit handlers execute.",
+          "Duplicate API calls are triggered."
+        ]
+      },
+      {
+        "type": "code",
+        "value": "const [loading, setLoading] = useState(false);\n\nfunction handleSubmit() {\n  if (loading) return;\n\n  console.log(\"[BROKEN] submit triggered\");\n  setLoading(true);\n\n  void (async () => {\n    await delay(800);\n    console.log(\"[BROKEN] request finished\");\n    setLoading(false);\n  })();\n}\n\n<button disabled={loading} onClick={handleSubmit}>\n  {loading ? \"Submitting...\" : \"Submit\"}\n</button>",
+        "path": "src/app/practice/double-submit-ui-lag/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "Because state updates are asynchronous, multiple click events can be processed before the button becomes disabled in the DOM."
+      },
+      {
+        "type": "spacing",
+        "value": ""
+      },
+      {
+        "type": "heading",
+        "value": "Solution"
+      },
+      {
+        "type": "description",
+        "value": "Use a synchronous guard that does not rely on React render timing. A mutable ref blocks duplicate execution immediately before state updates propagate."
+      },
+      {
+        "type": "code",
+        "value": "const [loading, setLoading] = useState(false);\nconst inFlightRef = useRef(false);\n\nfunction handleSubmit() {\n  if (inFlightRef.current) {\n    console.log(\"[FIXED] duplicate submit prevented\");\n    return;\n  }\n\n  inFlightRef.current = true;\n  console.log(\"[FIXED] submit triggered\");\n  setLoading(true);\n\n  void (async () => {\n    await delay(800);\n    console.log(\"[FIXED] request finished\");\n    inFlightRef.current = false;\n    setLoading(false);\n  })();\n}\n\n<button disabled={loading} onClick={handleSubmit}>\n  {loading ? \"Submitting...\" : \"Submit\"}\n</button>",
+        "path": "src/app/practice/double-submit-ui-lag/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "The ref acts as an immediate execution lock. It prevents duplicate side effects before React re-renders and disables the button."
+      },
+      {
+        "type": "separator",
+        "value": ""
+      },
+      {
+        "type": "description",
+        "value": "UI state updates are not synchronous execution guards. When side effects must not run more than once, protection must exist outside the render cycle. Immediate execution locks prevent duplicate network calls and inconsistent server state."
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "Optimistic UI rollback failure",
+    "publishedAt": "Feb 18, 2026",
+    "readTime": "2 min",
+    "banner": "https://res.cloudinary.com/frontendddlab/image/upload/v1771339950/banner_r3ienk.png",
+    "sourceLink": "https://github.com/sumittttpaul/FrontendLab/blob/master/src/app/practice/optimistic-ui-rollback-failure/page.tsx",
+    "keywords": ["optimistic ui", "frontend edge case", "state rollback bug", "react async failure", "ui correctness"],
+    "content": [
+      {
+        "type": "heading",
+        "value": "Problem"
+      },
+      {
+        "type": "description",
+        "value": "An optimistic UI update immediately reflects a user action before the server confirms success. If the request fails or multiple toggles occur quickly, the UI can drift away from actual server state."
+      },
+      {
+        "type": "description",
+        "value": "The failure becomes visible when responses resolve out of order. Because rollback logic depends on previously captured state, rapid interactions can cause the UI to revert to an outdated value that no longer represents user intent."
+      },
+      {
+        "type": "point",
+        "value": [
+          "User toggles state rapidly.",
+          "UI updates immediately (optimistic update).",
+          "Server responds out of order or fails.",
+          "Rollback logic restores incorrect state."
+        ]
+      },
+      {
+        "type": "code",
+        "value": "const [liked, setLiked] = useState(false);\n\nfunction handleToggle() {\n  const previous = liked;\n  setLiked(!liked); // optimistic update\n\n  void (async () => {\n    try {\n      await fakeRequest();\n      console.log(\"[BROKEN] server confirmed\");\n    } catch {\n      console.log(\"[BROKEN] server failed → rolling back\");\n      setLiked(previous);\n    }\n  })();\n}",
+        "path": "src/app/practice/optimistic-ui-rollback/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "Because the stored 'previous' value represents state at a specific moment in time, it may no longer be valid by the time the request resolves. Rollback logic based on stale baselines introduces subtle state corruption."
+      },
+      {
+        "type": "video",
+        "value": "https://res.cloudinary.com/frontendddlab/video/upload/v1771339953/broken_kfads1.mp4",
+        "thumbnail": "https://res.cloudinary.com/frontendddlab/image/upload/v1771339950/thumbnail_broken_shqcm9.png"
+      },
+      {
+        "type": "spacing",
+        "value": ""
+      },
+      {
+        "type": "heading",
+        "value": "Solution"
+      },
+      {
+        "type": "description",
+        "value": "Each optimistic mutation is assigned a request identity. Only the latest request is allowed to commit success or rollback. Outdated responses are ignored instead of mutating state."
+      },
+      {
+        "type": "description",
+        "value": "Instead of relying on a captured 'previous' value, the UI validates whether the response still matches the most recent user intent. This ensures rollback only occurs when it reflects the current interaction context."
+      },
+      {
+        "type": "code",
+        "value": "const requestIdRef = useRef(0);\nconst [liked, setLiked] = useState(false);\n\nfunction handleToggle() {\n  const requestId = ++requestIdRef.current;\n  setLiked((prev) => !prev);\n\n  void (async () => {\n    try {\n      await fakeRequest();\n\n      if (requestId !== requestIdRef.current) {\n        console.log(\"[FIXED] stale response ignored\");\n        return;\n      }\n\n      console.log(\"[FIXED] server confirmed\");\n    } catch {\n      if (requestId !== requestIdRef.current) {\n        console.log(\"[FIXED] stale failure ignored\");\n        return;\n      }\n\n      console.log(\"[FIXED] server failed → reverting safely\");\n      setLiked((prev) => !prev);\n    }\n  })();\n}",
+        "path": "src/app/practice/optimistic-ui-rollback/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "By validating request identity before committing success or rollback, the UI remains aligned with the latest user intent even under rapid interaction and network variance."
+      },
+      {
+        "type": "video",
+        "value": "https://res.cloudinary.com/frontendddlab/video/upload/v1771339955/fixed_hlsat9.mp4",
+        "thumbnail": "https://res.cloudinary.com/frontendddlab/image/upload/v1771339950/thumbnail_fixed_iolv4z.png"
+      },
+      {
+        "type": "separator",
+        "value": ""
+      },
+      {
+        "type": "description",
+        "value": "Optimistic UI improves perceived performance, but without identity validation it can corrupt state under rapid interaction or network latency. Treat async confirmations as untrusted until validated against current intent."
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "State update after route transition",
+    "publishedAt": "Feb 20, 2026",
+    "readTime": "2 min",
+    "banner": "https://res.cloudinary.com/frontendddlab/image/upload/v1771563713/banner_ui6s9i.png",
+    "sourceLink": "https://github.com/sumittttpaul/FrontendLab/blob/master/src/app/practice/state-update-after-route-transition/page.tsx",
+    "keywords": ["route transition bug", "react navigation race", "state leak", "frontend lifecycle issue", "ui correctness"],
+    "content": [
+      {
+        "type": "heading",
+        "value": "Problem"
+      },
+      {
+        "type": "description",
+        "value": "A component starts asynchronous work and then a route transition occurs before the work completes. When the async task resolves, it updates state that no longer matches the active route."
+      },
+      {
+        "type": "description",
+        "value": "Under rapid navigation or slow network conditions, outdated async results can commit state after the user has moved to a different page, causing visual flickers or data appearing briefly in the wrong context."
+      },
+      {
+        "type": "point",
+        "value": [
+          "Async request triggered on mount.",
+          "User navigates away quickly.",
+          "Async resolves after route change.",
+          "State update applies to outdated screen context."
+        ]
+      },
+      {
+        "type": "code",
+        "value": "useEffect(() => {\n  console.log(\"[BROKEN] request started for route:\", route);\n\n  void (async () => {\n    const data = await fetchData(route);\n    console.log(\"[BROKEN] request resolved for route:\", route);\n    setData(data);\n  })();\n}, [route]);",
+        "path": "src/app/practice/route-transition-state-leak/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "Because the async callback closes over the original route value, late responses may commit data that no longer matches the current navigation state."
+      },
+      {
+        "type": "video",
+        "value": "https://res.cloudinary.com/frontendddlab/video/upload/v1771563717/broken_e3tnor.mp4",
+        "thumbnail": "https://res.cloudinary.com/frontendddlab/image/upload/v1771563714/thumbnail_broken_a9kkso.png"
+      },
+      {
+        "type": "spacing",
+        "value": ""
+      },
+      {
+        "type": "heading",
+        "value": "Solution"
+      },
+      {
+        "type": "description",
+        "value": "Associate each route-triggered request with a request identity. Only allow the most recent route request to commit state."
+      },
+      {
+        "type": "description",
+        "value": "Instead of assuming navigation invalidates previous async tasks, explicitly validate that the response still corresponds to the active route before updating state."
+      },
+      {
+        "type": "code",
+        "value": "const requestIdRef = useRef(0);\n\nuseEffect(() => {\n  const requestId = ++requestIdRef.current;\n  console.log(\"[FIXED] request started for route:\", route);\n\n  void (async () => {\n    const data = await fetchData(route);\n\n    if (requestId !== requestIdRef.current) {\n      console.log(\"[FIXED] stale route response ignored\");\n      return;\n    }\n\n    console.log(\"[FIXED] request committed for route:\", route);\n    setData(data);\n  })();\n}, [route]);",
+        "path": "src/app/practice/route-transition-state-leak/page.tsx"
+      },
+      {
+        "type": "description",
+        "value": "By validating request identity against the current route, outdated responses are ignored and UI state remains aligned with active navigation context."
+      },
+      {
+        "type": "video",
+        "value": "https://res.cloudinary.com/frontendddlab/video/upload/v1771563716/fixed_maetm1.mp4",
+        "thumbnail": "https://res.cloudinary.com/frontendddlab/image/upload/v1771563713/thumbnail_fixed_uuwe4c.png"
+      },
+      {
+        "type": "separator",
+        "value": ""
+      },
+      {
+        "type": "description",
+        "value": "Route transitions do not automatically cancel asynchronous work. Treat async results as untrusted until verified against the current navigation intent."
+      }
+    ]
+  }
+]

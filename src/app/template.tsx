@@ -1,10 +1,17 @@
-import RouteTransition from "components/Animations/RouteAnimation";
-import LocomotiveScrollWrapper from "utils/LocomotiveScrollWrapper";
+"use client";
 
-export default function RootTemplate({ children }: React.PropsWithChildren) {
+import { m, useReducedMotion } from "framer-motion";
+
+/** Page enter transition: content fades and lifts in on every route change. */
+export default function Template({ children }: React.PropsWithChildren) {
+  const reduce = useReducedMotion();
   return (
-    <RouteTransition>
-      <LocomotiveScrollWrapper>{children}</LocomotiveScrollWrapper>
-    </RouteTransition>
+    <m.div
+      initial={reduce ? false : { opacity: 0, y: 28 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </m.div>
   );
 }

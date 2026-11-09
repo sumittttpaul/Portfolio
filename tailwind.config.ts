@@ -4,58 +4,77 @@ const config: Config = {
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/interface/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/utils/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/content/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        "svg-black": "#141517",
-        "almost-black": "#1C1D20",
-        "medium-black": "#202020",
-        "second-black": "#303030",
-        "second-gray": "#999999",
-        "button-blue": "#334BD3",
-        "hover-light-blue": "#0b3cff",
-        "hover-blue": "#455CE9",
-        "light-gray": "#c9c9c9",
-        "dark-pink-purple": "#2E1C39",
-        "dark-red": "#4B0000",
-        "dark-pink": "#45004B",
-        "dark-blue": "#003C4B",
-        "dark-yellow": "#464B00",
-        "dark-green": "#004B0C",
-        "dark-purple": "#320161",
-        "dark-orange": "#613B01",
-        "super-dark-red": "#300000",
-        "super-dark-pink": "#26002B",
-        "super-dark-blue": "#002933",
-        "super-dark-yellow": "#252900",
-        "super-dark-green": "#003008",
-        "super-dark-purple": "#1F003B",
-        "super-dark-orange": "#362100",
-      },
-      screens: {
-        "max-size": "1500px",
-        "screen-1180": "1180px",
-        "screen-1000": "1000px",
-        "screen-1410": "1410px",
-        "screen-2k": "1921px",
-        xs: "401px",
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        ink: {
+          950: "#0F1011",
+          900: "#151718",
+          850: "#1C1D20",
+          800: "#232427",
+          750: "#27282C",
+          700: "#2F3034",
+          600: "#3A3B40",
+        },
+        bone: "#E5E3DC",
+        mute: "#A3A3A3",
+        soft: "#B6B6B6",
+        pale: "#C9C9C9",
+        dim: "#808080",
+        accent: "#F3350C",
       },
       fontFamily: {
-        neue: ["var(--font-neue)"],
-        pacifico: ["var(--font-pacifico)"],
-        grtsk: ["var(--font-grtsk)"],
-        "grtsk-bkslnt": ["var(--font-grtsk-bkslnt)"],
+        sans: ["Switzer", "var(--font-neue)", "system-ui", "sans-serif"],
+        inter: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mega: ["var(--font-grtsk)", "Switzer", "sans-serif"],
+        mono: ["var(--font-roboto-mono)", "ui-monospace", "Menlo", "Consolas", "monospace"],
+      },
+      // Type scale measured from the reference (size / line-height / tracking)
+      fontSize: {
+        eyebrow: ["12px", { lineHeight: "14.4px", letterSpacing: "-0.15px" }],
+        // 44px @390 · 64px @820 · 96px @1230+
+        "display-xl": ["clamp(2.75rem, 7.8vw, 6rem)", { lineHeight: "1", letterSpacing: "-0.02em" }],
+        "display-blog": ["clamp(2.75rem, 6.2vw, 4.75rem)", { lineHeight: "1.02", letterSpacing: "-0.03em" }],
+        // 40px @390 · 52px @820 · 64px @1010+
+        "display-lg": ["clamp(2.5rem, 6.35vw, 4rem)", { lineHeight: "1.1", letterSpacing: "-0.01em" }],
+        "display-note": ["clamp(2.25rem, 4.6vw, 3.5rem)", { lineHeight: "1", letterSpacing: "-0.03em" }],
+        // 32px @390 · ~38px @820 · 44px @960+
+        "display-md": ["clamp(2rem, 4.6vw, 2.75rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
+        "heading-40": ["clamp(1.875rem, 3vw, 2.5rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+        "heading-32": ["clamp(1.625rem, 2.4vw, 2rem)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
+        "heading-28": ["clamp(1.375rem, 2vw, 1.75rem)", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
+      },
+      maxWidth: {
+        site: "97rem", // 1520px content + 2 x 16px padding
+      },
+      screens: {
+        xs: "401px",
+      },
+      transitionTimingFunction: {
+        expo: "cubic-bezier(0.16, 1, 0.3, 1)",
+        quart: "cubic-bezier(0.76, 0, 0.24, 1)",
+      },
+      keyframes: {
+        marquee: { to: { transform: "translateX(-50%)" } },
+        "spin-angle": { to: { "--angle": "360deg" } },
+        twinkle: { "0%,100%": { opacity: "0.2" }, "50%": { opacity: "1" } },
+        orbit: { to: { transform: "rotate(360deg)" } },
+        "orbit-reverse": { to: { transform: "rotate(-360deg)" } },
+        progress: { from: { transform: "scaleX(0)" }, to: { transform: "scaleX(1)" } },
+      },
+      animation: {
+        marquee: "marquee 40s linear infinite",
+        twinkle: "twinkle 4s ease-in-out infinite",
+        orbit: "orbit 60s linear infinite",
+        "orbit-slow": "orbit 90s linear infinite",
+        "orbit-reverse": "orbit-reverse 60s linear infinite",
+        "orbit-reverse-slow": "orbit-reverse 90s linear infinite",
       },
     },
   },
   plugins: [],
 };
+
 export default config;
