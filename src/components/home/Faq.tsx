@@ -101,7 +101,7 @@ export default function Faq() {
               <p className="text-heading-32 font-medium text-bone">Still got questions?</p>
               <p className="body-copy-sm mt-1">If yours isn&apos;t here, ask me directly.</p>
             </div>
-            <GradientButton href="/contact" size="md">
+            <GradientButton href="/contact" size="md" className="w-full sm:w-auto [&>span]:w-full">
               Ask me anything
             </GradientButton>
           </div>

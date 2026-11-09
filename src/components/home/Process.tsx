@@ -43,8 +43,8 @@ export default function Process() {
             title={"From first idea to a shipped\nproduct, in one pair of hands"}
             align="center"
           />
-          <Reveal delay={0.1}>
-            <GradientButton href="/contact" size="md" hoverText="Let's talk">
+          <Reveal delay={0.1} className="w-full sm:w-auto">
+            <GradientButton href="/contact" size="md" hoverText="Let's talk" className="w-full sm:w-auto [&>span]:w-full">
               Start a project
             </GradientButton>
           </Reveal>
@@ -115,10 +115,14 @@ export default function Process() {
           {principles.map((p, i) => (
             <Reveal motion as="li" key={p.title} delay={i * 0.05}>
               <div className="relative flex h-full min-h-[300px] flex-col overflow-hidden rounded-[20px] border border-white/[0.07] bg-[#141517] px-6 py-7 lg:min-h-[385px]">
+                {/* Glow drawn as plain gradients: blurred layers flicker out on mobile browsers */}
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -right-[120px] -top-[120px] size-[260px] rounded-full opacity-[0.14] blur-[70px]"
-                  style={{ background: "conic-gradient(#ff6ec4, #ffb35c, #7ad8ff, #8b7bff, #ff6ec4)" }}
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(55% 45% at 100% 0%, rgba(139,123,255,0.16), transparent 70%), radial-gradient(35% 30% at 80% 0%, rgba(255,110,196,0.1), transparent 70%), radial-gradient(30% 30% at 100% 25%, rgba(122,216,255,0.08), transparent 70%)",
+                  }}
                 />
                 <div className="relative flex h-[60px] items-start justify-between">
                   {i === 1 ? (

@@ -160,12 +160,16 @@ html.lenis body {
     animation-duration: 1.6s;
     transition: opacity 0.4s ease;
   }
-  .gradient-ring:hover::before {
-    animation-duration: 1.6s;
-  }
-  .gradient-ring:hover::after {
-    opacity: 0.55;
-  }
+@media (hover: hover) {
+    .gradient-ring:hover::before {
+      animation-duration: 1.6s;
+    }
+}
+@media (hover: hover) {
+    .gradient-ring:hover::after {
+      opacity: 0.55;
+    }
+}
 
   /* Letter roll used on button labels */
   .roll {
@@ -181,10 +185,12 @@ html.lenis body {
   .roll .roll-b {
     transform: translateY(110%);
   }
-  .group:hover .roll i,
-  .roll:hover i {
-    transform: translateY(-110%);
-  }
+@media (hover: hover) {
+    .group:hover .roll i,
+    .roll:hover i {
+      transform: translateY(-110%);
+    }
+}
   .roll i {
     display: inline-block;
     font-style: normal;
@@ -310,8 +316,10 @@ media-volume-range::part(progress) {
   will-change: transform;
   backface-visibility: hidden;
 }
-.group:hover .hover-zoom {
-  transform: scale(1.03);
+@media (hover: hover) {
+  .group:hover .hover-zoom {
+    transform: scale(1.03);
+  }
 }
 
 /* First visit to the home page: greeting replaces the route label */

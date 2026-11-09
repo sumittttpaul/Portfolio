@@ -31,7 +31,7 @@ export default function ContactPage() {
         </Reveal>
         <Reveal delay={0.1}>
           <h1 className="mt-5 max-w-[760px] text-display-lg font-medium text-bone">
-            Let&apos;s talk about your <RotatingWord words={["website", "web app", "online store", "product", "next idea"]} />
+            Let&apos;s talk about <RotatingWord prefix="your " words={["website", "web app", "online store", "product", "next idea"]} />
           </h1>
         </Reveal>
         <Reveal delay={0.2}>
@@ -54,7 +54,7 @@ export default function ContactPage() {
               A few lines about your goals, scope and timeline is plenty. You&apos;ll get a copy of your message too.
             </p>
             <div className="mt-auto pt-8">
-              <GradientButton href="#brief">Write a brief</GradientButton>
+              <GradientButton href="#brief" className="w-full sm:w-auto [&>span]:w-full">Write a brief</GradientButton>
             </div>
           </Reveal>
 

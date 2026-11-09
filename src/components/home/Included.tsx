@@ -22,7 +22,7 @@ export default function Included() {
             for them.
           </p>
           <div className="mt-8">
-            <GradientButton href="/contact" size="md" hoverText="Say hello">
+            <GradientButton href="/contact" size="md" hoverText="Say hello" className="w-full sm:w-auto [&>span]:w-full">
               Talk about your project
             </GradientButton>
           </div>

@@ -133,7 +133,7 @@ export default function ContactForm() {
             <p className="text-[14px] text-mute">You&apos;ll get a copy of your message by email.</p>
           )}
         </AnimatePresence>
-        <GradientButton type="submit" size="md" disabled={pending} hoverText={pending ? "Sending..." : "Let's go"}>
+        <GradientButton type="submit" size="md" disabled={pending} hoverText={pending ? "Sending..." : "Let's go"} className="w-full sm:w-auto [&>span]:w-full">
           {pending ? "Sending..." : "Send message"}
         </GradientButton>
       </div>

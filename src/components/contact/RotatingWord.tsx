@@ -9,7 +9,8 @@ const EMPTY_PAUSE = 350;
 const HOLD = 1900;
 
 /** Typewriter: deletes the word letter by letter, then types the next one, with a blinking caret. */
-export default function RotatingWord({ words }: { words: string[] }) {
+/** `prefix` sits on the same line as the word, so the line never breaks between them. */
+export default function RotatingWord({ words, prefix = "" }: { words: string[]; prefix?: string }) {
   const reduce = useReducedMotion();
   const [text, setText] = useState(words[0]);
 
@@ -43,6 +44,7 @@ export default function RotatingWord({ words }: { words: string[] }) {
 
   return (
     <span className="block min-h-[1.1em] whitespace-nowrap">
+      {prefix}
       <span className="sr-only">{words.join(", ")}</span>
       <span aria-hidden="true">{text}</span>
       <span

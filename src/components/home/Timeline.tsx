@@ -33,7 +33,23 @@ export default function Timeline() {
         </div>
       </div>
 
-      <div className="overflow-x-auto [scrollbar-width:none]">
+      {/* Phones: each stage with a bar showing where it sits on the 12-step track */}
+      <ol className="flex flex-col gap-4 px-[18px] pb-7 pt-6 sm:hidden">
+        {stages.map((s, i) => (
+          <li key={s.label} className="grid grid-cols-[24px_96px_1fr] items-center gap-3">
+            <span className="text-[12px] text-mute">{String(i + 1).padStart(2, "0")}</span>
+            <span className="text-[15px] font-medium text-white">{s.label}</span>
+            <span className="relative h-2 rounded-full bg-white/10">
+              <span
+                className="absolute inset-y-0 rounded-full bg-bone/80"
+                style={{ left: `${((s.start - 1) / 12) * 100}%`, width: `${(s.span / 12) * 100}%` }}
+              />
+            </span>
+          </li>
+        ))}
+      </ol>
+
+      <div className="hidden overflow-x-auto [scrollbar-width:none] sm:block">
         <ol className="relative grid min-w-[760px] grid-cols-12 gap-y-4 px-[18px] pb-7 pt-7">
           {/* Dashed column guides */}
           <li aria-hidden="true" className="pointer-events-none absolute inset-x-[18px] inset-y-5 grid grid-cols-12">

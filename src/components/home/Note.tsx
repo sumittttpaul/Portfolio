@@ -10,12 +10,13 @@ export default function Note() {
   return (
     <section aria-label="A note from Sumeet" className="mx-auto w-full max-w-site px-[18px] pb-12 sm:px-9 sm:pb-[110px] xl:px-4">
       <Reveal motion className="relative grid gap-8 overflow-hidden rounded-[20px] bg-ink-750 p-2 sm:p-4 lg:grid-cols-[minmax(0,40%)_1fr] lg:gap-12 lg:rounded-[32px] xl:grid-cols-[600px_1fr] xl:gap-16">
+        {/* Glow drawn as plain gradients: blurred layers flicker out on mobile browsers */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-[120px] -top-40 size-[560px] rounded-full opacity-[0.22] blur-[90px]"
+          className="pointer-events-none absolute inset-0"
           style={{
-            background: "conic-gradient(from var(--angle), #ff6ec4, #ffb35c, #7ad8ff, #8b7bff, #ff6ec4)",
-            animation: "spin-angle 14s linear infinite",
+            background:
+              "radial-gradient(40% 45% at 100% 0%, rgba(139,123,255,0.2), transparent 70%), radial-gradient(30% 35% at 85% 10%, rgba(255,110,196,0.14), transparent 70%), radial-gradient(30% 35% at 100% 40%, rgba(122,216,255,0.1), transparent 70%), radial-gradient(25% 30% at 70% 0%, rgba(255,179,92,0.1), transparent 70%)",
           }}
         />
         <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[16px] bg-ink-700 sm:aspect-[4/3] sm:rounded-[24px] lg:aspect-[600/703]">

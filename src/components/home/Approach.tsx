@@ -22,9 +22,9 @@ export default function Approach() {
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-[60px] lg:grid-cols-3">
           {cards.map((c, i) => (
             <Reveal as="li" key={c.title} delay={(i % 3) * 0.05}>
-              <div className="h-full min-h-[298px] rounded-[18px] bg-ink-750 px-8 py-10">
+              <div className="h-full min-h-[220px] rounded-[18px] bg-ink-750 px-6 py-8 sm:min-h-[298px] sm:px-8 sm:py-10">
                 <span className="text-[16px] leading-[22.4px] text-mute">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-14 text-[28px] font-medium leading-[30.8px] tracking-[-0.02em] text-bone">{c.title}</h3>
+                <h3 className="mt-10 sm:mt-14 text-[28px] font-medium leading-[30.8px] tracking-[-0.02em] text-bone">{c.title}</h3>
                 <p className="mt-4 font-inter text-[16px] leading-[23.2px] text-mute">{c.text}</p>
               </div>
             </Reveal>
