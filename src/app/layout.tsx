@@ -95,6 +95,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           Skip to content
         </a>
         <MotionOptimize>
+          {/* First in the body so it is painted before any page content streams in */}
+          <RouteTransition />
           <SmoothScroll />
           <Header />
           <main id="main" className="relative">
@@ -105,7 +107,6 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           <Scrollbar />
           <ScrollTop />
           <ImageFade />
-          <RouteTransition />
         </MotionOptimize>
         <Analytics />
         <SpeedInsights />

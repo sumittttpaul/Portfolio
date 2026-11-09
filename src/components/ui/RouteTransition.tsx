@@ -8,17 +8,21 @@ import { site } from "content/site";
 
 const EASE = "cubic-bezier(0.76, 0, 0.24, 1)";
 const TEXT_EASE = "cubic-bezier(0.33, 1, 0.68, 1)";
-const COVER_MS = 620;
+/** Panel rising over the current page. */
+const COVER_MS = 900;
+/** Panel lifting off the new page. */
+const REVEAL_MS = 1100;
 /** Short beat on the covered screen once the next page has painted. */
-const HOLD_MS = 90;
+const HOLD_MS = 250;
 /** If a page never arrives (offline, failed chunk) the site must not stay covered. */
 const NAVIGATION_TIMEOUT_MS = 10000;
 
 /** Greeting played whenever the home page is opened by a full page load. */
 const GREETINGS = ["Hello", "Bonjour", "Ciao", "Olá", "やあ", "Hallå", "Guten Tag", "Hallo", "स्वागत है"];
 const GREETING_FIRST_MS = 1000;
-const GREETING_NEXT_MS = 150;
-const GREETING_LAST_MS = 350;
+/** Long enough to read each word. */
+const GREETING_NEXT_MS = 400;
+const GREETING_LAST_MS = 650;
 
 /** Runs before first paint: a full load or reload of the home page greets; in-app navigation never runs this. */
 export const greetingScript = `try{if(location.pathname==="/"&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.setAttribute("data-greeting","")}catch(e){}`;
@@ -133,7 +137,16 @@ export default function RouteTransition() {
       lock();
       await painted();
       clear();
-      const timing = { duration: COVER_MS, delay: HOLD_MS, easing: EASE, fill: "both" as const };
+      const timing = { duration: REVEAL_MS, delay: HOLD_MS, easing: EASE, fill: "both" as const };
+      // The page rises into place as the panel lifts, like the original site
+      const main = document.getElementById("main");
+      const rise = window.matchMedia("(min-width: 640px)").matches ? 300 : 125;
+      main?.animate([{ transform: `translateY(${rise}px)` }, { transform: "translateY(0)" }], {
+        duration: 1200,
+        delay: HOLD_MS + 150,
+        easing: TEXT_EASE,
+        fill: "backwards",
+      });
       await finished([
         panelEl.animate([{ transform: "translateY(0)" }, { transform: `translateY(${-travel()}px)` }], timing),
         curveEl.animate([{ transform: "scaleY(1)" }, { transform: "scaleY(0)" }], timing),
@@ -154,10 +167,19 @@ export default function RouteTransition() {
 
     const greet = async () => {
       lock();
-      greeting.current?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: GREETING_FIRST_MS });
+      // "Hello" is already on screen from the server render, so it simply holds; later words fade in
       await wait(GREETING_FIRST_MS);
       for (const word of GREETINGS.slice(1)) {
-        if (greeting.current) greeting.current.textContent = word;
+        if (greeting.current) {
+          greeting.current.textContent = word;
+          greeting.current.animate(
+            [
+              { opacity: 0, transform: "translateY(10px)" },
+              { opacity: 1, transform: "translateY(0)" },
+            ],
+            { duration: 220, easing: TEXT_EASE },
+          );
+        }
         await wait(word === GREETINGS[GREETINGS.length - 1] ? GREETING_LAST_MS : GREETING_NEXT_MS);
       }
     };
@@ -175,7 +197,7 @@ export default function RouteTransition() {
             { opacity: 0, transform: "translateY(48px)" },
             { opacity: 1, transform: "translateY(0)" },
           ],
-          { duration: 420, delay: 240, easing: TEXT_EASE, fill: "both" },
+          { duration: 500, delay: 380, easing: TEXT_EASE, fill: "both" },
         ),
       ];
       lock();
@@ -246,7 +268,9 @@ export default function RouteTransition() {
       <div ref={content} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center will-change-transform">
         <p className="route-greeting absolute inset-x-6 top-1/2 hidden -translate-y-1/2 justify-center text-[clamp(2.25rem,5vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-bone">
           <span className="mr-[0.25em] inline-block scale-[.8]">•</span>
-          <span ref={greeting}>{GREETINGS[0]}</span>
+          <span ref={greeting} className="inline-block">
+            {GREETINGS[0]}
+          </span>
         </p>
         <p suppressHydrationWarning className="route-label max-w-[1000px] text-balance text-[clamp(2.25rem,5vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-bone">
           <span className="mr-[0.25em] inline-block scale-[.8]">•</span>
