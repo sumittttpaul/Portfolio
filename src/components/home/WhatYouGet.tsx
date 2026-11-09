@@ -1,34 +1,32 @@
-import Image from "next/image";
 import Link from "next/link";
 import CenterHead from "components/ui/CenterHead";
 import { Reveal } from "components/ui/Reveal";
-
-const fade = "linear-gradient(90deg, transparent 0%, #000 34%)";
+import { BrandScene, FlowScene, PersonalityScene, StoreScene } from "./OfferScenes";
 
 const offers = [
   {
-    image: "/media/art/remember.webp",
+    Scene: PersonalityScene,
     audience: "For people and brands that want to stand out",
     title: "A site with its own personality",
     tags: ["Visual design", "Motion", "Next.js"],
     text: "Bold type, smooth transitions and the kind of details visitors notice, all designed around your brand.",
   },
   {
-    image: "/media/art/store.webp",
+    Scene: StoreScene,
     audience: "For shops that want more than a template",
     title: "A store that looks as good as it sells",
     tags: ["E-commerce", "Stripe", "Responsive"],
     text: "Product pages, collections and checkout designed together, so your store feels as good as what you sell.",
   },
   {
-    image: "/media/art/brand.webp",
+    Scene: BrandScene,
     audience: "For brands launching or refreshing",
     title: "A brand that looks right everywhere",
     tags: ["Brand websites", "UI/UX design", "Tailwind CSS"],
     text: "One confident visual language from the first screen to the last, so every page clearly belongs to you.",
   },
   {
-    image: "/media/art/flow.webp",
+    Scene: FlowScene,
     audience: "For products with real complexity",
     title: "Complex flows, clearly laid out",
     tags: ["Web apps", "React", "TypeScript"],
@@ -49,15 +47,8 @@ export default function WhatYouGet() {
           {offers.map((o) => (
             <Reveal as="li" key={o.title} y={40}>
               <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-black lg:min-h-[640px] lg:flex-row lg:items-center lg:rounded-[24px]">
-                <div className="relative aspect-[4/3] w-full lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-auto lg:w-[72%]">
-                  <Image
-                    src={o.image}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1024px) 72vw, 100vw"
-                    className="object-cover object-right lg:[-webkit-mask-image:var(--case-fade)] lg:[mask-image:var(--case-fade)]"
-                    style={{ "--case-fade": fade } as React.CSSProperties}
-                  />
+                <div className="relative aspect-[4/3] w-full lg:absolute lg:inset-0 lg:aspect-auto">
+                  <o.Scene />
                 </div>
                 <div className="relative flex flex-col p-6 sm:p-10 lg:w-[640px] lg:max-w-[50%] lg:p-14">
                   <p className="text-[14px] italic leading-[19.6px] text-[#A6A6A6]">{o.audience}</p>

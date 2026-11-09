@@ -2,9 +2,10 @@
 
 import { useInView, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import CenterHead from "components/ui/CenterHead";
+import { AppScene, LaunchScene, MarketingScene, MotionScene, ShopScene } from "./TypeScenes";
+import { Reveal } from "components/ui/Reveal";
 
 const CYCLE = 7;
 
@@ -14,35 +15,35 @@ const types = [
     title: "Say what you do in seconds",
     text: "Sites with a clear structure and strong visuals that explain your brand quickly and give visitors an obvious next step.",
     link: "Let's build your site",
-    image: "/media/art/marketing.webp",
+    Scene: MarketingScene,
   },
   {
     label: "Landing pages for launches",
     title: "One page, one clear action",
     text: "Focused pages for a launch or campaign, built around the single thing you want a visitor to do.",
     link: "Plan your launch page",
-    image: "/media/art/launch.webp",
+    Scene: LaunchScene,
   },
   {
     label: "E-commerce storefronts",
     title: "From browsing to buying",
     text: "Collections that make discovery easy and product pages that feel good on a phone, right through to checkout.",
     link: "Let's build your store",
-    image: "/media/art/shop.webp",
+    Scene: ShopScene,
   },
   {
     label: "Web applications",
     title: "Interfaces for real products",
     text: "Account flows, boards and data-heavy screens, built with Next.js and TypeScript so they stay reliable as they grow.",
     link: "Let's build your app",
-    image: "/media/art/app.webp",
+    Scene: AppScene,
   },
   {
     label: "Animated, interactive websites",
     title: "Motion that earns its place",
     text: "Layered transitions and scroll moments that make a site feel alive without ever slowing it down.",
     link: "Let's make it move",
-    image: "/media/art/layers.webp",
+    Scene: MotionScene,
   },
 ];
 
@@ -62,7 +63,7 @@ export default function WebsiteTypes() {
           title={"The websites I\nbuild most often"}
           text="These are the projects I take on most, and each one gets its own design and build."
         />
-        <div className="mt-12 grid gap-8 lg:mx-4 lg:mt-[60px] lg:grid-cols-2 lg:items-start lg:gap-6">
+        <Reveal className="mt-12 grid gap-8 lg:mt-[60px] lg:grid-cols-2 lg:items-start lg:gap-6">
           <ul ref={list} className="flex flex-col" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
             {types.map((item, i) => {
               const on = active === i;
@@ -118,8 +119,8 @@ export default function WebsiteTypes() {
                   }`}
                 >
                   <div className="relative aspect-[16/9] overflow-hidden">
-                    {/* Hidden panels never trigger lazy loading, so fetch them all up front */}
-                    <Image src={t.image} alt="" fill loading="eager" sizes="(min-width: 1024px) 50vw, 100vw" className="origin-right scale-[1.25] object-cover" />
+                    {/* Remounts on activation so each scene plays from its first frame */}
+                    <t.Scene key={on ? "on" : "off"} active={on} />
                   </div>
                   <div className="p-6 sm:p-10">
                     <h3 className="text-[28px] font-medium leading-[32.2px] tracking-[-0.02em] text-white">{t.title}</h3>
@@ -133,7 +134,7 @@ export default function WebsiteTypes() {
               );
             })}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

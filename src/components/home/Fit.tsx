@@ -22,7 +22,7 @@ export default function Fit() {
           />
         </div>
 
-        <div className="mt-12 grid gap-4 lg:mx-4 lg:mt-[72px] lg:grid-cols-[859fr_613fr]">
+        <div className="mt-12 grid gap-4 lg:mt-[72px] lg:grid-cols-[859fr_613fr]">
           <Reveal className="flex flex-col rounded-[24px] bg-ink-950 p-6 sm:p-12 lg:min-h-[550px]">
             <span className="flex items-center gap-2 self-start rounded-full border border-white/[0.14] bg-white/[0.08] px-3 py-[7px] text-[12px] uppercase leading-[16.8px] tracking-[0.04em] text-pale">
               <span className="size-1.5 rounded-full bg-emerald-400" />

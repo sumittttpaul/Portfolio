@@ -115,7 +115,7 @@ export default function ContactPage() {
 
       <WaysToWork />
 
-      <section id="brief" className="container-site scroll-mt-24 py-16 sm:py-24">
+      <section id="brief" className="container-site scroll-mt-24 pb-16 pt-24 sm:py-24">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
           <div>
             <Reveal y={10}>

@@ -27,6 +27,31 @@ const GREETING_LAST_MS = 650;
 /** Runs before first paint: a full load or reload of the home page greets; in-app navigation never runs this. */
 export const greetingScript = `try{if(location.pathname==="/"&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.setAttribute("data-greeting","")}catch(e){}`;
 
+/**
+ * Where the cover is in its cycle, so pages can hold their own entrance until
+ * it is out of the way: "covered" while it hides the page, "revealing" while
+ * it lifts, "settled" once it is gone.
+ */
+export type RoutePhase = "covered" | "revealing" | "settled";
+let phase: RoutePhase = "covered";
+const phaseListeners = new Set<(p: RoutePhase) => void>();
+function setPhase(next: RoutePhase) {
+  phase = next;
+  phaseListeners.forEach((fn) => fn(next));
+}
+
+export function useRoutePhase() {
+  const [current, setCurrent] = useState<RoutePhase>(phase);
+  useEffect(() => {
+    phaseListeners.add(setCurrent);
+    setCurrent(phase);
+    return () => {
+      phaseListeners.delete(setCurrent);
+    };
+  }, []);
+  return current;
+}
+
 type Label = { title: string; text: string };
 
 /** Blog slugs are generated from the article title, so the title can be restored without loading the articles. */
@@ -86,6 +111,7 @@ export default function RouteTransition() {
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       busy.current = false;
+      setPhase("settled");
       return;
     }
 
@@ -113,6 +139,7 @@ export default function RouteTransition() {
       document.documentElement.removeAttribute("data-route-moving");
       document.documentElement.removeAttribute("data-greeting");
       resumeSmoothScroll();
+      setPhase("settled");
     };
 
     const lock = () => {
@@ -138,6 +165,7 @@ export default function RouteTransition() {
       await painted();
       clear();
       const timing = { duration: REVEAL_MS, delay: HOLD_MS, easing: EASE, fill: "both" as const };
+      setTimeout(() => setPhase("revealing"), HOLD_MS);
       // The page rises into place as the panel lifts, like the original site
       const main = document.getElementById("main");
       const rise = window.matchMedia("(min-width: 640px)").matches ? 300 : 125;
@@ -206,6 +234,7 @@ export default function RouteTransition() {
 
     const navigate = async (href: string, target: string) => {
       busy.current = true;
+      setPhase("covered");
       setLabel(labelFor(target));
       router.prefetch(href);
       await cover();
@@ -233,6 +262,7 @@ export default function RouteTransition() {
       const target = window.location.pathname;
       if (busy.current || target === currentPath.current) return;
       busy.current = true;
+      setPhase("covered");
       setLabel(labelFor(target));
       clear();
       panelEl.style.transform = "translateY(0)";

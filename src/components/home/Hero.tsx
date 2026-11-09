@@ -1,17 +1,19 @@
 "use client";
 
-import { AnimatePresence, m, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useRoutePhase } from "components/ui/RouteTransition";
 import Wordmark from "components/site/Wordmark";
 
-type Slide = { label: string; kind: "video" | "image"; src: string; alt: string };
+/** `start`: where the clip begins and loops back to, skipping any intro frames. */
+type Slide = { label: string; src: string; alt: string; start: number };
 
 const slides: Slide[] = [
-  { label: "Frontend Engineering", kind: "video", src: "/media/showreel.mp4", alt: "Floating code editor panels" },
-  { label: "E-commerce", kind: "image", src: "/media/emotion-cover.webp", alt: "Emotion e-commerce store on a tablet" },
-  { label: "Brand Websites", kind: "image", src: "/media/agewear-cover.webp", alt: "Agewear Lifestyle storefront on a phone" },
-  { label: "Product UI", kind: "image", src: "/media/authentication-cover.webp", alt: "Sign-in screen on a phone" },
+  { label: "Frontend Engineering", src: "/media/showreel.mp4", alt: "Floating code editor panels", start: 0 },
+  // The first 3.5s of this clip are letterboxed
+  { label: "E-commerce", src: "/media/reel-ecommerce.mp4", alt: "Browsing a ceramics store on a tablet", start: 4 },
+  { label: "Brand Websites", src: "/media/reel-brand.mp4", alt: "One brand website on a laptop, tablet and phone", start: 0 },
+  { label: "Product UI", src: "/media/reel-product.mp4", alt: "Signing in on a phone", start: 0 },
 ];
 
 const DURATION = 7;
@@ -26,7 +28,12 @@ export default function Hero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [cycle, setCycle] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  // The loader covers the page first: start the showreel from slide one once it is gone
+  const phase = useRoutePhase();
+  const ready = phase === "settled";
+  const entering = phase !== "covered";
+  const running = ready && !paused && !reduce;
+  const videos = useRef<(HTMLVideoElement | null)[]>([]);
 
   // Scroll-linked layout (desktop only): the wordmark + tabs slide up while the
   // showreel's top edge rises and its bottom stays anchored, so it grows.
@@ -67,18 +74,38 @@ export default function Hero() {
     setCycle((c) => c + 1);
   }, []);
 
+  // Back to the first slide and the start of the video whenever the loader clears
   useEffect(() => {
-    if (paused || reduce) return;
-    const id = setTimeout(() => go((active + 1) % slides.length), DURATION * 1000);
-    return () => clearTimeout(id);
-  }, [active, paused, reduce, go, cycle]);
+    if (!ready) return;
+    setActive(0);
+    setCycle((c) => c + 1);
+    const first = videos.current[0];
+    if (first) first.currentTime = slides[0].start;
+  }, [ready]);
 
   useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (paused || reduce) v.pause();
-    else v.play().catch(() => undefined);
-  }, [paused, reduce]);
+    if (!running) return;
+    const id = setTimeout(() => go((active + 1) % slides.length), DURATION * 1000);
+    return () => clearTimeout(id);
+  }, [active, running, go, cycle]);
+
+  // Only the visible slide plays. A slide starts from its own start point each time it is shown.
+  const shown = useRef(-1);
+  useEffect(() => {
+    videos.current.forEach((v, i) => {
+      if (!v) return;
+      if (i !== active) {
+        v.pause();
+        return;
+      }
+      if (shown.current !== active) {
+        shown.current = active;
+        v.currentTime = slides[i].start;
+      }
+      if (running) v.play().catch(() => undefined);
+      else v.pause();
+    });
+  }, [active, running]);
 
   const animated = geo.desktop && !reduce;
 
@@ -94,7 +121,7 @@ export default function Hero() {
           <div className="px-1 text-bone">
             <m.div
               initial={reduce ? false : { clipPath: "inset(100% 0 0 0)", y: 60 }}
-              animate={{ clipPath: "inset(-50% 0 0 0)", y: 0 }}
+              animate={entering || reduce ? { clipPath: "inset(-50% 0 0 0)", y: 0 } : undefined}
               transition={{ duration: 1.3, ease: [0.76, 0, 0.24, 1], delay: 0.15 }}
             >
               <Wordmark progress={animated ? letterProgress : undefined} />
@@ -117,11 +144,11 @@ export default function Hero() {
                 <span className="relative mt-4 block h-px w-full overflow-hidden bg-white/15">
                   {active === i && (
                     <span
-                      key={`${cycle}-${paused}`}
+                      key={`${cycle}-${paused}-${ready}`}
                       className="absolute inset-0 origin-left bg-gradient-to-r from-white/30 to-bone"
                       style={{
-                        animation: paused || reduce ? undefined : `progress ${DURATION}s linear forwards`,
-                        transform: paused || reduce ? "scaleX(1)" : undefined,
+                        animation: running ? `progress ${DURATION}s linear forwards` : undefined,
+                        transform: running ? undefined : ready || reduce ? "scaleX(1)" : "scaleX(0)",
                       }}
                     />
                   )}
@@ -140,41 +167,33 @@ export default function Hero() {
           style={geo.desktop ? { top: reelTop } : undefined}
           className="relative mt-4 aspect-[16/9] overflow-hidden rounded-[16px] bg-ink-950 sm:aspect-[3/2] sm:rounded-[20px] lg:absolute lg:inset-x-3 lg:bottom-3 lg:mt-0 lg:aspect-auto lg:rounded-[32px]"
         >
-          {/* Video stays mounted so it keeps its playback position between tabs */}
-          <div className={`absolute inset-0 transition-opacity duration-1000 ${active === 0 ? "opacity-100" : "opacity-0"}`}>
-            <video
-              ref={videoRef}
-              className="size-full origin-[20%_20%] scale-[1.2] object-cover"
-              src={slides[0].src}
-              autoPlay={!reduce}
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-label={slides[0].alt}
-            />
-          </div>
-          <AnimatePresence>
-            {slides[active].kind === "image" && (
-              <m.div
-                key={slides[active].src}
-                className="absolute inset-0"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1, ease: "easeInOut" }}
-              >
-                <m.div
-                  className="absolute inset-0"
-                  initial={{ scale: reduce ? 1 : 1.12 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: DURATION + 1, ease: "linear" }}
-                >
-                  <Image src={slides[active].src} alt={slides[active].alt} fill sizes="100vw" className="object-cover" />
-                </m.div>
-              </m.div>
-            )}
-          </AnimatePresence>
+          {/* Every clip stays mounted and crossfades in place; the zoom also crops the corner watermark */}
+          {slides.map((s, i) => (
+            <div
+              key={s.src}
+              className={`absolute inset-0 transition-opacity duration-1000 ${active === i ? "opacity-100" : "opacity-0"}`}
+            >
+              <video
+                ref={(el) => {
+                  videos.current[i] = el;
+                }}
+                className="size-full origin-[20%_20%] scale-[1.2] object-cover"
+                src={s.src}
+                muted
+                playsInline
+                // The first clip loads straight away, the rest once the loader has cleared
+                preload={i === 0 || ready ? "auto" : "none"}
+                aria-label={s.alt}
+                onLoadedMetadata={(e) => {
+                  if (s.start && e.currentTarget.currentTime < s.start) e.currentTarget.currentTime = s.start;
+                }}
+                onEnded={(e) => {
+                  e.currentTarget.currentTime = s.start;
+                  if (active === i && running) e.currentTarget.play().catch(() => undefined);
+                }}
+              />
+            </div>
+          ))}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           <button
             type="button"

@@ -8,8 +8,8 @@ const featured = socials.filter((s) => ["LinkedIn", "GitHub", "Instagram"].inclu
 
 export default function Note() {
   return (
-    <section aria-label="A note from Sumeet" className="mx-auto w-full max-w-site px-2 py-20 sm:px-9 sm:py-[110px] xl:px-4">
-      <Reveal motion className="relative grid gap-8 overflow-hidden rounded-[20px] bg-ink-750 p-2 sm:p-4 lg:mx-4 lg:grid-cols-[minmax(0,40%)_1fr] lg:gap-12 lg:rounded-[32px] xl:grid-cols-[600px_1fr] xl:gap-16">
+    <section aria-label="A note from Sumeet" className="mx-auto w-full max-w-site px-[18px] pb-12 sm:px-9 sm:pb-[110px] xl:px-4">
+      <Reveal motion className="relative grid gap-8 overflow-hidden rounded-[20px] bg-ink-750 p-2 sm:p-4 lg:grid-cols-[minmax(0,40%)_1fr] lg:gap-12 lg:rounded-[32px] xl:grid-cols-[600px_1fr] xl:gap-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-[120px] -top-40 size-[560px] rounded-full opacity-[0.22] blur-[90px]"

@@ -1,4 +1,5 @@
 import CenterHead from "components/ui/CenterHead";
+import { Reveal } from "components/ui/Reveal";
 
 const points = [
   {
@@ -33,8 +34,8 @@ export default function WhyItMatters() {
           text="Long before anyone talks to you, your website has already told them who you are. It should say the right thing."
         />
         <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:mt-[60px] xl:grid-cols-4">
-          {points.map((p) => (
-            <li key={p.title} className="rounded-2xl bg-ink-800 p-6 transition-colors duration-300 hover:bg-ink-750">
+          {points.map((p, i) => (
+            <Reveal as="li" key={p.title} delay={i * 0.06} className="rounded-2xl bg-ink-800 p-6 transition-colors duration-300 hover:bg-ink-750">
               <span className="flex size-10 items-center justify-center rounded-full bg-white/[0.06] text-bone">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   {p.icon}
@@ -42,7 +43,7 @@ export default function WhyItMatters() {
               </span>
               <h3 className="mt-6 text-[20px] font-medium leading-[23px] text-bone">{p.title}</h3>
               <p className="mt-2.5 font-inter text-[14px] leading-[20.3px] text-mute">{p.text}</p>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </div>

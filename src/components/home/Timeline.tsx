@@ -28,7 +28,7 @@ export default function Timeline() {
                 <path d="M3 10h18M8 3v4M16 3v4" />
               </svg>
             </span>
-            <span className="whitespace-nowrap px-4">Design and code, end to end</span>
+            <span className="px-3 leading-[1.2] sm:whitespace-nowrap sm:px-4">Design and code, end to end</span>
           </span>
         </div>
       </div>

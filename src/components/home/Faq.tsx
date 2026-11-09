@@ -37,7 +37,7 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(null);
   const base = useId();
   return (
-    <section aria-label="Frequently asked questions" className="py-24 sm:py-[110px]">
+    <section aria-label="Frequently asked questions" className="py-16 sm:py-[110px]">
       <div className="mx-auto w-full max-w-[912px] px-[18px] sm:px-9 lg:px-4">
         <Reveal y={10} className="sm:text-center">
           <p className="eyebrow">FAQ</p>

@@ -8,7 +8,7 @@ const fade = "linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transpa
 export default function Toolbox() {
   const row = [...tools, ...tools];
   return (
-    <section aria-label="Toolbox" className="pb-20 sm:pb-24">
+    <section aria-label="Toolbox" className="pb-20 pt-6 sm:pb-24 sm:pt-0">
       <div className="container-site">
         <SectionHeading eyebrow="Toolbox" title="The tools I build with every day" size="md" />
 

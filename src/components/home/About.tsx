@@ -39,7 +39,7 @@ function Orbit({ items, radius, reverse }: { items: readonly (typeof tools)[numb
 
 export default function About() {
   return (
-    <section aria-labelledby="about-heading" className="mx-auto w-full max-w-site px-2 py-20 sm:px-9 sm:py-[110px] xl:px-4">
+    <section aria-labelledby="about-heading" className="mx-auto w-full max-w-site px-[18px] py-12 sm:px-9 sm:py-[110px] xl:px-4">
       <div className="grid gap-1 lg:grid-cols-2 lg:gap-0">
         <div className="flex flex-col rounded-[16px] bg-ink-750 p-[18px] pb-8 sm:rounded-[18px] sm:p-12 lg:aspect-square lg:rounded-r-none lg:p-16">
           <Reveal y={10}>
@@ -80,7 +80,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="relative min-h-[420px] overflow-hidden rounded-[16px] bg-ink-950 sm:min-h-[600px] sm:rounded-[18px] lg:aspect-square lg:min-h-0 lg:rounded-l-none">
+        <div className="relative min-h-[420px] overflow-hidden rounded-[16px] bg-ink-950 sm:min-h-[600px] sm:rounded-[18px] lg:min-h-0 lg:rounded-l-none">
           {stars.map((s, i) => (
             <span
               key={i}

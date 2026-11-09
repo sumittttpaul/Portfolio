@@ -56,19 +56,24 @@ export default function Home() {
             </LightButton>
           </Reveal>
         </section>
+        {/* Why a website matters, then what I offer */}
+        <WhyItMatters />
+        <div className="h-8 sm:h-12" />
         <HowIHelp />
         <WhatYouGet />
-        <WhyItMatters />
-        <Included />
+        <WebsiteTypes />
         <div className="h-8 sm:h-12" />
         <Capabilities />
-        <WebsiteTypes />
-        <About />
+        <Included />
+        {/* How I work */}
         <Approach />
         <div className="h-8 sm:h-12" />
         <Process />
-        <Note />
+        <div className="h-3 sm:h-4" />
         <ProjectSteps />
+        {/* Who I am, then whether we fit */}
+        <About />
+        <Note />
         <Fit />
         <BlogPreview />
         <Faq />

@@ -19,7 +19,7 @@ export default function Approach() {
           title={"Engineering decisions\nusers can feel"}
           text="Every decision is judged by one thing: does it make the product clearer, faster or more reliable for the person using it?"
         />
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:mx-4 lg:mt-[60px] lg:grid-cols-3">
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-[60px] lg:grid-cols-3">
           {cards.map((c, i) => (
             <Reveal as="li" key={c.title} delay={(i % 3) * 0.05}>
               <div className="h-full min-h-[298px] rounded-[18px] bg-ink-750 px-8 py-10">
