@@ -27,6 +27,9 @@ export default function Hero() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  // How long each slide stays up: its clip's playable length, never more than DURATION
+  const [lengths, setLengths] = useState<number[]>(() => slides.map(() => DURATION));
+  const length = lengths[active];
   const [cycle, setCycle] = useState(0);
   // The loader covers the page first: start the showreel from slide one once it is gone
   const phase = useRoutePhase();
@@ -85,9 +88,9 @@ export default function Hero() {
 
   useEffect(() => {
     if (!running) return;
-    const id = setTimeout(() => go((active + 1) % slides.length), DURATION * 1000);
+    const id = setTimeout(() => go((active + 1) % slides.length), length * 1000);
     return () => clearTimeout(id);
-  }, [active, running, go, cycle]);
+  }, [active, running, go, cycle, length]);
 
   // Only the visible slide plays. A slide starts from its own start point each time it is shown.
   const shown = useRef(-1);
@@ -147,7 +150,7 @@ export default function Hero() {
                       key={`${cycle}-${paused}-${ready}`}
                       className="absolute inset-0 origin-left bg-gradient-to-r from-white/30 to-bone"
                       style={{
-                        animation: running ? `progress ${DURATION}s linear forwards` : undefined,
+                        animation: running ? `progress ${length}s linear forwards` : undefined,
                         transform: running ? undefined : ready || reduce ? "scaleX(1)" : "scaleX(0)",
                       }}
                     />
@@ -185,11 +188,16 @@ export default function Hero() {
                 preload={i === 0 || ready ? "auto" : "none"}
                 aria-label={s.alt}
                 onLoadedMetadata={(e) => {
+                  const playable = e.currentTarget.duration - s.start;
+                  if (Number.isFinite(playable) && playable > 1) {
+                    setLengths((l) => l.map((v, k) => (k === i ? Math.min(DURATION, playable) : v)));
+                  }
                   if (s.start && e.currentTarget.currentTime < s.start) e.currentTarget.currentTime = s.start;
                 }}
+                // A clip never replays: when it ends the showreel moves on
                 onEnded={(e) => {
                   e.currentTarget.currentTime = s.start;
-                  if (active === i && running) e.currentTarget.play().catch(() => undefined);
+                  if (active === i && running) go((i + 1) % slides.length);
                 }}
               />
             </div>
