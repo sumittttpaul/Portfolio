@@ -1,7 +1,7 @@
 import {
   Body,
-  Container,
   Column,
+  Container,
   Head,
   Heading,
   Hr,
@@ -12,193 +12,145 @@ import {
   Row,
   Section,
   Text,
-  Button,
 } from "@react-email/components";
-import { Tailwind } from "@react-email/tailwind";
+import { site } from "content/site";
 
-const WebsiteLink = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "";
+/**
+ * Confirmation email for the contact forms. Colours follow the site (ink
+ * background, bone text). Images and links always use the public site URL:
+ * per-deployment Vercel URLs are protected, so mail clients cannot load them.
+ */
+const SITE = site.url;
+const HOST = SITE.replace(/^https?:\/\//, "");
 
-export default async function EmailTemplate({
-  name,
-  email,
-  company,
-  service,
-  description,
-}: DetailsType) {
+const color = {
+  page: "#1C1D20",
+  card: "#232427",
+  line: "#3A3B40",
+  text: "#E5E3DC",
+  mute: "#A3A3A3",
+  dim: "#808080",
+};
+
+const font = "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif";
+
+const socials = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/sumitttpaul/", icon: "linkedin_round_small_white.png" },
+  { label: "Instagram", href: "https://www.instagram.com/sumitttpaul_", icon: "instagram_round_small_white.png" },
+  { label: "X", href: "https://x.com/sumitttpaul_", icon: "twitter_round_small_white.png" },
+  { label: "Threads", href: "https://www.threads.net/@_sumitttpaul", icon: "thread_round_small_white.png" },
+  { label: "Facebook", href: "https://www.facebook.com/sumitttpaul", icon: "facebook_round_small_white.png" },
+];
+
+export default async function EmailTemplate({ name, email, company, service, description }: DetailsType) {
+  const fields = [
+    { q: "Name", a: name },
+    { q: "Email", a: email },
+    { q: "Organisation", a: company },
+    { q: "Services", a: service },
+    { q: "Message", a: description },
+  ];
+
   return (
     <Html lang="en">
-      <Tailwind>
-        <Head />
-        <Preview>Thank You for Responding!</Preview>
-        <Body className="mx-auto my-auto max-w-[700px] bg-black p-5 text-center font-sans sm:rounded-3xl sm:border sm:border-solid sm:border-white/30 sm:p-10">
-          <Section className="w-auto text-center">
-            <Link href={WebsiteLink} className="px-2.5 no-underline">
-              <Row>
-                <Column align="right">
-                  <Text className="relative mr-1 text-sm font-bold text-white xs:text-base sm:text-lg sm:font-[300]">
-                    ©
-                  </Text>
-                </Column>
-                <Column align="left">
-                  <Text className="relative w-full text-center text-[13px] font-bold text-white xs:text-[15px] sm:text-[17px] sm:font-[500]">
-                    Code by Sumeet
-                  </Text>
-                </Column>
-              </Row>
+      <Head />
+      <Preview>Thanks for getting in touch. Here is a copy of your message.</Preview>
+      <Body style={{ margin: 0, backgroundColor: color.page, fontFamily: font, color: color.text }}>
+        <Container style={{ maxWidth: 600, margin: "0 auto", padding: "40px 16px" }}>
+          {/* Header */}
+          <Section style={{ textAlign: "center" }}>
+            <Link href={SITE} style={{ textDecoration: "none" }}>
+              <Img
+                src={`${SITE}${site.avatar}`}
+                alt={site.name}
+                width={56}
+                height={56}
+                style={{ display: "inline-block", borderRadius: 999, border: `1px solid ${color.line}` }}
+              />
+              <Text style={{ margin: "14px 0 0", fontSize: 15, fontWeight: 600, letterSpacing: "0.04em", color: color.text, textTransform: "uppercase" }}>
+                {site.name}
+              </Text>
+              <Text style={{ margin: "2px 0 0", fontSize: 13, color: color.mute }}>{site.role}</Text>
             </Link>
           </Section>
-          <Section className="text-center">
-            <Heading className="text-2xl font-bold leading-[0] text-white sm:text-4xl">
-              Thank You for Responding!
+
+          {/* Message card */}
+          <Section style={{ marginTop: 32, backgroundColor: color.card, borderRadius: 20, padding: "36px 28px", textAlign: "center" }}>
+            <Heading as="h1" style={{ margin: 0, fontSize: 30, lineHeight: "36px", fontWeight: 500, letterSpacing: "-0.02em", color: color.text }}>
+              Thanks for reaching out
             </Heading>
-          </Section>
-          <Section className="mt-[1em] text-center sm:mt-0">
-            <Text className="text-sm text-white xs:text-base sm:text-lg">
-              Sumeet will get back to you very soon.
+            <Text style={{ margin: "14px auto 0", maxWidth: 420, fontSize: 16, lineHeight: "24px", color: color.mute }}>
+              Your message has arrived. I&apos;ll read it and get back to you soon with questions and next steps.
             </Text>
-          </Section>
-          <Section className="mt-[0.5em] w-auto text-center">
-            <Button
-              href={WebsiteLink}
-              className="rounded-full border-[1.5px] border-solid border-white/30 no-underline"
+            <Link
+              href={SITE}
+              style={{
+                display: "inline-block",
+                marginTop: 24,
+                padding: "12px 22px",
+                borderRadius: 999,
+                backgroundColor: color.text,
+                color: color.page,
+                fontSize: 14,
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
             >
-              <Row>
-                <Column align="right" className="pb-[0.25px] pl-1 pr-2 pt-1">
-                  <Img
-                    src={`${WebsiteLink}/images/sumit_small_photo.png`}
-                    className="rounded-full"
-                    height={32}
-                    width={32}
-                  />
-                </Column>
-                <Column align="left" className="pr-4">
-                  <Text className="text-sm leading-[0] text-white sm:text-[15px]">
-                    sumitttpaul.vercel.app
-                  </Text>
-                </Column>
-              </Row>
-            </Button>
+              Visit {HOST}
+            </Link>
           </Section>
-          <Section className="text-center">
-            <Text className="mt-[4em] text-[13px] font-semibold uppercase text-white/50 xs:text-lg sm:mt-[5em] sm:text-sm">
-              Your Response
+
+          {/* Copy of the submission */}
+          <Section style={{ marginTop: 32 }}>
+            <Text style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: color.dim, textAlign: "center" }}>
+              Your message
+            </Text>
+            {fields.map((f, i) => (
+              <Section key={f.q}>
+                <Hr style={{ margin: "16px 0", borderColor: color.line }} />
+                <Row>
+                  <Column style={{ width: 40, verticalAlign: "top" }}>
+                    <Text style={{ margin: 0, fontSize: 12, lineHeight: "20px", color: color.dim }}>{String(i + 1).padStart(2, "0")}</Text>
+                  </Column>
+                  <Column style={{ verticalAlign: "top" }}>
+                    <Text style={{ margin: 0, fontSize: 13, lineHeight: "20px", color: color.mute }}>{f.q}</Text>
+                    <Text style={{ margin: "4px 0 0", fontSize: 16, lineHeight: "24px", color: color.text, whiteSpace: "pre-line" }}>
+                      {f.a?.trim() ? f.a : "-"}
+                    </Text>
+                  </Column>
+                </Row>
+              </Section>
+            ))}
+            <Hr style={{ margin: "16px 0 0", borderColor: color.line }} />
+          </Section>
+
+          {/* Socials */}
+          <Section style={{ marginTop: 36, textAlign: "center" }}>
+            <Text style={{ margin: "0 0 14px", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: color.dim }}>
+              Find me online
+            </Text>
+            {socials.map((s) => (
+              <Link key={s.label} href={s.href} style={{ display: "inline-block", margin: "0 6px", textDecoration: "none" }}>
+                <Img src={`${SITE}/images/socials/${s.icon}`} alt={s.label} width={30} height={30} style={{ display: "block" }} />
+              </Link>
+            ))}
+          </Section>
+
+          {/* Footer */}
+          <Section style={{ marginTop: 36, textAlign: "center" }}>
+            <Text style={{ margin: 0, fontSize: 12, lineHeight: "18px", color: color.dim }}>
+              This is a copy of the message you sent through{" "}
+              <Link href={SITE} style={{ color: color.mute, textDecoration: "underline" }}>
+                {HOST}
+              </Link>
+              .
+            </Text>
+            <Text style={{ margin: "6px 0 0", fontSize: 12, color: color.dim }}>
+              &copy; {new Date().getFullYear()} {site.name}
             </Text>
           </Section>
-          <Section className="m-0 w-full p-0 text-start">
-            <LineBreak />
-            <TextField index="01" question=" What's your name?" answer={name} />
-            <LineBreak />
-            <TextField
-              index="02"
-              question="What's your email?"
-              answer={email}
-            />
-            <LineBreak />
-            <TextField
-              index="03"
-              question="What's the name of your organization?"
-              answer={company}
-            />
-            <LineBreak />
-            <TextField
-              index="04"
-              question="What services are you looking for?"
-              answer={service}
-            />
-            <LineBreak />
-            <TextField
-              index="05"
-              question="Your message"
-              answer={description}
-            />
-            <LineBreak />
-          </Section>
-          <Section className="text-center">
-            <Text className="mt-[4em] text-[13px] font-semibold uppercase text-white/50 xs:text-lg sm:mt-[5em] sm:text-sm">
-              Social Handles
-            </Text>
-          </Section>
-          <Section className="mx-auto mt-[1em] w-full max-w-[250px] sm:max-w-[300px]">
-            <Row>
-              <SocialLink
-                href="https://www.facebook.com/sumitttpaul"
-                src={`${WebsiteLink}/images/socials/facebook_round_small_white.png`}
-              />
-              <SocialLink
-                href="https://www.instagram.com/sumitttpaul_"
-                src={`${WebsiteLink}/images/socials/instagram_round_small_white.png`}
-              />
-              <SocialLink
-                href="https://www.linkedin.com/in/sumitttpaul/"
-                src={`${WebsiteLink}/images/socials/linkedin_round_small_white.png`}
-              />
-              <SocialLink
-                href="https://x.com/sumitttpaul_"
-                src={`${WebsiteLink}/images/socials/twitter_round_small_white.png`}
-              />
-              <SocialLink
-                href="https://www.threads.net/@_sumitttpaul"
-                src={`${WebsiteLink}/images/socials/thread_round_small_white.png`}
-              />
-            </Row>
-          </Section>
-          <Section className="text-center">
-            <Text className="mt-[5em] text-xs text-white sm:text-sm">
-              This email is an copy of your response.
-            </Text>
-          </Section>
-        </Body>
-      </Tailwind>
+        </Container>
+      </Body>
     </Html>
   );
 }
-
-const LineBreak = () => {
-  return (
-    <Hr className="mb-5 mt-2 border-[0.75px] border-solid border-white/30 sm:mt-5" />
-  );
-};
-
-const TextField = ({
-  index,
-  question,
-  answer,
-}: {
-  index: string;
-  question: string;
-  answer: string;
-}) => {
-  return (
-    <Container className="m-0 w-full p-0 text-start">
-      <Row>
-        <Column align="left" className="px-5 sm:pl-10 sm:pr-5">
-          <Text className="text-[11px] font-bold leading-[0] text-white/50 sm:text-[14px]">
-            {index}
-          </Text>
-        </Column>
-        <Column align="left" className="w-full text-start">
-          <Text className="text-[15px] leading-[0] text-white/50 sm:text-xl">
-            {question}
-          </Text>
-        </Column>
-      </Row>
-      <Container className="w-full text-start">
-        <Text className="ml-14 mt-0 text-[14px] font-medium leading-[1.5] text-white sm:-mt-3 sm:ml-[75px] sm:text-[20px]">
-          {answer ?? "-"}
-        </Text>
-      </Container>
-    </Container>
-  );
-};
-
-const SocialLink = ({ href, src }: { href: string; src: string }) => {
-  return (
-    <Column align="center" className="mr-2">
-      <Link href={href} className="no-underline">
-        <Img height={30} width={30} src={src} />
-      </Link>
-    </Column>
-  );
-};
