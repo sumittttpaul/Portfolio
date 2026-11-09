@@ -29,6 +29,13 @@ export default function Hero() {
   const [paused, setPaused] = useState(false);
   // How long each slide stays up: its clip's playable length, never more than DURATION
   const [lengths, setLengths] = useState<number[]>(() => slides.map(() => DURATION));
+  // A clip fades in once its first frame is ready, instead of popping in mid-load
+  const [loaded, setLoaded] = useState<boolean[]>(() => slides.map(() => false));
+  // A cached clip can finish loading before React attaches its listener
+  useEffect(() => {
+    const ready = videos.current.map((v) => !!v && v.readyState >= 2);
+    if (ready.some(Boolean)) setLoaded((l) => l.map((v, k) => v || ready[k]));
+  }, []);
   const length = lengths[active];
   const [cycle, setCycle] = useState(0);
   // The loader covers the page first: start the showreel from slide one once it is gone
@@ -180,7 +187,8 @@ export default function Hero() {
                 ref={(el) => {
                   videos.current[i] = el;
                 }}
-                className="size-full origin-[20%_20%] scale-[1.2] object-cover"
+                className={`size-full origin-[20%_20%] scale-[1.2] object-cover transition-opacity duration-700 ease-out ${loaded[i] ? "opacity-100" : "opacity-0"}`}
+                onLoadedData={() => setLoaded((l) => (l[i] ? l : l.map((v, k) => k === i || v)))}
                 src={s.src}
                 muted
                 playsInline
