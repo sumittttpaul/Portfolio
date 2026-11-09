@@ -47,7 +47,7 @@ export default function About() {
           </Reveal>
           <SplitText
             as="h2"
-            text={"Designing impact,\ndriving change"}
+            text={"Learned by building,\nstill building"}
             className="mt-5 text-display-md font-medium text-bone"
           />
           <Reveal delay={0.1}>
@@ -99,7 +99,6 @@ export default function About() {
               <br />
               engineering
             </p>
-            <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.02em] text-mute">Always exploring</p>
           </div>
         </div>
       </div>

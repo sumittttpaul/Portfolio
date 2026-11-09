@@ -3,7 +3,12 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-type Instance = { destroy: () => void; scrollTo: (target: number | string, opts?: object) => void };
+type Instance = {
+  destroy: () => void;
+  scrollTo: (target: number | string | HTMLElement, opts?: object) => void;
+  start: () => void;
+  stop: () => void;
+};
 
 let active: Instance | null = null;
 
@@ -12,6 +17,15 @@ export function scrollToTop() {
   if (active) active.scrollTo(0, { duration: 1.2 });
   else window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+/** Smooth-scrolls to an element, leaving room for the fixed header. */
+export function scrollToElement(el: HTMLElement, offset = -120) {
+  if (active) active.scrollTo(el, { offset, duration: 1.1 });
+  else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + offset, behavior: "smooth" });
+}
+
+export const pauseSmoothScroll = () => active?.stop();
+export const resumeSmoothScroll = () => active?.start();
 
 /**
  * Lenis-style smooth scrolling through locomotive-scroll v5 (which wraps Lenis).

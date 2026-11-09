@@ -1,103 +1,137 @@
 "use client";
 
-import { AnimatePresence, m } from "framer-motion";
-import { useState } from "react";
+import { useInView, useReducedMotion } from "framer-motion";
+import { useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import CenterHead from "components/ui/CenterHead";
+
+const CYCLE = 7;
 
 const types = [
   {
     label: "Marketing and brand websites",
     title: "Say what you do in seconds",
     text: "Sites with a clear structure and strong visuals that explain your brand quickly and give visitors an obvious next step.",
-    link: { label: "Let's build your site", href: "/contact" },
+    link: "Let's build your site",
+    image: "/media/art/marketing.webp",
   },
   {
     label: "Landing pages for launches",
     title: "One page, one clear action",
     text: "Focused pages for a launch or campaign, built around the single thing you want a visitor to do.",
-    link: { label: "Start a landing page", href: "/contact" },
+    link: "Plan your launch page",
+    image: "/media/art/launch.webp",
   },
   {
     label: "E-commerce storefronts",
     title: "From browsing to buying",
-    text: "Product catalogues and seasonal collections that make discovery easy, with payments handled through Stripe.",
-    link: { label: "Let's build your store", href: "/contact" },
+    text: "Collections that make discovery easy and product pages that feel good on a phone, right through to checkout.",
+    link: "Let's build your store",
+    image: "/media/art/shop.webp",
   },
   {
     label: "Web applications",
     title: "Interfaces for real products",
-    text: "Account flows, dashboards and complex state, built with Next.js, React and TypeScript so they stay reliable as they grow.",
-    link: { label: "Let's build your app", href: "/contact" },
+    text: "Account flows, boards and data-heavy screens, built with Next.js and TypeScript so they stay reliable as they grow.",
+    link: "Let's build your app",
+    image: "/media/art/app.webp",
   },
   {
     label: "Animated, interactive websites",
     title: "Motion that earns its place",
-    text: "Scroll-driven reveals, page transitions and micro-interactions that stay smooth and respect reduced-motion settings.",
-    link: { label: "Let's make it move", href: "/contact" },
+    text: "Layered transitions and scroll moments that make a site feel alive without ever slowing it down.",
+    link: "Let's make it move",
+    image: "/media/art/layers.webp",
   },
 ];
 
 export default function WebsiteTypes() {
+  const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
-  const t = types[active];
+  const [hold, setHold] = useState(false);
+  const list = useRef<HTMLUListElement>(null);
+  const inView = useInView(list);
+  const playing = inView && !hold;
+
   return (
     <section aria-label="Types of websites I build" className="py-16">
       <div className="container-site">
         <CenterHead
-          eyebrow="What I build"
+          eyebrow="Project types"
           title={"The websites I\nbuild most often"}
-          text="Whether it is a brand launch, a site upgrade or an e-commerce venture, these are the kinds of projects I take on most."
+          text="These are the projects I take on most, and each one gets its own design and build."
         />
         <div className="mt-12 grid gap-8 lg:mx-4 lg:mt-[60px] lg:grid-cols-2 lg:items-start lg:gap-6">
-          <ul className="flex flex-col">
-            {types.map((item, i) => (
-              <li key={item.label}>
-                <button
-                  type="button"
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  onClick={() => setActive(i)}
-                  aria-pressed={active === i}
-                  className={`flex w-full items-center justify-between gap-4 py-3 text-left text-[clamp(1.375rem,2.4vw,2rem)] font-medium leading-[1.1] tracking-[-0.02em] transition-colors duration-300 lg:py-7 ${
-                    active === i ? "text-bone" : "text-[#B9B9B9] hover:text-bone"
-                  }`}
-                >
-                  {item.label}
-                  <span
-                    aria-hidden="true"
-                    className={`text-[22px] transition-all duration-500 ease-expo ${active === i ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"}`}
+          <ul ref={list} className="flex flex-col" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+            {types.map((item, i) => {
+              const on = active === i;
+              return (
+                <li key={item.label} className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setActive(i)}
+                    aria-pressed={on}
+                    className={`flex min-h-[64px] w-full items-center justify-between gap-4 py-3 text-left text-[clamp(1.375rem,2.4vw,2rem)] font-medium leading-[1.1] tracking-[-0.02em] transition-colors duration-300 lg:min-h-[92px] lg:py-7 ${
+                      on ? "text-bone" : "text-[#B9B9B9] hover:text-bone"
+                    }`}
                   >
-                    →
-                  </span>
-                </button>
-              </li>
-            ))}
+                    {item.label}
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      aria-hidden="true"
+                      className={`shrink-0 transition-all duration-300 ${on ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"}`}
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </button>
+                  {on && !reduce && (
+                    // Key restarts the bar whenever the active item changes
+                    <span
+                      key={active}
+                      aria-hidden="true"
+                      onAnimationEnd={() => setActive((v) => (v + 1) % types.length)}
+                      className="absolute bottom-0 left-0 h-0.5 bg-bone"
+                      style={{ animation: `types-bar ${CYCLE}s linear forwards`, animationPlayState: playing ? "running" : "paused" }}
+                    />
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
-          <div className="rounded-[24px] bg-black p-6 sm:p-12 lg:min-h-[461px]">
-            <AnimatePresence mode="wait" initial={false}>
-              <m.div
-                key={t.label}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <svg width="120" height="84" viewBox="0 0 120 84" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-white/70" aria-hidden="true">
-                  <rect x="1" y="12" width="56" height="70" rx="4" />
-                  <path d="M12 26h30M12 36h18" />
-                  <rect x="76" y="2" width="40" height="80" rx="6" className="text-white" stroke="white" />
-                  <path d="M86 16h20M86 26h12" />
-                  <path d="M63 46h7" stroke="#F3350C" />
-                </svg>
-                <h3 className="mt-14 text-[28px] font-medium leading-[32.2px] tracking-[-0.02em] text-white">{t.title}</h3>
-                <p className="mt-4 max-w-[520px] font-inter text-[18px] leading-[26.1px] text-mute">{t.text}</p>
-                <Link href={t.link.href} className="mt-8 inline-flex items-center gap-2 text-[14px] font-medium text-bone">
-                  {t.link.label} <span aria-hidden="true">→</span>
-                </Link>
-              </m.div>
-            </AnimatePresence>
+          {/* Panels share one grid cell, so they crossfade without a height jump */}
+          <div className="grid">
+            {types.map((t, i) => {
+              const on = active === i;
+              return (
+                <div
+                  key={t.label}
+                  aria-hidden={!on}
+                  className={`col-start-1 row-start-1 overflow-hidden rounded-[24px] bg-black transition-[opacity,transform,visibility] duration-[450ms] ${
+                    on ? "visible translate-y-0 opacity-100" : "invisible translate-y-3 opacity-0"
+                  }`}
+                >
+                  <div className="relative aspect-[16/9] overflow-hidden">
+                    {/* Hidden panels never trigger lazy loading, so fetch them all up front */}
+                    <Image src={t.image} alt="" fill loading="eager" sizes="(min-width: 1024px) 50vw, 100vw" className="origin-right scale-[1.25] object-cover" />
+                  </div>
+                  <div className="p-6 sm:p-10">
+                    <h3 className="text-[28px] font-medium leading-[32.2px] tracking-[-0.02em] text-white">{t.title}</h3>
+                    <p className="mt-3 font-inter text-[18px] leading-[26.1px] text-mute">{t.text}</p>
+                    <Link href="/contact" tabIndex={on ? 0 : -1} className="group mt-5 inline-flex items-center gap-2 text-[14px] font-medium text-bone">
+                      {t.link}
+                      <span aria-hidden="true" className="transition-transform duration-300 ease-expo group-hover:translate-x-1">→</span>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

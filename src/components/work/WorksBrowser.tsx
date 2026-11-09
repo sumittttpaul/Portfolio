@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Project } from "content/projects";
+import Select from "components/ui/Select";
 import WorksStack from "./WorksStack";
 
 /** Filter bar (project type + keyword search) above the stacked project cards. */
@@ -20,25 +21,14 @@ export default function WorksBrowser({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      <div className="container-site mb-12 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
-        <label className="relative block sm:w-[220px]">
-          <span className="sr-only">Filter by project type</span>
-          <select
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            className="h-11 w-full appearance-none rounded-full bg-ink-800 pl-5 pr-10 text-[14px] text-bone outline-none transition-colors focus:bg-ink-750"
-          >
-            <option value="">All project types</option>
-            {types.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-          <svg className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-mute" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <path d="M6 9l6 6 6-6" />
-          </svg>
-        </label>
+      <div className="relative z-[60] mx-auto mb-12 flex w-full flex-col gap-3 px-2 sm:w-[calc(80%-57.6px)] sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-0 lg:w-[min(58vw,1110px)]">
+        <Select
+          label="Filter by project type"
+          value={type}
+          onChange={setType}
+          options={[{ value: "", label: "All project types" }, ...types.map((t) => ({ value: t, label: t }))]}
+          className="sm:w-[220px]"
+        />
         <label className="flex h-11 items-center gap-2 rounded-full bg-ink-800 px-5 text-mute transition-colors focus-within:bg-ink-750 sm:w-[260px]">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
             <circle cx="11" cy="11" r="7" />
@@ -55,7 +45,7 @@ export default function WorksBrowser({ projects }: { projects: Project[] }) {
         </label>
       </div>
       {shown.length ? (
-        <WorksStack key={`${type}-${query}`} projects={shown} />
+        <WorksStack key={`${type}-${query}`} projects={shown} settleFirst />
       ) : (
         <p className="py-20 text-center text-[15px] text-mute" role="status">
           No projects match that search.

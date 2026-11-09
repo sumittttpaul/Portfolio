@@ -7,32 +7,32 @@ const fade = "linear-gradient(90deg, transparent 0%, #000 34%)";
 
 const offers = [
   {
-    image: "/media/portfolio-cover.webp",
+    image: "/media/art/remember.webp",
     audience: "For people and brands that want to stand out",
-    title: "A website people actually remember",
+    title: "A site with its own personality",
     tags: ["Visual design", "Motion", "Next.js"],
-    text: "I'll design and build a site with its own personality: bold type, smooth transitions and the kind of details visitors stop to notice.",
+    text: "Bold type, smooth transitions and the kind of details visitors notice, all designed around your brand.",
   },
   {
-    image: "/media/emotion-cover.webp",
+    image: "/media/art/store.webp",
     audience: "For shops that want more than a template",
-    title: "An online store that's a joy to browse",
+    title: "A store that looks as good as it sells",
     tags: ["E-commerce", "Stripe", "Responsive"],
-    text: "Large product imagery, easy discovery and a short path to checkout, so your store feels as good as what you sell.",
+    text: "Product pages, collections and checkout designed together, so your store feels as good as what you sell.",
   },
   {
-    image: "/media/agewear-cover.webp",
+    image: "/media/art/brand.webp",
     audience: "For brands launching or refreshing",
     title: "A brand that looks right everywhere",
     tags: ["Brand websites", "UI/UX design", "Tailwind CSS"],
     text: "One confident visual language from the first screen to the last, so every page clearly belongs to you.",
   },
   {
-    image: "/media/authentication-cover.webp",
+    image: "/media/art/flow.webp",
     audience: "For products with real complexity",
-    title: "Complex flows that feel effortless",
+    title: "Complex flows, clearly laid out",
     tags: ["Web apps", "React", "TypeScript"],
-    text: "Sign-in, forms and dashboards where every state is designed and built, including loading, errors and confirmation.",
+    text: "Multi-step journeys and data-heavy screens, planned so people always know where they are and what comes next.",
   },
 ];
 
@@ -45,7 +45,7 @@ export default function WhatYouGet() {
           title={"A website that makes\npeople stop scrolling"}
           text="Tell me what you're building, and I'll design and code something that looks great, feels fast and works on every screen."
         />
-        <ul className="mt-12 flex flex-col gap-4 lg:mx-4 lg:mt-[60px]">
+        <ul className="mt-12 flex flex-col gap-4 lg:mt-[60px]">
           {offers.map((o) => (
             <Reveal as="li" key={o.title} y={40}>
               <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-black lg:min-h-[640px] lg:flex-row lg:items-center lg:rounded-[24px]">
@@ -55,7 +55,7 @@ export default function WhatYouGet() {
                     alt=""
                     fill
                     sizes="(min-width: 1024px) 72vw, 100vw"
-                    className="object-cover lg:[-webkit-mask-image:var(--case-fade)] lg:[mask-image:var(--case-fade)]"
+                    className="object-cover object-right lg:[-webkit-mask-image:var(--case-fade)] lg:[mask-image:var(--case-fade)]"
                     style={{ "--case-fade": fade } as React.CSSProperties}
                   />
                 </div>

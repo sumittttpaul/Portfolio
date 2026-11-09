@@ -15,7 +15,7 @@ const layers = [
 
 export default function ProgressiveBlur() {
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 bottom-0 z-30 h-24">
+    <div aria-hidden="true" className="progressive-blur pointer-events-none fixed inset-x-0 bottom-0 z-30 h-24">
       {layers.map((l) => (
         <div
           key={l.blur}

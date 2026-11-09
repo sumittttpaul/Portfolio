@@ -50,8 +50,7 @@ export default function Note() {
           <SplitText as="h2" text={"Quality first,\non every project"} className="mt-6 text-display-note font-medium text-bone" />
           <Reveal delay={0.1}>
             <blockquote className="mt-5 max-w-[640px] text-[clamp(1.0625rem,1.4vw,1.25rem)] font-medium leading-[1.5] text-bone">
-              &ldquo;I help companies from all over the world with tailor-made solutions. With each project, I push my
-              work to new horizons, always putting quality first.&rdquo;
+              &ldquo;I treat every project as if my name is on it, because it is. If something isn&apos;t right yet, it doesn&apos;t ship.&rdquo;
             </blockquote>
           </Reveal>
           <Reveal delay={0.15} className="mt-9">
@@ -62,7 +61,7 @@ export default function Note() {
           <Reveal delay={0.2} className="mt-10 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:mt-auto lg:pb-14">
             <div>
               <p className="text-[16px] font-medium leading-[22.4px] text-bone">Design + development</p>
-              <p className="mt-1.5 text-[15px] leading-[21px] text-mute">Plan, design and build complete products</p>
+              <p className="mt-1.5 text-[15px] leading-[21px] text-mute">Interfaces designed with the build in mind</p>
             </div>
             <div>
               <p className="text-[16px] font-medium leading-[22.4px] text-bone">Writing in public</p>

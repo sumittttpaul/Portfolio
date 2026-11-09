@@ -50,12 +50,15 @@
   }
 }
 
-/* Native scrollbar hidden when the custom overlay scrollbar is active (fine pointers) */
-html.custom-scrollbar {
-  scrollbar-width: none;
-}
-html.custom-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Native scrollbar hidden from the first paint on fine pointers, where the custom
+   overlay scrollbar takes over. Done in CSS so reloads have no layout shift. */
+@media (pointer: fine) {
+  html {
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
+  }
 }
 html.scrollbar-dragging,
 html.scrollbar-dragging * {
@@ -229,6 +232,25 @@ html.lenis body {
   }
 }
 
+@keyframes types-bar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 @keyframes progress {
   from {
     transform: scaleX(0);
@@ -247,4 +269,55 @@ html.lenis body {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Backdrop filters are re-rendered every frame while the route panel passes over them */
+.progressive-blur {
+  transition: opacity 0.15s linear;
+}
+html[data-route-moving] .progressive-blur {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.15s linear,
+    visibility 0s linear 0.15s;
+}
+
+/* Article video player */
+media-time-range::part(track),
+media-time-range::part(buffered),
+media-time-range::part(progress),
+media-volume-range::part(track),
+media-volume-range::part(progress) {
+  border-radius: 999px;
+}
+.article-video-center {
+  transition: opacity 0.3s ease;
+}
+.article-video:not([mediapaused]) .article-video-center {
+  opacity: 0;
+}
+.article-video:not([mediapaused]):hover .article-video-center {
+  opacity: 1;
+}
+.article-video[userinactive]:not([mediapaused]) .article-video-center {
+  opacity: 0;
+}
+
+/* Shared image zoom on hover. Kept on its own layer and eased evenly, so it never starts with a jump. */
+.hover-zoom {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.group:hover .hover-zoom {
+  transform: scale(1.03);
+}
+
+/* First visit to the home page: greeting replaces the route label */
+html[data-greeting] .route-greeting {
+  display: flex;
+}
+html[data-greeting] .route-label {
+  visibility: hidden;
 }

@@ -109,6 +109,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hugeicons/core-free-icons@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "@hugeicons/core-free-icons@npm:4.4.0"
+  checksum: 10c0/ccaf8f48ac9746822fb737024d643e5391952ecc44437c61c71e90c88ce0d8a2edef765029f0f4486f8fc637dab9689c9969e21918f635652e0933a8b5b8f358
+  languageName: node
+  linkType: hard
+
+"@hugeicons/react@npm:^1.1.10":
+  version: 1.1.10
+  resolution: "@hugeicons/react@npm:1.1.10"
+  peerDependencies:
+    react: ">=16.0.0"
+  checksum: 10c0/4e427a6a76220c098fce2ecef95fa2c243eacbbd3f9a85dcd56b44187f82e16056c3bf475ffe4e4ec2ffd8a47632905496f909192ef37fb26302c0ca8b1fe236
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.13":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -1489,6 +1505,15 @@ __metadata:
   version: 1.0.30001823
   resolution: "caniuse-lite@npm:1.0.30001823"
   checksum: 10c0/7bf8e621d117f83cf4f8e2063f483c430bb13582f188e0f92e8d3e1625aa8fab3567bdc5bf27be92a025800748d7d13513a67178b634113e48457efa35898be5
+  languageName: node
+  linkType: hard
+
+"ce-la-react@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "ce-la-react@npm:0.3.2"
+  peerDependencies:
+    react: ">=17.0.0"
+  checksum: 10c0/cbee7602c1e4efc1278e5c0847b8201fa291ad3a5bde4137da139a7b6a2b7b8de029530fb2c474e62fcc544e62669003e4a34fd1abafac8110d89ffade588c37
   languageName: node
   linkType: hard
 
@@ -3709,6 +3734,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"media-chrome@npm:4.17.2":
+  version: 4.17.2
+  resolution: "media-chrome@npm:4.17.2"
+  dependencies:
+    ce-la-react: "npm:^0.3.2"
+  checksum: 10c0/c077f8aa9f6aa9fd17d15c7f6b2d4bfc44893ab1a176a777d5e01335676fd477b67fd7e23ef3e7d12ae821cf3d4e3ad6642f79c28796befe0c1f081d54443f81
+  languageName: node
+  linkType: hard
+
 "merge2@npm:^1.3.0, merge2@npm:^1.4.1":
   version: 1.4.1
   resolution: "merge2@npm:1.4.1"
@@ -5549,6 +5583,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sumitttpaul@workspace:."
   dependencies:
+    "@hugeicons/core-free-icons": "npm:^4.4.0"
+    "@hugeicons/react": "npm:^1.1.10"
     "@next/bundle-analyzer": "npm:^14.0.4"
     "@react-email/components": "npm:^0.0.15"
     "@react-email/tailwind": "npm:^0.0.14"
@@ -5568,6 +5604,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     framer-motion: "npm:^11.0.3"
     locomotive-scroll: "npm:^5.0.0-beta.11"
+    media-chrome: "npm:4.17.2"
     next: "npm:14.2.35"
     nodemailer: "npm:^10.4.0"
     postcss: "npm:^8.4.33"

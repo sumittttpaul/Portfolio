@@ -183,7 +183,7 @@
       {
         "type": "code",
         "value": "useEffect(() => {\n  function handleClick(event: MouseEvent) {\n    console.log(\"[BROKEN] listener sees open =\", open);\n\n    const target = event.target as Node;\n    const isOutside =\n      containerRef.current &&\n      !containerRef.current.contains(target);\n\n    if (open && isOutside) {\n      console.log(\"[BROKEN] closing dropdown\");\n      setOpen(false);\n    }\n  }\n\n  document.addEventListener(\"click\", handleClick);\n\n  return () => {\n    document.removeEventListener(\"click\", handleClick);\n  };\n}, []);",
-        "path": "src/app/practice/stale-closure-click-outside/page.tsx"
+        "path": "src/app/practice/stale-closure-in-click-outside-listener/page.tsx"
       },
       {
         "type": "description",
@@ -209,7 +209,7 @@
       {
         "type": "code",
         "value": "const openRef = useRef(open);\nconst containerRef = useRef<HTMLDivElement | null>(null);\n\nuseEffect(() => {\n  openRef.current = open;\n}, [open]);\n\nuseEffect(() => {\n  function handleClick(event: MouseEvent) {\n    const target = event.target as Node;\n    const isOutside =\n      containerRef.current &&\n      !containerRef.current.contains(target);\n\n    console.log(\"[FIXED] click detected | openRef:\", openRef.current, \"| outside:\", isOutside);\n\n    if (openRef.current && isOutside) {\n      console.log(\"[FIXED] closing dropdown\");\n      setOpen(false);\n    }\n  }\n\n  document.addEventListener(\"click\", handleClick);\n\n  return () => {\n    document.removeEventListener(\"click\", handleClick);\n  };\n}, []);",
-        "path": "src/app/practice/stale-closure-click-outside/page.tsx"
+        "path": "src/app/practice/stale-closure-in-click-outside-listener/page.tsx"
       },
       {
         "type": "description",
@@ -259,7 +259,7 @@
       {
         "type": "code",
         "value": "const [loading, setLoading] = useState(false);\n\nfunction handleSubmit() {\n  if (loading) return;\n\n  console.log(\"[BROKEN] submit triggered\");\n  setLoading(true);\n\n  void (async () => {\n    await delay(800);\n    console.log(\"[BROKEN] request finished\");\n    setLoading(false);\n  })();\n}\n\n<button disabled={loading} onClick={handleSubmit}>\n  {loading ? \"Submitting...\" : \"Submit\"}\n</button>",
-        "path": "src/app/practice/double-submit-ui-lag/page.tsx"
+        "path": "src/app/practice/double-submit-caused-by-ui-state-lag/page.tsx"
       },
       {
         "type": "description",
@@ -280,7 +280,7 @@
       {
         "type": "code",
         "value": "const [loading, setLoading] = useState(false);\nconst inFlightRef = useRef(false);\n\nfunction handleSubmit() {\n  if (inFlightRef.current) {\n    console.log(\"[FIXED] duplicate submit prevented\");\n    return;\n  }\n\n  inFlightRef.current = true;\n  console.log(\"[FIXED] submit triggered\");\n  setLoading(true);\n\n  void (async () => {\n    await delay(800);\n    console.log(\"[FIXED] request finished\");\n    inFlightRef.current = false;\n    setLoading(false);\n  })();\n}\n\n<button disabled={loading} onClick={handleSubmit}>\n  {loading ? \"Submitting...\" : \"Submit\"}\n</button>",
-        "path": "src/app/practice/double-submit-ui-lag/page.tsx"
+        "path": "src/app/practice/double-submit-caused-by-ui-state-lag/page.tsx"
       },
       {
         "type": "description",
@@ -329,7 +329,7 @@
       {
         "type": "code",
         "value": "const [liked, setLiked] = useState(false);\n\nfunction handleToggle() {\n  const previous = liked;\n  setLiked(!liked); // optimistic update\n\n  void (async () => {\n    try {\n      await fakeRequest();\n      console.log(\"[BROKEN] server confirmed\");\n    } catch {\n      console.log(\"[BROKEN] server failed → rolling back\");\n      setLiked(previous);\n    }\n  })();\n}",
-        "path": "src/app/practice/optimistic-ui-rollback/page.tsx"
+        "path": "src/app/practice/optimistic-ui-rollback-failure/page.tsx"
       },
       {
         "type": "description",
@@ -359,7 +359,7 @@
       {
         "type": "code",
         "value": "const requestIdRef = useRef(0);\nconst [liked, setLiked] = useState(false);\n\nfunction handleToggle() {\n  const requestId = ++requestIdRef.current;\n  setLiked((prev) => !prev);\n\n  void (async () => {\n    try {\n      await fakeRequest();\n\n      if (requestId !== requestIdRef.current) {\n        console.log(\"[FIXED] stale response ignored\");\n        return;\n      }\n\n      console.log(\"[FIXED] server confirmed\");\n    } catch {\n      if (requestId !== requestIdRef.current) {\n        console.log(\"[FIXED] stale failure ignored\");\n        return;\n      }\n\n      console.log(\"[FIXED] server failed → reverting safely\");\n      setLiked((prev) => !prev);\n    }\n  })();\n}",
-        "path": "src/app/practice/optimistic-ui-rollback/page.tsx"
+        "path": "src/app/practice/optimistic-ui-rollback-failure/page.tsx"
       },
       {
         "type": "description",
@@ -413,7 +413,7 @@
       {
         "type": "code",
         "value": "useEffect(() => {\n  console.log(\"[BROKEN] request started for route:\", route);\n\n  void (async () => {\n    const data = await fetchData(route);\n    console.log(\"[BROKEN] request resolved for route:\", route);\n    setData(data);\n  })();\n}, [route]);",
-        "path": "src/app/practice/route-transition-state-leak/page.tsx"
+        "path": "src/app/practice/state-update-after-route-transition/page.tsx"
       },
       {
         "type": "description",
@@ -443,7 +443,7 @@
       {
         "type": "code",
         "value": "const requestIdRef = useRef(0);\n\nuseEffect(() => {\n  const requestId = ++requestIdRef.current;\n  console.log(\"[FIXED] request started for route:\", route);\n\n  void (async () => {\n    const data = await fetchData(route);\n\n    if (requestId !== requestIdRef.current) {\n      console.log(\"[FIXED] stale route response ignored\");\n      return;\n    }\n\n    console.log(\"[FIXED] request committed for route:\", route);\n    setData(data);\n  })();\n}, [route]);",
-        "path": "src/app/practice/route-transition-state-leak/page.tsx"
+        "path": "src/app/practice/state-update-after-route-transition/page.tsx"
       },
       {
         "type": "description",

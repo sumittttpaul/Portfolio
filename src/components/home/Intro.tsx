@@ -17,9 +17,7 @@ export default function Intro() {
         <div className="body-copy mt-10 flex flex-col gap-5">
           <Reveal delay={0.05}>
             <p>
-              I&apos;m {site.name}, a senior frontend engineer from {site.location}. I help companies from all over the
-              world with tailor-made solutions, and with each project I push my work to new horizons, always putting
-              quality first.
+              I&apos;m {site.name}, a senior frontend engineer from {site.location}. I work with companies around the world on websites and web applications made specifically for them.
             </p>
           </Reveal>
           <Reveal delay={0.1}>

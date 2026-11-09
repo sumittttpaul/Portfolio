@@ -4,10 +4,11 @@ import { useState, useTransition } from "react";
 import Image from "next/image";
 import SendEmail from "functions/SendEmail";
 import { Reveal } from "components/ui/Reveal";
+import Separator from "components/ui/Separator";
 import { site } from "content/site";
 
 const input =
-  "w-full border-0 border-b border-[#B6B6B6] bg-transparent px-6 py-2 text-[14px] font-medium leading-5 text-bone outline-none transition-colors placeholder:text-[#8A8A8A] focus:border-white";
+  "w-full border-0 bg-transparent px-6 py-2 text-[14px] font-medium leading-5 text-bone outline-none placeholder:text-[#8A8A8A]";
 
 export default function WorkContact() {
   const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(null);
@@ -53,13 +54,15 @@ export default function WorkContact() {
 
         <Reveal delay={0.1}>
           <form onSubmit={submit} className="overflow-hidden rounded-xl bg-ink-750">
-            <div className="grid sm:grid-cols-2">
-              <div className="sm:border-r sm:border-[#B6B6B6]">
+            <div className="grid sm:grid-cols-[1fr_1px_1fr]">
+              <div>
                 <label htmlFor="wc-name" className="block px-6 pt-6 text-[15px] font-medium leading-[21px] text-pale">
                   Name
                 </label>
                 <input id="wc-name" name="name" required autoComplete="name" placeholder="Your name" className={`${input} h-14`} />
               </div>
+              <Separator className="sm:hidden" />
+              <Separator vertical className="hidden sm:block" />
               <div>
                 <label htmlFor="wc-email" className="block px-6 pt-6 text-[15px] font-medium leading-[21px] text-pale">
                   Email Address
@@ -67,6 +70,7 @@ export default function WorkContact() {
                 <input id="wc-email" name="email" type="email" required autoComplete="email" placeholder="Work email" className={`${input} h-14`} />
               </div>
             </div>
+            <Separator />
             <label htmlFor="wc-about" className="block px-6 pt-6 text-[15px] font-medium leading-[21px] text-pale">
               About your project
             </label>
@@ -78,6 +82,7 @@ export default function WorkContact() {
               placeholder="What are you building? Share your goals and timeline."
               className={`${input} h-32 resize-none pt-[18px]`}
             />
+            <Separator />
             <div className="flex flex-col gap-4 px-6 pb-6 pt-7 sm:flex-row sm:items-center">
               <button
                 type="submit"

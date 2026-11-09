@@ -4,6 +4,7 @@ import { AnimatePresence, m } from "framer-motion";
 import { useState, useTransition } from "react";
 import SendEmail from "functions/SendEmail";
 import { GradientButton } from "components/ui/Button";
+import Separator from "components/ui/Separator";
 
 const services = ["Website", "Web app", "E-commerce", "UI/UX design", "Something else"];
 
@@ -14,7 +15,7 @@ const fieldCls =
 
 function Row({ n, label, htmlFor, children }: { n: string; label: string; htmlFor?: string; children: React.ReactNode }) {
   return (
-    <div className="grid gap-3 border-t border-white/10 py-7 transition-colors focus-within:border-white/50 sm:grid-cols-[60px_1fr]">
+    <div className="grid gap-3 py-7 sm:grid-cols-[60px_1fr]">
       <span className="font-mono text-[12px] text-dim">{n}</span>
       <div className="flex flex-col gap-3">
         <label htmlFor={htmlFor} className="text-[15px] text-mute">
@@ -58,9 +59,11 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col" noValidate={false}>
+      <Separator />
       <Row n="01" label="What's your name?" htmlFor="cf-name">
         <input id="cf-name" name="name" required autoComplete="name" placeholder="Jane Doe" className={fieldCls} />
       </Row>
+      <Separator />
       <Row n="02" label="What's your email?" htmlFor="cf-email">
         <input
           id="cf-email"
@@ -72,10 +75,12 @@ export default function ContactForm() {
           className={fieldCls}
         />
       </Row>
+      <Separator />
       <Row n="03" label="What's the name of your organization?" htmlFor="cf-company">
         <input id="cf-company" name="company" autoComplete="organization" placeholder="Optional" className={fieldCls} />
       </Row>
-      <div className="grid gap-3 border-t border-white/10 py-7 sm:grid-cols-[60px_1fr]">
+      <Separator />
+      <div className="grid gap-3 py-7 sm:grid-cols-[60px_1fr]">
         <span className="font-mono text-[12px] text-dim">04</span>
         <fieldset className="flex flex-col gap-4">
           <legend className="mb-4 text-[15px] text-mute">What services are you looking for?</legend>
@@ -96,6 +101,7 @@ export default function ContactForm() {
           </div>
         </fieldset>
       </div>
+      <Separator />
       <Row n="05" label="Your message" htmlFor="cf-message">
         <textarea
           id="cf-message"
@@ -105,7 +111,8 @@ export default function ContactForm() {
           className={`${fieldCls} resize-none`}
         />
       </Row>
-      <div className="flex flex-col gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+      <Separator />
+      <div className="flex flex-col gap-5 pt-8 sm:flex-row sm:items-center sm:justify-between">
         <AnimatePresence mode="wait">
           {status ? (
             <m.div

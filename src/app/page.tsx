@@ -12,6 +12,8 @@ import HowIHelp from "components/home/HowIHelp";
 import ProjectSteps from "components/home/ProjectSteps";
 import Fit from "components/home/Fit";
 import WhatYouGet from "components/home/WhatYouGet";
+import WhyItMatters from "components/home/WhyItMatters";
+import Included from "components/home/Included";
 import WebsiteTypes from "components/home/WebsiteTypes";
 import Approach from "components/home/Approach";
 import WorksStack from "components/work/WorksStack";
@@ -56,6 +58,8 @@ export default function Home() {
         </section>
         <HowIHelp />
         <WhatYouGet />
+        <WhyItMatters />
+        <Included />
         <div className="h-8 sm:h-12" />
         <Capabilities />
         <WebsiteTypes />

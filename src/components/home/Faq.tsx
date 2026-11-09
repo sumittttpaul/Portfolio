@@ -9,11 +9,11 @@ import { site } from "content/site";
 const faqs = [
   {
     q: "What kind of projects do you take on?",
-    a: "Brand launches, site upgrades and e-commerce ventures, plus web applications that need careful frontend work. If it runs in a browser and should feel fast and polished, I'm interested.",
+    a: "Marketing sites, landing pages, online stores and web applications. If it runs in a browser and should feel fast and polished, I'm interested.",
   },
   {
     q: "Do you design as well as develop?",
-    a: "Yes. I plan the flows and design the screens, then build them myself, so the finished product matches the design without a handoff between people.",
+    a: "Yes. Design and development are both part of every project I take on, so the finished product matches what we agreed on.",
   },
   {
     q: "Which technologies do you use?",

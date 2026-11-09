@@ -36,8 +36,7 @@ export default function ContactPage() {
         </Reveal>
         <Reveal delay={0.2}>
           <p className="mt-5 font-inter text-[16px] leading-[22.4px] text-bone">
-            Tell me what you&apos;re building. Whether it&apos;s a brand launch, a site upgrade or an e-commerce venture,
-            let&apos;s work on it together.
+            Tell me what you&apos;re building. Share where things stand today, and we&apos;ll work out the next step together.
           </p>
         </Reveal>
 

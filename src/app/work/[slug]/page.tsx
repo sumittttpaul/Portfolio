@@ -35,6 +35,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   if (!project) notFound();
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
+  const brief = [
+    { label: "Goal", text: project.goal },
+    { label: "Focus", text: project.focus },
+    { label: "Delivered", text: project.delivered },
+  ];
 
   return (
     <>
@@ -51,25 +56,25 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         />
       </section>
 
-      <Reveal className="mx-2 sm:mx-4" y={40}>
+      <Reveal className="container-site" y={40}>
         <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] sm:aspect-[16/8] sm:rounded-[20px]" style={{ backgroundColor: project.tint }}>
-          <Image src={project.cover} alt={`${project.name} cover`} fill priority sizes="100vw" className="object-cover" />
+          <Image src={project.cover} alt={`${project.name} cover`} fill priority sizes="(min-width: 1600px) 1520px, 100vw" className="object-cover" />
         </div>
       </Reveal>
 
-      <section className="mx-auto grid w-full max-w-[1000px] gap-10 px-[18px] py-16 sm:px-9 sm:py-[110px] md:grid-cols-[1fr_240px] md:gap-12">
+      <section className="container-site grid gap-10 py-16 sm:py-[110px] lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-20">
         <div>
           <Reveal>
             <h2 className="text-heading-40 font-medium text-bone">About</h2>
           </Reveal>
           {project.about.map((p, i) => (
             <Reveal key={i} delay={0.05 * (i + 1)}>
-              <p className="mt-6 font-inter text-[16px] font-medium leading-[24.8px] text-bone">{p}</p>
+              <p className="mt-6 max-w-[820px] font-inter text-[18px] leading-[28px] text-pale">{p}</p>
             </Reveal>
           ))}
         </div>
         <Reveal delay={0.1}>
-          <dl className="grid grid-cols-2 gap-6 rounded-[14px] bg-ink-800 p-5 md:grid-cols-1">
+          <dl className="grid grid-cols-2 gap-6 rounded-[14px] bg-ink-800 p-6">
             <div>
               <dt className="eyebrow">Year</dt>
               <dd className="mt-1.5 text-[15px] leading-[21px] text-bone">{project.year}</dd>
@@ -83,7 +88,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               <dd className="mt-1.5 text-[15px] leading-[21px] text-bone">Design &amp; development</dd>
             </div>
             {project.stack && (
-              <div className="col-span-2 md:col-span-1">
+              <div className="col-span-2">
                 <dt className="eyebrow">Stack</dt>
                 <dd className="mt-2 flex flex-wrap gap-1.5">
                   {project.stack.map((s) => (
@@ -96,6 +101,39 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             )}
           </dl>
         </Reveal>
+      </section>
+
+      <section aria-label="The brief" className="container-site pb-16 sm:pb-[110px]">
+        <ul className="grid gap-3 md:grid-cols-3">
+          {brief.map((b, i) => (
+            <Reveal as="li" key={b.label} delay={i * 0.05}>
+              <div className="h-full rounded-2xl bg-ink-800 p-6 sm:p-8">
+                <p className="eyebrow">{b.label}</p>
+                <p className="mt-10 text-[clamp(1.25rem,1.7vw,1.5rem)] font-medium leading-[1.25] tracking-[-0.02em] text-bone">{b.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-label="Highlights" className="container-site pb-16 sm:pb-[110px]">
+        <Reveal>
+          <p className="eyebrow">Highlights</p>
+          <h2 className="mt-4 text-heading-40 font-medium text-bone">What shaped the experience</h2>
+        </Reveal>
+        <ol className="mt-10 grid md:grid-cols-2 md:gap-x-16">
+          {project.highlights.map((h, i) => (
+            <Reveal as="li" key={h.title} delay={(i % 2) * 0.05}>
+              <div className="flex gap-6 border-t border-white/10 py-7">
+                <span className="w-6 shrink-0 pt-1 text-[13px] tabular-nums text-dim">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3 className="text-[20px] font-medium leading-[23px] text-bone">{h.title}</h3>
+                  <p className="mt-2.5 font-inter text-[16px] leading-[23.2px] text-mute">{h.text}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </ol>
       </section>
 
       <ProjectGallery title={project.name} images={project.gallery} />
@@ -117,7 +155,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               alt=""
               fill
               sizes="(min-width: 768px) 55vw, 100vw"
-              className="object-cover transition-transform duration-[1.2s] ease-expo group-hover:scale-[1.04]"
+              className="hover-zoom object-cover"
             />
           </div>
         </Link>

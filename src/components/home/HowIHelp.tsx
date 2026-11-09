@@ -17,7 +17,7 @@ const slides = [
     ],
     headline: "Your website should look as good as what you do.",
     body: [
-      "I'll give your site its own personality: confident typography, smooth page transitions and scroll effects that make people stop and look.",
+      "I'll give your site its own personality: confident typography, smooth page transitions and scroll effects that hold people's attention.",
       "No templates. Every section is designed around your brand, so visitors remember you after they close the tab.",
     ],
   },
@@ -72,12 +72,16 @@ function Arrow({ dir }: { dir: "left" | "right" }) {
 
 export default function HowIHelp() {
   const [i, setI] = useState(0);
+  const [dir, setDir] = useState(1);
   const reduce = useReducedMotion();
   const s = slides[i];
-  const go = (d: number) => setI((v) => (v + d + slides.length) % slides.length);
+  const go = (d: number) => {
+    setDir(d);
+    setI((v) => (v + d + slides.length) % slides.length);
+  };
 
   return (
-    <section aria-label="How I can help" className="mx-2 rounded-[16px] bg-ink-950 px-[10px] py-16 sm:mx-4 sm:rounded-[20px] sm:px-9 lg:py-[120px]">
+    <section aria-label="How I can help" className="mx-2 overflow-hidden rounded-[16px] bg-ink-950 px-[10px] py-16 sm:mx-4 sm:rounded-[20px] sm:px-9 lg:py-[120px]">
       <div className="mx-auto grid max-w-[1520px] gap-12 xl:grid-cols-[400px_minmax(0,1010px)] xl:justify-between">
         <div className="flex flex-col">
           <Reveal y={10}>
@@ -118,18 +122,24 @@ export default function HowIHelp() {
           </Link>
         </div>
 
-        <div className="relative xl:h-[640px]">
-          <div aria-hidden="true" className="absolute inset-0 hidden origin-top-left rotate-[1.2deg] rounded-[14px] bg-ink-800 xl:block" />
-          <div aria-hidden="true" className="absolute inset-0 hidden origin-top-left rotate-[0.6deg] rounded-[14px] bg-[#212226] xl:block" />
-          <div className="relative h-full overflow-hidden rounded-[14px] bg-ink-750">
-            <AnimatePresence mode="wait" initial={false}>
+        <div className="group relative grid xl:h-[640px]">
+          <div aria-hidden="true" className="absolute inset-0 hidden origin-top-left rotate-[2deg] rounded-[14px] bg-ink-800 transition-transform duration-500 ease-expo group-hover:translate-x-1.5 group-hover:translate-y-1 group-hover:rotate-[3.2deg] sm:block" />
+          <div aria-hidden="true" className="absolute inset-0 hidden origin-top-left rotate-[1deg] rounded-[14px] bg-[#212226] transition-transform duration-500 ease-expo group-hover:translate-x-[3px] group-hover:translate-y-0.5 group-hover:rotate-[1.8deg] sm:block" />
+          <div className="relative col-start-1 row-start-1 grid h-full transition-transform duration-500 ease-expo group-hover:-translate-y-1">
+            <AnimatePresence initial={false} custom={dir}>
               <m.article
                 key={s.title}
-                initial={reduce ? false : { opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="flex h-full flex-col p-6 sm:p-[52px]"
+                custom={dir}
+                variants={{
+                  enter: (d: number) => ({ y: 28 * d, x: 18 * d, rotate: 2.4 * d, scale: 0.95, zIndex: 1 }),
+                  center: { x: 0, y: 0, rotate: 0, scale: 1, zIndex: 2, opacity: 1 },
+                  exit: (d: number) => ({ x: d > 0 ? "-112%" : "112%", y: -36, rotate: d > 0 ? -9 : 9, opacity: 0, zIndex: 3 }),
+                }}
+                initial={reduce ? false : "enter"}
+                animate="center"
+                exit={reduce ? undefined : "exit"}
+                transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
+                className="col-start-1 row-start-1 flex h-full origin-bottom flex-col rounded-[14px] bg-ink-750 p-6 shadow-[0_24px_48px_rgba(0,0,0,0.35)] sm:p-[52px]"
               >
                 <header className="border-b border-black/60 pb-6">
                   <p className="text-[22px] font-semibold uppercase leading-[24.2px] tracking-[1.32px] text-bone">{s.title}</p>

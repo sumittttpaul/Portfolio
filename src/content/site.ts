@@ -23,7 +23,7 @@ export const socials: Social[] = [
   { label: "Facebook", href: "https://www.facebook.com/sumitttpaul" },
 ];
 
-export const whatsapp = "https://wa.me/+918794007993";
+export const whatsapp = "https://wa.me/918794007993";
 
 export const nav = [
   { label: "Works", href: "/work" },

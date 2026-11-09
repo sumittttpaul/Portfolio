@@ -15,7 +15,7 @@ import type { Project } from "content/projects";
  * is measured on zero-height sentinels that sit in normal flow at the natural
  * start of each card.
  */
-export default function WorksStack({ projects }: { projects: Project[] }) {
+export default function WorksStack({ projects, settleFirst = false }: { projects: Project[]; settleFirst?: boolean }) {
   const sentinels = useMemo(
     () => Array.from({ length: projects.length + 1 }, () => createRef<HTMLLIElement>()),
     [projects.length],
@@ -24,7 +24,7 @@ export default function WorksStack({ projects }: { projects: Project[] }) {
     // overflow-x: clip (not hidden) trims the entry zoom without breaking position: sticky
     <ol className="relative overflow-x-clip">
       {projects.map((p, i) => (
-        <Item key={p.slug} project={p} index={i} self={sentinels[i]} next={sentinels[i + 1]} isLast={i === projects.length - 1} />
+        <Item key={p.slug} project={p} index={i} self={sentinels[i]} next={sentinels[i + 1]} isLast={i === projects.length - 1} settled={settleFirst && i === 0} />
       ))}
       <li ref={sentinels[projects.length]} aria-hidden="true" className="h-0" />
     </ol>
@@ -37,12 +37,14 @@ function Item({
   self,
   next,
   isLast,
+  settled,
 }: {
   project: Project;
   index: number;
   self: RefObject<HTMLLIElement>;
   next: RefObject<HTMLLIElement>;
   isLast: boolean;
+  settled: boolean;
 }) {
   const { scrollYProgress: enter } = useScroll({ target: self, offset: ["start end", "start 120px"] });
   // 0 when the next card starts entering at the bottom, 1 once it has pinned
@@ -50,7 +52,7 @@ function Item({
   return (
     <>
       <li ref={self} aria-hidden="true" className="h-0" />
-      <WorkCard project={project} index={index} enter={enter} covered={covered} isLast={isLast} />
+      <WorkCard project={project} index={index} enter={enter} covered={covered} isLast={isLast} settled={settled} />
     </>
   );
 }
@@ -61,12 +63,14 @@ function WorkCard({
   enter,
   covered,
   isLast,
+  settled,
 }: {
   project: Project;
   index: number;
   enter: MotionValue<number>;
   covered: MotionValue<number>;
   isLast: boolean;
+  settled: boolean;
 }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLLIElement>(null);
@@ -78,7 +82,7 @@ function WorkCard({
   return (
     <li ref={ref} className="sticky top-[76px] pb-[4vh] sm:top-[104px] md:pb-[6vh]" style={{ zIndex: index + 1 }}>
       <div className="relative flex w-full flex-col items-center px-2 sm:px-9">
-        <m.div style={reduce ? undefined : { scale: wrapScale }} className="w-full sm:w-[80%] lg:w-[min(58vw,1110px)]">
+        <m.div style={reduce || settled ? undefined : { scale: wrapScale }} className="w-full sm:w-[80%] lg:w-[min(58vw,1110px)]">
           <Link
             href={`/work/${project.slug}`}
             className="group relative block aspect-[5/4] w-full overflow-hidden rounded-[16px] sm:aspect-[3/2] md:rounded-[20px]"
@@ -91,7 +95,7 @@ function WorkCard({
                 fill
                 priority={index === 0}
                 sizes="(min-width: 768px) 58vw, 100vw"
-                className="object-cover transition-transform duration-[1.2s] ease-expo group-hover:scale-[1.04]"
+                className="hover-zoom object-cover"
               />
             </m.div>
             <m.span aria-hidden="true" className="pointer-events-none absolute inset-0 bg-black" style={{ opacity: dim }} />

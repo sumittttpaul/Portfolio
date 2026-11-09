@@ -8,25 +8,25 @@ import Timeline from "./Timeline";
 
 const principles = [
   {
-    title: "Understanding your vision",
-    text: "I collaborate with you, diving into your goals, and meticulously craft strategies that align seamlessly with your unique mission.",
+    title: "Your goals lead",
+    text: "Every decision starts with what you want the website to do for your business, not with what is fashionable.",
     icon: (
       <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
     ),
   },
   {
-    title: "Tailoring excellence",
-    text: "I design with intention, ensuring that every element serves a specific purpose, enhancing functionality and elevating the user experience.",
+    title: "Made for your brand",
+    text: "Layouts, content and interactions are shaped around your brand and audience rather than adapted from a template.",
     icon: <path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z" />,
   },
   {
-    title: "Driving results",
-    text: "I prioritize outcomes, delivering websites that not only attract and engage but also convert and retain users effectively.",
+    title: "Focused on outcomes",
+    text: "Clear messages and obvious next steps make it easy for visitors to do what you want them to do.",
     icon: <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" />,
   },
   {
-    title: "Fostering collaboration",
-    text: "I strongly believe in the synergy of ideas, working collaboratively to create solutions that authentically reflect your brand and resonate with your audience.",
+    title: "Straight communication",
+    text: "You get honest answers, early warnings and clear options whenever a decision needs your input.",
     icon: <path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm8 2a3 3 0 1 0 0-6M2 21c0-3.3 2.7-6 6-6s6 2.7 6 6m2-6c2.8 0 5 2.2 5 5" />,
   },
 ];
@@ -55,16 +55,6 @@ export default function Process() {
             <Image src="/media/detail-monitor.webp" alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10">
-              <ol className="mb-8 flex flex-col gap-3">
-                {["Brief and goals", "Flows and design", "Build and refine", "Launch"].map((s, i) => (
-                  <li key={s} className="flex items-center gap-3 text-[14px] text-bone/80">
-                    <span className="flex size-6 items-center justify-center rounded-full border border-white/20 font-mono text-[11px]">
-                      {i + 1}
-                    </span>
-                    {s}
-                  </li>
-                ))}
-              </ol>
               <p className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-medium text-white">One person, start to finish</p>
               <p className="body-copy-sm mt-2 max-w-[380px]">
                 The person you brief is the person who designs and writes the code, so decisions never get lost between

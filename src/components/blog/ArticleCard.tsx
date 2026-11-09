@@ -9,7 +9,7 @@ export default function ArticleCard({ article }: { article: Article }) {
     <article className="group h-full">
       <Link href={`/blog/${article.slug}`} className="flex h-full flex-col">
         <div className="overflow-hidden rounded-[12px]">
-          <div className="transition-transform duration-[1s] ease-expo group-hover:scale-[1.03]">
+          <div className="hover-zoom">
             <Cover article={article} />
           </div>
         </div>

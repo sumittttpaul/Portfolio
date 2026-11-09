@@ -49,7 +49,6 @@ export default function Scrollbar() {
 
   useEffect(() => {
     if (!enabled) return;
-    document.documentElement.classList.add("custom-scrollbar");
     measure();
     const onScroll = () => {
       measure();
@@ -69,7 +68,6 @@ export default function Scrollbar() {
     window.addEventListener("resize", measure);
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => {
-      document.documentElement.classList.remove("custom-scrollbar");
       ro.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", measure);

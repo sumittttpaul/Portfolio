@@ -1,11 +1,16 @@
 import type { Article } from "lib/blog";
+import ArticleVideo from "./ArticleVideo";
 import CodeBlock from "./CodeBlock";
 
 export default function ArticleBody({ article }: { article: Article }) {
   let h = 0;
+  // Everything after the last divider is the article's closing thought
+  const lastSeparator = article.content.map((c) => c.type).lastIndexOf("separator");
+  const body = lastSeparator === -1 ? article.content : article.content.slice(0, lastSeparator);
+  const closing = lastSeparator === -1 ? [] : article.content.slice(lastSeparator + 1);
   return (
     <div className="flex flex-col">
-      {article.content.map((block, i) => {
+      {body.map((block, i) => {
         switch (block.type) {
           case "heading": {
             const item = article.outline[h++];
@@ -39,18 +44,7 @@ export default function ArticleBody({ article }: { article: Article }) {
           case "code":
             return <CodeBlock key={i} code={block.value as string} path={block.path} />;
           case "video":
-            return (
-              <figure key={i} className="mb-6 overflow-hidden rounded-[14px] bg-ink-950">
-                <video
-                  className="block h-auto w-full"
-                  src={block.value as string}
-                  poster={block.thumbnail}
-                  controls
-                  playsInline
-                  preload="none"
-                />
-              </figure>
-            );
+            return <ArticleVideo key={i} src={block.value as string} poster={block.thumbnail} />;
           case "separator":
             return <hr key={i} className="my-10 border-dashed border-white/15" />;
           case "spacing":
@@ -59,6 +53,16 @@ export default function ArticleBody({ article }: { article: Article }) {
             return null;
         }
       })}
+      {closing.length > 0 && (
+        <aside id="takeaway" className="mt-8 scroll-mt-32 rounded-2xl bg-ink-800 p-6 sm:p-8">
+          <h2 className="eyebrow">Takeaway</h2>
+          {closing.map((block, i) => (
+            <p key={i} className="mt-4 text-[clamp(1.25rem,1.7vw,1.5rem)] font-medium leading-[1.35] tracking-[-0.02em] text-bone">
+              {block.value as string}
+            </p>
+          ))}
+        </aside>
+      )}
     </div>
   );
 }

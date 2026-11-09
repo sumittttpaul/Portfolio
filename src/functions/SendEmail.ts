@@ -47,19 +47,19 @@ export default async function SendEmail(formData: FormData) {
     await transporter.sendMail({
       from: `"Sumeet Kumar Paul" <${process.env.SMTP_FROM ?? SMTP_USER}>`,
       to: [OWNER_EMAIL, email],
-      subject: "Confirmation Email",
+      subject: "Your enquiry to Sumeet Kumar Paul",
       html,
     });
     return JSON.stringify({
-      name: "Email send successfully",
-      message: "Your email is being sent successfully to Sumeet.",
+      name: "Message sent",
+      message: "Thanks for reaching out. A copy of your message is on its way to your inbox.",
       type: "Success",
     } as EmailResponseType);
   } catch (error) {
     console.error("SendEmail failed:", error);
     return JSON.stringify({
       name: "Something went wrong",
-      message: "We kindly request that you attempt to resend the email.",
+      message: "Your message could not be sent. Please try again in a moment.",
       type: "Error",
     } as EmailResponseType);
   }

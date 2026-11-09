@@ -31,6 +31,7 @@ export default function Lightbox({
   const [origin, setOrigin] = useState("50% 50%");
   const [mounted, setMounted] = useState(false);
   const swipe = useRef<number | null>(null);
+  const swiped = useRef(false);
   const thumbs = useRef<HTMLDivElement>(null);
   const open = index !== null;
 
@@ -121,7 +122,8 @@ export default function Lightbox({
               if (swipe.current === null || zoom) return;
               const dx = e.clientX - swipe.current;
               swipe.current = null;
-              if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+              swiped.current = Math.abs(dx) > 50;
+              if (swiped.current) go(dx < 0 ? 1 : -1);
             }}
             onClick={(e) => e.target === e.currentTarget && onClose()}
           >
@@ -135,7 +137,10 @@ export default function Lightbox({
                 animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                 exit={{ opacity: 0, scale: 0.98, filter: "blur(6px)" }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                onClick={() => setZoom((z) => !z)}
+                onClick={() => {
+                  if (swiped.current) swiped.current = false;
+                  else setZoom((z) => !z);
+                }}
                 onPointerMove={(e) => {
                   if (!zoom) return;
                   const r = e.currentTarget.getBoundingClientRect();

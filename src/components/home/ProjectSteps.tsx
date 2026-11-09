@@ -7,7 +7,7 @@ const steps = [
   { title: "Structure and flows", text: "I map the pages and user flows so every screen has a clear job before design starts." },
   { title: "Interface design", text: "I design the key screens for desktop, tablet and mobile, including the states people actually hit." },
   { title: "Frontend build", text: "I build the interface in Next.js, React and TypeScript with reusable, typed components." },
-  { title: "Motion and polish", text: "Transitions, scroll effects and small details, tuned for performance and reduced motion." },
+  { title: "Motion and polish", text: "Transitions, scroll effects and small details, tuned until they feel right on every device." },
   { title: "Launch", text: "We check responsiveness, accessibility and SEO basics, then ship it." },
 ];
 
@@ -30,8 +30,7 @@ export default function ProjectSteps() {
           </div>
           <Reveal delay={0.1} className="lg:w-[460px]">
             <p className="font-inter text-[17px] leading-[24.65px] text-[#9B9B9B]">
-              One person owns the whole project, from the first conversation to the launch, so nothing gets lost between
-              design and code.
+              Six clear stages, so you always know what is happening and what comes next.
             </p>
           </Reveal>
         </div>
@@ -39,7 +38,7 @@ export default function ProjectSteps() {
         <Reveal className="mt-10 flex flex-wrap gap-2.5">
           <span className={`${chip} gap-2.5`}>
             <Image src={site.avatar} alt="" width={28} height={28} className="size-7 rounded-full object-cover" />
-            One engineer
+            {site.name}
           </span>
           <span className={`${chip} text-[20px] font-medium leading-7 text-white`}>Next.js · React · TypeScript</span>
           <span className={chip}>One point of contact</span>

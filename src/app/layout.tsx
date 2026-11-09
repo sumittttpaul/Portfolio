@@ -1,13 +1,14 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from "next";
-import { Big_Shoulders_Display, Inter, Roboto_Mono } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import ProgressiveBlur from "components/ui/ProgressiveBlur";
 import SmoothScroll from "components/ui/SmoothScroll";
 import Scrollbar from "components/ui/Scrollbar";
 import ScrollTop from "components/ui/ScrollTop";
 import ImageFade from "components/ui/ImageFade";
+import RouteTransition, { greetingScript } from "components/ui/RouteTransition";
 import { MotionOptimize } from "utils/FramerMotion";
 import Header from "components/site/Header";
 import Footer from "components/site/Footer";
@@ -33,8 +34,6 @@ const grtsk = localFont({
 });
 
 const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
-// Ultra-condensed, square display face for the name wordmark
-const wordmarkFont = Big_Shoulders_Display({ subsets: ["latin"], weight: ["900"], display: "block", variable: "--font-wordmark" });
 const robotoMono = Roboto_Mono({ subsets: ["latin"], weight: ["400", "600"], display: "swap", variable: "--font-roboto-mono" });
 
 export const metadata: Metadata = {
@@ -77,8 +76,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en" className={`${neue.variable} ${grtsk.variable} ${inter.variable} ${robotoMono.variable} ${wordmarkFont.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${neue.variable} ${grtsk.variable} ${inter.variable} ${robotoMono.variable}`}>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: greetingScript }} />
+        <noscript>
+          <style>{".route-cover{display:none}"}</style>
+        </noscript>
         {/* Switzer (Fontshare, free licence): primary UI and display face */}
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
         <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="" />
@@ -102,6 +105,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           <Scrollbar />
           <ScrollTop />
           <ImageFade />
+          <RouteTransition />
         </MotionOptimize>
         <Analytics />
         <SpeedInsights />

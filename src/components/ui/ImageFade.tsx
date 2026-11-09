@@ -13,6 +13,10 @@ export default function ImageFade() {
       img.style.transition = "opacity 0.45s ease";
       const show = () => {
         img.style.opacity = "";
+        // Hand transitions back to the image's own classes (hover zooms) once the fade is over
+        setTimeout(() => {
+          img.style.transition = "";
+        }, 500);
       };
       img.addEventListener("load", show, { once: true });
       img.addEventListener("error", show, { once: true });
