@@ -1,37 +1,37 @@
-import Image from "next/image";
 import SectionHeading from "components/ui/SectionHeading";
 import { Reveal } from "components/ui/Reveal";
+import { DesignScene, EasingScene, FrontendScene, PaymentsScene, WebAppScene } from "./CapabilityScenes";
 
 const items = [
   {
     title: "Frontend Engineering",
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux", "Responsive"],
     text: "Interfaces built to last. I write clean React and TypeScript, with component systems your team can extend and state that stays predictable once real data arrives.",
-    image: "/media/art/code.webp",
+    Scene: FrontendScene,
   },
   {
     title: "Web App Development",
     tags: ["Node.js", "GraphQL", "MongoDB", "Firebase", "StepZen"],
     text: "From the first login to the busiest dashboard, I build the whole experience and connect it to the APIs and data behind it, so the product works as well as it looks.",
-    image: "/media/art/graph.webp",
+    Scene: WebAppScene,
   },
   {
     title: "E-commerce & Payments",
     tags: ["Stripe", "Sanity", "Clerk", "Catalogues", "Checkout"],
     text: "Storefronts people enjoy browsing, with a checkout that stays out of the way. Payments, product content and customer accounts all working together.",
-    image: "/media/art/pay.webp",
+    Scene: PaymentsScene,
   },
   {
     title: "Motion & Interaction",
     tags: ["Framer Motion", "GSAP", "Smooth scroll", "Transitions"],
     text: "The part people remember. Scroll-driven reveals, page transitions and micro-interactions that feel natural, stay smooth and respect reduced-motion settings.",
-    image: "/media/art/motion.webp",
+    Scene: EasingScene,
   },
   {
     title: "UI/UX Design",
     tags: ["User flows", "Wireframes", "Visual design", "Design to code"],
     text: "I plan the flows and draw the screens, then build them myself, so nothing gets lost between the idea and the launch.",
-    image: "/media/art/wire.webp",
+    Scene: DesignScene,
   },
 ];
 
@@ -79,7 +79,7 @@ export default function Capabilities() {
                   </ul>
                 </div>
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-ink-800 md:order-3 md:col-span-2 xl:order-none xl:col-span-1">
-                  <Image src={item.image} alt="" fill sizes="(min-width: 1280px) 420px, 100vw" className="origin-right scale-[1.3] object-cover" />
+                  <item.Scene />
                 </div>
                 <p className="font-inter text-[16px] leading-[24px] text-mute">{item.text}</p>
               </Reveal>

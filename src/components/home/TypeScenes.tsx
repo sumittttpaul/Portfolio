@@ -209,7 +209,7 @@ export function ShopScene({ active }: Props) {
 /* 4. Web applications */
 export function AppScene({ active }: Props) {
   const card = (t: string, c: string) => (
-    <div className="rounded-xl border border-white/[0.08] bg-[#17181C] p-3">
+    <div key={t} className="rounded-xl border border-white/[0.08] bg-[#17181C] p-3">
       <span className={`inline-block h-1.5 w-10 rounded-full ${c}`} />
       <p className="mt-2 text-[12px] text-white/85">{t}</p>
       <div className="mt-2.5 flex items-center justify-between">

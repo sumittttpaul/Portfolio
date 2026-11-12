@@ -14,7 +14,6 @@ export default function BlogPreview() {
       {/* Swipeable row on phones and tablets, three-column grid on desktop */}
       <ul
         className="mx-auto mt-10 flex max-w-site snap-x snap-mandatory scroll-pl-[18px] gap-4 overflow-x-auto px-[18px] pb-2 sm:scroll-pl-9 [scrollbar-width:none] sm:mt-14 sm:px-9 lg:grid lg:snap-none lg:grid-cols-3 lg:gap-y-12 lg:overflow-visible xl:px-4 [&::-webkit-scrollbar]:hidden"
-        data-lenis-prevent-wheel
       >
         {articles.map((a, i) => (
           <Reveal as="li" key={a.slug} delay={i * 0.06} className="w-[82%] shrink-0 snap-start sm:w-[58%] lg:w-auto">

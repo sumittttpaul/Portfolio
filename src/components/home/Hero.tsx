@@ -123,7 +123,7 @@ export default function Hero() {
     <div ref={wrapRef} className="relative" style={{ height: geo.desktop ? `calc(100svh + ${PIN}px)` : undefined }}>
       <section
         aria-label="Introduction"
-        className="relative flex flex-col px-2 pb-2 pt-[72px] sm:px-4 sm:pb-4 sm:pt-[101px] lg:pt-[128px] lg:sticky lg:top-0 lg:h-[100svh] lg:min-h-[620px] lg:overflow-hidden"
+        className="relative flex flex-col px-2 pb-2 pt-[88px] sm:px-4 sm:pb-4 sm:pt-[101px] lg:pt-[128px] lg:sticky lg:top-0 lg:h-[100svh] lg:min-h-[620px] lg:overflow-hidden"
       >
         <h1 className="sr-only">Sumeet Kumar Paul, Senior Frontend Engineer</h1>
 

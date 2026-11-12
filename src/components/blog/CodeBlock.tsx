@@ -130,7 +130,7 @@ export default function CodeBlock({ code, path }: { code: string; path?: string 
           </div>
 
           {/* Code */}
-          <div className="overflow-x-auto p-5 max-sm:p-3" data-lenis-prevent>
+          <div className="overflow-x-auto p-5 max-sm:p-3">
             <PrismLight
               language="tsx"
               style={theme}

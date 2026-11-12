@@ -76,7 +76,11 @@ function WorkCard({
   const ref = useRef<HTMLLIElement>(null);
   const wrapScale = useTransform(enter, [0, 1], [1.1, 1]);
   const imgScale = useTransform(enter, [0, 1], [1.2, 1]);
-  const infoOpacity = useTransform(covered, [0.25, 0.6], [1, isLast ? 1 : 0]);
+  // Labels fade out as soon as the next card starts to arrive, and fade in only
+  // once this card has nearly settled, so two sets never show at the same time
+  const leaving = useTransform(covered, [0.05, 0.3], [1, isLast ? 1 : 0]);
+  const arriving = useTransform(enter, [0.7, 0.95], [index === 0 ? 1 : 0, 1]);
+  const infoOpacity = useTransform([leaving, arriving], ([a, b]: number[]) => Math.min(a, b));
   const dim = useTransform(covered, [0.3, 1], [0, isLast ? 0 : 0.35]);
 
   return (

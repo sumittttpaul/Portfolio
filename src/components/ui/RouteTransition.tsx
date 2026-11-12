@@ -4,7 +4,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { getProject } from "content/projects";
 import { pauseSmoothScroll, resumeSmoothScroll } from "components/ui/SmoothScroll";
-import { site } from "content/site";
 
 const EASE = "cubic-bezier(0.76, 0, 0.24, 1)";
 const TEXT_EASE = "cubic-bezier(0.33, 1, 0.68, 1)";
@@ -309,10 +308,6 @@ export default function RouteTransition() {
         <p suppressHydrationWarning className="route-label mt-4 font-inter text-[clamp(1rem,1.3vw,1.25rem)] leading-[1.4] text-mute">
           {label.text}
         </p>
-        <div className="route-label absolute inset-x-[18px] bottom-6 flex justify-between gap-4 text-[12px] uppercase leading-[15.6px] text-pale sm:inset-x-9 sm:bottom-8">
-          <span>{site.name}</span>
-          <span>{site.role}</span>
-        </div>
       </div>
     </div>
   );
